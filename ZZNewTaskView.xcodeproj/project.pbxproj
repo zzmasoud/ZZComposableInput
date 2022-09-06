@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		04325F9228C7D5FE00104F4F /* ZZNewTaskView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZNewTaskView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNewTaskView.h; sourceTree = "<group>"; };
+		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,9 +47,18 @@
 		04325F9028C7D5FE00104F4F /* ZZNewTaskView */ = {
 			isa = PBXGroup;
 			children = (
+				04679F4028C7D70B0013DA42 /* Models */,
 				04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */,
 			);
 			path = ZZNewTaskView;
+			sourceTree = "<group>";
+		};
+		04679F4028C7D70B0013DA42 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +104,7 @@
 				TargetAttributes = {
 					04325F8D28C7D5FE00104F4F = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -129,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +270,7 @@
 		04325F9628C7D5FE00104F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -277,6 +291,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -284,6 +299,7 @@
 		04325F9728C7D5FE00104F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
