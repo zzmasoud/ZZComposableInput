@@ -17,6 +17,7 @@ public protocol ZZNewTask_VD: AnyObject {
 }
 
 protocol UIView {}
+class UIButton {}
 protocol ZZHorizontalSelectorView {}
 
 open class ZZNewTaskView: UIView {
@@ -40,5 +41,45 @@ open class ZZNewTaskView: UIView {
     private func styleUI() {
         // style UI from the configuration: `config`
     }
+    
+    private func config(button: UIButton, selected: Bool, current: Bool) {
+        if selected {
+//            button.tintColor = configs.buttonsFilledTintColor
+//            button.backgroundColor = configs.buttonsFilledBGColor
+        } else if current {
+//            button.tintColor = .white
+//            button.backgroundColor = configs.tintColor
+        } else {
+//            button.tintColor = configs.buttonsDefaultTintColor
+//            button.backgroundColor = configs.buttonsDefaultBGColor
+        }
+    }
+}
 
+extension ZZNewTaskView: ZZNewTask_VD {
+    public func set(text: String) {
+        
+    }
+    
+    public func dismiss() {
+        doneCompletion?()
+    }
+    
+    public func toggleSendButton(isEnabled: Bool) {
+        
+    }
+    
+    public func updateButton(current: Bool, selected: Bool, at index: Int) {
+        config(button: UIButton(), selected: selected, current: current)
+    }
+    
+    public func updateUI() {
+        
+    }
+    
+    public func fillUI() {
+        
+    }
+    
+    
 }
