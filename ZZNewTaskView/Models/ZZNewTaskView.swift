@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ZZNewTask_VD: class {
+public protocol ZZNewTask_VD: AnyObject {
     func set(text: String)
     func dismiss()
     func toggleSendButton(isEnabled: Bool)
