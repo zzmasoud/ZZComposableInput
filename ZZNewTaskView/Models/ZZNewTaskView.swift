@@ -25,4 +25,20 @@ open class ZZNewTaskView: UIView {
     var selectorView: ZZHorizontalSelectorView!
     
     // IBAction
+    
+    static public var _configs: ZZNewTaskViewConfigs!
+    public var configs: ZZNewTaskViewConfigs { return Self._configs }
+    
+    public var doneCompletion: (()->Void)?
+    public var didTapAddInSelectorView: (()->Void)?
+    
+    private func setup() {
+        // Load from Nib and assign delegate of textView
+        styleUI()
+    }
+    
+    private func styleUI() {
+        // style UI from the configuration: `config`
+    }
+
 }
