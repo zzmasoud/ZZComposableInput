@@ -10,6 +10,7 @@
 		04325F9228C7D5FE00104F4F /* ZZNewTaskView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
 		049C3E1928CBC2220090FD40 /* ZZNewTaskViewConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */; };
+		049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +18,7 @@
 		04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNewTaskView.h; sourceTree = "<group>"; };
 		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 		049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskViewConfigs.swift; sourceTree = "<group>"; };
+		049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */,
 				049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */,
+				049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				049C3E1928CBC2220090FD40 /* ZZNewTaskViewConfigs.swift in Sources */,
+				049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */,
 				04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
