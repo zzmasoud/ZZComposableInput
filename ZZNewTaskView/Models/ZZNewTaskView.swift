@@ -15,3 +15,14 @@ public protocol ZZNewTask_VD: AnyObject {
     func updateUI()
     func fillUI()
 }
+
+protocol UIView {}
+protocol ZZHorizontalSelectorView {}
+
+open class ZZNewTaskView: UIView {
+    
+    // IBOutlets
+    var selectorView: ZZHorizontalSelectorView!
+    
+    // IBAction
+}
