@@ -11,6 +11,8 @@
 		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
 		049C3E1928CBC2220090FD40 /* ZZNewTaskViewConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */; };
 		049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */; };
+		04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */; };
+		04DBFA2128CCFB3C000C598B /* ZZHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA2028CCFB3C000C598B /* ZZHorizontalSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 		049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskViewConfigs.swift; sourceTree = "<group>"; };
 		049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView.swift; sourceTree = "<group>"; };
+		04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView_VM.swift; sourceTree = "<group>"; };
+		04DBFA2028CCFB3C000C598B /* ZZHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */,
+				04DBFA2028CCFB3C000C598B /* ZZHorizontalSelectorView.swift */,
 				049C3E1828CBC2220090FD40 /* ZZNewTaskViewConfigs.swift */,
 				049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */,
+				04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,7 +155,9 @@
 			files = (
 				049C3E1928CBC2220090FD40 /* ZZNewTaskViewConfigs.swift in Sources */,
 				049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */,
+				04DBFA2128CCFB3C000C598B /* ZZHorizontalSelectorView.swift in Sources */,
 				04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */,
+				04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
