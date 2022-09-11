@@ -50,4 +50,37 @@ open class ZZNewTaskView_VM: NSObject {
     
     private var currentIndex: Index = .none
     
+    private var dates: [ZZHorizontalSelectorViewPresentable] = [
+        Data(isSelected: false, title: "Today"),
+        Data(isSelected: false, title: "Tommorow"),
+        Data(isSelected: false, title: "Next Week"),
+        Data(isSelected: false, title: "Next Month"),
+    ]
+    
+    private var tags: [ZZHorizontalSelectorViewPresentable] = []
+    private var projects: [ZZHorizontalSelectorViewPresentable] = [
+        Data(isSelected: false, title: "Zebra iOS"),
+        Data(isSelected: false, title: "Running Session"),
+        Data(isSelected: false, title: "Flutter Fundementals"),
+        Data(isSelected: false, title: "CLOC V2"),
+    ]
+    private var times: [ZZHorizontalSelectorViewPresentable] = [
+        Data(isSelected: false, title: "30m"),
+        Data(isSelected: false, title: "1h"),
+        Data(isSelected: false, title: "1h:30m"),
+        Data(isSelected: false, title: "1h:45m"),
+        Data(isSelected: false, title: "2h"),
+    ]
+    
+    private var selectorViewModels: [Index : ZZHorizontalSelectorView_VMP] = [:]
+    
+    private weak var view: ZZNewTask_VD? {
+        didSet {
+            view?.fillUI()
+        }
+    }
+    
+    
+
+    
 }
