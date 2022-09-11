@@ -8,6 +8,12 @@
 import Foundation
 //import UIKit.UIColor
 
+struct Data: ZZHorizontalSelectorViewPresentable {
+    var isSelected: Bool
+    var color: CGColor
+    var title: String
+}
+
 public protocol ZZNewTaskView_VMP {
     var isRepeatOptionHidden: Bool { get }
     func didTapSendButton()

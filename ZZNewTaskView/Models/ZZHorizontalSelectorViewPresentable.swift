@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ZZHorizontalSelectorViewPresentable {
+public protocol ZZHorizontalSelectorViewPresentable {
     var color: CGColor  { get }
     var title: String { get }
 }
