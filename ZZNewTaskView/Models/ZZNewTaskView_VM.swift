@@ -48,7 +48,17 @@ open class ZZNewTaskView_VM: NSObject {
         }
     }
     
-    private var currentIndex: Index = .none
+    private var currentIndex: Index = .none {
+        didSet {
+            guard currentIndex != oldValue else { return }
+            if oldValue != .none {
+                view?.updateButton(current: false, selected: !viewModel(forIndex: oldValue).didNotSelectAny, at: oldValue.rawValue)
+            }
+            view?.updateButton(current: true, selected: false, at: currentIndex.rawValue)
+            
+            view?.updateUI()
+        }
+    }
     
     private var dates: [ZZHorizontalSelectorViewPresentable] = [
         Data(isSelected: false, title: "Today"),
@@ -79,8 +89,73 @@ open class ZZNewTaskView_VM: NSObject {
             view?.fillUI()
         }
     }
-    
-    
 
+    private var text: String? {
+        didSet {
+            view?.toggleSendButton(isEnabled: isSendButtonEnabled)
+        }
+    }
     
+    func viewModel(forIndex index: Index) -> ZZHorizontalSelectorView_VMP {
+
+        if let vm = self.selectorViewModels[index] {
+            return vm
+        } else {
+            var vm: ZZHorizontalSelectorView_VMP
+
+            switch index {
+            case .date:
+                vm = ZZHorizontalSelectorView_VM(items: dates, selectionLimit: 1)
+                self.selectorViewModels[index] = vm
+            case .time:
+                vm = ZZHorizontalSelectorView_VM(items: times, selectionLimit: 1)
+                self.selectorViewModels[index] = vm
+            case .tags:
+                vm = ZZHorizontalSelectorView_VM(items: tags, selectionLimit: 5)
+                self.selectorViewModels[index] = vm
+            case .project:
+                vm = ZZHorizontalSelectorView_VM(items: projects, selectionLimit: 1)
+                self.selectorViewModels[index] = vm
+            default:
+                fatalError()
+            }
+
+            return vm
+        }
+    }
+}
+
+extension ZZNewTaskView_VM: ZZNewTaskView_VMP {
+    public var isRepeatOptionHidden: Bool {
+        return false
+    }
+    
+    public func didTapSendButton() {
+        
+    }
+    
+    public var currentTitle: String? {
+        return currentIndex.title?.capitalized
+    }
+    
+    public var isSendButtonEnabled: Bool {
+        text != nil && !text!.isEmpty
+    }
+    
+    public func textValueChanged(to text: String?) {
+        self.text = text
+    }
+    
+    public func didSelectButton(at index: Int) {
+        guard let newIndex = Index(rawValue: index) else { fatalError() }
+        currentIndex = newIndex
+    }
+    
+    public var selectorViewViewModel: ZZHorizontalSelectorView_VMP {
+        return self.viewModel(forIndex: currentIndex)
+    }
+    
+    public func setView(delegate: AnyObject) {
+        self.view = delegate as? ZZNewTask_VD
+    }
 }
