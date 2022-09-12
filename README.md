@@ -16,6 +16,7 @@ This is one of the main modules in my app and because of the nested modules and 
 ## Problems
 - Abstraction.
 - Subclassing in appropriate way.
+- Modularity (I think I'm doing the MVVM approach wrongly, everything mixed in the main viewModel).
 - How to code the ViewModel without UI existence?
 - How to preselect items when it instantiates with editing task?
 - Select first item if user entering a duplicate item and prevent duplication (shown in the video when selecting estimated time).
