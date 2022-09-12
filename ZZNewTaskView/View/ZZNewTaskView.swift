@@ -26,15 +26,15 @@ open class ZZNewTaskView: UIView {
     public init() {}
     
     // IBOutlets
-    var selectorView: ZZHorizontalSelectorView!
+    let selectorView = ZZHorizontalSelectorView()
     @IBOutlet private weak var textView: NSTextView!
     @IBOutlet private weak var sendButton: NSButton!
     @IBOutlet private weak var buttonsStackView: NSStackView!
     @IBOutlet private weak var selectorTitleLabel: NSTextField!
     
     // IBAction
-    public func selectButton(at index: Int) {
-        viewModel.didSelectButton(at: index)
+    @IBAction func selectButton(_ sender: NSButton) {
+        viewModel.didSelectButton(at: sender.tag)
     }
     
     public var doneCompletion: (()->Void)?
@@ -68,15 +68,15 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func toggleSendButton(isEnabled: Bool) {
-        sendButton.isEnabled = isEnabled
+//        sendButton.isEnabled = isEnabled
     }
     
     public func updateButton(current: Bool, selected: Bool, at index: Int) {
-        config(button: UIButton(), selected: selected, current: current)
+//        config(button: UIButton(), selected: selected, current: current)
     }
     
     public func updateUI() {
-        selectorTitleLabel.stringValue = viewModel.currentTitle ?? "-"
+//        selectorTitleLabel.stringValue = viewModel.currentTitle ?? "-"
         selectorView.viewModel = viewModel.selectorViewViewModel
     }
     
