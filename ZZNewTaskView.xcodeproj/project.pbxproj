@@ -95,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				044DFF6228CF2A52007A098F /* ZZHorizontalSelectorView */,
-				044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -103,7 +102,7 @@
 		044DFF5828CEFA5A007A098F /* ZZNewTaskViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				044DFF6828CF2CB7007A098F /* Helpers.swift */,
+				044DFF6C28CF2D2D007A098F /* Helpers */,
 				044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */,
 			);
 			path = ZZNewTaskViewTests;
@@ -141,6 +140,15 @@
 				049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		044DFF6C28CF2D2D007A098F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */,
+				044DFF6828CF2CB7007A098F /* Helpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		04679F4028C7D70B0013DA42 /* ViewModel */ = {
