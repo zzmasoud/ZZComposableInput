@@ -45,7 +45,7 @@ struct weekDayItem: ZZHorizontalSelectorViewPresentable {
 class NewTask_VM: NSObject {
     
     enum Index: Int, CaseIterable {
-        case none = -1, date = 0, time, project, repeatedDays, tags
+        case none = -1, date = 0, time, project, repeatedDays
         
         var title: String? {
             switch self {
@@ -53,8 +53,6 @@ class NewTask_VM: NSObject {
                 return "newTask_date".localized
             case .time:
                 return "newTask_estimatedTime".localized
-            case .tags:
-                return "tags"
             case .project:
                 return "newTask_project".localized
             case .repeatedDays:
@@ -161,8 +159,6 @@ class NewTask_VM: NSObject {
                 vm = ZZHorizontalSelectorView_VM(items: fetchDates(), selectionLimit: 1)
             case .time:
                 vm = ZZHorizontalSelectorView_VM(items: fetchTimes(), selectionLimit: 1)
-            case .tags:
-                vm = ZZHorizontalSelectorView_VM(items: fetchTags(), selectionLimit: 5)
             case .project:
                 vm = ZZHorizontalSelectorView_VM(items: fetchProjects(), selectionLimit: 1)
             case .repeatedDays:
@@ -190,66 +186,21 @@ class NewTask_VM: NSObject {
     }()
     
     private func createAndSaveTask() {
-        let task = Task()
-        var title: String?
-        var desc: String?
-        var date: Date?
-        var estimatedDuration: TimeInterval = 0
-        var project: Project?
-        var tags: NSSet?
 
-        let substrings = text!.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
-        if let s = substrings.first {
-            title = String(s)
-        }
-        if substrings.count > 1 , let s = substrings.last {
-            desc = String(s)
-        }
-        date = (viewModel(forIndex: .date).selectedItems?.first as? DateItem)?.date
-        estimatedDuration = (viewModel(forIndex: .time).selectedItems?.first as? TimeItem)?.time ?? 0
-       project = (viewModel(forIndex: .project).selectedItems?.first as? Project)
-        tags = NSSet()
+        // selected date
+        let _ = (viewModel(forIndex: .date).selectedItems?.first as? DateItem)?.date
+        // selected estimated time
+        let _ = (viewModel(forIndex: .time).selectedItems?.first as? TimeItem)?.time ?? 0
+        // selected project
+        let _ = (viewModel(forIndex: .project).selectedItems?.first as? Project)
+        // selected repeated days
+        let _ = (viewModel(forIndex: .repeatedDays).selectedItems) as? [weekDayItem]
         
-        // save new task
+        
+        // create Task() + save
     }
     
     private func updateTask(task: Task) {
-        var title: String?
-        var desc: String?
-        var date: Date?
-        var estimatedDuration: TimeInterval = 0
-        var project: Project?
-        var tags: NSSet?
-        
-        let substrings = text!.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
-        if let s = substrings.first {
-            title = String(s)
-        }
-        if substrings.count > 1 , let s = substrings.last {
-            desc = String(s)
-        }
-        date = (viewModel(forIndex: .date).selectedItems?.first as? DateItem)?.date
-        estimatedDuration = (viewModel(forIndex: .time).selectedItems?.first as? TimeItem)?.time ?? 0
-       project = (viewModel(forIndex: .project).selectedItems?.first as? Project)
-        tags = NSSet()
-        
-        let changed = true
-//        let changed: Bool =
-//        (
-//            task.title != title
-//            ||
-//            task.desc != desc
-//            ||
-//            task.date != date
-//            ||
-//            task.estimatedTime != estimatedDuration
-//            ||
-//            task.project != project
-//        )
-
-        // nothing changed, so skip only
-        guard changed else { return }
-        
         // edit current task
     }
 }
@@ -274,7 +225,7 @@ extension NewTask_VM: NewTaskView_VMP {
         case .time:
             guard let time = value as? TimeInterval else { fatalError("object should be TimeInterval()") }
             vm.add(item: TimeItem(time: time, title: dateComponentsFormatter.string(from: time) ?? "-"))
-        case .project, .tags:
+        case .project:
             guard let item = value as? ZZHorizontalSelectorViewPresentable else { return }
             vm.add(item: item)
         default:
@@ -290,10 +241,8 @@ extension NewTask_VM: NewTaskView_VMP {
             return .time
         case .project:
             return .project
-        case .tags:
-            return .tag
         default:
-            return .project
+            fatalError()
         }
     }
     
@@ -338,27 +287,9 @@ extension NewTask_VM: NewTaskView_VMP {
 
 class ZZNewTaskViewTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_init() {
+        let newTaskView = ZZNewTaskView()
+        let viewModel = NewTask_VM()
+        newTaskView.viewModel = viewModel
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

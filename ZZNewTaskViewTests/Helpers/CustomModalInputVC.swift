@@ -12,7 +12,7 @@ class CustomModalInputVC: UIViewController {
     public static let id = "CustomModalInputVC"
     
     public enum Child {
-        case date, time, project, tag, timeRecord
+        case date, time, project, timeRecord
         var id: String {
             switch self {
             case .date:
@@ -21,8 +21,6 @@ class CustomModalInputVC: UIViewController {
                 return "timeInput"
             case .project:
                 return "newProjectInput"
-            case .tag:
-                return "newTagInput"
             case .timeRecord:
                 return "timeRecordInput"
             }

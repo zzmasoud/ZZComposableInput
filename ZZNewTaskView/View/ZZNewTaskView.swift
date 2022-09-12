@@ -22,6 +22,9 @@ public protocol ZZNewTask_VD: AnyObject {
 
 open class ZZNewTaskView: UIView {
     
+    // test purpose only
+    public init() {}
+    
     // IBOutlets
     var selectorView: ZZHorizontalSelectorView!
     @IBOutlet private weak var textView: NSTextView!
