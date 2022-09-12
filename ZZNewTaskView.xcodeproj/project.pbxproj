@@ -8,35 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		04325F9228C7D5FE00104F4F /* ZZNewTaskView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		044DFF5A28CEFA5A007A098F /* ZZNewTaskViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */; };
-		044DFF5B28CEFA5A007A098F /* ZZNewTaskView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */; };
 		044DFF6528CF2A94007A098F /* ZZHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */; };
-		044DFF6928CF2CB7007A098F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6828CF2CB7007A098F /* Helpers.swift */; };
-		044DFF6B28CF2CEC007A098F /* CustomModalInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */; };
 		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
 		049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */; };
 		04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */; };
 		04DBFA2128CCFB3C000C598B /* ZZHorizontalSelectorView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA2028CCFB3C000C598B /* ZZHorizontalSelectorView_VM.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		044DFF5C28CEFA5A007A098F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04325F8528C7D5FE00104F4F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04325F8D28C7D5FE00104F4F;
-			remoteInfo = ZZNewTaskView;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZNewTaskView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNewTaskView.h; sourceTree = "<group>"; };
-		044DFF5728CEFA5A007A098F /* ZZNewTaskViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZNewTaskViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskViewTests.swift; sourceTree = "<group>"; };
 		044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorView.swift; sourceTree = "<group>"; };
-		044DFF6828CF2CB7007A098F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalInputVC.swift; sourceTree = "<group>"; };
+		044DFF6D28CF44ED007A098F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 		049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView.swift; sourceTree = "<group>"; };
 		04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView_VM.swift; sourceTree = "<group>"; };
@@ -51,23 +34,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		044DFF5428CEFA5A007A098F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				044DFF5B28CEFA5A007A098F /* ZZNewTaskView.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		04325F8428C7D5FE00104F4F = {
 			isa = PBXGroup;
 			children = (
+				044DFF6D28CF44ED007A098F /* MyPlayground.playground */,
 				044DFF5228CEF985007A098F /* External */,
 				04325F9028C7D5FE00104F4F /* ZZNewTaskView */,
-				044DFF5828CEFA5A007A098F /* ZZNewTaskViewTests */,
 				04325F8F28C7D5FE00104F4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */,
-				044DFF5728CEFA5A007A098F /* ZZNewTaskViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,15 +71,6 @@
 				044DFF6228CF2A52007A098F /* ZZHorizontalSelectorView */,
 			);
 			path = External;
-			sourceTree = "<group>";
-		};
-		044DFF5828CEFA5A007A098F /* ZZNewTaskViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				044DFF6C28CF2D2D007A098F /* Helpers */,
-				044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */,
-			);
-			path = ZZNewTaskViewTests;
 			sourceTree = "<group>";
 		};
 		044DFF6228CF2A52007A098F /* ZZHorizontalSelectorView */ = {
@@ -140,15 +105,6 @@
 				049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		044DFF6C28CF2D2D007A098F /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */,
-				044DFF6828CF2CB7007A098F /* Helpers.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		04679F4028C7D70B0013DA42 /* ViewModel */ = {
@@ -191,24 +147,6 @@
 			productReference = 04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		044DFF5628CEFA5A007A098F /* ZZNewTaskViewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 044DFF5E28CEFA5A007A098F /* Build configuration list for PBXNativeTarget "ZZNewTaskViewTests" */;
-			buildPhases = (
-				044DFF5328CEFA5A007A098F /* Sources */,
-				044DFF5428CEFA5A007A098F /* Frameworks */,
-				044DFF5528CEFA5A007A098F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				044DFF5D28CEFA5A007A098F /* PBXTargetDependency */,
-			);
-			name = ZZNewTaskViewTests;
-			productName = ZZNewTaskViewTests;
-			productReference = 044DFF5728CEFA5A007A098F /* ZZNewTaskViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,9 +160,6 @@
 					04325F8D28C7D5FE00104F4F = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
-					};
-					044DFF5628CEFA5A007A098F = {
-						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
@@ -242,20 +177,12 @@
 			projectRoot = "";
 			targets = (
 				04325F8D28C7D5FE00104F4F /* ZZNewTaskView */,
-				044DFF5628CEFA5A007A098F /* ZZNewTaskViewTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04325F8C28C7D5FE00104F4F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		044DFF5528CEFA5A007A098F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -277,25 +204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		044DFF5328CEFA5A007A098F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				044DFF6928CF2CB7007A098F /* Helpers.swift in Sources */,
-				044DFF5A28CEFA5A007A098F /* ZZNewTaskViewTests.swift in Sources */,
-				044DFF6B28CF2CEC007A098F /* CustomModalInputVC.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		044DFF5D28CEFA5A007A098F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04325F8D28C7D5FE00104F4F /* ZZNewTaskView */;
-			targetProxy = 044DFF5C28CEFA5A007A098F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		04325F9328C7D5FE00104F4F /* Debug */ = {
@@ -474,34 +383,6 @@
 			};
 			name = Release;
 		};
-		044DFF5F28CEFA5A007A098F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.ZZNewTaskViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		044DFF6028CEFA5A007A098F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.ZZNewTaskViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -519,15 +400,6 @@
 			buildConfigurations = (
 				04325F9628C7D5FE00104F4F /* Debug */,
 				04325F9728C7D5FE00104F4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		044DFF5E28CEFA5A007A098F /* Build configuration list for PBXNativeTarget "ZZNewTaskViewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				044DFF5F28CEFA5A007A098F /* Debug */,
-				044DFF6028CEFA5A007A098F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

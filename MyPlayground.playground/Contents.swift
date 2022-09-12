@@ -1,3 +1,4 @@
-import Cocoa
+import Foundation
+import ZZNewTaskView
 
-var greeting = "Hello, playground"
+let vm = CustomNewTaskView_VM()
