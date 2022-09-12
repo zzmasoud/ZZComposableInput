@@ -19,7 +19,7 @@ This is one of the main modules in my app and because of the nested modules and 
 - How to code the ViewModel without UI existence?
 - How to preselect items when it instantiates with editing task?
 - Select first item if user entering a duplicate item and prevent duplication (shown in the video when selecting estimated time).
-- How to make `ZZHorizontalSelectorView_VMP` generic so the compiler knows if it's a `Date` (selected Date0 or `String` (project ID) or `[Int]` (repeated days):
+- How to make `ZZHorizontalSelectorView_VMP` generic so the compiler knows if it's a `Date` (selected Date) or `String` (project ID) or `[Int]` (repeated days):
 ``` Swift
 // selected date
 let _ = (viewModel(forIndex: .date).selectedItems?.first as? DateItem)?.date
