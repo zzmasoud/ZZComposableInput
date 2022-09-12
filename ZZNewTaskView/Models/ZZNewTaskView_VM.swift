@@ -60,6 +60,8 @@ open class ZZNewTaskView_VM: NSObject {
         }
     }
     
+    private var tags: [ZZHorizontalSelectorViewPresentable] = []
+    
     private var dates: [ZZHorizontalSelectorViewPresentable] = [
         Data(isSelected: false, title: "Today"),
         Data(isSelected: false, title: "Tommorow"),
@@ -67,7 +69,6 @@ open class ZZNewTaskView_VM: NSObject {
         Data(isSelected: false, title: "Next Month"),
     ]
     
-    private var tags: [ZZHorizontalSelectorViewPresentable] = []
     private var projects: [ZZHorizontalSelectorViewPresentable] = [
         Data(isSelected: false, title: "Zebra iOS"),
         Data(isSelected: false, title: "Running Session"),
@@ -119,7 +120,6 @@ open class ZZNewTaskView_VM: NSObject {
             default:
                 fatalError()
             }
-
             return vm
         }
     }
