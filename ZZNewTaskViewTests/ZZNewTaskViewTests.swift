@@ -8,59 +8,6 @@
 import XCTest
 import ZZNewTaskView
 
-extension Int {
-    public var minute: TimeInterval {
-        return TimeInterval(self) * 60
-    }
-    public var hour: TimeInterval {
-        return TimeInterval(self) * 60 * 1.minute
-    }
-    public var day: TimeInterval {
-        return Double(self) * 24 * 1.hour
-    }
-}
-
-extension Date {
-    var startOfDay: Date {
-        return Calendar.current.startOfDay(for: self)
-    }
-}
-
-extension String {
-    var localized: String {
-        // return localized string
-        return self
-    }
-}
-class Task {}
-class Project {}
-class UIViewController {}
-class CustomModalInputVC: UIViewController {
-    public static let id = "CustomModalInputVC"
-    
-    public enum Child {
-        case date, time, project, tag, timeRecord
-        var id: String {
-            switch self {
-            case .date:
-                return "dateInput"
-            case .time:
-                return "timeInput"
-            case .project:
-                return "newProjectInput"
-            case .tag:
-                return "newTagInput"
-            case .timeRecord:
-                return "timeRecordInput"
-            }
-        }
-    }
-    
-    public static func setup(with child: Child, completion: @escaping ((Any)->Void)) -> UIViewController {
-        return UIViewController()
-    }
-}
-
 protocol NewTaskView_VMP: ZZNewTaskView_VMP {
     func didSelect(value: Any, forIndex: NewTask_VM.Index?)
     var selectedChild: CustomModalInputVC.Child { get }

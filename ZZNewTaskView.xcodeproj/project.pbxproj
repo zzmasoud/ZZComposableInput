@@ -11,6 +11,8 @@
 		044DFF5A28CEFA5A007A098F /* ZZNewTaskViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */; };
 		044DFF5B28CEFA5A007A098F /* ZZNewTaskView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */; };
 		044DFF6528CF2A94007A098F /* ZZHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */; };
+		044DFF6928CF2CB7007A098F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6828CF2CB7007A098F /* Helpers.swift */; };
+		044DFF6B28CF2CEC007A098F /* CustomModalInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */; };
 		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
 		049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */; };
 		04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */; };
@@ -33,6 +35,8 @@
 		044DFF5728CEFA5A007A098F /* ZZNewTaskViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZNewTaskViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskViewTests.swift; sourceTree = "<group>"; };
 		044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorView.swift; sourceTree = "<group>"; };
+		044DFF6828CF2CB7007A098F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalInputVC.swift; sourceTree = "<group>"; };
 		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 		049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView.swift; sourceTree = "<group>"; };
 		04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView_VM.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				044DFF6228CF2A52007A098F /* ZZHorizontalSelectorView */,
+				044DFF6A28CF2CEC007A098F /* CustomModalInputVC.swift */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 		044DFF5828CEFA5A007A098F /* ZZNewTaskViewTests */ = {
 			isa = PBXGroup;
 			children = (
+				044DFF6828CF2CB7007A098F /* Helpers.swift */,
 				044DFF5928CEFA5A007A098F /* ZZNewTaskViewTests.swift */,
 			);
 			path = ZZNewTaskViewTests;
@@ -267,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044DFF6928CF2CB7007A098F /* Helpers.swift in Sources */,
 				044DFF5A28CEFA5A007A098F /* ZZNewTaskViewTests.swift in Sources */,
+				044DFF6B28CF2CEC007A098F /* CustomModalInputVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
