@@ -1,5 +1,5 @@
 # ZZNewTaskView
-This is one of the main module in my app
+This is one of the main modules in my app and because of the nested modules and complexity, I've removed extra codes + UI.
 
 ![Preview](/Resources/UI.png)
 
