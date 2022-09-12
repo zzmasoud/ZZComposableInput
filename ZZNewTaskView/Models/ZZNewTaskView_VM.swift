@@ -131,7 +131,7 @@ extension ZZNewTaskView_VM: ZZNewTaskView_VMP {
     }
     
     public func didTapSendButton() {
-        
+        fatalError("must implement in subclasses")
     }
     
     public var currentTitle: String? {
