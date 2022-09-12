@@ -73,7 +73,7 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func updateUI() {
-        selectorTitleLabel.stringValue = viewModel.currentTitle
+        selectorTitleLabel.stringValue = viewModel.currentTitle ?? "-"
         selectorView.viewModel = viewModel.selectorViewViewModel
         
     }
