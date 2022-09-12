@@ -7,8 +7,8 @@
 
 import Foundation
 
-class UIViewController {}
-class CustomModalInputVC: UIViewController {
+public class UIViewController {}
+public class CustomModalInputVC: UIViewController {
     public static let id = "CustomModalInputVC"
     
     public enum Child {

@@ -1,14 +1,14 @@
 import ZZNewTaskView
 
-protocol CustomNewTaskView_VMP: ZZNewTaskView_VMP {
-    func didSelect(value: Any, forIndex: NewTask_VM.Index?)
+public protocol CustomNewTaskView_VMP: ZZNewTaskView_VMP {
+    func didSelect(value: Any, forIndex: CustomNewTaskView_VM.Index?)
     var selectedChild: CustomModalInputVC.Child { get }
     var isRepeatOptionHidden: Bool { get }
 }
 
-struct DateItem: ZZHorizontalSelectorViewPresentable {
-    var color: CGColor = .black
-    var title: String
+public struct DateItem: ZZHorizontalSelectorViewPresentable {
+    public var color: CGColor = .black
+    public var title: String
     let date: Date
     
     init(date: Date, title: String) {
@@ -17,9 +17,9 @@ struct DateItem: ZZHorizontalSelectorViewPresentable {
     }
 }
 
-struct TimeItem: ZZHorizontalSelectorViewPresentable {
-    var color: CGColor = .black
-    var title: String
+public struct TimeItem: ZZHorizontalSelectorViewPresentable {
+    public var color: CGColor = .black
+    public var title: String
     let time: TimeInterval
     
     init(time: TimeInterval, title: String) {
@@ -28,15 +28,15 @@ struct TimeItem: ZZHorizontalSelectorViewPresentable {
     }
 }
 
-struct weekDayItem: ZZHorizontalSelectorViewPresentable {
+public struct weekDayItem: ZZHorizontalSelectorViewPresentable {
     let weekday: Int
-    var title: String
-    var color: CGColor = .black
+    public var title: String
+    public var color: CGColor = .black
 }
 
-class CustomNewTaskView_VM: NSObject {
+public class CustomNewTaskView_VM: NSObject {
     
-    enum Index: Int, CaseIterable {
+    public enum Index: Int, CaseIterable {
         case none = -1, date = 0, time, project, repeatedDays
         
         var title: String? {
@@ -90,11 +90,11 @@ class CustomNewTaskView_VM: NSObject {
 
     private var selectorViewModels: [Index : ZZHorizontalSelectorView_VMP]
     
-    init(defaultViewModels: [Index: ZZHorizontalSelectorView_VMP]? = nil) {
+    public init(defaultViewModels: [Index: ZZHorizontalSelectorView_VMP]? = nil) {
         selectorViewModels = defaultViewModels ?? [:]
     }
     
-    convenience init(editTask: Task) {
+    public convenience init(editTask: Task) {
         self.init()
         self.editTask = editTask
     }
@@ -198,11 +198,11 @@ class CustomNewTaskView_VM: NSObject {
 }
 
 extension CustomNewTaskView_VM: CustomNewTaskView_VMP {
-    var isRepeatOptionHidden: Bool {
+    public var isRepeatOptionHidden: Bool {
         return self.editTask != nil
     }
     
-    func didSelect(value: Any, forIndex index: Index? = nil) {
+    public func didSelect(value: Any, forIndex index: Index? = nil) {
         let index = index ?? self.currentIndex
         
         // this is wrong, because the class creates the ViewModel only if this method called:
@@ -224,7 +224,7 @@ extension CustomNewTaskView_VM: CustomNewTaskView_VMP {
         }
     }
     
-    var selectedChild: CustomModalInputVC.Child {
+    public var selectedChild: CustomModalInputVC.Child {
         switch self.currentIndex {
         case .date:
             return .date
@@ -237,25 +237,25 @@ extension CustomNewTaskView_VM: CustomNewTaskView_VMP {
         }
     }
     
-    var currentTitle: String? {
+    public var currentTitle: String? {
         return currentIndex.title
     }
     
-    var isSendButtonEnabled: Bool {
+    public var isSendButtonEnabled: Bool {
         text != nil && !text!.isEmpty
     }
     
-    func textValueChanged(to text: String?) {
+    public func textValueChanged(to text: String?) {
         self.text = text
     }
     
-    var selectorViewViewModel: ZZHorizontalSelectorView_VMP {
+    public var selectorViewViewModel: ZZHorizontalSelectorView_VMP {
         return viewModel(forIndex: currentIndex)
     }
     
     private func playSuccessHaptic() {}
     
-    func didTapSendButton() {
+    public func didTapSendButton() {
         playSuccessHaptic()
         if let t = editTask {
             updateTask(task: t)
@@ -265,12 +265,12 @@ extension CustomNewTaskView_VM: CustomNewTaskView_VMP {
         view?.dismiss()
     }
     
-    func didSelectButton(at index: Int) {
+    public func didSelectButton(at index: Int) {
         guard let newIndex = Index(rawValue: index) else { fatalError() }
         currentIndex = newIndex
     }
     
-    func setView(delegate: AnyObject) {
+    public func setView(delegate: AnyObject) {
         self.view = delegate as? ZZNewTask_VD
     }
 }
