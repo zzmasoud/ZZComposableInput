@@ -61,6 +61,7 @@
 		04325F8428C7D5FE00104F4F = {
 			isa = PBXGroup;
 			children = (
+				044DFF5228CEF985007A098F /* External */,
 				04325F9028C7D5FE00104F4F /* ZZNewTaskView */,
 				044DFF5828CEFA5A007A098F /* ZZNewTaskViewTests */,
 				04325F8F28C7D5FE00104F4F /* Products */,
@@ -79,7 +80,8 @@
 		04325F9028C7D5FE00104F4F /* ZZNewTaskView */ = {
 			isa = PBXGroup;
 			children = (
-				04679F4028C7D70B0013DA42 /* Models */,
+				044DFF6728CF2BFF007A098F /* View */,
+				04679F4028C7D70B0013DA42 /* ViewModel */,
 				04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */,
 			);
 			path = ZZNewTaskView;
@@ -127,14 +129,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		04679F4028C7D70B0013DA42 /* Models */ = {
+		044DFF6728CF2BFF007A098F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				044DFF5228CEF985007A098F /* External */,
 				049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04679F4028C7D70B0013DA42 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */,
 			);
-			path = Models;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
