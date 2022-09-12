@@ -33,8 +33,8 @@ open class ZZNewTaskView: UIView {
     @IBOutlet private weak var selectorTitleLabel: NSTextField!
     
     // IBAction
-    private func buttonsAction(_ sender: NSButton) {
-        viewModel.didSelectButton(at: sender.tag)
+    public func selectButton(at index: Int) {
+        viewModel.didSelectButton(at: index)
     }
     
     public var doneCompletion: (()->Void)?
@@ -78,7 +78,6 @@ extension ZZNewTaskView: ZZNewTask_VD {
     public func updateUI() {
         selectorTitleLabel.stringValue = viewModel.currentTitle ?? "-"
         selectorView.viewModel = viewModel.selectorViewViewModel
-        
     }
     
     public func fillUI() {

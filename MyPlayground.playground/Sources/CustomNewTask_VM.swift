@@ -1,3 +1,4 @@
+import AppKit
 import ZZNewTaskView
 
 public protocol CustomNewTaskView_VMP: ZZNewTaskView_VMP {
@@ -194,6 +195,24 @@ public class CustomNewTaskView_VM: NSObject {
     
     private func updateTask(task: Task) {
         // edit current task
+    }
+    
+    public func printStatus() {
+        let date = (viewModel(forIndex: .date).selectedItems?.first as? DateItem)?.date
+        let estimatedTime = (viewModel(forIndex: .time).selectedItems?.first as? TimeItem)?.time ?? 0
+        // selected project
+        let project = (viewModel(forIndex: .project).selectedItems?.first as? Project)
+        // selected repeated days
+        let repeatedDays = (viewModel(forIndex: .repeatedDays).selectedItems) as? [weekDayItem]
+        
+        print("current Index is \(currentIndex) with title of \(currentTitle ?? "-")")
+        print("- selected values:")
+        print("DATE => ", date ?? "-")
+        print("ESTIMATED TIME => ", estimatedTime)
+        print("PROJECT => ", project ?? "-")
+        print("REPEATED DAYS => ", repeatedDays ?? "-")
+
+
     }
 }
 
