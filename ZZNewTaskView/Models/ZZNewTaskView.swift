@@ -6,6 +6,19 @@
 //
 
 import Foundation
+import AppKit
+
+protocol UIView {}
+class UIButton {}
+class ZZHorizontalSelectorView {
+    public var addNewItem: (()->Void)?
+    
+    public var viewModel: ZZHorizontalSelectorView_VMP! {
+        didSet {
+            viewModel.setView(delegate: self)
+        }
+    }
+}
 
 public protocol ZZNewTask_VD: AnyObject {
     func set(text: String)
@@ -16,49 +29,44 @@ public protocol ZZNewTask_VD: AnyObject {
     func fillUI()
 }
 
-protocol UIView {}
-class UIButton {}
-protocol ZZHorizontalSelectorView {}
-
 open class ZZNewTaskView: UIView {
     
     // IBOutlets
     var selectorView: ZZHorizontalSelectorView!
+    @IBOutlet private weak var textView: NSTextView!
+    @IBOutlet private weak var sendButton: NSButton!
+    @IBOutlet private weak var buttonsStackView: NSStackView!
+    @IBOutlet private weak var selectorTitleLabel: NSTextField!
     
     // IBAction
-    
-    static public var _configs: ZZNewTaskViewConfigs!
-    public var configs: ZZNewTaskViewConfigs { return Self._configs }
+    private func buttonsAction(_ sender: NSButton) {
+        viewModel.didSelectButton(at: sender.tag)
+    }
     
     public var doneCompletion: (()->Void)?
     public var didTapAddInSelectorView: (()->Void)?
     
+    public var viewModel: ZZNewTaskView_VMP! {
+        didSet {
+            viewModel.setView(delegate: self)
+        }
+    }
+    
     private func setup() {
         // Load from Nib and assign delegate of textView
-        styleUI()
-    }
-    
-    private func styleUI() {
-        // style UI from the configuration: `config`
-    }
-    
-    private func config(button: UIButton, selected: Bool, current: Bool) {
-        if selected {
-//            button.tintColor = configs.buttonsFilledTintColor
-//            button.backgroundColor = configs.buttonsFilledBGColor
-        } else if current {
-//            button.tintColor = .white
-//            button.backgroundColor = configs.tintColor
-        } else {
-//            button.tintColor = configs.buttonsDefaultTintColor
-//            button.backgroundColor = configs.buttonsDefaultBGColor
+        
+        selectorView.addNewItem = {
+            self.didTapAddInSelectorView?()
         }
+    }
+    private func config(button: UIButton, selected: Bool, current: Bool) {
+        // change color of selected and deselected items
     }
 }
 
 extension ZZNewTaskView: ZZNewTask_VD {
     public func set(text: String) {
-        
+        // when it's editing a task, manually fills the textView's text.
     }
     
     public func dismiss() {
@@ -66,7 +74,7 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func toggleSendButton(isEnabled: Bool) {
-        
+        sendButton.isEnabled = isEnabled
     }
     
     public func updateButton(current: Bool, selected: Bool, at index: Int) {
@@ -74,6 +82,8 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func updateUI() {
+        selectorTitleLabel.stringValue = viewModel.currentTitle
+        selectorView.viewModel = viewModel.selectorViewViewModel
         
     }
     
