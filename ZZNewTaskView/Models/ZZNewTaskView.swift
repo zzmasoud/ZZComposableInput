@@ -10,15 +10,6 @@ import AppKit
 
 protocol UIView {}
 class UIButton {}
-class ZZHorizontalSelectorView {
-    public var addNewItem: (()->Void)?
-    
-    public var viewModel: ZZHorizontalSelectorView_VMP! {
-        didSet {
-            viewModel.setView(delegate: self)
-        }
-    }
-}
 
 public protocol ZZNewTask_VD: AnyObject {
     func set(text: String)

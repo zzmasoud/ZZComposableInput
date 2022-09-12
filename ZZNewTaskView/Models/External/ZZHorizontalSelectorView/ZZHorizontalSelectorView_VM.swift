@@ -1,5 +1,5 @@
 //
-//  ZZHorizontalSelectorView.swift
+//  ZZHorizontalSelectorView_VM.swift
 //  ZZNewTaskView
 //
 //  Created by Masoud Sheikh Hosseini on 9/10/22.
@@ -21,10 +21,6 @@ public protocol ZZHorizontalSelectorView_VMP {
     func item(for index: Int) -> T
     var itemsCount: Int { get }
     func setView(delegate: AnyObject)
-}
-
-protocol ZZHorizontalSelector_VD: AnyObject {
-    func fillUI()
 }
 
 public class ZZHorizontalSelectorView_VM: NSObject {
