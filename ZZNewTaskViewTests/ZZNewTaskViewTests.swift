@@ -212,9 +212,8 @@ extension NewTask_VM: NewTaskView_VMP {
     
     func didSelect(value: Any, forIndex index: Index? = nil) {
         let index = index ?? self.currentIndex
-        //!zzmasoud
-        // this is wrong, bcz class creates the VM only if this method called
-        //
+        
+        // this is wrong, because the class creates the ViewModel only if this method called:
         //viewModel(forIndex: index)
         
         let vm = self.viewModel(forIndex: index)
