@@ -7,19 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04325F9228C7D5FE00104F4F /* ZZNewTaskView.h in Headers */ = {isa = PBXBuildFile; fileRef = 04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		044DFF6528CF2A94007A098F /* ZZHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */; };
-		04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */; };
-		049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */; };
-		04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */; };
-		04DBFA2128CCFB3C000C598B /* ZZHorizontalSelectorView_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBFA2028CCFB3C000C598B /* ZZHorizontalSelectorView_VM.swift */; };
+		0402464228D4714B0043EED4 /* ZZNewTaskView_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0402464128D4714B0043EED4 /* ZZNewTaskView_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZNewTaskView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0402463F28D4714B0043EED4 /* ZZNewTaskView_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZNewTaskView_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0402464128D4714B0043EED4 /* ZZNewTaskView_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNewTaskView_iOS.h; sourceTree = "<group>"; };
 		04325F9128C7D5FE00104F4F /* ZZNewTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNewTaskView.h; sourceTree = "<group>"; };
 		044DFF6428CF2A94007A098F /* ZZHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorView.swift; sourceTree = "<group>"; };
-		044DFF6D28CF44ED007A098F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04679F4128C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZHorizontalSelectorViewPresentable.swift; sourceTree = "<group>"; };
 		049C3E1A28CBC32F0090FD40 /* ZZNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView.swift; sourceTree = "<group>"; };
 		04DBFA1E28CCFADD000C598B /* ZZNewTaskView_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZNewTaskView_VM.swift; sourceTree = "<group>"; };
@@ -27,7 +22,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		04325F8B28C7D5FE00104F4F /* Frameworks */ = {
+		0402463C28D4714B0043EED4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,12 +32,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0402464028D4714B0043EED4 /* ZZNewTaskView_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				04325F9028C7D5FE00104F4F /* ZZNewTaskView */,
+				044DFF5228CEF985007A098F /* External */,
+				0402464128D4714B0043EED4 /* ZZNewTaskView_iOS.h */,
+			);
+			path = ZZNewTaskView_iOS;
+			sourceTree = "<group>";
+		};
 		04325F8428C7D5FE00104F4F = {
 			isa = PBXGroup;
 			children = (
-				044DFF6D28CF44ED007A098F /* MyPlayground.playground */,
-				044DFF5228CEF985007A098F /* External */,
-				04325F9028C7D5FE00104F4F /* ZZNewTaskView */,
+				0402464028D4714B0043EED4 /* ZZNewTaskView_iOS */,
 				04325F8F28C7D5FE00104F4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,7 +53,7 @@
 		04325F8F28C7D5FE00104F4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */,
+				0402463F28D4714B0043EED4 /* ZZNewTaskView_iOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,33 +121,33 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		04325F8928C7D5FE00104F4F /* Headers */ = {
+		0402463A28D4714B0043EED4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04325F9228C7D5FE00104F4F /* ZZNewTaskView.h in Headers */,
+				0402464228D4714B0043EED4 /* ZZNewTaskView_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		04325F8D28C7D5FE00104F4F /* ZZNewTaskView */ = {
+		0402463E28D4714B0043EED4 /* ZZNewTaskView_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04325F9528C7D5FE00104F4F /* Build configuration list for PBXNativeTarget "ZZNewTaskView" */;
+			buildConfigurationList = 0402464528D4714B0043EED4 /* Build configuration list for PBXNativeTarget "ZZNewTaskView_iOS" */;
 			buildPhases = (
-				04325F8928C7D5FE00104F4F /* Headers */,
-				04325F8A28C7D5FE00104F4F /* Sources */,
-				04325F8B28C7D5FE00104F4F /* Frameworks */,
-				04325F8C28C7D5FE00104F4F /* Resources */,
+				0402463A28D4714B0043EED4 /* Headers */,
+				0402463B28D4714B0043EED4 /* Sources */,
+				0402463C28D4714B0043EED4 /* Frameworks */,
+				0402463D28D4714B0043EED4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ZZNewTaskView;
-			productName = ZZNewTaskView;
-			productReference = 04325F8E28C7D5FE00104F4F /* ZZNewTaskView.framework */;
+			name = ZZNewTaskView_iOS;
+			productName = ZZNewTaskView_iOS;
+			productReference = 0402463F28D4714B0043EED4 /* ZZNewTaskView_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -157,9 +160,8 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					04325F8D28C7D5FE00104F4F = {
+					0402463E28D4714B0043EED4 = {
 						CreatedOnToolsVersion = 13.4.1;
-						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -176,13 +178,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04325F8D28C7D5FE00104F4F /* ZZNewTaskView */,
+				0402463E28D4714B0043EED4 /* ZZNewTaskView_iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		04325F8C28C7D5FE00104F4F /* Resources */ = {
+		0402463D28D4714B0043EED4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -192,21 +194,75 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		04325F8A28C7D5FE00104F4F /* Sources */ = {
+		0402463B28D4714B0043EED4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049C3E1B28CBC32F0090FD40 /* ZZNewTaskView.swift in Sources */,
-				04DBFA2128CCFB3C000C598B /* ZZHorizontalSelectorView_VM.swift in Sources */,
-				044DFF6528CF2A94007A098F /* ZZHorizontalSelectorView.swift in Sources */,
-				04679F4228C7D7320013DA42 /* ZZHorizontalSelectorViewPresentable.swift in Sources */,
-				04DBFA1F28CCFADD000C598B /* ZZNewTaskView_VM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0402464328D4714B0043EED4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzmasoud.ZZNewTaskView-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0402464428D4714B0043EED4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzmasoud.ZZNewTaskView-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		04325F9328C7D5FE00104F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,80 +382,23 @@
 			};
 			name = Release;
 		};
-		04325F9628C7D5FE00104F4F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.ZZNewTaskView;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		04325F9728C7D5FE00104F4F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.ZZNewTaskView;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0402464528D4714B0043EED4 /* Build configuration list for PBXNativeTarget "ZZNewTaskView_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0402464328D4714B0043EED4 /* Debug */,
+				0402464428D4714B0043EED4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04325F8828C7D5FE00104F4F /* Build configuration list for PBXProject "ZZNewTaskView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04325F9328C7D5FE00104F4F /* Debug */,
 				04325F9428C7D5FE00104F4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04325F9528C7D5FE00104F4F /* Build configuration list for PBXNativeTarget "ZZNewTaskView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04325F9628C7D5FE00104F4F /* Debug */,
-				04325F9728C7D5FE00104F4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

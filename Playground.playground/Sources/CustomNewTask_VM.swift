@@ -1,4 +1,4 @@
-import AppKit
+import UIKit
 import ZZNewTaskView
 
 public protocol CustomNewTaskView_VMP: ZZNewTaskView_VMP {
@@ -8,7 +8,7 @@ public protocol CustomNewTaskView_VMP: ZZNewTaskView_VMP {
 }
 
 public struct DateItem: ZZHorizontalSelectorViewPresentable {
-    public var color: CGColor = .black
+    public var color: UIColor = .black
     public var title: String
     let date: Date
     
@@ -19,7 +19,7 @@ public struct DateItem: ZZHorizontalSelectorViewPresentable {
 }
 
 public struct TimeItem: ZZHorizontalSelectorViewPresentable {
-    public var color: CGColor = .black
+    public var color: UIColor = .black
     public var title: String
     let time: TimeInterval
     
@@ -32,7 +32,7 @@ public struct TimeItem: ZZHorizontalSelectorViewPresentable {
 public struct weekDayItem: ZZHorizontalSelectorViewPresentable {
     let weekday: Int
     public var title: String
-    public var color: CGColor = .black
+    public var color: UIColor = .black
 }
 
 public class CustomNewTaskView_VM: NSObject {

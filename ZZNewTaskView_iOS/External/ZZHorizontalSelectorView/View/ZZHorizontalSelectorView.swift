@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AppKit
+import UIKit
 
 protocol ZZHorizontalSelector_VD: AnyObject {
     func fillUI()

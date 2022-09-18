@@ -6,10 +6,7 @@
 //
 
 import Foundation
-import AppKit
-
-protocol UIView {}
-class UIButton {}
+import UIKit
 
 public protocol ZZNewTask_VD: AnyObject {
     func set(text: String)
@@ -27,13 +24,13 @@ open class ZZNewTaskView: UIView {
     
     // IBOutlets
     let selectorView = ZZHorizontalSelectorView()
-    @IBOutlet private weak var textView: NSTextView!
-    @IBOutlet private weak var sendButton: NSButton!
-    @IBOutlet private weak var buttonsStackView: NSStackView!
-    @IBOutlet private weak var selectorTitleLabel: NSTextField!
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var sendButton: UIButton!
+    @IBOutlet private weak var buttonsStackView: UIStackView!
+    @IBOutlet private weak var selectorTitleLabel: UILabel!
     
     // IBAction
-    @IBAction func selectButton(_ sender: NSButton) {
+    @IBAction func selectButton(_ sender: UIButton) {
         viewModel.didSelectButton(at: sender.tag)
     }
     
@@ -68,7 +65,7 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func toggleSendButton(isEnabled: Bool) {
-//        sendButton.isEnabled = isEnabled
+        sendButton.isEnabled = isEnabled
     }
     
     public func updateButton(current: Bool, selected: Bool, at index: Int) {
@@ -76,13 +73,11 @@ extension ZZNewTaskView: ZZNewTask_VD {
     }
     
     public func updateUI() {
-//        selectorTitleLabel.stringValue = viewModel.currentTitle ?? "-"
+        selectorTitleLabel.text = viewModel.currentTitle ?? "-"
         selectorView.viewModel = viewModel.selectorViewViewModel
     }
     
     public func fillUI() {
         
-    }
-    
-    
+    }    
 }

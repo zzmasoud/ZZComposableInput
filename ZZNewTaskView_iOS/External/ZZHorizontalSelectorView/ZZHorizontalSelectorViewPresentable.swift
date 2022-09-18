@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol ZZHorizontalSelectorViewPresentable {
-    var color: CGColor  { get }
+    var color: UIColor  { get }
     var title: String { get }
 }
