@@ -22,9 +22,7 @@ class ZZTaskInputTests: XCTestCase {
     
     func test_init_textIsEmpty() {
         let sut = CLOCTaskInput()
-        
-        sut.set(text: nil)
-        
+            
         XCTAssertNil(sut.text)
     }
 }
