@@ -13,6 +13,27 @@ Then, it automatically selects the text field so I can type my task title and de
 Then I want to view and select the required/optional items.
 Then I want to tap a `save` button and expect it to get closed.
 ```
+
+#### Scenarios (Acceptance criteria)
+```
+Given the user has tapped an UI element to add a task
+Have entered the title
+When tapping the `save` UI element
+Then the app should save the task and close the popup
+```
+```
+Given the user has tapped an UI element to add a task
+Have entered the title
+When the popup opened from a sepecific project/date
+Then preselect the specific project/date
+```
+```
+Given the user has tapped an UI element to add a task
+And the title is empty
+When tapping  a `save` UI element
+Then the app should display a warning message to enter a title
+```
+
 1. User taps on a button
 2. `ZZNewTaskView` presents with a keyboard resigned first responder on it's `UITextView`
 3. User can enter any text
