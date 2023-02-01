@@ -55,50 +55,40 @@ class ZZTaskInputTests: XCTestCase {
     func test_send_doesNotDeliverIfTextIsEmpty() {
         let sut = CLOCTaskInput()
         
-        let exp = expectation(description: "waiting for completion...")
-        exp.isInverted = true
-        
-        sut.onSent = { _ in
-            XCTFail("expected to not get completion")
-            exp.fulfill()
+        expect(sut, toCompleteWith: .none) {
+            sut.send()
         }
-        
-        sut.send()
-        
-        wait(for: [exp], timeout: 1)
     }
-    
-    func test_send_deliversDataIfTextIsNotEmpty() {
-        let sut = CLOCTaskInput()
 
-        let exp = expectation(description: "waiting for completion...")
-        
-        sut.onSent = { _ in
-            exp.fulfill()
-        }
-        
-        sut.set(text: "Hello World!")
-        sut.send()
-        
-        wait(for: [exp], timeout: 1)
-    }
-    
-    func test_send_deliversTitleAndDescriptionProperly() {
+    func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
         let title = "title"
         let description = "desc"
-        
-        let exp = expectation(description: "waiting for completion...")
-
         let sut = CLOCTaskInput()
         
+        expect(sut, toCompleteWith: (title, description)) {
+            sut.set(text: [title, description].joined(separator: "\n"))
+            sut.send()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func expect(_ sut: CLOCTaskInput, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void) {
+        let exp = expectation(description: "waiting for completion...")
+        exp.isInverted = expected == nil
+        
         sut.onSent = { (received) in
-            XCTAssertEqual(title, received.title)
-            XCTAssertEqual(description, received.description)
+            if let expected = expected {
+                XCTAssertEqual(received.title, expected.title)
+                XCTAssertEqual(received.description, expected.description)
+            } else {
+                XCTFail("expected to not get completion")
+            }
+
             exp.fulfill()
         }
         
-        sut.set(text: [title, description].joined(separator: "\n"))
-        sut.send()
+        action()
         
         wait(for: [exp], timeout: 1)
     }
