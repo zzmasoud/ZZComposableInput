@@ -42,13 +42,9 @@ Then the app should do nothing since the required data haven't entered.
 - Description: String?
 
 ##### Primary Course:
-1. The popup is presented.
-2. The "save" UI element is disabled.
-3. The text field is first responder.
-4. User enters a text as title.
-5. The "save" UI element becomes enabled.
-6. User tap return and enters description
-7. On excuting "send" command, the module delivers above data.
+1. User enters a text.
+2. User enters return and continue typing.
+3. On excuting "send" command, the module delivers above data.
 
 #### Load Selectable Items From Cache Use Case
 
