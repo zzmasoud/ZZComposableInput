@@ -61,11 +61,33 @@ class ZZTaskInputTests: XCTestCase {
     }
 
     func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
-        let title = "title"
-        let description = "desc"
+        var title = "title"
+        var description = "desc"
         let sut = CLOCTaskInput()
         
+        // title + description
         expect(sut, toCompleteWith: (title, description)) {
+            sut.set(text: [title, description].joined(separator: "\n"))
+            sut.send()
+        }
+        
+        // title + no description
+        expect(sut, toCompleteWith: (title, nil)) {
+            sut.set(text: title)
+            sut.send()
+        }
+        
+        // title + description with +1 new lines
+        description = "desc\ndesc \n desc"
+        expect(sut, toCompleteWith: (title, description)) {
+            sut.set(text: [title, description].joined(separator: "\n"))
+            sut.send()
+        }
+        
+        // title with +2 new line + description with 1+ new lines
+        title = "\n\ntitle"
+        description = "desc\ndesc \n desc"
+        expect(sut, toCompleteWith: ("title", description)) {
             sut.set(text: [title, description].joined(separator: "\n"))
             sut.send()
         }
