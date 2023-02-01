@@ -10,7 +10,7 @@ This is one of the main modules in my app and because of the nested modules and 
 As a user
 I want the app to show me a handy popup when I want to add a task.
 Then, it automatically selects the text field so I can type my task title and description quickly (without manually selecting the text field).
-Then I want to view and select the required/optional items.
+Then I want to scroll between items and select.
 Then I want to tap a `save` button and expect it to get closed.
 ```
 
@@ -31,8 +31,26 @@ Then preselect the specific project/date
 Given the user has tapped an UI element to add a task
 And the title is empty
 When tapping  a `save` UI element
-Then the app should display a warning message to enter a title
+Then the app should do nothing since the required data haven't entered.
 ```
+
+### Use Cases
+
+#### Give Title and Description From User's Entered Text
+##### Data:
+- Title: String
+- Description: String?
+
+##### Primary Course:
+1. The popup is presented.
+2. The "save" UI element is disabled.
+3. The text field is first responder.
+4. User enters a text as title.
+5. The "save" UI element becomes enabled.
+6. User tap return and enters description
+7. On excuting "send" command, the module delivers above data.
+
+#### Load Selectable Items From Cache Use Case
 
 1. User taps on a button
 2. `ZZNewTaskView` presents with a keyboard resigned first responder on it's `UITextView`
