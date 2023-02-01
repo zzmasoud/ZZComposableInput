@@ -20,10 +20,13 @@ class CLOCTaskInput {
     }
     
     func set(text: String?) {
-        
+        self.text = text
     }
     
-    func send() {}
+    func send() {
+        guard let _ = text else { return }
+        onSent(("", nil))
+    }
 }
 
 class ZZTaskInputTests: XCTestCase {
@@ -44,6 +47,21 @@ class ZZTaskInputTests: XCTestCase {
                 exp.fulfill()
             }
         )
+        
+        sut.send()
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_send_deliversDataIfTextIsNotEmpty() {
+        let exp = expectation(description: "waiting for completion...")
+
+        let sut = CLOCTaskInput(
+            onSent: { _ in
+                exp.fulfill()
+            }
+        )
+        sut.set(text: "Hello World!")
         
         sut.send()
         
