@@ -8,7 +8,7 @@ This is one of the main modules in my app and because of the nested modules and 
 ### Narrative
 ```
 As a user
-I want the app to show me a handy popup.
+I want the app to show me a handy popup when I want to add a task.
 Then, it automatically selects the text field so I can type my task title and description quickly (without manually selecting the text field).
 Then I want to view and select the required/optional items.
 Then I want to tap a `save` button and expect it to get closed.
