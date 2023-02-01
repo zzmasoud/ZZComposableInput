@@ -3,7 +3,13 @@ This is one of the main modules in my app and because of the nested modules and 
 
 ![Preview](/Resources/UI.png)
 
-## How does it work?
+## Story: User wants to add a task
+
+### Narrative
+```
+As a user
+I want the app to show me a handy popup, and then, it automatically selects the text field so I can type my task title and description quickly (without manually selecting the text field), and then, after I selected the required/optional items, it gets closed.
+```
 1. User taps on a button
 2. `ZZNewTaskView` presents with a keyboard resigned first responder on it's `UITextView`
 3. User can enter any text
