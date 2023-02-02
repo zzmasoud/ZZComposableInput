@@ -8,10 +8,11 @@ public protocol ZZTaskInput {
     typealias Data = (title: String, description: String?)
     typealias SendCompletion = (Data) -> Void
     
-    typealias SelectableItem = Any
+    associatedtype SelectableItem
     typealias FetchItemsResut = Result<[SelectableItem], Error>
     typealias FetchItemsCompletion = (FetchItemsResut) -> Void
     
     var onSent: ZZTaskInput.SendCompletion? { get }
     func send()
+    func select(section: Int, completion: @escaping FetchItemsCompletion)
 }

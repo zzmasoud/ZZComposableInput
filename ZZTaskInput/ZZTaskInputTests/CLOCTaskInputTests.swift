@@ -7,6 +7,8 @@ import ZZTaskInput
 
 
 final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
+    typealias SelectableItem = String
+    
     private let textParser: T
     private(set) var text: String?
     var onSent: ((ZZTaskInput.Data) -> Void)?
@@ -25,6 +27,8 @@ final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
         let parsedComponents = textParser.parse(text: text)
         onSent?(parsedComponents as! (title: String, description: String?))
     }
+    
+    func select(section: Int, completion: @escaping FetchItemsCompletion) {}
 }
 
 class ZZTaskInputTests: XCTestCase {
