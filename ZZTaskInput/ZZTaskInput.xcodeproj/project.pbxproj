@@ -11,6 +11,7 @@
 		04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
 		04CEFD6B298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */; };
+		04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInputTests.swift; sourceTree = "<group>"; };
 		04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParserTests.swift; sourceTree = "<group>"; };
 		04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift; sourceTree = "<group>"; };
+		04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		04C36F95298AF6C700712C6E /* ZZTaskInput */ = {
 			isa = PBXGroup;
 			children = (
+				04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */,
 			);
 			path = ZZTaskInput;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				TargetAttributes = {
 					04C36F92298AF6C700712C6E = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					04C36F9A298AF6C700712C6E = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -193,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +347,7 @@
 		04C36FA6298AF6C700712C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -365,6 +371,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,6 +380,7 @@
 		04C36FA7298AF6C700712C6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -404,6 +412,7 @@
 		04C36FA9298AF6C700712C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -420,6 +429,7 @@
 		04C36FAA298AF6C700712C6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

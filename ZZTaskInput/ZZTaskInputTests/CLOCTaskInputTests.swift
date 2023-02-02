@@ -3,15 +3,8 @@
 //  
 
 import XCTest
+import ZZTaskInput
 
-protocol ZZTaskInput {
-    typealias Data = (title: String, description: String?)
-    typealias SendCompletion = (Data) -> Void
-    
-    var onSent: ZZTaskInput.SendCompletion? { get }
-    func send()
-//    func select(section: ZZTaskInputSection, completion: @escaping FetchItemsCompletion)
-}
 
 final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
     private let textParser: T
