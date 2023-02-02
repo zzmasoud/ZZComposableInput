@@ -96,6 +96,13 @@ class ZZTaskInputTests: XCTestCase {
             sut.set(text: [title, description].joined(separator: "\n"))
             sut.send()
         }
+        
+        // title with +2 new line + no description
+        title = "\n\ntitle"
+        expect(sut, toCompleteWith: ("title", nil)) {
+            sut.set(text: title)
+            sut.send()
+        }
     }
     
     // MARK: - Helpers
