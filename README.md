@@ -43,10 +43,40 @@ Then the app should do nothing since the required data haven't entered.
 
 ##### Primary Course:
 1. User enters a text.
-2. User enters return and continue typing.
+2. User enters return and continues typing.
 3. On excuting "send" command, the module delivers above data.
 
 #### Load Selectable Items From Cache Use Case
+##### Data:
+- Section
+
+##### Primary Course:
+1. Execute "fetch items" command with above data.
+2. Hold fetched items to prevent further fetching.
+3. Indicate selected items.
+5. User can select/deselect items.
+6. Validate if selection/deselection possible (multi or single selection).
+7. Pass selected items to the client.
+
+#### Retrieval error course (sad path):
+1. System delivers error.
+
+#### Empty items course (sad path):
+1. Delivers nothing to select error.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 1. User taps on a button
 2. `ZZNewTaskView` presents with a keyboard resigned first responder on it's `UITextView`
