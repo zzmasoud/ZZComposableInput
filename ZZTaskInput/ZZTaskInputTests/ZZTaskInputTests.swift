@@ -4,36 +4,6 @@
 
 import XCTest
 
-protocol ZZTextParser {
-    associatedtype Parsed
-    func parse(text: String) -> Parsed
-}
-
-final class CLOCTextParser: ZZTextParser {
-    typealias Parsed = (title: String, description: String?)
-    
-    func parse(text: String) -> (title: String, description: String?) {
-        var result: (String, String?) = ("", nil)
-        
-        let components = text.split(separator: "\n")
-        
-        if let title = components.first {
-            result.0 = String(title)
-        }
-        
-        if components.count > 1 {
-            result.1 =
-            String(
-                components[1..<components.count]
-                .joined(separator: "\n")
-            )
-            .trimmingCharacters(in: .whitespaces)
-        }
-        
-        return result
-    }
-}
-
 protocol ZZTaskInput {
     typealias Data = (title: String, description: String?)
     typealias SendCompletion = (Data) -> Void
@@ -83,75 +53,7 @@ class ZZTaskInputTests: XCTestCase {
             sut.send()
         }
     }
-    
-    func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
-        let title = "title"
-        let description = "desc"
-        let sut = makeSUT()
         
-        // title + description
-        expect(sut, toCompleteWith: (title, description)) {
-            sut.set(text: [title, description].joined(separator: "\n"))
-            sut.send()
-        }
-    }
-    
-    func test_send_deliversTitleOnlyIfTextIsNotEmptyAndNoDescription() {
-        let title = "title"
-
-        let sut = makeSUT()
-        
-        // title + no description
-        expect(sut, toCompleteWith: (title, nil)) {
-            let titleWithNewLines = "\n\n" + title + "\n\n"
-            sut.set(text: titleWithNewLines)
-            sut.send()
-        }
-    }
-    
-    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndDescriptionHasMultipleNewLines() {
-        let title = "title"
-        let description = "desc"
-        
-        let sut = makeSUT()
-        
-        // title + description with new lines
-        expect(sut, toCompleteWith: (title, description)) {
-            let descriptionWithNewLines = "\n\n" + description + "\n\n"
-            sut.set(text: [title, descriptionWithNewLines].joined(separator: "\n"))
-            sut.send()
-        }
-    }
-    
-    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndTitleHasMultipleNewLines() {
-        let title = "title"
-        let description = "desc"
-        
-        let sut = makeSUT()
-        
-        // title + description with new lines
-        expect(sut, toCompleteWith: (title, description)) {
-            let titleWithNewLines = "\n\n" + title + "\n\n"
-            sut.set(text: [titleWithNewLines, description].joined(separator: "\n"))
-            sut.send()
-        }
-    }
-    
-    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndBothHaveMultipleNewLines() {
-        let title = "title"
-        let description = "desc"
-        
-        let sut = makeSUT()
-        
-        // title + description with new lines
-        expect(sut, toCompleteWith: (title, description)) {
-            let titleWithNewLines = "\n\n" + title + "\n\n"
-            let descriptionWithNewLines = "\n\n" + description + "\n\n"
-            sut.set(text: [titleWithNewLines, descriptionWithNewLines].joined(separator: "\n"))
-            sut.send()
-        }
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTaskInput<CLOCTextParser> {
