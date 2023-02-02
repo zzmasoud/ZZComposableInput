@@ -52,13 +52,13 @@ final class CLOCTaskInput: ZZTaskInput {
 class ZZTaskInputTests: XCTestCase {
     
     func test_init_textIsNil() {
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         XCTAssertNil(sut.text)
     }
     
     func test_send_doesNotDeliverIfTextIsNilOrEmpty() {
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         expect(sut, toCompleteWith: .none) {
             sut.send()
@@ -73,7 +73,7 @@ class ZZTaskInputTests: XCTestCase {
     func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
         let title = "title"
         let description = "desc"
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         // title + description
         expect(sut, toCompleteWith: (title, description)) {
@@ -85,7 +85,7 @@ class ZZTaskInputTests: XCTestCase {
     func test_send_deliversTitleOnlyIfTextIsNotEmptyAndNoDescription() {
         let title = "title"
 
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         // title + no description
         expect(sut, toCompleteWith: (title, nil)) {
@@ -99,7 +99,7 @@ class ZZTaskInputTests: XCTestCase {
         let title = "title"
         let description = "desc"
         
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         // title + description with new lines
         expect(sut, toCompleteWith: (title, description)) {
@@ -113,7 +113,7 @@ class ZZTaskInputTests: XCTestCase {
         let title = "title"
         let description = "desc"
         
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         // title + description with new lines
         expect(sut, toCompleteWith: (title, description)) {
@@ -127,7 +127,7 @@ class ZZTaskInputTests: XCTestCase {
         let title = "title"
         let description = "desc"
         
-        let sut = CLOCTaskInput()
+        let sut = makeSUT()
         
         // title + description with new lines
         expect(sut, toCompleteWith: (title, description)) {
@@ -139,6 +139,11 @@ class ZZTaskInputTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTaskInput {
+        let sut = CLOCTaskInput()
+        return sut
+    }
     
     private func expect(_ sut: CLOCTaskInput, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
