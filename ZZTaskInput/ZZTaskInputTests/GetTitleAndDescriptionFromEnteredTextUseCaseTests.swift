@@ -4,44 +4,32 @@
 
 import XCTest
 
-protocol ZZTaskInput {
-    typealias Data = (title: String, description: String?)
-    typealias SendCompletion = (Data) -> Void
+class GetTitleAndDescriptionFromEnteredTextUseCaseTests: XCTestCase {
     
-    var onSent: ZZTaskInput.SendCompletion? { get }
-    func send()
-//    func select(section: ZZTaskInputSection, completion: @escaping FetchItemsCompletion)
-}
-
-final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
-    private let textParser: T
-    private(set) var text: String?
-    var onSent: ((ZZTaskInput.Data) -> Void)?
-    
-    init(textParser: T) {
-        self.textParser = textParser
-    }
-
-    func set(text: String?) {
-        self.text = text
-    }
-    
-    func send() {
-        guard let text = text, !text.isEmpty else { return }
-        
-        let parsedComponents = textParser.parse(text: text)
-        onSent?(parsedComponents as! (title: String, description: String?))
-    }
-}
-
-class ZZTaskInputTests: XCTestCase {
-    
-    func test_init_textIsNil() {
+    func test_send_doesNotDeliverIfTextIsNilOrEmpty() {
         let (sut, _) = makeSUT()
         
-        XCTAssertNil(sut.text)
+        expect(sut, toCompleteWith: .none) {
+            sut.send()
+        }
+        
+        sut.set(text: "")
+        expect(sut, toCompleteWith: .none) {
+            sut.send()
+        }
     }
-                
+    
+    func test_send_requestsTextParserToParse() {
+        let (sut, parser) = makeSUT()
+
+        XCTAssertEqual(parser.parseTextCount, 0)
+
+        sut.set(text: "Title\nDescription")
+        sut.send()
+        
+        XCTAssertEqual(parser.parseTextCount, 1)
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser>, textParser: MockTextParser) {
@@ -84,4 +72,5 @@ class ZZTaskInputTests: XCTestCase {
             return result
         }
     }
+
 }
