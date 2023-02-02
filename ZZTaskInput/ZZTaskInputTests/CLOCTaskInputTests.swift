@@ -12,15 +12,15 @@ protocol ZZTaskInput {
     func send()
 }
 
-final class CLOCTaskInput<T: CLOCTextParser>: ZZTaskInput {
+final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
     private let textParser: T
     private(set) var text: String?
-    var onSent: ZZTaskInput.SendCompletion?
+    var onSent: ((ZZTaskInput.Data) -> Void)?
     
     init(textParser: T) {
         self.textParser = textParser
     }
-    
+
     func set(text: String?) {
         self.text = text
     }
@@ -28,21 +28,20 @@ final class CLOCTaskInput<T: CLOCTextParser>: ZZTaskInput {
     func send() {
         guard let text = text, !text.isEmpty else { return }
         
-        let data = textParser.parse(text: text)
-        onSent?(data)
+        let _ = textParser.parse(text: text)
     }
 }
 
 class ZZTaskInputTests: XCTestCase {
     
     func test_init_textIsNil() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         XCTAssertNil(sut.text)
     }
     
     func test_send_doesNotDeliverIfTextIsNilOrEmpty() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         expect(sut, toCompleteWith: .none) {
             sut.send()
@@ -53,16 +52,27 @@ class ZZTaskInputTests: XCTestCase {
             sut.send()
         }
     }
+    
+    func test_send_requestsTextParserToParse() {
+        let (sut, parser) = makeSUT()
+
+        XCTAssertEqual(parser.parseTextCount, 0)
+
+        sut.set(text: "Title\nDescription")
+        sut.send()
+        
+        XCTAssertEqual(parser.parseTextCount, 1)
+    }
         
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTaskInput<CLOCTextParser> {
-        let textParser = CLOCTextParser()
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser>, textParser: MockTextParser) {
+        let textParser = MockTextParser()
         let sut = CLOCTaskInput(textParser: textParser)
-        return sut
+        return (sut, textParser)
     }
     
-    private func expect(_ sut: CLOCTaskInput<CLOCTextParser>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCTaskInput<MockTextParser>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         exp.isInverted = expected == nil
         
@@ -80,5 +90,20 @@ class ZZTaskInputTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1)
+    }
+    
+    class MockTextParser: ZZTextParser {
+        typealias Parsed = (title: String, description: String?)
+        
+        var result = Parsed("", nil)
+        private(set) var separator: Character = "\n"
+        private var parseTextCalles = [String]()
+        
+        var parseTextCount: Int { parseTextCalles.count }
+        
+        func parse(text: String) -> (title: String, description: String?) {
+            parseTextCalles.append(text)
+            return result
+        }
     }
 }

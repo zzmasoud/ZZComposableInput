@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
-		04C36FA1298AF6C700712C6E /* ZZTaskInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C36FA0298AF6C700712C6E /* ZZTaskInputTests.swift */; };
+		04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04C36FA0298AF6C700712C6E /* ZZTaskInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputTests.swift; sourceTree = "<group>"; };
+		04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInputTests.swift; sourceTree = "<group>"; };
 		04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +76,7 @@
 		04C36F9F298AF6C700712C6E /* ZZTaskInputTests */ = {
 			isa = PBXGroup;
 			children = (
-				04C36FA0298AF6C700712C6E /* ZZTaskInputTests.swift */,
+				04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */,
 				04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */,
 			);
 			path = ZZTaskInputTests;
@@ -198,7 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */,
-				04C36FA1298AF6C700712C6E /* ZZTaskInputTests.swift in Sources */,
+				04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
