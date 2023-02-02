@@ -16,29 +16,36 @@ protocol ZZItemLoader {
 class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_init_doesNotMessageLoaderUponCreation() {
-        let (sut, loader) = makeSUT()
-        
-        sut.select(section: 0, completion: { _ in })
-        
+        let (_, loader) = makeSUT()
+                
         XCTAssertTrue(loader.receivedMessages.isEmpty)
+    }
+    
+    func test_select_requestsItemsRetrieval() {
+        let (sut, loader) = makeSUT()
+        let section = 0
+
+        sut.select(section: section, completion: { _ in })
+        
+        XCTAssertEqual(loader.receivedMessages, [section])
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser>, loader: ItemLoaderSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, loader: ItemLoaderSpy) {
         let textParser = MockTextParser()
         let itemLoader = ItemLoaderSpy()
-        let sut = CLOCTaskInput(textParser: textParser)
+        let sut = CLOCTaskInput(textParser: textParser, itemLoader: itemLoader)
         return (sut, itemLoader)
     }
-    
-    class ItemLoaderSpy: ZZItemLoader {
-        typealias SelectableItem = String
+}
 
-        private(set) var receivedMessages = [Int]()
-        
-        func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
-            receivedMessages.append(section)
-        }
+class ItemLoaderSpy: ZZItemLoader {
+    typealias SelectableItem = String
+
+    private(set) var receivedMessages = [Int]()
+    
+    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
+        receivedMessages.append(section)
     }
 }

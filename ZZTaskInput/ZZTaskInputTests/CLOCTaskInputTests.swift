@@ -5,16 +5,17 @@
 import XCTest
 import ZZTaskInput
 
-
-final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
+final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
     typealias SelectableItem = String
     
     private let textParser: T
+    private let itemLoader: L
     private(set) var text: String?
     var onSent: ((ZZTaskInput.Data) -> Void)?
     
-    init(textParser: T) {
+    init(textParser: T, itemLoader: L) {
         self.textParser = textParser
+        self.itemLoader = itemLoader
     }
 
     func set(text: String?) {
@@ -28,7 +29,9 @@ final class CLOCTaskInput<T: ZZTextParser>: ZZTaskInput {
         onSent?(parsedComponents as! (title: String, description: String?))
     }
     
-    func select(section: Int, completion: @escaping FetchItemsCompletion) {}
+    func select(section: Int, completion: @escaping FetchItemsCompletion) {
+        itemLoader.loadItems(for: section, completion: { _ in })
+    }
 }
 
 class ZZTaskInputTests: XCTestCase {
@@ -41,13 +44,13 @@ class ZZTaskInputTests: XCTestCase {
                 
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser>, textParser: MockTextParser) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, textParser: MockTextParser) {
         let textParser = MockTextParser()
-        let sut = CLOCTaskInput(textParser: textParser)
+        let sut = CLOCTaskInput(textParser: textParser, itemLoader: ItemLoaderSpy())
         return (sut, textParser)
     }
     
-    private func expect(_ sut: CLOCTaskInput<MockTextParser>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         exp.isInverted = expected == nil
         

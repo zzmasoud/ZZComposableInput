@@ -32,13 +32,13 @@ class GetTitleAndDescriptionFromEnteredTextUseCaseTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser>, textParser: MockTextParser) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, textParser: MockTextParser) {
         let textParser = MockTextParser()
-        let sut = CLOCTaskInput(textParser: textParser)
+        let sut = CLOCTaskInput(textParser: textParser, itemLoader: ItemLoaderSpy())
         return (sut, textParser)
     }
     
-    private func expect(_ sut: CLOCTaskInput<MockTextParser>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         exp.isInverted = expected == nil
         
