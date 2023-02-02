@@ -30,14 +30,19 @@ final class CLOCTaskInput: ZZTaskInput {
     private func parse(text: String) -> (title: String, description: String?) {
         var result: (String, String?) = ("", nil)
         
-        let substrings = text.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
+        let components = text.split(separator: "\n")
         
-        if let title = substrings.first {
+        if let title = components.first {
             result.0 = String(title)
         }
         
-        if substrings.count > 1 , let desc = substrings.last {
-            result.1 = String(desc)
+        if components.count > 1 {
+            result.1 =
+            String(
+                components[1..<components.count]
+                .joined(separator: "\n")
+            )
+            .trimmingCharacters(in: .whitespaces)
         }
         
         return result
@@ -64,10 +69,10 @@ class ZZTaskInputTests: XCTestCase {
             sut.send()
         }
     }
-
+    
     func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
-        var title = "title"
-        var description = "desc"
+        let title = "title"
+        let description = "desc"
         let sut = CLOCTaskInput()
         
         // title + description
@@ -75,50 +80,78 @@ class ZZTaskInputTests: XCTestCase {
             sut.set(text: [title, description].joined(separator: "\n"))
             sut.send()
         }
+    }
+    
+    func test_send_deliversTitleOnlyIfTextIsNotEmptyAndNoDescription() {
+        let title = "title"
+
+        let sut = CLOCTaskInput()
         
         // title + no description
         expect(sut, toCompleteWith: (title, nil)) {
-            sut.set(text: title)
+            let titleWithNewLines = "\n\n" + title + "\n\n"
+            sut.set(text: titleWithNewLines)
             sut.send()
         }
+    }
+    
+    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndDescriptionHasMultipleNewLines() {
+        let title = "title"
+        let description = "desc"
         
-        // title + description with +1 new lines
-        description = "desc\ndesc \n desc"
+        let sut = CLOCTaskInput()
+        
+        // title + description with new lines
         expect(sut, toCompleteWith: (title, description)) {
-            sut.set(text: [title, description].joined(separator: "\n"))
+            let descriptionWithNewLines = "\n\n" + description + "\n\n"
+            sut.set(text: [title, descriptionWithNewLines].joined(separator: "\n"))
             sut.send()
         }
+    }
+    
+    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndTitleHasMultipleNewLines() {
+        let title = "title"
+        let description = "desc"
         
-        // title with +2 new line + description with 1+ new lines
-        title = "\n\ntitle"
-        description = "desc\ndesc \n desc"
-        expect(sut, toCompleteWith: ("title", description)) {
-            sut.set(text: [title, description].joined(separator: "\n"))
+        let sut = CLOCTaskInput()
+        
+        // title + description with new lines
+        expect(sut, toCompleteWith: (title, description)) {
+            let titleWithNewLines = "\n\n" + title + "\n\n"
+            sut.set(text: [titleWithNewLines, description].joined(separator: "\n"))
             sut.send()
         }
+    }
+    
+    func test_send_deliversTitleAndDescriptionIfTextIsNotEmptyAndBothHaveMultipleNewLines() {
+        let title = "title"
+        let description = "desc"
         
-        // title with +2 new line + no description
-        title = "\n\ntitle"
-        expect(sut, toCompleteWith: ("title", nil)) {
-            sut.set(text: title)
+        let sut = CLOCTaskInput()
+        
+        // title + description with new lines
+        expect(sut, toCompleteWith: (title, description)) {
+            let titleWithNewLines = "\n\n" + title + "\n\n"
+            let descriptionWithNewLines = "\n\n" + description + "\n\n"
+            sut.set(text: [titleWithNewLines, descriptionWithNewLines].joined(separator: "\n"))
             sut.send()
         }
     }
     
     // MARK: - Helpers
     
-    private func expect(_ sut: CLOCTaskInput, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void) {
+    private func expect(_ sut: CLOCTaskInput, toCompleteWith expected: (title: String, description: String?)?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         exp.isInverted = expected == nil
         
         sut.onSent = { (received) in
             if let expected = expected {
-                XCTAssertEqual(received.title, expected.title)
-                XCTAssertEqual(received.description, expected.description)
+                XCTAssertEqual(received.title, expected.title, "expected to get [title] \(expected.title) but got \(received.title)", file: file, line: line)
+                XCTAssertEqual(received.description, expected.description, "expected to get [description] \(expected.description ?? "") but got \(received.description ?? "")", file: file, line: line)
             } else {
-                XCTFail("expected to not get completion")
+                XCTFail("expected to not get completion", file: file, line: line)
             }
-
+            
             exp.fulfill()
         }
         
