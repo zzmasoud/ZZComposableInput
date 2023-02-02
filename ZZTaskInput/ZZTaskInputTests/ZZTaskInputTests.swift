@@ -21,7 +21,7 @@ final class CLOCTaskInput: ZZTaskInput {
     }
     
     func send() {
-        guard let text = text else { return }
+        guard let text = text, !text.isEmpty else { return }
         
         let data = parse(text: text)
         onSent?(data)
@@ -46,15 +46,20 @@ final class CLOCTaskInput: ZZTaskInput {
 
 class ZZTaskInputTests: XCTestCase {
     
-    func test_init_textIsEmpty() {
+    func test_init_textIsNil() {
         let sut = CLOCTaskInput()
         
         XCTAssertNil(sut.text)
     }
     
-    func test_send_doesNotDeliverIfTextIsEmpty() {
+    func test_send_doesNotDeliverIfTextIsNilOrEmpty() {
         let sut = CLOCTaskInput()
         
+        expect(sut, toCompleteWith: .none) {
+            sut.send()
+        }
+        
+        sut.set(text: "")
         expect(sut, toCompleteWith: .none) {
             sut.send()
         }
