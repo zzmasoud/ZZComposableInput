@@ -67,6 +67,24 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
 
         XCTAssertEqual(loader.receivedMessages.count, 1)
     }
+    
+    func test_select_requestsItemsRetrievalIfPreviousRetrievalFailed() {
+        let (sut, loader) = makeSUT()
+        let section = 0
+
+        XCTAssertTrue(loader.receivedMessages.isEmpty)
+
+        sut.select(section: section, completion: {_ in })
+        loader.completeRetrieval(with: NSError())
+
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+
+        sut.select(section: section, completion: {_ in })
+        loader.completeRetrieval(with: NSError(), at: 1)
+
+        XCTAssertEqual(loader.receivedMessages.count, 2)
+    }
+
         
     // MARK: - Helpers
     
