@@ -15,9 +15,12 @@ public struct CLOCItemsContainer: ZZItemsContainer {
 
 public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String {
     public typealias ItemType = CLOCItemsContainer
+    public typealias Section = Int
     
     private let textParser: T
     private let itemLoader: L
+    private var loadedItems: [Section: ItemType] = [:]
+    
     private(set) public var text: String?
     
     public var onSent: ((ZZTaskInput.Data) -> Void)?
@@ -38,14 +41,20 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         onSent?(parsedComponents as! (title: String, description: String?))
     }
     
-    public func select(section: Int, completion: @escaping FetchItemsCompletion) {
-        itemLoader.loadItems(for: section, completion: { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let items):
-                completion(.success(.init(items: items)))
-            }
-        })
+    public func select(section: Section, completion: @escaping FetchItemsCompletion) {
+        if let loaded = self.loadedItems[section] {
+            completion(.success(loaded))
+        } else {
+            itemLoader.loadItems(for: section, completion: { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let items):
+                    let container: CLOCItemsContainer = .init(items: items)
+                    completion(.success(container))
+                    self.loadedItems[section] = container
+                }
+            })
+        }
     }
 }

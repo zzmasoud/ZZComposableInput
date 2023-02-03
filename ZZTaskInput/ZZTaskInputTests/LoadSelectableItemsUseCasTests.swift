@@ -50,6 +50,23 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
             loader.completeRetrieval(with: rawItems)
         }
     }
+    
+    func test_select_doesNotRequestItemsRetrievalAfterFirstSuccessRetrieval() {
+        let (sut, loader) = makeSUT()
+        let section = 0
+
+        XCTAssertTrue(loader.receivedMessages.isEmpty)
+
+        sut.select(section: section, completion: {_ in })
+        loader.completeRetrieval(with: .none)
+        
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+
+        sut.select(section: section, completion: {_ in })
+        loader.completeRetrieval(with: .none)
+
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+    }
         
     // MARK: - Helpers
     
