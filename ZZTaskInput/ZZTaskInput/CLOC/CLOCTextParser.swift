@@ -8,6 +8,8 @@ public final class CLOCTextParser: ZZTextParser {
     public typealias Parsed = (title: String, description: String?)
     public let separator: Character = "\n"
     
+    public init() {}
+    
     public func parse(text: String) -> (title: String, description: String?) {
         var result: (String, String?) = ("", nil)
         
