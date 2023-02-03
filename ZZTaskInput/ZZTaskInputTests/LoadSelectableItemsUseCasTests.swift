@@ -57,7 +57,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let exp = expectation(description: "waiting for completion...")
         sut.select(section: section, completion: { result in
             if case let .success(items) = result {
-                XCTAssertEqual(items, .none)
+                XCTAssertNil(items)
             } else {
                 XCTFail("expected to get success, but got failure")
             }
@@ -68,7 +68,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         
         wait(for: [exp], timeout: 1)
     }
-    
+        
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, loader: ItemLoaderSpy) {

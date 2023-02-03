@@ -4,12 +4,15 @@
 
 import Foundation
 
+public protocol ZZSelectableItem {
+    var isSelected: Bool { get set }
+}
+
 public protocol ZZTaskInput {
     typealias Data = (title: String, description: String?)
     typealias SendCompletion = (Data) -> Void
     
-    associatedtype SelectableItem
-    typealias FetchItemsResut = Result<[SelectableItem]?, Error>
+    typealias FetchItemsResut = Result<[ZZSelectableItem]?, Error>
     typealias FetchItemsCompletion = (FetchItemsResut) -> Void
     
     var onSent: ZZTaskInput.SendCompletion? { get }

@@ -35,8 +35,9 @@ final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let items):
-                completion(.success(items))
-                break
+                guard let _ = items else {
+                    return completion(.success(.none))
+                }
             }
         })
     }
