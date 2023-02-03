@@ -30,7 +30,14 @@ final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
     }
     
     func select(section: Int, completion: @escaping FetchItemsCompletion) {
-        itemLoader.loadItems(for: section, completion: { _ in })
+        itemLoader.loadItems(for: section, completion: { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                break
+            }
+        })
     }
 }
 
