@@ -46,7 +46,7 @@ final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L
     }
 }
 
-class ZZTaskInputTests: XCTestCase {
+class CLOCTaskInputTests: XCTestCase {
     
     func test_init_textIsNil() {
         let (sut, _) = makeSUT()

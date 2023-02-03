@@ -35,38 +35,18 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let section = 0
         let retrievalError = NSError(domain: "error", code: -1)
 
-        let exp = expectation(description: "waiting for completion...")
-        sut.select(section: section, completion: { result in
-            if case let .failure(error) = result {
-                XCTAssertEqual(error as NSError, retrievalError)
-            } else {
-                XCTFail("expected to get failure, but got success")
-            }
-            exp.fulfill()
-        })
-        
-        loader.completeRetrieval(with: retrievalError)
-        
-        wait(for: [exp], timeout: 1)
+        expect(sut, toCompleteWith: .failure(retrievalError), onSelectingSection: section) {
+            loader.completeRetrieval(with: retrievalError)
+        }
     }
     
     func test_select_deliversNoneOnNilRetrieval() {
         let (sut, loader) = makeSUT()
         let section = 0
 
-        let exp = expectation(description: "waiting for completion...")
-        sut.select(section: section, completion: { result in
-            if case let .success(container) = result {
-                XCTAssertNil(container.items)
-            } else {
-                XCTFail("expected to get success, but got failure")
-            }
-            exp.fulfill()
-        })
-        
-        loader.completeRetrieval(with: .none)
-        
-        wait(for: [exp], timeout: 1)
+        expect(sut, toCompleteWith: .success(.init(items: .none)), onSelectingSection: section) {
+            loader.completeRetrieval(with: .none)
+        }
     }
     
     func test_select_deliversSelectableItemsOnNonEmptyRetrieval() {
@@ -74,19 +54,9 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let section = 0
         let rawItems = ["a", "b", "c"]
 
-        let exp = expectation(description: "waiting for completion...")
-        sut.select(section: section, completion: { result in
-            if case let .success(container) = result {
-                XCTAssertEqual(container.items?.count, rawItems.count)
-            } else {
-                XCTFail("expected to get success, but got failure")
-            }
-            exp.fulfill()
-        })
-        
-        loader.completeRetrieval(with: rawItems)
-        
-        wait(for: [exp], timeout: 1)
+        expect(sut, toCompleteWith: .success(.init(items: rawItems)), onSelectingSection: section) {
+            loader.completeRetrieval(with: rawItems)
+        }
     }
         
     // MARK: - Helpers
@@ -98,27 +68,27 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         return (sut, itemLoader)
     }
     
-//    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: ZZTaskInput.FetchItemsResult, onSelectingSection section: Int, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-//        let exp = expectation(description: "waiting for completion...")
-//        
-//        sut.select(section: section, completion: { result in
-//            switch (expectedResult, result) {
-//            case let (.failure(expectedError), .failure(error)):
-//                XCTAssertEqual(expectedError as NSError, error as NSError, file: file, line: line)
-//                
-//            case let (.success(expectedItems), .success(items)):
-//                XCTAssertEqual(expectedItems, items)
-//                
-//            default:
-//                XCTFail("expected to get \(expectedResult) but got \(result)", file: file, line: line)
-//            }
-//            exp.fulfill()
-//        })
-//        
-//        action()
-//        
-//        wait(for: [exp], timeout: 1)
-//    }
+    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: CLOCTaskInput<MockTextParser, ItemLoaderSpy>.FetchItemsResult, onSelectingSection section: Int, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "waiting for completion...")
+        
+        sut.select(section: section, completion: { result in
+            switch (expectedResult, result) {
+            case let (.failure(expectedError), .failure(error)):
+                XCTAssertEqual(expectedError as NSError, error as NSError, file: file, line: line)
+                
+            case let (.success(expectedContainer), .success(container)):
+                XCTAssertEqual(expectedContainer.items, container.items)
+                
+            default:
+                XCTFail("expected to get \(expectedResult) but got \(result)", file: file, line: line)
+            }
+            exp.fulfill()
+        })
+        
+        action()
+        
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 class ItemLoaderSpy: ZZItemLoader {
