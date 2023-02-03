@@ -92,6 +92,11 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let textParser = MockTextParser()
         let itemLoader = ItemLoaderSpy()
         let sut = CLOCTaskInput(textParser: textParser, itemLoader: itemLoader)
+        
+        trackForMemoryLeaks(textParser, file: file, line: line)
+        trackForMemoryLeaks(itemLoader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+
         return (sut, itemLoader)
     }
     
