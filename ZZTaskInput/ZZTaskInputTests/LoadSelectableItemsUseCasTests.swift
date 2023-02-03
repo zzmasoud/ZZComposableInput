@@ -5,14 +5,6 @@
 import XCTest
 import ZZTaskInput
 
-protocol ZZItemLoader {
-    associatedtype Item
-    typealias FetchItemsResut = Result<[Item]?, Error>
-    typealias FetchItemsCompletion = (FetchItemsResut) -> Void
-
-    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion)
-}
-
 class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_init_doesNotMessageLoaderUponCreation() {
