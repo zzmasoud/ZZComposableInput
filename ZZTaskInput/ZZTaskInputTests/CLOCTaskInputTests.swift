@@ -6,7 +6,6 @@ import XCTest
 import ZZTaskInput
 
 final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
-    typealias SelectableItem = L.SelectableItem
     
     private let textParser: T
     private let itemLoader: L
@@ -35,11 +34,22 @@ final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let items):
-                guard let _ = items else {
+                guard let items = items else {
                     return completion(.success(.none))
                 }
+                completion(.success(items.map { SeletableItemWrapper(item: $0) }))
             }
         })
+    }
+    
+    private class SeletableItemWrapper: ZZSelectableItem {
+        let item: Any
+        var isSelected: Bool
+        
+        init(item: Any, isSelected: Bool = false) {
+            self.item = item
+            self.isSelected = isSelected
+        }
     }
 }
 
