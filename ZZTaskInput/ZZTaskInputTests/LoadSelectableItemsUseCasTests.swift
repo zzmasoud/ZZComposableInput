@@ -56,8 +56,8 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
 
         let exp = expectation(description: "waiting for completion...")
         sut.select(section: section, completion: { result in
-            if case let .success(items) = result {
-                XCTAssertNil(items)
+            if case let .success(container) = result {
+                XCTAssertNil(container.items)
             } else {
                 XCTFail("expected to get success, but got failure")
             }
@@ -76,8 +76,8 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
 
         let exp = expectation(description: "waiting for completion...")
         sut.select(section: section, completion: { result in
-            if case let .success(items) = result, let items = items {
-                XCTAssertEqual(items.count, rawItems.count)
+            if case let .success(container) = result {
+                XCTAssertEqual(container.items?.count, rawItems.count)
             } else {
                 XCTFail("expected to get success, but got failure")
             }
@@ -97,6 +97,28 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let sut = CLOCTaskInput(textParser: textParser, itemLoader: itemLoader)
         return (sut, itemLoader)
     }
+    
+//    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: ZZTaskInput.FetchItemsResult, onSelectingSection section: Int, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+//        let exp = expectation(description: "waiting for completion...")
+//        
+//        sut.select(section: section, completion: { result in
+//            switch (expectedResult, result) {
+//            case let (.failure(expectedError), .failure(error)):
+//                XCTAssertEqual(expectedError as NSError, error as NSError, file: file, line: line)
+//                
+//            case let (.success(expectedItems), .success(items)):
+//                XCTAssertEqual(expectedItems, items)
+//                
+//            default:
+//                XCTFail("expected to get \(expectedResult) but got \(result)", file: file, line: line)
+//            }
+//            exp.fulfill()
+//        })
+//        
+//        action()
+//        
+//        wait(for: [exp], timeout: 1)
+//    }
 }
 
 class ItemLoaderSpy: ZZItemLoader {

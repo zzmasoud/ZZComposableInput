@@ -4,15 +4,17 @@
 
 import Foundation
 
-public protocol ZZSelectableItem: Equatable {
-    var isSelected: Bool { get set }
+public protocol ZZItemsContainer {
+    associatedtype Item
+    var items: [Item]? { get set }
 }
 
 public protocol ZZTaskInput {
     typealias Data = (title: String, description: String?)
     typealias SendCompletion = (Data) -> Void
     
-    typealias FetchItemsResult = Result<[ZZSelectableItem]?, Error>
+    associatedtype ItemType: ZZItemsContainer
+    typealias FetchItemsResult = Result<ItemType, Error>
     typealias FetchItemsCompletion = (FetchItemsResult) -> Void
     
     var onSent: ZZTaskInput.SendCompletion? { get }
