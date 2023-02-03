@@ -7,7 +7,7 @@ import ZZTaskInput
 
 protocol ZZItemLoader {
     associatedtype SelectableItem
-    typealias FetchItemsResut = Result<[SelectableItem], Error>
+    typealias FetchItemsResut = Result<[SelectableItem]?, Error>
     typealias FetchItemsCompletion = (FetchItemsResut) -> Void
 
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion)
@@ -50,6 +50,25 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_select_deliversNoneOnNilRetrieval() {
+        let (sut, loader) = makeSUT()
+        let section = 0
+
+        let exp = expectation(description: "waiting for completion...")
+        sut.select(section: section, completion: { result in
+            if case let .success(items) = result {
+                XCTAssertEqual(items, .none)
+            } else {
+                XCTFail("expected to get success, but got failure")
+            }
+            exp.fulfill()
+        })
+        
+        loader.completeRetrieval(with: .none)
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, loader: ItemLoaderSpy) {
@@ -73,5 +92,9 @@ class ItemLoaderSpy: ZZItemLoader {
     
     func completeRetrieval(with error: NSError, at index: Int = 0) {
         completions[index](.failure(error))
+    }
+    
+    func completeRetrieval(with items: [SelectableItem]?, at index: Int = 0) {
+        completions[index](.success(items))
     }
 }

@@ -9,7 +9,7 @@ public protocol ZZTaskInput {
     typealias SendCompletion = (Data) -> Void
     
     associatedtype SelectableItem
-    typealias FetchItemsResut = Result<[SelectableItem], Error>
+    typealias FetchItemsResut = Result<[SelectableItem]?, Error>
     typealias FetchItemsCompletion = (FetchItemsResut) -> Void
     
     var onSent: ZZTaskInput.SendCompletion? { get }

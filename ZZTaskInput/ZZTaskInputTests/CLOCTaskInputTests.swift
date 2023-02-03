@@ -6,7 +6,7 @@ import XCTest
 import ZZTaskInput
 
 final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
-    typealias SelectableItem = String
+    typealias SelectableItem = L.SelectableItem
     
     private let textParser: T
     private let itemLoader: L
@@ -34,7 +34,8 @@ final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput {
             switch result {
             case .failure(let error):
                 completion(.failure(error))
-            case .success:
+            case .success(let items):
+                completion(.success(items))
                 break
             }
         })
