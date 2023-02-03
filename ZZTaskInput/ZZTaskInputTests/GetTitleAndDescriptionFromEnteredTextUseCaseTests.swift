@@ -3,6 +3,7 @@
 //  
 
 import XCTest
+import ZZTaskInput
 
 class GetTitleAndDescriptionFromEnteredTextUseCaseTests: XCTestCase {
     

@@ -5,47 +5,6 @@
 import XCTest
 import ZZTaskInput
 
-struct CLOCItemsContainer: ZZItemsContainer {
-    typealias Item = String
-    var items: [String]?
-}
-
-final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String {
-    typealias ItemType = CLOCItemsContainer
-    
-    private let textParser: T
-    private let itemLoader: L
-    private(set) var text: String?
-    var onSent: ((ZZTaskInput.Data) -> Void)?
-    
-    init(textParser: T, itemLoader: L) {
-        self.textParser = textParser
-        self.itemLoader = itemLoader
-    }
-
-    func set(text: String?) {
-        self.text = text
-    }
-    
-    func send() {
-        guard let text = text, !text.isEmpty else { return }
-        
-        let parsedComponents = textParser.parse(text: text)
-        onSent?(parsedComponents as! (title: String, description: String?))
-    }
-    
-    func select(section: Int, completion: @escaping FetchItemsCompletion) {
-        itemLoader.loadItems(for: section, completion: { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let items):
-                completion(.success(.init(items: items)))
-            }
-        })
-    }
-}
-
 class CLOCTaskInputTests: XCTestCase {
     
     func test_init_textIsNil() {

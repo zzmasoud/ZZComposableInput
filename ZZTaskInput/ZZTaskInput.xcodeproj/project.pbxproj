@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */; };
+		045C50D6298D1A89005C44AE /* CLOCTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */; };
+		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
 		04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemLoader.swift; sourceTree = "<group>"; };
+		045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInput.swift; sourceTree = "<group>"; };
+		045C50D7298D1AC7005C44AE /* ZZTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTextParser.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInputTests.swift; sourceTree = "<group>"; };
@@ -58,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045C50D4298D1A76005C44AE /* CLOC */ = {
+			isa = PBXGroup;
+			children = (
+				045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */,
+			);
+			path = CLOC;
+			sourceTree = "<group>";
+		};
 		04C36F89298AF6C700712C6E = {
 			isa = PBXGroup;
 			children = (
@@ -79,8 +91,10 @@
 		04C36F95298AF6C700712C6E /* ZZTaskInput */ = {
 			isa = PBXGroup;
 			children = (
+				045C50D4298D1A76005C44AE /* CLOC */,
 				04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */,
 				045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */,
+				045C50D7298D1AC7005C44AE /* ZZTextParser.swift */,
 			);
 			path = ZZTaskInput;
 			sourceTree = "<group>";
@@ -214,8 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045C50D6298D1A89005C44AE /* CLOCTaskInput.swift in Sources */,
 				04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */,
+				045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,13 +3,7 @@
 //  
 
 import XCTest
-
-protocol ZZTextParser {
-    associatedtype Parsed
-    
-    var separator: Character { get }
-    func parse(text: String) -> Parsed
-}
+import ZZTaskInput
 
 final class CLOCTextParser: ZZTextParser {
     typealias Parsed = (title: String, description: String?)
