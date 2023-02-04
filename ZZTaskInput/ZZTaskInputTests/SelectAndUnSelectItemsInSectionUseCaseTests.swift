@@ -7,6 +7,20 @@ import ZZTaskInput
 
 class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
     
+    func test_send_deliversNilSelectedItems() {
+        let (sut, _) = makeSUT()
+        sut.set(text: "Hello")
+        
+        let exp = expectation(description: "waiting for completion")
+        sut.onSent = { model in
+            XCTAssertNil(model.selectedItems)
+            exp.fulfill()
+        }
+        
+        sut.send()
+        
+        wait(for: [exp], timeout: 1)
+    }
     
     // MARK: - Helpers
     
