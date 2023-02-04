@@ -5,14 +5,16 @@
 import Foundation
 
 public protocol ZZTaskInput {
-    typealias Data = (title: String, description: String?)
+    typealias Data = ZZTaskModel<SectionIdentifier, ItemType.Item>
     typealias SendCompletion = (Data) -> Void
     
     associatedtype ItemType: ZZItemsContainer
+    associatedtype SectionIdentifier: Hashable
     typealias FetchItemsResult = Result<ItemType, Error>
     typealias FetchItemsCompletion = (FetchItemsResult) -> Void
+
     
-    var onSent: ZZTaskInput.SendCompletion? { get }
+    var onSent: SendCompletion? { get }
     func send()
-    func select(section: Int, completion: @escaping FetchItemsCompletion)
+    func select(section: SectionIdentifier, completion: @escaping FetchItemsCompletion)
 }

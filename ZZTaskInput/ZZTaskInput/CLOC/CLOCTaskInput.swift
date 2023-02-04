@@ -4,7 +4,7 @@
 
 import Foundation
 
-public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String {
+public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String, T.Parsed == (title: String, description: String?) {
     public typealias ItemType = CLOCItemsContainer
     public typealias Section = Int
     
@@ -13,9 +13,8 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
     private var loadedItems: [Section: ItemType] = [:]
     
     private(set) public var text: String?
-    
-    public var onSent: ((ZZTaskInput.Data) -> Void)?
-    
+    public var onSent: SendCompletion?
+
     public init(textParser: T, itemLoader: L) {
         self.textParser = textParser
         self.itemLoader = itemLoader
@@ -29,7 +28,9 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         guard let text = text, !text.isEmpty else { return }
         
         let parsedComponents = textParser.parse(text: text)
-        onSent?(parsedComponents as! (title: String, description: String?))
+        let taskModel = ZZTaskModel<Section, ItemType.Item>(title: parsedComponents.title, description: parsedComponents.description)
+        
+        onSent?(taskModel)
     }
     
     public func select(section: Section, completion: @escaping FetchItemsCompletion) {

@@ -5,7 +5,6 @@
 import ZZTaskInput
 
 class MockTextParser: ZZTextParser {
-    typealias Parsed = (title: String, description: String?)
     
     var result = Parsed("", nil)
     private(set) var separator: Character = "\n"
