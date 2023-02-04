@@ -37,14 +37,16 @@ class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
     }
     
     private class StubItemLoader: ZZItemLoader {
+        typealias Section = CLOCSelectableProperty
         typealias Item = String
+        
         let items: [Item]
         
         init(items: [Item]) {
             self.items = items
         }
         
-        func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
+        func loadItems(for section: Section, completion: @escaping FetchItemsCompletion) {
             completion(.success(items))
         }
     }

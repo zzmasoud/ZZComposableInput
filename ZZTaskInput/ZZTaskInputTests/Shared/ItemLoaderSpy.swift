@@ -6,12 +6,13 @@ import Foundation
 import ZZTaskInput
 
 class ItemLoaderSpy: ZZItemLoader {
+    typealias Section = CLOCSelectableProperty
     typealias Item = String
 
-    private(set) var receivedMessages = [Int]()
+    private(set) var receivedMessages = [Section]()
     private(set) var completions = [FetchItemsCompletion]()
 
-    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
+    func loadItems(for section: Section, completion: @escaping FetchItemsCompletion) {
         receivedMessages.append(section)
         completions.append(completion)
     }

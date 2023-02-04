@@ -120,10 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				04CEFD70298BF37300715BD3 /* Shared */,
-				04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */,
 				04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */,
 				04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */,
 				04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */,
+				04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */,
 				04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */,
 				04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */,
 			);

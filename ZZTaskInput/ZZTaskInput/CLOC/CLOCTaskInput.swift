@@ -4,8 +4,21 @@
 
 import Foundation
 
+public enum CLOCSelectableProperty: Hashable {
+    case date, time, project, repeatWeekDays
+    
+    var selectionType: CLOCItemSelectionType {
+        switch self {
+        case .date, .time, .project:
+            return CLOCItemSelectionType.single
+        case .repeatWeekDays:
+            return CLOCItemSelectionType.multiple(max: 7)
+        }
+    }
+}
+
 public struct CLOCTaskModel {
-    public typealias Section = Int
+    public typealias Section = CLOCSelectableProperty
     public typealias Item = String
     
     public var title: String
@@ -19,10 +32,9 @@ public struct CLOCTaskModel {
     }
 }
 
-public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String, T.Parsed == (title: String, description: String?) {
+public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String, L.Section == CLOCSelectableProperty, T.Parsed == (title: String, description: String?) {
     public typealias Data = CLOCTaskModel
-    
-    public typealias Section = Int
+    public typealias Section = L.Section
     public typealias ItemType = CLOCItemsContainer
 
     private let textParser: T
@@ -60,7 +72,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
                 case .failure(let error):
                     completion(.failure(error))
                 case .success(let items):
-                    let container: CLOCItemsContainer = .init(items: items)
+                    let container: CLOCItemsContainer = .init(items: items, selectionType: section.selectionType)
                     completion(.success(container))
                     self.loadedItems[section] = container
                 }

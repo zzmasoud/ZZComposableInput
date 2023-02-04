@@ -15,7 +15,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_requestsItemsRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
 
         sut.select(section: section, completion: { _ in })
         
@@ -24,7 +24,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_failsOnRetrievalError() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
         let retrievalError = NSError(domain: "error", code: -1)
 
         expect(sut, toCompleteWith: .failure(retrievalError), onSelectingSection: section) {
@@ -34,7 +34,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_deliversNoneOnNilRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
 
         expect(sut, toCompleteWith: .success(.init(items: .none)), onSelectingSection: section) {
             loader.completeRetrieval(with: .none)
@@ -43,7 +43,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_deliversSelectableItemsOnNonEmptyRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
         let rawItems = ["a", "b", "c"]
 
         expect(sut, toCompleteWith: .success(.init(items: rawItems)), onSelectingSection: section) {
@@ -53,7 +53,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_doesNotRequestItemsRetrievalAfterFirstSuccessRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
@@ -70,7 +70,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_requestsItemsRetrievalIfPreviousRetrievalFailed() {
         let (sut, loader) = makeSUT()
-        let section = 0
+        let section = randomSection()
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
@@ -84,7 +84,6 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
 
         XCTAssertEqual(loader.receivedMessages.count, 2)
     }
-
         
     // MARK: - Helpers
     
@@ -100,7 +99,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         return (sut, itemLoader)
     }
     
-    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: CLOCTaskInput<MockTextParser, ItemLoaderSpy>.FetchItemsResult, onSelectingSection section: Int, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: CLOCTaskInput<MockTextParser, ItemLoaderSpy>.FetchItemsResult, onSelectingSection section: CLOCSelectableProperty, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         
         sut.select(section: section, completion: { result in
@@ -120,5 +119,9 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1)
+    }
+    
+    private func randomSection() -> CLOCSelectableProperty {
+        return .date
     }
 }
