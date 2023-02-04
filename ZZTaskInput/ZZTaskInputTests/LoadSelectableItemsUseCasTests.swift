@@ -15,7 +15,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_requestsItemsRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
 
         sut.select(section: section, completion: { _ in })
         
@@ -24,7 +24,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_failsOnRetrievalError() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
         let retrievalError = NSError(domain: "error", code: -1)
 
         expect(sut, toCompleteWith: .failure(retrievalError), onSelectingSection: section) {
@@ -34,7 +34,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_deliversNoneOnNilRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
 
         expect(sut, toCompleteWith: .success(.init(items: .none)), onSelectingSection: section) {
             loader.completeRetrieval(with: .none)
@@ -43,7 +43,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_deliversSelectableItemsOnNonEmptyRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
         let rawItems = ["a", "b", "c"]
 
         expect(sut, toCompleteWith: .success(.init(items: rawItems)), onSelectingSection: section) {
@@ -53,7 +53,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_doesNotRequestItemsRetrievalAfterFirstSuccessRetrieval() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
@@ -70,7 +70,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
     
     func test_select_requestsItemsRetrievalIfPreviousRetrievalFailed() {
         let (sut, loader) = makeSUT()
-        let section = randomSection()
+        let section = getSection()
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
@@ -83,6 +83,37 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         loader.completeRetrieval(with: NSError(), at: 1)
 
         XCTAssertEqual(loader.receivedMessages.count, 2)
+    }
+    
+    func test_select_hasNoSideEffectsWhenSelectionChanges() {
+        let (sut, loader) = makeSUT()
+        let section = getSection()
+        let section2 = getSection2()
+        let expectedItems = ["a", "b", "c"]
+        let expectedItems2 = ["aaa", "bbb", "ccc"]
+
+        XCTAssertTrue(loader.receivedMessages.isEmpty)
+
+        sut.select(section: section, completion: {_ in })
+        loader.completeRetrieval(with: NSError())
+
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+
+        sut.select(section: section) { result in
+            let container = try? result.get()
+            XCTAssertEqual(container?.items, expectedItems)
+        }
+        
+        sut.select(section: section2) { result in
+            let container = try? result.get()
+            XCTAssertEqual(container?.items, expectedItems2)
+        }
+        
+        loader.completeRetrieval(with: expectedItems2, at: 2)
+        XCTAssertEqual(loader.receivedMessages.count, 3)
+        
+        loader.completeRetrieval(with: expectedItems, at: 1)
+        XCTAssertEqual(loader.receivedMessages.count, 3)
     }
         
     // MARK: - Helpers
@@ -121,7 +152,11 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    private func randomSection() -> CLOCSelectableProperty {
+    private func getSection() -> CLOCSelectableProperty {
         return .date
+    }
+    
+    private func getSection2() -> CLOCSelectableProperty {
+        return .time
     }
 }
