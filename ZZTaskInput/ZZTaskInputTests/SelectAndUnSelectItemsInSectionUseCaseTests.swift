@@ -9,7 +9,7 @@ class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
     
     func test_send_deliversNilSelectedItems() {
         let (sut, _) = makeSUT()
-        sut.set(text: "Hello")
+        fillText(for: sut)
         
         let exp = expectation(description: "waiting for completion")
         sut.onSent = { model in
@@ -51,5 +51,9 @@ class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
     
     private func makeItems() -> [String] {
         return ["a", "b", "c"]
+    }
+    
+    private func fillText(for sut: CLOCTaskInput<MockTextParser, StubItemLoader>) {
+        sut.set(text: "Hello\nWorld")
     }
 }
