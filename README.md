@@ -36,7 +36,7 @@ Then the app should do nothing since the required data haven't entered.
 
 ### Use Cases
 
-#### Give Title and Description From User's Entered Text
+#### Get Title and Description From User's Entered Text
 ##### Data:
 - Title: String
 - Description: String?
@@ -46,23 +46,38 @@ Then the app should do nothing since the required data haven't entered.
 2. User enters return and continues typing.
 3. On excuting "send" command, the module delivers above data.
 
-#### Load Selectable Items From Cache Use Case
+
+#### Load Selectable Items For Each Section Use Case
 ##### Data:
 - Section
 
 ##### Primary Course:
 1. Execute "fetch items" command with above data.
-2. Hold fetched items to prevent further fetching.
-3. Indicate selected items.
-5. User can select/deselect items.
-6. Validate if selection/deselection possible (multi or single selection).
-7. Pass selected items to the client.
+2. User can select each section and the module should load them if needed.
+3. Hold loaded items to prevent further loading.
 
-#### Retrieval error course (sad path):
+#### Empty Items Course:
+1. Delivers nothing to select.
+
+#### Retrieval Error Course (Sad Path):
 1. System delivers error.
 
-#### Empty items course (sad path):
-1. Delivers nothing to select error.
+
+#### Select/Deselect Items In A Section
+##### Data:
+- Selected items
+
+##### Primary Course:
+1. The module should know if the current section is single or multiple selection.
+1. User can select single or multiple regarding to step (1).
+2. If it's a single selection, after selecting any it should replace.
+3. If it's a multiple selection, after selecting any, if selecting the same item, it means deselect.
+4. The module should hold only selected items.
+5. On excuting "send" command, the module delivers above data.
+
+##### Empty Items Course:
+1. There's nothing to select.
+
 
 
 <br>
