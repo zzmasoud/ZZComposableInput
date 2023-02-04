@@ -20,6 +20,12 @@ public class CLOCItemsContainer: ZZItemsContainer {
         self.selectedItems = preSelectedIndexes?.compactMap{ items?[$0] }
         self.selectionType = selectionType
     }
+    
+    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: CLOCItemSelectionType = .single) {
+        self.items = items
+        self.selectedItems = preSelectedItems
+        self.selectionType = selectionType
+    }
         
     private func indexOf(_ item: Item, in collection: [Item]?) -> Int? {
         return collection?.firstIndex(of: item)

@@ -36,7 +36,7 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let (sut, loader) = makeSUT()
         let section = getSection()
 
-        expect(sut, toCompleteWith: .success(.init(items: .none)), onSelectingSection: section) {
+        expect(sut, toCompleteWith: .success(.init(items: .none, preSelectedIndexes: .none)), onSelectingSection: section) {
             loader.completeRetrieval(with: .none)
         }
     }
@@ -46,8 +46,20 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         let section = getSection()
         let rawItems = ["a", "b", "c"]
 
-        expect(sut, toCompleteWith: .success(.init(items: rawItems)), onSelectingSection: section) {
+        expect(sut, toCompleteWith: .success(.init(items: rawItems, preSelectedIndexes: .none)), onSelectingSection: section) {
             loader.completeRetrieval(with: rawItems)
+        }
+    }
+    
+    func test_selectWithPreselectedItems_deliversSelectableItemsWithPreselectedOnes() {
+        let (sut, loader) = makeSUT()
+        let section = getSection()
+        let rawItems = ["a", "b", "c"]
+        let preselectedItems = ["a"]
+        
+        expect(sut, toCompleteWith: .success(.init(items: rawItems, preSelectedItems: preselectedItems)), onSelectingSection: section, andPreselectedItems: preselectedItems) {
+            loader.completeRetrieval(with: rawItems)
+
         }
     }
     
@@ -146,16 +158,17 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         return (sut, itemLoader)
     }
     
-    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: CLOCTaskInput<MockTextParser, ItemLoaderSpy>.FetchItemsResult, onSelectingSection section: CLOCSelectableProperty, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCTaskInput<MockTextParser, ItemLoaderSpy>, toCompleteWith expectedResult: CLOCTaskInput<MockTextParser, ItemLoaderSpy>.FetchItemsResult, onSelectingSection section: CLOCSelectableProperty, andPreselectedItems preselectedItems: [ItemLoaderSpy.Item]? = nil, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
         
-        sut.select(section: section, completion: { result in
+        sut.select(section: section, withPreselectedItems: preselectedItems, completion: { result in
             switch (expectedResult, result) {
             case let (.failure(expectedError), .failure(error)):
                 XCTAssertEqual(expectedError as NSError, error as NSError, file: file, line: line)
                 
             case let (.success(expectedContainer), .success(container)):
-                XCTAssertEqual(expectedContainer.items, container.items)
+                XCTAssertEqual(expectedContainer.items, container.items, file: file, line: line)
+                XCTAssertEqual(expectedContainer.selectedItems, container.selectedItems, file: file, line: line)
                 
             default:
                 XCTFail("expected to get \(expectedResult) but got \(result)", file: file, line: line)

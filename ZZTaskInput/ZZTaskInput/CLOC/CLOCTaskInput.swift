@@ -32,8 +32,9 @@ public struct CLOCTaskModel {
     }
 }
 
-public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String, L.Section == CLOCSelectableProperty, T.Parsed == (title: String, description: String?) {
+public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == CLOCTaskModel.Item, L.Section == CLOCSelectableProperty, T.Parsed == (title: String, description: String?) {
     public typealias Data = CLOCTaskModel
+    public typealias SelectableItem = L.Item
     public typealias Section = L.Section
     public typealias ItemType = CLOCItemsContainer
 
@@ -61,7 +62,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         onSent?(taskModel)
     }
     
-    public func select(section: Section, completion: @escaping FetchItemsCompletion) {
+    public func select(section: Section, withPreselectedItems preselectedItems: [L.Item]? = nil, completion: @escaping FetchItemsCompletion) {
         if let loaded = self.loadedItems[section] {
             completion(.success(loaded))
         } else {
@@ -72,7 +73,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
                 case .failure(let error):
                     completion(.failure(error))
                 case .success(let items):
-                    let container: CLOCItemsContainer = .init(items: items, selectionType: section.selectionType)
+                    let container: CLOCItemsContainer = .init(items: items, preSelectedItems: preselectedItems, selectionType: section.selectionType)
                     completion(.success(container))
                     self.loadedItems[section] = container
                 }

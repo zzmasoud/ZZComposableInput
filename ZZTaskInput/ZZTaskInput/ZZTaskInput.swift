@@ -8,6 +8,7 @@ public protocol ZZTaskInput {
     associatedtype Data
     typealias SendCompletion = (Data) -> Void
     
+    associatedtype SelectableItem
     associatedtype ItemType
     associatedtype Section
     typealias FetchItemsResult = Result<ItemType, Error>
@@ -16,5 +17,6 @@ public protocol ZZTaskInput {
     
     var onSent: SendCompletion? { get }
     func send()
-    func select(section: Section, completion: @escaping FetchItemsCompletion)
+    func select(section: Section, withPreselectedItems: [SelectableItem]? , completion: @escaping FetchItemsCompletion)
+
 }
