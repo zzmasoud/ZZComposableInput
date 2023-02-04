@@ -18,9 +18,10 @@ class CLOCItemsContainerTests: XCTestCase {
         let items = makeItems()
         let sut = CLOCItemsContainer(items: makeItems(), preSelectedIndexes: [preSelectedIndex], selectionType: .single)
         
-
         XCTAssertEqual(sut.selectedItems, [items[preSelectedIndex]])
     }
+    
+    // MARK: - Single Selection Type
     
     func test_selectAt_setsSelectedItemIfSingleSelection() {
         let selectionIndex = 0
@@ -56,6 +57,21 @@ class CLOCItemsContainerTests: XCTestCase {
 
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
     }
+    
+    // MARK: - Multiple Selection Type
+    
+    func test_selectAt_appendsSelectedItemIfMultipleSelection() {
+        let (sut, items) = makeSUT(selectionType: .multiple(max: 3))
+        
+        XCTAssertNil(sut.selectedItems)
+
+        sut.select(at: 0)
+        XCTAssertEqual(sut.selectedItems, [items[0]])
+
+        sut.select(at: 1)
+        XCTAssertEqual(sut.selectedItems, [items[0], items[1]])
+    }
+
     
     // MARK: - Helpers
     

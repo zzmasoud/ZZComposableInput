@@ -22,8 +22,19 @@ public class CLOCItemsContainer: ZZItemsContainer {
     }
     
     public func select(at index: Int) {
-        if let items = items {
-            selectedItems = [items[index]]
+        guard let items = items else {
+            return
+        }
+        let selectedItem = items[index]
+
+        switch selectionType {
+        case .single:
+            selectedItems = [selectedItem]
+            
+        case .multiple:
+            if selectedItems?.append(selectedItem) == nil {
+                selectedItems = [selectedItem]
+            }
         }
     }
     
