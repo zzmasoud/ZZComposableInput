@@ -6,5 +6,6 @@ import Foundation
 
 public protocol ZZItemsContainer {
     associatedtype Item
-    var items: [Item]? { get set }
+    var items: [Item]? { get }
+    var selectedItems: [Item]? { get }
 }

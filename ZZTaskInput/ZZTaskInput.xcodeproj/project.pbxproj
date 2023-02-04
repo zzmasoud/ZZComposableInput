@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */; };
+		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
 		045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */; };
 		045C50D6298D1A89005C44AE /* CLOCTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
+		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemLoader.swift; sourceTree = "<group>"; };
 		045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInput.swift; sourceTree = "<group>"; };
 		045C50D7298D1AC7005C44AE /* ZZTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTextParser.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */,
 				04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */,
 				04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */,
+				04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */,
 				04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */,
 			);
 			path = ZZTaskInputTests;
@@ -263,6 +266,7 @@
 				04CEFD6B298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift in Sources */,
 				04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */,
 				04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */,
+				04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */,
 				045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
