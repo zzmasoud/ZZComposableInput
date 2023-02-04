@@ -10,7 +10,7 @@ class CLOCItemsContainerTests: XCTestCase {
     func test_init_selectedItemsIsEmpty() {
         let (sut, _) = makeSUT()
 
-        XCTAssertNil(sut.selectedItems)
+        expect(sut, toHaveSelectedItems: .none)
     }
     
     func test_initWithPreSelectedIndexes_selectedItemsIsAssigned() {
@@ -18,7 +18,7 @@ class CLOCItemsContainerTests: XCTestCase {
         let items = makeItems()
         let sut = CLOCItemsContainer(items: makeItems(), preSelectedIndexes: [preSelectedIndex], selectionType: .single)
         
-        XCTAssertEqual(sut.selectedItems, [items[preSelectedIndex]])
+        expect(sut, toHaveSelectedItems: [items[preSelectedIndex]])
     }
     
     // MARK: - Single Selection Type
@@ -29,7 +29,7 @@ class CLOCItemsContainerTests: XCTestCase {
 
         sut.select(at: selectionIndex)
 
-        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+        expect(sut, toHaveSelectedItems: [items[selectionIndex]])
     }
     
     func test_selectAt_setsSelectedItemOnMultipleCallsIfSingleSelection() {
@@ -37,12 +37,11 @@ class CLOCItemsContainerTests: XCTestCase {
         let (sut, items) = makeSUT()
 
         sut.select(at: selectionIndex)
-        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+        expect(sut, toHaveSelectedItems: [items[selectionIndex]])
 
         selectionIndex = 1
-        
         sut.select(at: selectionIndex)
-        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+        expect(sut, toHaveSelectedItems: [items[selectionIndex]])
 
     }
     
@@ -51,46 +50,54 @@ class CLOCItemsContainerTests: XCTestCase {
         let (sut, items) = makeSUT()
         
         sut.select(at: selectionIndex)
-        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+        expect(sut, toHaveSelectedItems: [items[selectionIndex]])
 
         sut.unselect(at: selectionIndex)
-
-        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+        expect(sut, toHaveSelectedItems: [items[selectionIndex]])
     }
     
     // MARK: - Multiple Selection Type
     
     func test_selectAt_appendsSelectedItemIfMultipleSelection() {
-        let (sut, items) = makeSUT(selectionType: .multiple(max: 3))
+        let (sut, items) = makeSUT(selectionType: .multiple(max: 2))
         
-        XCTAssertNil(sut.selectedItems)
+        expect(sut, toHaveSelectedItems: .none)
 
         sut.select(at: 0)
-        XCTAssertEqual(sut.selectedItems, [items[0]])
+        expect(sut, toHaveSelectedItems: [items[0]])
 
         sut.select(at: 1)
-        XCTAssertEqual(sut.selectedItems, [items[0], items[1]])
+        expect(sut, toHaveSelectedItems: [items[0], items[1]])
+    }
+    
+    func test_selectAt_replacesNewSelectedItemToFirstSelectedItemIfMaxMultipleSelectionReached() {
+        let (sut, items) = makeSUT(selectionType: .multiple(max: 2))
+
+        sut.select(at: 0)
+        sut.select(at: 1)
+        expect(sut, toHaveSelectedItems: [items[0], items[1]])
+
     }
     
     func test_unselectAt_removesSelectedItemIfMultipleSelection() {
-        let (sut, items) = makeSUT(selectionType: .multiple(max: 3))
+        let (sut, items) = makeSUT(selectionType: .multiple(max: 2))
         
-        XCTAssertNil(sut.selectedItems)
+        expect(sut, toHaveSelectedItems: .none)
 
         sut.select(at: 0)
-        XCTAssertEqual(sut.selectedItems, [items[0]])
+        expect(sut, toHaveSelectedItems: [items[0]])
 
         sut.select(at: 1)
-        XCTAssertEqual(sut.selectedItems, [items[0], items[1]])
+        expect(sut, toHaveSelectedItems: [items[0], items[1]])
 
         sut.unselect(at: 0)
-        XCTAssertEqual(sut.selectedItems, [items[1]])
+        expect(sut, toHaveSelectedItems: [items[1]])
 
         sut.unselect(at: 0)
-        XCTAssertEqual(sut.selectedItems, [items[1]])
-        
+        expect(sut, toHaveSelectedItems: [items[1]])
+
         sut.unselect(at: 1)
-        XCTAssertEqual(sut.selectedItems, nil)
+        expect(sut, toHaveSelectedItems: .none)
     }
 
     
@@ -105,6 +112,16 @@ class CLOCItemsContainerTests: XCTestCase {
     
     private func makeItems() -> [String] {
         return ["a", "b", "c"]
+    }
+    
+    private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [String]?, file: StaticString = #file, line: UInt = #line) {
+        if let expectedItems = expectedItems {
+            expectedItems.forEach {
+                XCTAssertTrue(sut.selectedItems!.contains($0), "expected to have item \($0) in selectedItems", file: file, line: line)
+            }
+        } else {
+            return XCTAssertNil(sut.selectedItems, "expected to have nil selectedItems", file: file, line: line)
+        }
     }
 }
 
