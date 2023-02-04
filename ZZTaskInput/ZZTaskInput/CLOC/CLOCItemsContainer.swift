@@ -11,6 +11,7 @@ public enum CLOCItemSelectionType {
 
 public class CLOCItemsContainer: ZZItemsContainer {
     public typealias Item = String
+    
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
     private let selectionType: CLOCItemSelectionType

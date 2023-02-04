@@ -58,7 +58,17 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         guard let text = text, !text.isEmpty else { return }
         
         let parsedComponents = textParser.parse(text: text)
-        let taskModel = CLOCTaskModel(title: parsedComponents.title, description: parsedComponents.description)
+        var selectedItems: [Section : [L.Item]]?
+        
+        for (section, container) in loadedItems {
+            if let items = container.selectedItems {
+                if (selectedItems?[section] = items) == nil {
+                    selectedItems = [section: items]
+                }
+            }
+        }
+        
+        let taskModel = CLOCTaskModel(title: parsedComponents.title, description: parsedComponents.description, selectedItems: selectedItems)
         onSent?(taskModel)
     }
     
