@@ -115,6 +115,22 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         loader.completeRetrieval(with: expectedItems, at: 1)
         XCTAssertEqual(loader.receivedMessages.count, 3)
     }
+    
+    func test_select_doesNotDeliverResultAfterSUTHasbeenDeallocated() {
+        var (sut, loader): (CLOCTaskInput?, ItemLoaderSpy) = makeSUT()
+        let section = getSection()
+
+        var capturedResult = false
+        sut?.select(section: section, completion: { _ in
+            capturedResult = true
+        })
+        
+        sut = nil
+
+        loader.completeRetrieval(with: .none)
+        
+        XCTAssertFalse(capturedResult)
+    }
         
     // MARK: - Helpers
     
