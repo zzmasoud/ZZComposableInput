@@ -4,11 +4,6 @@
 
 import Foundation
 
-public protocol ZZItemsContainer {
-    associatedtype Item
-    var items: [Item]? { get set }
-}
-
 public protocol ZZTaskInput {
     typealias Data = (title: String, description: String?)
     typealias SendCompletion = (Data) -> Void

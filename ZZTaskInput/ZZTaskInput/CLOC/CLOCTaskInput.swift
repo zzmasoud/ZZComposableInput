@@ -4,15 +4,6 @@
 
 import Foundation
 
-public struct CLOCItemsContainer: ZZItemsContainer {
-    public typealias Item = String
-    public var items: [String]?
-    
-    public init(items: [String]? = nil) {
-        self.items = items
-    }
-}
-
 public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == String {
     public typealias ItemType = CLOCItemsContainer
     public typealias Section = Int
