@@ -24,20 +24,18 @@ class CLOCItemsContainerTests: XCTestCase {
     }
     
     func test_selectAt_setsSelectedItemIfSingleSelection() {
-        let items = ["a", "b", "c"]
         let selectionIndex = 0
-        let sut = CLOCItemsContainer(items: items)
-        
+        let (sut, items) = makeSUT(selectionType: .single)
+
         sut.select(at: selectionIndex)
 
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
     }
     
     func test_selectAt_setsSelectedItemOnMultipleCallsIfSingleSelection() {
-        let items = ["a", "b", "c"]
         var selectionIndex = 0
-        let sut = CLOCItemsContainer(items: items)
-        
+        let (sut, items) = makeSUT(selectionType: .single)
+
         sut.select(at: selectionIndex)
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
 
@@ -48,10 +46,9 @@ class CLOCItemsContainerTests: XCTestCase {
 
     }
     
-    func test_deselectAt_doesNothingIfSingleSelection() {
-        let items = ["a", "b", "c"]
+    func test_unselectAt_doesNothingIfSingleSelection() {
         let selectionIndex = 0
-        let sut = CLOCItemsContainer(items: items)
+        let (sut, items) = makeSUT(selectionType: .single)
         
         sut.select(at: selectionIndex)
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
@@ -59,6 +56,15 @@ class CLOCItemsContainerTests: XCTestCase {
         sut.unselect(at: selectionIndex)
 
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(selectionType: CLOCItemSelectionType) -> (sut: CLOCItemsContainer, items: [String]) {
+        let items = ["a", "b", "c"]
+        let sut = CLOCItemsContainer(items: items, preSelectedIndexes: nil, selectionType: selectionType)
+        
+        return (sut, items)
     }
 }
 
