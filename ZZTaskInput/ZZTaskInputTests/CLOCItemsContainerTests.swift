@@ -71,6 +71,27 @@ class CLOCItemsContainerTests: XCTestCase {
         sut.select(at: 1)
         XCTAssertEqual(sut.selectedItems, [items[0], items[1]])
     }
+    
+    func test_unselectAt_removesSelectedItemIfMultipleSelection() {
+        let (sut, items) = makeSUT(selectionType: .multiple(max: 3))
+        
+        XCTAssertNil(sut.selectedItems)
+
+        sut.select(at: 0)
+        XCTAssertEqual(sut.selectedItems, [items[0]])
+
+        sut.select(at: 1)
+        XCTAssertEqual(sut.selectedItems, [items[0], items[1]])
+
+        sut.unselect(at: 0)
+        XCTAssertEqual(sut.selectedItems, [items[1]])
+
+        sut.unselect(at: 0)
+        XCTAssertEqual(sut.selectedItems, [items[1]])
+        
+        sut.unselect(at: 1)
+        XCTAssertEqual(sut.selectedItems, [])
+    }
 
     
     // MARK: - Helpers
