@@ -59,7 +59,6 @@ class LoadSelectableItemsUseCasTests: XCTestCase {
         
         expect(sut, toCompleteWith: .success(.init(items: rawItems, preSelectedItems: preselectedItems)), onSelectingSection: section, andPreselectedItems: preselectedItems) {
             loader.completeRetrieval(with: rawItems)
-
         }
     }
     

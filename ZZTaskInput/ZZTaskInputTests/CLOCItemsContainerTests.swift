@@ -21,6 +21,14 @@ class CLOCItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: [items[preSelectedIndex]])
     }
     
+    func test_initWithPreSelectedItems_selectedItemsIsAssigned() {
+        let items = makeItems()
+        let preSelectedItems = [items[0], items[1]]
+        let sut = CLOCItemsContainer(items: makeItems(), preSelectedItems: preSelectedItems, selectionType: .single)
+        
+        expect(sut, toHaveSelectedItems: preSelectedItems)
+    }
+    
     // MARK: - Single Selection Type
     
     func test_selectAt_setsSelectedItemIfSingleSelection() {
