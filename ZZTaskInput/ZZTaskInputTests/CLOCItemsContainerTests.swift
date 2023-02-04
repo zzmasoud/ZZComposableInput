@@ -13,6 +13,15 @@ class CLOCItemsContainerTests: XCTestCase {
         
         XCTAssertNil(sut.selectedItems)
     }
+    
+    func test_initWithPreSelectedIndexes_selectedItemsIsAssigned() {
+        let items = ["a", "b", "c"]
+        let preSelectedIndex = 1
+        
+        let sut = CLOCItemsContainer(items: items, preSelectedIndexes: [preSelectedIndex])
+        
+        XCTAssertEqual(sut.selectedItems, [items[preSelectedIndex]])
+    }
 }
 
 
