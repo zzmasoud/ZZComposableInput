@@ -20,7 +20,14 @@ public class CLOCItemsContainer: ZZItemsContainer {
         self.selectedItems = preSelectedIndexes?.compactMap{ items?[$0] }
         self.selectionType = selectionType
     }
-    
+        
+    private func indexOf(_ item: Item, in collection: [Item]?) -> Int? {
+        return collection?.firstIndex(of: item)
+    }
+}
+
+// MARK: - Select
+extension CLOCItemsContainer {
     public func select(at index: Int) {
         guard let items = items else { return }
         let newItem = items[index]
@@ -48,7 +55,10 @@ public class CLOCItemsContainer: ZZItemsContainer {
         guard (collection?.count ?? 0) > max else { return }
         collection?.remove(at: 0)
     }
-    
+}
+
+// MARK: - Unselect
+extension CLOCItemsContainer {
     public func unselect(at index: Int) {
         guard case .multiple = selectionType,
               let items = items else { return }
@@ -58,13 +68,10 @@ public class CLOCItemsContainer: ZZItemsContainer {
         selectedItems?.remove(at: foundIndex)
         nilifyIfSelectedItemsIsEmpty()
     }
-    
-    private func indexOf(_ item: Item, in collection: [Item]?) -> Int? {
-        return collection?.firstIndex(of: item)
-    }
-    
+
     private func nilifyIfSelectedItemsIsEmpty() {
         guard selectedItems?.isEmpty ?? false else { return }
         selectedItems = nil
     }
 }
+
