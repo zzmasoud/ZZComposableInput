@@ -32,6 +32,21 @@ class CLOCItemsContainerTests: XCTestCase {
 
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
     }
+    
+    func test_selectAt_setsSelectedItemOnMultipleCallsIfSingleSelection() {
+        let items = ["a", "b", "c"]
+        var selectionIndex = 0
+        let sut = CLOCItemsContainer(items: items)
+        
+        sut.select(at: selectionIndex)
+        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+
+        selectionIndex = 1
+        
+        sut.select(at: selectionIndex)
+        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+
+    }
 }
 
 
