@@ -117,10 +117,10 @@ class CLOCItemsContainerTests: XCTestCase {
     private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [String]?, file: StaticString = #file, line: UInt = #line) {
         if let expectedItems = expectedItems {
             expectedItems.forEach {
-                XCTAssertTrue(sut.selectedItems!.contains($0), "expected to have item \($0) in selectedItems", file: file, line: line)
+                XCTAssertTrue(sut.selectedItems!.contains($0), "expected to have item \($0) in selectedItems but got \(sut.selectedItems ?? [])", file: file, line: line)
             }
         } else {
-            return XCTAssertNil(sut.selectedItems, "expected to have nil selectedItems", file: file, line: line)
+            return XCTAssertNil(sut.selectedItems, "expected to have nil selectedItems but got \(sut.selectedItems!)", file: file, line: line)
         }
     }
 }
