@@ -90,7 +90,7 @@ class CLOCItemsContainerTests: XCTestCase {
         XCTAssertEqual(sut.selectedItems, [items[1]])
         
         sut.unselect(at: 1)
-        XCTAssertEqual(sut.selectedItems, [])
+        XCTAssertEqual(sut.selectedItems, nil)
     }
 
     

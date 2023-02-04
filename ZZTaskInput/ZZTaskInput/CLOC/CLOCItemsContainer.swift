@@ -44,5 +44,11 @@ public class CLOCItemsContainer: ZZItemsContainer {
         let unselectedItem = items[index]
         
         _ = selectedItems?.remove(unselectedItem)
+        nilifyIfSelectedItemsIsEmpty()
+    }
+    
+    private func nilifyIfSelectedItemsIsEmpty() {
+        guard selectedItems?.isEmpty ?? false else { return }
+        selectedItems = nil
     }
 }
