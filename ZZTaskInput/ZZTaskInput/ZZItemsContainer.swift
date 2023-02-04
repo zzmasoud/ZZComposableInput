@@ -7,7 +7,7 @@ import Foundation
 public protocol ZZItemsContainer {
     associatedtype Item: Hashable
     var items: [Item]? { get }
-    var selectedItems: Set<Item>? { get }
+    var selectedItems: [Item]? { get }
     
     func select(at index: Int)
     func unselect(at index: Int)

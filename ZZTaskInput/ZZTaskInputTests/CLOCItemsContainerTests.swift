@@ -76,7 +76,18 @@ class CLOCItemsContainerTests: XCTestCase {
         sut.select(at: 0)
         sut.select(at: 1)
         expect(sut, toHaveSelectedItems: [items[0], items[1]])
+        
+        sut.select(at: 2)
+        expect(sut, toHaveSelectedItems: [items[1], items[2]])
+        
+        sut.select(at: 2)
+        expect(sut, toHaveSelectedItems: [items[1], items[2]])
 
+        sut.select(at: 1)
+        expect(sut, toHaveSelectedItems: [items[1], items[2]])
+
+        sut.select(at: 0)
+        expect(sut, toHaveSelectedItems: [items[2], items[0]])
     }
     
     func test_unselectAt_removesSelectedItemIfMultipleSelection() {
@@ -115,13 +126,7 @@ class CLOCItemsContainerTests: XCTestCase {
     }
     
     private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [String]?, file: StaticString = #file, line: UInt = #line) {
-        if let expectedItems = expectedItems {
-            expectedItems.forEach {
-                XCTAssertTrue(sut.selectedItems!.contains($0), "expected to have item \($0) in selectedItems but got \(sut.selectedItems ?? [])", file: file, line: line)
-            }
-        } else {
-            return XCTAssertNil(sut.selectedItems, "expected to have nil selectedItems but got \(sut.selectedItems!)", file: file, line: line)
-        }
+        XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
     }
 }
 
