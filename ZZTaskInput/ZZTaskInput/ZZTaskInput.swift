@@ -8,8 +8,8 @@ public protocol ZZTaskInput {
     associatedtype Data
     typealias SendCompletion = (Data) -> Void
     
-    associatedtype ItemType: ZZItemsContainer
-    associatedtype Section: Hashable
+    associatedtype ItemType
+    associatedtype Section
     typealias FetchItemsResult = Result<ItemType, Error>
     typealias FetchItemsCompletion = (FetchItemsResult) -> Void
 
