@@ -8,4 +8,6 @@ public protocol ZZItemsContainer {
     associatedtype Item
     var items: [Item]? { get }
     var selectedItems: [Item]? { get }
+    
+    func select(at index: Int)
 }

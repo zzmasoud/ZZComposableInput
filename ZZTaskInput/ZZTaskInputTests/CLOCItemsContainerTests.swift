@@ -22,6 +22,16 @@ class CLOCItemsContainerTests: XCTestCase {
         
         XCTAssertEqual(sut.selectedItems, [items[preSelectedIndex]])
     }
+    
+    func test_selectAt_setsSelectedItemIfSingleSelection() {
+        let items = ["a", "b", "c"]
+        let selectionIndex = 0
+        let sut = CLOCItemsContainer(items: items)
+        
+        sut.select(at: selectionIndex)
+
+        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+    }
 }
 
 
