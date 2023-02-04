@@ -47,6 +47,19 @@ class CLOCItemsContainerTests: XCTestCase {
         XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
 
     }
+    
+    func test_deselectAt_doesNothingIfSingleSelection() {
+        let items = ["a", "b", "c"]
+        let selectionIndex = 0
+        let sut = CLOCItemsContainer(items: items)
+        
+        sut.select(at: selectionIndex)
+        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+
+        sut.unselect(at: selectionIndex)
+
+        XCTAssertEqual(sut.selectedItems, [items[selectionIndex]])
+    }
 }
 
 

@@ -26,4 +26,8 @@ public class CLOCItemsContainer: ZZItemsContainer {
             selectedItems = [items[index]]
         }
     }
+    
+    public func unselect(at index: Int) {
+        
+    }
 }
