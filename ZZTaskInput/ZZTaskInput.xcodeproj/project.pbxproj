@@ -11,6 +11,7 @@
 		040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		040CCEEA298FCE200053194A /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
 		040CCEEB298FCE200053194A /* ZZTaskInput.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */; };
 		040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */; };
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
@@ -405,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */,
+				040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */,
 				040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */,
 			);
