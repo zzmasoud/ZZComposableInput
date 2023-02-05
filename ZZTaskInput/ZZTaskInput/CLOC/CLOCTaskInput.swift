@@ -17,18 +17,31 @@ public enum CLOCSelectableProperty: Int {
     }
 }
 
-public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput where L.Item == CLOCTaskModel.Item, L.Section == CLOCSelectableProperty, T.Parsed == (title: String, description: String?) {
+open class DefaultTaskInput: ZZTaskInput {
     public typealias Data = CLOCTaskModel
-    public typealias SelectableItem = L.Item
-    public typealias Section = L.Section
+    public typealias SelectableItem = Data.Item
     public typealias ItemType = CLOCItemsContainer
+    public typealias Section = CLOCSelectableProperty
+
+    open var onSent: SendCompletion?
+    
+    public init() {}
+    
+    open func send() {
+        fatalError("should be implemented in subclasses")
+    }
+    open func select(section: CLOCSelectableProperty, withPreselectedItems: [Data.Item]?, completion: @escaping FetchItemsCompletion) {
+        fatalError("should be implemented in subclasses")
+    }
+}
+
+public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: DefaultTaskInput where L.Item == CLOCTaskModel.Item, L.Section == CLOCSelectableProperty, T.Parsed == (title: String, description: String?) {
     public typealias LoadedContainers = [Section: ItemType]
 
     private let textParser: T
     private let itemLoader: L
     private var loadedContainers: LoadedContainers = [:]
     private var text: String?
-    public var onSent: SendCompletion?
 
     public init(textParser: T, itemLoader: L) {
         self.textParser = textParser
@@ -39,7 +52,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         self.text = text
     }
     
-    public func send() {
+    public override func send() {
         guard let text = text, !text.isEmpty else { return }
         
         let parsedComponents = textParser.parse(text: text)
@@ -63,7 +76,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
         return selectedItems
     }
     
-    public func select(section: Section, withPreselectedItems preselectedItems: [L.Item]? = nil, completion: @escaping FetchItemsCompletion) {
+    public override func select(section: Section, withPreselectedItems preselectedItems: [L.Item]? = nil, completion: @escaping FetchItemsCompletion) {
         if let loaded = self.loadedContainers[section] {
             completion(.success(loaded))
         } else {
