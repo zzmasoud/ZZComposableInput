@@ -4,8 +4,8 @@
 
 import Foundation
 
-public enum CLOCSelectableProperty: Hashable {
-    case date, time, project, repeatWeekDays
+public enum CLOCSelectableProperty: Int {
+    case date = 0, time, project, repeatWeekDays
     
     var selectionType: CLOCItemSelectionType {
         switch self {
