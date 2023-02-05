@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */; };
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
@@ -27,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		040CE0C4298FAA28003BB6DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 040CE0BA298FAA28003BB6DC;
+			remoteInfo = ZZTaskInputiOS;
+		};
 		04C36F9D298AF6C700712C6E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
@@ -37,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		040CE0C2298FAA28003BB6DC /* ZZTaskInputiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
@@ -58,6 +68,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		040CE0B8298FAA28003BB6DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040CE0BF298FAA28003BB6DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04C36F90298AF6C700712C6E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,6 +101,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040CE0BC298FAA28003BB6DC /* ZZTaskInputiOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ZZTaskInputiOS;
+			sourceTree = "<group>";
+		};
+		040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ZZTaskInputiOSTests;
+			sourceTree = "<group>";
+		};
 		045C50D4298D1A76005C44AE /* CLOC */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +131,8 @@
 			children = (
 				04C36F95298AF6C700712C6E /* ZZTaskInput */,
 				04C36F9F298AF6C700712C6E /* ZZTaskInputTests */,
+				040CE0BC298FAA28003BB6DC /* ZZTaskInputiOS */,
+				040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */,
 				04C36F94298AF6C700712C6E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,6 +142,8 @@
 			children = (
 				04C36F93298AF6C700712C6E /* ZZTaskInput.framework */,
 				04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */,
+				040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */,
+				040CE0C2298FAA28003BB6DC /* ZZTaskInputiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +186,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		040CE0B6298FAA28003BB6DC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04C36F8E298AF6C700712C6E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,6 +203,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		040CE0BA298FAA28003BB6DC /* ZZTaskInputiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 040CE0CA298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZTaskInputiOS" */;
+			buildPhases = (
+				040CE0B6298FAA28003BB6DC /* Headers */,
+				040CE0B7298FAA28003BB6DC /* Sources */,
+				040CE0B8298FAA28003BB6DC /* Frameworks */,
+				040CE0B9298FAA28003BB6DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZZTaskInputiOS;
+			productName = ZZTaskInputiOS;
+			productReference = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		040CE0C1298FAA28003BB6DC /* ZZTaskInputiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 040CE0CD298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZTaskInputiOSTests" */;
+			buildPhases = (
+				040CE0BE298FAA28003BB6DC /* Sources */,
+				040CE0BF298FAA28003BB6DC /* Frameworks */,
+				040CE0C0298FAA28003BB6DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				040CE0C5298FAA28003BB6DC /* PBXTargetDependency */,
+			);
+			name = ZZTaskInputiOSTests;
+			productName = ZZTaskInputiOSTests;
+			productReference = 040CE0C2298FAA28003BB6DC /* ZZTaskInputiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		04C36F92298AF6C700712C6E /* ZZTaskInput */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04C36FA5298AF6C700712C6E /* Build configuration list for PBXNativeTarget "ZZTaskInput" */;
@@ -199,6 +285,12 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					040CE0BA298FAA28003BB6DC = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					040CE0C1298FAA28003BB6DC = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					04C36F92298AF6C700712C6E = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -223,11 +315,27 @@
 			targets = (
 				04C36F92298AF6C700712C6E /* ZZTaskInput */,
 				04C36F9A298AF6C700712C6E /* ZZTaskInputTests */,
+				040CE0BA298FAA28003BB6DC /* ZZTaskInputiOS */,
+				040CE0C1298FAA28003BB6DC /* ZZTaskInputiOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		040CE0B9298FAA28003BB6DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040CE0C0298FAA28003BB6DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04C36F91298AF6C700712C6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +353,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		040CE0B7298FAA28003BB6DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		040CE0BE298FAA28003BB6DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04C36F8F298AF6C700712C6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +400,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		040CE0C5298FAA28003BB6DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 040CE0BA298FAA28003BB6DC /* ZZTaskInputiOS */;
+			targetProxy = 040CE0C4298FAA28003BB6DC /* PBXContainerItemProxy */;
+		};
 		04C36F9E298AF6C700712C6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 04C36F92298AF6C700712C6E /* ZZTaskInput */;
@@ -286,6 +413,100 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		040CE0CB298FAA28003BB6DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D5XG7478BB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		040CE0CC298FAA28003BB6DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D5XG7478BB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		040CE0CE298FAA28003BB6DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D5XG7478BB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		040CE0CF298FAA28003BB6DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D5XG7478BB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		04C36FA3298AF6C700712C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -516,6 +737,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		040CE0CA298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZTaskInputiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				040CE0CB298FAA28003BB6DC /* Debug */,
+				040CE0CC298FAA28003BB6DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		040CE0CD298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZTaskInputiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				040CE0CE298FAA28003BB6DC /* Debug */,
+				040CE0CF298FAA28003BB6DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04C36F8D298AF6C700712C6E /* Build configuration list for PBXProject "ZZTaskInput" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
