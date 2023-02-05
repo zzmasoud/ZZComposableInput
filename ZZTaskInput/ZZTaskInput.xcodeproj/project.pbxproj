@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD71298BF37F00715BD3 /* MockTextParser.swift */; };
+		040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
+		040CCEEA298FCE200053194A /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
+		040CCEEB298FCE200053194A /* ZZTaskInput.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */; };
 		040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */; };
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
@@ -29,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		040CCEEC298FCE200053194A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04C36F92298AF6C700712C6E;
+			remoteInfo = ZZTaskInput;
+		};
 		040CE0C4298FAA28003BB6DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
@@ -44,6 +55,20 @@
 			remoteInfo = ZZTaskInput;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		040CCEEE298FCE200053194A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				040CCEEB298FCE200053194A /* ZZTaskInput.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040CCEEA298FCE200053194A /* ZZTaskInput.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +129,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040CCEE2298FC1BE0053194A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		040CE0BC298FAA28003BB6DC /* ZZTaskInputiOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +170,7 @@
 				040CE0BC298FAA28003BB6DC /* ZZTaskInputiOS */,
 				040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */,
 				04C36F94298AF6C700712C6E /* Products */,
+				040CCEE2298FC1BE0053194A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,10 +248,12 @@
 				040CE0B7298FAA28003BB6DC /* Sources */,
 				040CE0B8298FAA28003BB6DC /* Frameworks */,
 				040CE0B9298FAA28003BB6DC /* Resources */,
+				040CCEEE298FCE200053194A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				040CCEED298FCE200053194A /* PBXTargetDependency */,
 			);
 			name = ZZTaskInputiOS;
 			productName = ZZTaskInputiOS;
@@ -369,6 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */,
+				040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */,
+				040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +443,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		040CCEED298FCE200053194A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04C36F92298AF6C700712C6E /* ZZTaskInput */;
+			targetProxy = 040CCEEC298FCE200053194A /* PBXContainerItemProxy */;
+		};
 		040CE0C5298FAA28003BB6DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 040CE0BA298FAA28003BB6DC /* ZZTaskInputiOS */;
