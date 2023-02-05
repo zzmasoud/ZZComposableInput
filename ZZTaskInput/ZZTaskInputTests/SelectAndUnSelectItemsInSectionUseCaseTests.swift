@@ -13,7 +13,7 @@ class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
         
         let exp = expectation(description: "waiting for completion")
         sut.onSent = { model in
-            XCTAssertNil(model.selectedItems)
+            XCTAssertTrue(model.selectedItems.isEmpty)
             exp.fulfill()
         }
         
@@ -42,9 +42,10 @@ class SelectAndUnSelectItemsInSectionUseCaseTests: XCTestCase {
         let exp = expectation(description: "waiting for completion")
         sut.onSent = { [weak self] model in
             guard let self = self else { return }
-            guard let selectedItems = model.selectedItems else {
+            guard !model.selectedItems.isEmpty else {
                 return XCTFail("expected to get selected items")
             }
+            let selectedItems = model.selectedItems
             
             // the reason for testing both first and last, is that I don't know how to explict the return type to single or multiple (all of them return array but of course some of them is just single selection).
             // Maybe I should use an enum. but I'm still looking for a better way.
