@@ -61,13 +61,13 @@ class ZZTaskInputViewTests: XCTestCase {
     func test_didMoveToWindow_makesTextFieldFirstResponder() {
         let (sut, _) = makeSUT()
 
-        XCTAssertFalse(sut.textField.isFirstResponder)
+        XCTAssertFalse(sut.isTextFieldFirstResponder)
         
         // Adding the view to window will trigger `didMoveToWindow`
         let window = UIWindow()
         window.addSubview(sut)
         
-        XCTAssertTrue(sut.textField.isFirstResponder)
+        XCTAssertTrue(sut.isTextFieldFirstResponder)
     }
     
     func test_selectAnySection_loadsItems() {
@@ -82,12 +82,12 @@ class ZZTaskInputViewTests: XCTestCase {
     func test_selectAnySection_showsSelectedSectionTextAfterLoading() {
         let (sut, inputController) = makeSUT()
 
-        XCTAssertTrue(sut.selectedSectionLabel.isHidden)
+        XCTAssertTrue(sut.isSectionLabelHidden)
         
         sut.simulateSelection(section: 0)
         inputController.loader.completeRetrieval(with: ["a", "b", "c"])
 
-        XCTAssertFalse(sut.selectedSectionLabel.isHidden)
+        XCTAssertFalse(sut.isSectionLabelHidden)
     }
     
     // MARK: - Helpers
@@ -119,6 +119,14 @@ class ZZTaskInputViewTests: XCTestCase {
 extension ZZTaskInputView {
     func simulateSelection(section: Int) {
         segmentedControl.simulateSelectingItem(at: section)
+    }
+    
+    var isTextFieldFirstResponder: Bool {
+        textField.isFirstResponder
+    }
+    
+    var isSectionLabelHidden: Bool {
+        selectedSectionLabel.isHidden
     }
 }
 
