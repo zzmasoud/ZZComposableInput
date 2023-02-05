@@ -41,8 +41,7 @@ public final class CLOCTaskInput<T: ZZTextParser, L: ZZItemLoader>: ZZTaskInput 
     private let textParser: T
     private let itemLoader: L
     private var loadedItems: [Section: ItemType] = [:]
-    
-    private(set) public var text: String?
+    private var text: String?
     public var onSent: SendCompletion?
 
     public init(textParser: T, itemLoader: L) {

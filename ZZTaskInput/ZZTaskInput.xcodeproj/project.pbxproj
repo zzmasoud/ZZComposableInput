@@ -18,7 +18,6 @@
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
-		04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
 		04CEFD6B298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */; };
 		04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */; };
@@ -49,7 +48,6 @@
 		04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParser.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInputTests.swift; sourceTree = "<group>"; };
 		04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParserTests.swift; sourceTree = "<group>"; };
 		04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift; sourceTree = "<group>"; };
 		04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInput.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */,
 				04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */,
 				04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */,
-				04C36FA0298AF6C700712C6E /* CLOCTaskInputTests.swift */,
 				04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */,
 				04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */,
 			);
@@ -268,7 +265,6 @@
 				04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */,
 				04378803298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift in Sources */,
 				04CEFD6B298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift in Sources */,
-				04C36FA1298AF6C700712C6E /* CLOCTaskInputTests.swift in Sources */,
 				04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */,
 				04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */,
 				045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */,
