@@ -13,7 +13,7 @@
 		040CCEEB298FCE200053194A /* ZZTaskInput.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */; };
-		040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */; };
+		040CE0D1298FADB5003BB6DC /* ZZTaskInputViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CE0D0298FADB5003BB6DC /* ZZTaskInputViewTests.swift */; };
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
@@ -26,6 +26,7 @@
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
+		04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZTaskInputView.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
 		04CEFD6B298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */; };
 		04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */; };
@@ -74,7 +75,7 @@
 /* Begin PBXFileReference section */
 		040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		040CE0C2298FAA28003BB6DC /* ZZTaskInputiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
+		040CE0D0298FADB5003BB6DC /* ZZTaskInputViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewTests.swift; sourceTree = "<group>"; };
 		043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParser.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C76728299030ED00EB3403 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParserTests.swift; sourceTree = "<group>"; };
 		04CEFD6A298BE5FF00715BD3 /* GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTitleAndDescriptionFromEnteredTextUseCaseTests.swift; sourceTree = "<group>"; };
 		04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInput.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		040CE0BC298FAA28003BB6DC /* ZZTaskInputiOS */ = {
 			isa = PBXGroup;
 			children = (
+				04C76728299030ED00EB3403 /* ZZTaskInputView.swift */,
 			);
 			path = ZZTaskInputiOS;
 			sourceTree = "<group>";
@@ -147,7 +150,7 @@
 		040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */,
+				040CE0D0298FADB5003BB6DC /* ZZTaskInputViewTests.swift */,
 			);
 			path = ZZTaskInputiOSTests;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				TargetAttributes = {
 					040CE0BA298FAA28003BB6DC = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					040CE0C1298FAA28003BB6DC = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -398,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */,
+				040CE0D1298FADB5003BB6DC /* ZZTaskInputViewTests.swift in Sources */,
 				040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */,
 				040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */,
@@ -466,6 +471,7 @@
 		040CE0CB298FAA28003BB6DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -488,6 +494,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -496,6 +503,7 @@
 		040CE0CC298FAA28003BB6DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -526,6 +534,7 @@
 		040CE0CE298FAA28003BB6DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -550,6 +559,7 @@
 		040CE0CF298FAA28003BB6DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
