@@ -9,6 +9,7 @@ import ZZTaskInput
 final class ZZTaskInputView: UIView {
     let textField: UITextField = UITextField()
     let segmentedControl = UISegmentedControl(items: ["date", "time", "project", "weekdaysRepeat"])
+    let selectedSectionLabel = UILabel()
     private var inputController: DefaultTaskInput?
     
     convenience init(inputController: DefaultTaskInput) {
@@ -17,6 +18,7 @@ final class ZZTaskInputView: UIView {
         
         setupTextField()
         setupSegmentedControl()
+        setupSectionLabel()
     }
 
     private func setupTextField() {
@@ -28,9 +30,15 @@ final class ZZTaskInputView: UIView {
         segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
     }
     
+    private func setupSectionLabel() {
+        selectedSectionLabel.isHidden = true
+    }
+    
     @objc private func selectSection() {
         let index = segmentedControl.selectedSegmentIndex
-        inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { _ in })
+        inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { [weak self] _ in
+            self?.selectedSectionLabel.isHidden = false
+        })
     }
     
     override func didMoveToWindow() {
@@ -71,6 +79,17 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertEqual(inputController.loadCallCount, 1)
     }
     
+    func test_selectAnySection_showsSelectedSectionTextAfterLoading() {
+        let (sut, inputController) = makeSUT()
+
+        XCTAssertTrue(sut.selectedSectionLabel.isHidden)
+        
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
+
+        XCTAssertFalse(sut.selectedSectionLabel.isHidden)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
@@ -90,7 +109,9 @@ class ZZTaskInputViewTests: XCTestCase {
         var loadCallCount: Int { loader.receivedMessages.count }
         
         override func select(section: CLOCSelectableProperty, withPreselectedItems: [DefaultTaskInput.Data.Item]?, completion: @escaping DefaultTaskInput.FetchItemsCompletion) {
-            loader.loadItems(for: section) { _ in }
+            loader.loadItems(for: section) { _ in
+                completion(.failure(NSError(domain: "-", code: -1)))
+            }
         }
     }
 }
