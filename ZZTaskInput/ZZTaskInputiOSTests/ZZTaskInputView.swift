@@ -36,6 +36,7 @@ final class ZZTaskInputView: UIView {
     
     @objc private func selectSection() {
         let index = segmentedControl.selectedSegmentIndex
+        selectedSectionLabel.isHidden = true
         inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { [weak self] _ in
             self?.selectedSectionLabel.isHidden = false
         })
@@ -52,10 +53,13 @@ final class ZZTaskInputView: UIView {
 
 class ZZTaskInputViewTests: XCTestCase {
     
-    func test_init_doesNotLoadItems() {
-        let (_, inputController) = makeSUT()
-        
+    func test_loadItemsActions_requestSelectFromInputController() {
+        let (sut, inputController) = makeSUT()
         XCTAssertEqual(inputController.loadCallCount, 0)
+        
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
+        XCTAssertEqual(inputController.loadCallCount, 1)
     }
 
     func test_didMoveToWindow_makesTextFieldFirstResponder() {
@@ -70,23 +74,24 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertTrue(sut.isTextFieldFirstResponder)
     }
     
-    func test_selectAnySection_loadsItems() {
+    func test_selectedSectionText_isVisibleWhenItemsIsLoaded() {
         let (sut, inputController) = makeSUT()
-
-        sut.simulateSelection(section: 0)
-        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
-        
-        XCTAssertEqual(inputController.loadCallCount, 1)
-    }
-    
-    func test_selectAnySection_showsSelectedSectionTextAfterLoading() {
-        let (sut, inputController) = makeSUT()
-
         XCTAssertTrue(sut.isSectionLabelHidden)
-        
+ 
         sut.simulateSelection(section: 0)
         inputController.loader.completeRetrieval(with: ["a", "b", "c"])
+        XCTAssertFalse(sut.isSectionLabelHidden)
 
+        sut.simulateSelection(section: 1)
+        XCTAssertTrue(sut.isSectionLabelHidden)
+
+        inputController.loader.completeRetrieval(with: .none, at: 1)
+        XCTAssertFalse(sut.isSectionLabelHidden)
+
+        sut.simulateSelection(section: 2)
+        XCTAssertTrue(sut.isSectionLabelHidden)
+
+        inputController.loader.completeRetrieval(with: NSError(domain: "-", code: -1), at: 2)
         XCTAssertFalse(sut.isSectionLabelHidden)
     }
     
