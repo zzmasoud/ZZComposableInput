@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040CE0C3298FAA28003BB6DC /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */; };
+		040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */; };
 		043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		040CE0BB298FAA28003BB6DC /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		040CE0C2298FAA28003BB6DC /* ZZTaskInputiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				040CE0D0298FADB5003BB6DC /* ZZTaskInputView.swift */,
 			);
 			path = ZZTaskInputiOSTests;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 					};
 					040CE0C1298FAA28003BB6DC = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					04C36F92298AF6C700712C6E = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -364,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040CE0D1298FADB5003BB6DC /* ZZTaskInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,15 +481,22 @@
 		040CE0CE298FAA28003BB6DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D5XG7478BB;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,11 +505,17 @@
 		040CE0CF298FAA28003BB6DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D5XG7478BB;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
