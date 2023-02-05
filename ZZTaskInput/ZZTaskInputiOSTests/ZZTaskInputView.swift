@@ -24,6 +24,7 @@ final class ZZTaskInputView: UIView {
     }
     
     private func setupSegmentedControl() {
+        segmentedControl.selectedSegmentIndex = -1
         segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
     }
     
@@ -64,7 +65,8 @@ class ZZTaskInputViewTests: XCTestCase {
     func test_selectAnySection_loadsItems() {
         let (sut, inputController) = makeSUT()
 
-        sut.simulateSectionSelection()
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
         
         XCTAssertEqual(inputController.loadCallCount, 1)
     }
@@ -90,8 +92,8 @@ class ZZTaskInputViewTests: XCTestCase {
 }
 
 extension ZZTaskInputView {
-    func simulateSectionSelection() {
-        segmentedControl.simulateSelectingItem(at: 1)
+    func simulateSelection(section: Int) {
+        segmentedControl.simulateSelectingItem(at: section)
     }
 }
 
