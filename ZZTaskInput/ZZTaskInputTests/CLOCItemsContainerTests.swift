@@ -45,12 +45,13 @@ class CLOCItemsContainerTests: XCTestCase {
         let (sut, items) = makeSUT()
 
         sut.select(at: selectionIndex)
+        sut.select(at: selectionIndex)
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
 
         selectionIndex = 1
         sut.select(at: selectionIndex)
+        sut.select(at: selectionIndex)
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
-
     }
     
     func test_unselectAt_doesNothingIfSingleSelection() {
@@ -83,11 +84,11 @@ class CLOCItemsContainerTests: XCTestCase {
 
         sut.select(at: 0)
         sut.select(at: 1)
+        sut.select(at: 1)
+        sut.select(at: 0)
         expect(sut, toHaveSelectedItems: [items[0], items[1]])
         
         sut.select(at: 2)
-        expect(sut, toHaveSelectedItems: [items[1], items[2]])
-        
         sut.select(at: 2)
         expect(sut, toHaveSelectedItems: [items[1], items[2]])
 
