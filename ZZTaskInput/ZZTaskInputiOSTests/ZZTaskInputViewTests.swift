@@ -102,7 +102,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items, selectedItems: inputController.preselectedItems)
     }
     
-    func test_togglingSelectionOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
+    func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
         let (sut, inputController) = makeSUT()
         let items = ["a", "b", "c"]
         
@@ -136,7 +136,7 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertFalse(view0AfterAnotherSelection!.isSelectedAndShowingIndicator)
     }
     
-    func test_togglingSelectionOnSingleSelectionType_doesNotRemoveSelectionIndicatorFromSameSelectedItem() {
+    func test_selectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicatorFromSameSelectedItem() {
         let (sut, inputController) = makeSUT()
         let items = ["a", "b", "c"]
         
