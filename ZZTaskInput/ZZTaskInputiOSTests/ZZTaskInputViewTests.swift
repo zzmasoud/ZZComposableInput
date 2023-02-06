@@ -32,23 +32,23 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_selectedSectionText_isVisibleWhenItemsIsLoaded() {
         let (sut, inputController) = makeSUT()
-        XCTAssertTrue(sut.isSectionLabelHidden)
+        XCTAssertTrue(sut.isSectionTextHidden)
  
         sut.simulateSelection(section: 0)
         inputController.loader.completeRetrieval(with: ["a", "b", "c"])
-        XCTAssertFalse(sut.isSectionLabelHidden)
+        XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: 1)
-        XCTAssertTrue(sut.isSectionLabelHidden)
+        XCTAssertTrue(sut.isSectionTextHidden)
 
         inputController.loader.completeRetrieval(with: .none, at: 1)
-        XCTAssertFalse(sut.isSectionLabelHidden)
+        XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: 2)
-        XCTAssertTrue(sut.isSectionLabelHidden)
+        XCTAssertTrue(sut.isSectionTextHidden)
 
         inputController.loader.completeRetrieval(with: NSError(domain: "-", code: -1), at: 2)
-        XCTAssertFalse(sut.isSectionLabelHidden)
+        XCTAssertFalse(sut.isSectionTextHidden)
     }
     
     func test_loadItemsInSectionCompletion_rendersSuccessfullyLoadedItems() {
@@ -145,7 +145,7 @@ extension ZZTaskInputView {
         textField.isFirstResponder
     }
     
-    var isSectionLabelHidden: Bool {
+    var isSectionTextHidden: Bool {
         selectedSectionLabel.isHidden
     }
     
