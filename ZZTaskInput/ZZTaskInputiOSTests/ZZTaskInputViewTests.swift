@@ -70,6 +70,25 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
+    func test_loadItemsInSectionCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let (sut, inputController) = makeSUT()
+        let items = ["a", "b", "c"]
+
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: NSError(domain: "-", code: -1))
+        
+        // then
+        assertThat(sut, isRendering: items)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {

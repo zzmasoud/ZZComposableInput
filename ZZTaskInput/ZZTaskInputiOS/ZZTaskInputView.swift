@@ -49,8 +49,14 @@ final public class ZZTaskInputView: UIView {
         let index = segmentedControl.selectedSegmentIndex
         selectedSectionLabel.isHidden = true
         inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { [weak self] result in
+            switch result {
+            case .success(let container):
+                self?.tableModels = container.items ?? []
+                
+            case .failure:
+                break
+            }
             self?.selectedSectionLabel.isHidden = false
-            self?.tableModels = (try? result.get().items) ?? []
         })
     }
     
