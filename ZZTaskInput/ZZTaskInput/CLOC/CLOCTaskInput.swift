@@ -7,7 +7,7 @@ import Foundation
 public enum CLOCSelectableProperty: Int {
     case date = 0, time, project, repeatWeekDays
     
-    var selectionType: CLOCItemSelectionType {
+    public var selectionType: CLOCItemSelectionType {
         switch self {
         case .date, .time, .project:
             return CLOCItemSelectionType.single
