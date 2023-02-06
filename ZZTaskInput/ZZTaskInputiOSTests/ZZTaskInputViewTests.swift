@@ -166,6 +166,37 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertTrue(view0AfterDuplicateSelectio!.isSelectedAndShowingIndicator)
     }
     
+    func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
+        let (sut, inputController) = makeSUT()
+        let items = ["a", "b", "c"]
+        
+        let window = UIWindow()
+        window.addSubview(sut)
+
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        let view0 = sut.itemView(at: 0)
+
+        // then
+        XCTAssertNotNil(view0)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+        
+        // when
+        sut.simulateItemDeselection(at: 0)
+        let view0 = sut.itemView(at: 0)
+
+        // then
+        XCTAssertNotNil(view0)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
@@ -217,6 +248,12 @@ extension ZZTaskInputView {
     }
     
     func simulateItemSelection(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.selectRow(at: indexPath, animated: false)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
+    
+    func simulateItemDeselection(at index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         tableView.deselectRow(at: indexPath, animated: false)
         tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
