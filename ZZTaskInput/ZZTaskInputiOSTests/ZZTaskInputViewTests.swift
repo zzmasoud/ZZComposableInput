@@ -89,6 +89,53 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items)
     }
     
+    func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
+        let (sut, inputController) = makeSUT()
+        let items = ["a", "b", "c"]
+        inputController.preselectedItems = ["b"]
+        
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items, selectedItems: inputController.preselectedItems)
+    }
+    
+    func test_togglingSelectionOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
+        let (sut, inputController) = makeSUT()
+        let items = ["a", "b", "c"]
+        
+        let window = UIWindow()
+        window.addSubview(sut)
+
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        let view0 = sut.itemView(at: 0)
+
+        // then
+        XCTAssertNotNil(view0)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+    
+        // when
+        sut.simulateItemSelection(at: 1)
+        
+        // then
+        let view1 = sut.itemView(at: 1)
+        XCTAssertNotNil(view1)
+        XCTAssertTrue(view1!.isSelectedAndShowingIndicator)
+        let view0AfterAnotherSelection = sut.itemView(at: 0)
+        XCTAssertNotNil(view0AfterAnotherSelection)
+        XCTAssertFalse(view0AfterAnotherSelection!.isSelectedAndShowingIndicator)
+ }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
@@ -101,13 +148,15 @@ class ZZTaskInputViewTests: XCTestCase {
         return (sut, inputController)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRendering items: [DefaultTaskInput.SelectableItem], file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputView, isRendering items: [DefaultTaskInput.SelectableItem], selectedItems: [DefaultTaskInput.SelectableItem]? = nil, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(sut.numberOfRenderedItems, items.count, file: file, line: line)
         
         for (index, item) in items.enumerated() {
             let view = sut.itemView(at: index)
             XCTAssertNotNil(view, file: file, line: line)
             XCTAssertEqual(view?.textLabel?.text, item, file: file, line: line)
+            let isPreselected = selectedItems?.contains(item) ?? false
+            XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator)
         }
     }
     
@@ -115,13 +164,14 @@ class ZZTaskInputViewTests: XCTestCase {
         let textParser = MockTextParser()
         let loader = ItemLoaderSpy()
         
+        var preselectedItems: [DefaultTaskInput.Data.Item]?
         var loadCallCount: Int { loader.receivedMessages.count }
         
         override func select(section: CLOCSelectableProperty, withPreselectedItems: [DefaultTaskInput.Data.Item]?, completion: @escaping DefaultTaskInput.FetchItemsCompletion) {
-            loader.loadItems(for: section) { result in
+            loader.loadItems(for: section) { [weak self] result in
                 do {
                     let items = try result.get()
-                    let container = CLOCItemsContainer(items: items, preSelectedItems: nil, selectionType: section.selectionType)
+                    let container = CLOCItemsContainer(items: items, preSelectedItems: self?.preselectedItems, selectionType: section.selectionType)
                     completion(.success(container))
                 } catch {
                     completion(.failure(error))
@@ -134,6 +184,12 @@ class ZZTaskInputViewTests: XCTestCase {
 extension ZZTaskInputView {
     func simulateSelection(section: Int) {
         segmentedControl.simulateSelectingItem(at: section)
+    }
+    
+    func simulateItemSelection(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     func itemView(at index: Int) -> UITableViewCell? {
@@ -163,5 +219,11 @@ extension UISegmentedControl {
                 (target as NSObject).perform(Selector(selector))
             })
         })
+    }
+}
+
+extension UITableViewCell {
+    var isSelectedAndShowingIndicator: Bool {
+        return isSelected && accessoryType == .checkmark
     }
 }

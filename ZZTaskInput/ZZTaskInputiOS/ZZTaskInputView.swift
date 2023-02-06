@@ -12,7 +12,7 @@ final public class ZZTaskInputView: UIView {
     public let tableView = UITableView()
     private var inputController: DefaultTaskInput?
     
-    private var tableModels = [DefaultTaskInput.SelectableItem]() {
+    private var model: DefaultTaskInput.ItemType? {
         didSet {
             tableView.reloadData()
         }
@@ -42,7 +42,10 @@ final public class ZZTaskInputView: UIView {
     }
     
     private func setupTableView() {
+        self.addSubview(tableView)
         tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.id)
     }
     
     @objc private func selectSection() {
@@ -51,7 +54,7 @@ final public class ZZTaskInputView: UIView {
         inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { [weak self] result in
             switch result {
             case .success(let container):
-                self?.tableModels = container.items ?? []
+                self?.model = container
                 
             case .failure:
                 break
@@ -75,14 +78,32 @@ extension ZZTaskInputView: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableModels.count
+        return (model?.items ?? []).count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = tableModels[indexPath.row]
-        let cell =  UITableViewCell()
-        cell.textLabel?.text = model
+        let item = model!.items![indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.id, for: indexPath) as! CustomTableViewCell
+        cell.textLabel?.text = item
+        let isSelected = model?.selectedItems?.contains(item) ?? false
+        cell.setSelected(isSelected, animated: false)
         return cell
     }
 }
 
+extension ZZTaskInputView: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(true, animated: false)
+        model?.select(at: indexPath.row)
+    }
+}
+
+class CustomTableViewCell: UITableViewCell {
+    static let id = "CustomTableViewCell"
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        accessoryType = selected ? .checkmark : .none
+    }
+}
