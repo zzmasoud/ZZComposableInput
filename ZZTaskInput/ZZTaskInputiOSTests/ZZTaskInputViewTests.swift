@@ -134,7 +134,37 @@ class ZZTaskInputViewTests: XCTestCase {
         let view0AfterAnotherSelection = sut.itemView(at: 0)
         XCTAssertNotNil(view0AfterAnotherSelection)
         XCTAssertFalse(view0AfterAnotherSelection!.isSelectedAndShowingIndicator)
- }
+    }
+    
+    func test_togglingSelectionOnSingleSelectionType_doesNotRemoveSelectionIndicatorFromSameSelectedItem() {
+        let (sut, inputController) = makeSUT()
+        let items = ["a", "b", "c"]
+        
+        let window = UIWindow()
+        window.addSubview(sut)
+
+        // when
+        sut.simulateSelection(section: 0)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        let view0 = sut.itemView(at: 0)
+
+        // then
+        XCTAssertNotNil(view0)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+
+        sut.simulateItemSelection(at: 0)
+        let view0AfterDuplicateSelectio = sut.itemView(at: 0)
+
+        // then
+        XCTAssertNotNil(view0AfterDuplicateSelectio)
+        XCTAssertTrue(view0AfterDuplicateSelectio!.isSelectedAndShowingIndicator)
+    }
     
     // MARK: - Helpers
     
