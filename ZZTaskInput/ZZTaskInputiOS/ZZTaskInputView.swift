@@ -97,6 +97,12 @@ extension ZZTaskInputView: UITableViewDelegate {
         cell?.setSelected(true, animated: false)
         model?.select(at: indexPath.row)
     }
+    
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        model?.unselect(at: indexPath.row)
+        cell?.setSelected(false, animated: false)
+    }
 }
 
 class CustomTableViewCell: UITableViewCell {

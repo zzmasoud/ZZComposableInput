@@ -125,30 +125,6 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
     }
     
-    func test_selectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicatorFromSameSelectedItem() {
-        let (sut, inputController) = makeSUT()
-        let items = makeItems()
-
-        // when
-        sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: items)
-        
-        // then
-        assertThat(sut, isRendering: items)
-
-        // when
-        sut.simulateItemSelection(at: 0)
-
-        // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-
-        // when
-        sut.simulateItemSelection(at: 0)
-
-        // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-    }
-    
     func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
         let (sut, inputController) = makeSUT()
         let items = makeItems()
@@ -173,6 +149,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
     }
     
+    
     // MARK: - Multi Selection Behaviour
     
     func test_selectingRenderedItemOnMultiSelectionType_doesNotremoveSelectionIndicatorFromPreviouslySelectedItem() {
@@ -191,6 +168,53 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
         assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 2)
+    }
+    
+    func test_deselectingRenderedItemOnMultiSelectionType_removesSelectionIndicator() {
+        let (sut, inputController) = makeSUT()
+        let items = makeItems()
+        
+        // when
+        sut.simulateSelection(section: multiSelectionSection)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemSelection(at: 2)
+
+        // then
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
+        
+        // when
+        sut.simulateItemDeselection(at: 0)
+        sut.simulateItemDeselection(at: 0)
+
+        // then
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
+        
+        // when
+        sut.simulateItemDeselection(at: 1)
+
+        // then
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
+        
+        // when
+        sut.simulateItemSelection(at: 0)
+
+        // then
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
     }
 
     
@@ -295,7 +319,7 @@ extension ZZTaskInputView {
     func simulateItemDeselection(at index: Int) {
         let indexPath = IndexPath(row: index, section: section)
         tableView.deselectRow(at: indexPath, animated: false)
-        tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+        tableView.delegate?.tableView?(tableView, didDeselectRowAt: indexPath)
     }
     
     func itemView(at index: Int) -> UITableViewCell? {

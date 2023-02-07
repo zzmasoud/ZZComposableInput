@@ -4,7 +4,7 @@
 
 import Foundation
 
-public enum CLOCItemSelectionType: Equatable {
+public enum CLOCItemSelectionType {
     case single
     case multiple(max: Int)
 }
