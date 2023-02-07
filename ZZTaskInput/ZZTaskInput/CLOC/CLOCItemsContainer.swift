@@ -4,7 +4,7 @@
 
 import Foundation
 
-public enum CLOCItemSelectionType {
+public enum CLOCItemSelectionType: Equatable {
     case single
     case multiple(max: Int)
 }
@@ -14,7 +14,7 @@ public class CLOCItemsContainer: ZZItemsContainer {
     
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
-    private let selectionType: CLOCItemSelectionType
+    public let selectionType: CLOCItemSelectionType
     
     public init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: CLOCItemSelectionType = .single) {
         self.items = items

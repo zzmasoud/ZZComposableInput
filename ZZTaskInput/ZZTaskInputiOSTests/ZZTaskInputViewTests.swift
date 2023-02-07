@@ -173,6 +173,27 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
     }
     
+    // MARK: - Multi Selection Behaviour
+    
+    func test_selectingRenderedItemOnMultiSelectionType_doesNotremoveSelectionIndicatorFromPreviouslySelectedItem() {
+        let (sut, inputController) = makeSUT()
+        let items = makeItems()
+
+        sut.simulateSelection(section: multiSelectionSection)
+        inputController.loader.completeRetrieval(with: items)
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemSelection(at: 1)
+
+        // then
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 2)
+    }
+
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
