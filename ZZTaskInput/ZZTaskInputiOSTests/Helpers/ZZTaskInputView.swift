@@ -34,7 +34,7 @@ extension ZZTaskInputView {
     }
     
     var isSectionTextHidden: Bool {
-        selectedSectionLabel.isHidden
+        selectedSectionLabel?.isHidden ?? true
     }
     
     var numberOfRenderedItems: Int {

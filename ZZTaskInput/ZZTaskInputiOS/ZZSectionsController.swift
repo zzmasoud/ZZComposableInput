@@ -15,6 +15,12 @@ final class ZZSectionsController: NSObject {
         return segmentedControl
     }()
     
+    private(set) lazy var label: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        return label
+    }()
+    
     private let loader: DefaultTaskInput
     private let sections: [String]
     private let indexMapper: IndexMapper
@@ -31,8 +37,11 @@ final class ZZSectionsController: NSObject {
     @objc private func selectSection() {
         let index = view.selectedSegmentIndex
         let section = indexMapper(index)
-        guard let onLoad = onLoad else { return }
-        onLoading?()
-        loader.select(section: section, withPreselectedItems: nil, completion: onLoad)
+
+        label.isHidden = true
+        loader.select(section: section, withPreselectedItems: nil, completion: { [weak self] result in
+            self?.label.isHidden = false
+            self?.onLoad?(result)
+        })
     }
 }

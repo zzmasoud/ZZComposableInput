@@ -227,7 +227,7 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
         let inputController = TaskInputSpy()
-        let sut = ZZTaskInputView(inputController: inputController)
+        let sut = ZZTaskInputViewComposer.composedWith(inputController: inputController)
         
         trackForMemoryLeaks(inputController, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

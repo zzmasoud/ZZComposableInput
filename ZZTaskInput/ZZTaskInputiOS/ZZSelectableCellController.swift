@@ -5,10 +5,18 @@
 import UIKit
 
 final class ZZSelectableCellController {
-    func view(text: String, isSelected: Bool) -> UITableViewCell {
+    let text: String
+    let isSelected: (() -> Bool)
+    
+    init(text: String, isSelected: @escaping (() -> Bool)) {
+        self.text = text
+        self.isSelected = isSelected
+    }
+    
+    func view() -> UITableViewCell {
         let cell = ZZSelectableCell()
         cell.textLabel?.text = text
-        cell.setSelected(isSelected, animated: false)
+        cell.setSelected(isSelected(), animated: false)
         return cell
     }
 }
