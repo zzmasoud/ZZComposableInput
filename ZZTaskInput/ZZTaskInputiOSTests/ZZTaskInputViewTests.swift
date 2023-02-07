@@ -57,14 +57,12 @@ class ZZTaskInputViewTests: XCTestCase {
         // when
         sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items)
         
         // when
         sut.simulateSelection(section: singleSelectionSection1)
         inputController.loader.completeRetrieval(with: .none, at: 1)
-
         // then
         assertThat(sut, isRendering: [])
     }
@@ -76,14 +74,12 @@ class ZZTaskInputViewTests: XCTestCase {
         // when
         sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateSelection()
         inputController.loader.completeRetrieval(with: makeError())
-        
         // then
         assertThat(sut, isRendering: items)
     }
@@ -96,7 +92,6 @@ class ZZTaskInputViewTests: XCTestCase {
         // when
         sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items, selectedItems: inputController.preselectedItems)
     }
@@ -105,48 +100,44 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
         let (sut, inputController) = makeSUT()
+        let section = singleSelectionSection0
         let items = makeItems()
 
-        sut.simulateSelection()
+        sut.simulateSelection(section: singleSelectionSection0)
         inputController.loader.completeRetrieval(with: items)
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateItemSelection(at: 0)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
 
         // when
         sut.simulateItemSelection(at: singleSelectionSection1)
-        
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [1], for: section)
     }
     
     func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
         let (sut, inputController) = makeSUT()
+        let section = singleSelectionSection0
         let items = makeItems()
         
         // when
-        sut.simulateSelection()
+        sut.simulateSelection(section: section)
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateItemSelection(at: 0)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-        
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
+
         // when
         sut.simulateItemDeselection(at: 0)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
     }
     
     
@@ -154,30 +145,28 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_selectingRenderedItemOnMultiSelectionType_doesNotremoveSelectionIndicatorFromPreviouslySelectedItem() {
         let (sut, inputController) = makeSUT()
+        let section = multiSelectionSection
         let items = makeItems()
 
-        sut.simulateSelection(section: multiSelectionSection)
+        sut.simulateSelection(section: section)
         inputController.loader.completeRetrieval(with: items)
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateItemSelection(at: 0)
         sut.simulateItemSelection(at: 1)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 2)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...1), for: section)
     }
     
     func test_deselectingRenderedItemOnMultiSelectionType_removesSelectionIndicator() {
         let (sut, inputController) = makeSUT()
+        let section = multiSelectionSection
         let items = makeItems()
         
         // when
-        sut.simulateSelection(section: multiSelectionSection)
+        sut.simulateSelection(section: section)
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items)
 
@@ -185,46 +174,34 @@ class ZZTaskInputViewTests: XCTestCase {
         sut.simulateItemSelection(at: 0)
         sut.simulateItemSelection(at: 1)
         sut.simulateItemSelection(at: 2)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
-        
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...2), for: section)
+
         // when
         sut.simulateItemDeselection(at: 0)
         sut.simulateItemDeselection(at: 0)
-
         // then
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
-        
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...2), for: section)
+
         // when
         sut.simulateItemDeselection(at: 1)
-
         // then
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
-        
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [2], for: section)
+
         // when
         sut.simulateItemSelection(at: 0)
-
         // then
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
-        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 1)
-        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0, 2], for: section)
     }
     
     func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
         let (sut, inputController) = makeSUT()
+        let section = multiSelectionSection
         let items = makeItems()
         
         // when
-        sut.simulateSelection(section: multiSelectionSection)
+        sut.simulateSelection(section: section)
         inputController.loader.completeRetrieval(with: items)
-        
         // then
         assertThat(sut, isRendering: items)
 
@@ -236,24 +213,21 @@ class ZZTaskInputViewTests: XCTestCase {
         sut.simulateItemSelection(at: 4)
         sut.simulateItemSelection(at: 5)
         sut.simulateItemSelection(at: 6)
-
         // then
-        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...6), for: multiSelectionSection)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...6), for: section)
 
         // when
         sut.simulateItemSelection(at: 7)
-
         // then
-        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: multiSelectionSection)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: section)
 
         // when
         sut.simulateItemDeselection(at: 1)
         sut.simulateItemSelection(at: 1)
         sut.simulateItemDeselection(at: 1)
         sut.simulateItemSelection(at: 8)
-
         // then
-        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](2...8), for: multiSelectionSection)
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](2...8), for: section)
     }
 
     
