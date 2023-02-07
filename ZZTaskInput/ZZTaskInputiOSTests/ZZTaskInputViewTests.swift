@@ -222,20 +222,20 @@ class ZZTaskInputViewTests: XCTestCase {
             XCTAssertNotNil(view, file: file, line: line)
             XCTAssertEqual(view?.textLabel?.text, item, file: file, line: line)
             let isPreselected = selectedItems?.contains(item) ?? false
-            XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator)
+            XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator, file: file, line: line)
         }
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int) {
+    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
-        XCTAssertNotNil(view0)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+        XCTAssertNotNil(view0, file: file, line: line)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator, file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isNotRenderingSelectedIndicatorElementsAt index: Int) {
+    private func assertThat(_ sut: ZZTaskInputView, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
-        XCTAssertNotNil(view0)
-        XCTAssertFalse(view0!.isSelectedAndShowingIndicator)
+        XCTAssertNotNil(view0, file: file, line: line)
+        XCTAssertFalse(view0!.isSelectedAndShowingIndicator, file: file, line: line)
     }
 
     
