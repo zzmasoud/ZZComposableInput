@@ -248,20 +248,20 @@ extension ZZTaskInputView {
     }
     
     func simulateItemSelection(at index: Int) {
-        let indexPath = IndexPath(row: index, section: 0)
+        let indexPath = IndexPath(row: index, section: section)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     func simulateItemDeselection(at index: Int) {
-        let indexPath = IndexPath(row: index, section: 0)
+        let indexPath = IndexPath(row: index, section: section)
         tableView.deselectRow(at: indexPath, animated: false)
         tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     func itemView(at index: Int) -> UITableViewCell? {
         let ds = tableView.dataSource
-        return ds?.tableView(tableView, cellForRowAt: IndexPath(row: index, section: 0))
+        return ds?.tableView(tableView, cellForRowAt: IndexPath(row: index, section: section))
     }
         
     var isTextFieldFirstResponder: Bool {
@@ -273,8 +273,10 @@ extension ZZTaskInputView {
     }
     
     var numberOfRenderedItems: Int {
-        tableView.numberOfRows(inSection: 0)
+        tableView.numberOfRows(inSection: section)
     }
+    
+    private var section: Int { 0 }
 }
 
 extension UISegmentedControl {
