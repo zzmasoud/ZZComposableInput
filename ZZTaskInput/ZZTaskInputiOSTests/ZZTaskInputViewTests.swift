@@ -13,7 +13,7 @@ class ZZTaskInputViewTests: XCTestCase {
         let (sut, inputController) = makeSUT()
         XCTAssertEqual(inputController.loadCallCount, 0)
         
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: makeItems())
         XCTAssertEqual(inputController.loadCallCount, 1)
     }
@@ -33,17 +33,17 @@ class ZZTaskInputViewTests: XCTestCase {
         let (sut, inputController) = makeSUT()
         XCTAssertTrue(sut.isSectionTextHidden)
  
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: makeItems())
         XCTAssertFalse(sut.isSectionTextHidden)
 
-        sut.simulateSelection(section: 1)
+        sut.simulateSelection(section: singleSelectionSection1)
         XCTAssertTrue(sut.isSectionTextHidden)
 
         inputController.loader.completeRetrieval(with: .none, at: 1)
         XCTAssertFalse(sut.isSectionTextHidden)
 
-        sut.simulateSelection(section: 2)
+        sut.simulateSelection(section: singleSelectionSection2)
         XCTAssertTrue(sut.isSectionTextHidden)
 
         inputController.loader.completeRetrieval(with: makeError(), at: 2)
@@ -55,14 +55,14 @@ class ZZTaskInputViewTests: XCTestCase {
         let items = makeItems()
 
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         
         // then
         assertThat(sut, isRendering: items)
         
         // when
-        sut.simulateSelection(section: 1)
+        sut.simulateSelection(section: singleSelectionSection1)
         inputController.loader.completeRetrieval(with: .none, at: 1)
 
         // then
@@ -74,14 +74,14 @@ class ZZTaskInputViewTests: XCTestCase {
         let items = makeItems()
 
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         
         // then
         assertThat(sut, isRendering: items)
 
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: makeError())
         
         // then
@@ -94,18 +94,20 @@ class ZZTaskInputViewTests: XCTestCase {
         inputController.preselectedItems = [items[1]]
         
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         
         // then
         assertThat(sut, isRendering: items, selectedItems: inputController.preselectedItems)
     }
     
+    // MARK: - Single Selection Behaviour
+    
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
         let (sut, inputController) = makeSUT()
         let items = makeItems()
 
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         assertThat(sut, isRendering: items)
 
@@ -116,7 +118,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
 
         // when
-        sut.simulateItemSelection(at: 1)
+        sut.simulateItemSelection(at: singleSelectionSection1)
         
         // then
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
@@ -128,7 +130,7 @@ class ZZTaskInputViewTests: XCTestCase {
         let items = makeItems()
 
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         
         // then
@@ -152,7 +154,7 @@ class ZZTaskInputViewTests: XCTestCase {
         let items = makeItems()
         
         // when
-        sut.simulateSelection(section: 0)
+        sut.simulateSelection()
         inputController.loader.completeRetrieval(with: items)
         
         // then
@@ -189,6 +191,22 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func makeError() -> NSError {
         return NSError(domain: "error", code: -1)
+    }
+    
+    private var singleSelectionSection0: Int {
+        CLOCSelectableProperty.date.rawValue
+    }
+    
+    private var singleSelectionSection1: Int {
+        CLOCSelectableProperty.time.rawValue
+    }
+    
+    private var singleSelectionSection2: Int {
+        CLOCSelectableProperty.project.rawValue
+    }
+
+    private var multiSelectionSection: Int {
+        CLOCSelectableProperty.repeatWeekDays.rawValue
     }
     
     private func addToWindow(_ sut: ZZTaskInputView) {
@@ -243,7 +261,7 @@ class ZZTaskInputViewTests: XCTestCase {
 }
 
 extension ZZTaskInputView {
-    func simulateSelection(section: Int) {
+    func simulateSelection(section: Int = 0) {
         segmentedControl.simulateSelectingItem(at: section)
     }
     
