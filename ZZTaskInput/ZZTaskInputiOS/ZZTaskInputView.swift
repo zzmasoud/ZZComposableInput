@@ -17,20 +17,26 @@ public final class ZZTaskInputViewComposer {
             })
         let inputView = ZZTaskInputView(sectionsController: sectionsController)
         sectionsController.onLoad = { [weak inputView] result in
+            guard let inputView = inputView else { return }
+            
             switch result {
             case .success(let container):
-                inputView?.model = container
-                inputView?.cellControllers = (container.items ?? []).map { item in
-                    return ZZSelectableCellController(text: item, isSelected: {
-                        container.selectedItems?.contains(item) ?? false
-                    })
-                }
+                inputView.model = container
+                inputView.cellControllers = adaptContainerItemsToCellControllers(forwardingTo: inputView, container: container)
                 
             case .failure:
                 break
             }
         }
         return inputView
+    }
+    
+    private static func adaptContainerItemsToCellControllers(forwardingTo controller: ZZTaskInputView, container: CLOCItemsContainer) -> [ZZSelectableCellController] {
+        (container.items ?? []).map { item in
+            return ZZSelectableCellController(text: item, isSelected: {
+                container.selectedItems?.contains(item) ?? false
+            })
+        }
     }
 }
 
