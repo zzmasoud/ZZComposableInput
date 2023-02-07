@@ -6,11 +6,12 @@ import UIKit
 import ZZTaskInput
 
 final public class ZZTaskInputView: UIView {
+    private(set) public var segmentedControl: UISegmentedControl?
     public let textField: UITextField = UITextField()
-    public let segmentedControl = UISegmentedControl(items: ["date", "time", "project", "weekdaysRepeat"])
     public let selectedSectionLabel = UILabel()
     public let tableView = UITableView()
     private var inputController: DefaultTaskInput?
+    private var sectionsController: ZZSectionsController?
     
     private var model: DefaultTaskInput.ItemType? {
         didSet {
@@ -21,37 +22,32 @@ final public class ZZTaskInputView: UIView {
     public convenience init(inputController: DefaultTaskInput) {
         self.init()
         self.inputController = inputController
-        
+        self.sectionsController = ZZSectionsController(
+            loader: inputController,
+            sections: ["date", "time", "project", "weekdaysRepeat"],
+            indexMapper: { index in
+                return CLOCSelectableProperty(rawValue: index)!
+            })
         setupTextField()
         setupSegmentedControl()
         setupSectionLabel()
         setupTableView()
     }
-
+    
     private func setupTextField() {
         self.addSubview(textField)
-    }
-    
-    private func setupSegmentedControl() {
-        segmentedControl.selectedSegmentIndex = -1
-        segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
     }
     
     private func setupSectionLabel() {
         selectedSectionLabel.isHidden = true
     }
     
-    private func setupTableView() {
-        self.addSubview(tableView)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.id)
-    }
-    
-    @objc private func selectSection() {
-        let index = segmentedControl.selectedSegmentIndex
-        selectedSectionLabel.isHidden = true
-        inputController?.select(section: CLOCSelectableProperty(rawValue: index)!, withPreselectedItems: nil, completion: { [weak self] result in
+    private func setupSegmentedControl() {
+        segmentedControl = sectionsController?.view
+        sectionsController?.onLoading = { [weak self] in
+            self?.selectedSectionLabel.isHidden = true
+        }
+        sectionsController?.onLoad = { [weak self] result in
             switch result {
             case .success(let container):
                 self?.model = container
@@ -60,7 +56,14 @@ final public class ZZTaskInputView: UIView {
                 break
             }
             self?.selectedSectionLabel.isHidden = false
-        })
+        }
+    }
+    
+    private func setupTableView() {
+        self.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.id)
     }
     
     public override func didMoveToWindow() {
