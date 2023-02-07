@@ -14,7 +14,7 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertEqual(inputController.loadCallCount, 0)
         
         sut.simulateSelection(section: 0)
-        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
+        inputController.loader.completeRetrieval(with: makeItems())
         XCTAssertEqual(inputController.loadCallCount, 1)
     }
 
@@ -24,9 +24,8 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertFalse(sut.isTextFieldFirstResponder)
         
         // Adding the view to window will trigger `didMoveToWindow`
-        let window = UIWindow()
-        window.addSubview(sut)
-        
+        addToWindow(sut)
+
         XCTAssertTrue(sut.isTextFieldFirstResponder)
     }
     
@@ -35,7 +34,7 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertTrue(sut.isSectionTextHidden)
  
         sut.simulateSelection(section: 0)
-        inputController.loader.completeRetrieval(with: ["a", "b", "c"])
+        inputController.loader.completeRetrieval(with: makeItems())
         XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: 1)
@@ -47,13 +46,13 @@ class ZZTaskInputViewTests: XCTestCase {
         sut.simulateSelection(section: 2)
         XCTAssertTrue(sut.isSectionTextHidden)
 
-        inputController.loader.completeRetrieval(with: NSError(domain: "-", code: -1), at: 2)
+        inputController.loader.completeRetrieval(with: makeError(), at: 2)
         XCTAssertFalse(sut.isSectionTextHidden)
     }
     
     func test_loadItemsInSectionCompletion_rendersSuccessfullyLoadedItems() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
+        let items = makeItems()
 
         // when
         sut.simulateSelection(section: 0)
@@ -72,7 +71,7 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_loadItemsInSectionCompletion_doesNotAlterCurrentRenderingStateOnError() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
+        let items = makeItems()
 
         // when
         sut.simulateSelection(section: 0)
@@ -83,7 +82,7 @@ class ZZTaskInputViewTests: XCTestCase {
 
         // when
         sut.simulateSelection(section: 0)
-        inputController.loader.completeRetrieval(with: NSError(domain: "-", code: -1))
+        inputController.loader.completeRetrieval(with: makeError())
         
         // then
         assertThat(sut, isRendering: items)
@@ -91,8 +90,8 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
-        inputController.preselectedItems = ["b"]
+        let items = makeItems()
+        inputController.preselectedItems = [items[1]]
         
         // when
         sut.simulateSelection(section: 0)
@@ -104,44 +103,29 @@ class ZZTaskInputViewTests: XCTestCase {
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
-        
-        let window = UIWindow()
-        window.addSubview(sut)
+        let items = makeItems()
 
-        // when
         sut.simulateSelection(section: 0)
         inputController.loader.completeRetrieval(with: items)
-        
-        // then
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateItemSelection(at: 0)
-        let view0 = sut.itemView(at: 0)
 
         // then
-        XCTAssertNotNil(view0)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
-    
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
+
         // when
         sut.simulateItemSelection(at: 1)
         
         // then
-        let view1 = sut.itemView(at: 1)
-        XCTAssertNotNil(view1)
-        XCTAssertTrue(view1!.isSelectedAndShowingIndicator)
-        let view0AfterAnotherSelection = sut.itemView(at: 0)
-        XCTAssertNotNil(view0AfterAnotherSelection)
-        XCTAssertFalse(view0AfterAnotherSelection!.isSelectedAndShowingIndicator)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 1)
+        assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 0)
     }
     
     func test_selectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicatorFromSameSelectedItem() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
-        
-        let window = UIWindow()
-        window.addSubview(sut)
+        let items = makeItems()
 
         // when
         sut.simulateSelection(section: 0)
@@ -152,27 +136,21 @@ class ZZTaskInputViewTests: XCTestCase {
 
         // when
         sut.simulateItemSelection(at: 0)
-        let view0 = sut.itemView(at: 0)
 
         // then
-        XCTAssertNotNil(view0)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
 
+        // when
         sut.simulateItemSelection(at: 0)
-        let view0AfterDuplicateSelectio = sut.itemView(at: 0)
 
         // then
-        XCTAssertNotNil(view0AfterDuplicateSelectio)
-        XCTAssertTrue(view0AfterDuplicateSelectio!.isSelectedAndShowingIndicator)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
     }
     
     func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
         let (sut, inputController) = makeSUT()
-        let items = ["a", "b", "c"]
+        let items = makeItems()
         
-        let window = UIWindow()
-        window.addSubview(sut)
-
         // when
         sut.simulateSelection(section: 0)
         inputController.loader.completeRetrieval(with: items)
@@ -182,19 +160,15 @@ class ZZTaskInputViewTests: XCTestCase {
 
         // when
         sut.simulateItemSelection(at: 0)
-        let view0 = sut.itemView(at: 0)
 
         // then
-        XCTAssertNotNil(view0)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
         
         // when
         sut.simulateItemDeselection(at: 0)
-        let view0 = sut.itemView(at: 0)
 
         // then
-        XCTAssertNotNil(view0)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+        assertThat(sut, isRenderingSelectedIndicatorElementsAt: 0)
     }
     
     // MARK: - Helpers
@@ -209,6 +183,19 @@ class ZZTaskInputViewTests: XCTestCase {
         return (sut, inputController)
     }
     
+    private func makeItems() -> [DefaultTaskInput.SelectableItem] {
+        return ["a", "b", "c"]
+    }
+    
+    private func makeError() -> NSError {
+        return NSError(domain: "error", code: -1)
+    }
+    
+    private func addToWindow(_ sut: ZZTaskInputView) {
+        let window = UIWindow()
+        window.addSubview(sut)
+    }
+    
     private func assertThat(_ sut: ZZTaskInputView, isRendering items: [DefaultTaskInput.SelectableItem], selectedItems: [DefaultTaskInput.SelectableItem]? = nil, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(sut.numberOfRenderedItems, items.count, file: file, line: line)
         
@@ -220,6 +207,19 @@ class ZZTaskInputViewTests: XCTestCase {
             XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator)
         }
     }
+    
+    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int) {
+        let view0 = sut.itemView(at: index)
+        XCTAssertNotNil(view0)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator)
+    }
+    
+    private func assertThat(_ sut: ZZTaskInputView, isNotRenderingSelectedIndicatorElementsAt index: Int) {
+        let view0 = sut.itemView(at: index)
+        XCTAssertNotNil(view0)
+        XCTAssertFalse(view0!.isSelectedAndShowingIndicator)
+    }
+
     
     class TaskInputSpy: DefaultTaskInput {
         let textParser = MockTextParser()
@@ -249,7 +249,7 @@ extension ZZTaskInputView {
     
     func simulateItemSelection(at index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
-        tableView.selectRow(at: indexPath, animated: false)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
