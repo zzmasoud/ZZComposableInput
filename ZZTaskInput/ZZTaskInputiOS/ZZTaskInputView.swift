@@ -18,6 +18,7 @@ final public class ZZTaskInputView: UIView {
             tableView.reloadData()
         }
     }
+    private var cellControllers: [IndexPath: ZZSelectableCellController] = [:]
     
     public convenience init(inputController: DefaultTaskInput) {
         self.init()
@@ -63,7 +64,7 @@ final public class ZZTaskInputView: UIView {
         self.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.id)
+        tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
     }
     
     public override func didMoveToWindow() {
@@ -85,12 +86,19 @@ extension ZZTaskInputView: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellController = ZZSelectableCellController()
+        cellControllers[indexPath] = cellController
         let item = model!.items![indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.id, for: indexPath) as! CustomTableViewCell
-        cell.textLabel?.text = item
         let isSelected = model?.selectedItems?.contains(item) ?? false
-        cell.setSelected(isSelected, animated: false)
-        return cell
+        return cellController.view(text: item, isSelected: isSelected)
+    }
+    
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        removeCellController(at: indexPath)
+    }
+    
+    private func removeCellController(at indexPath: IndexPath) {
+        cellControllers[indexPath] = nil
     }
 }
 
@@ -105,14 +113,5 @@ extension ZZTaskInputView: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath)
         model?.unselect(at: indexPath.row)
         cell?.setSelected(false, animated: false)
-    }
-}
-
-class CustomTableViewCell: UITableViewCell {
-    static let id = "CustomTableViewCell"
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        accessoryType = selected ? .checkmark : .none
     }
 }
