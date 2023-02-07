@@ -216,6 +216,45 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: 1)
         assertThat(sut, isRenderingSelectedIndicatorElementsAt: 2)
     }
+    
+    func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
+        let (sut, inputController) = makeSUT()
+        let items = makeItems()
+        
+        // when
+        sut.simulateSelection(section: multiSelectionSection)
+        inputController.loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemSelection(at: 2)
+        sut.simulateItemSelection(at: 3)
+        sut.simulateItemSelection(at: 4)
+        sut.simulateItemSelection(at: 5)
+        sut.simulateItemSelection(at: 6)
+
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...6), for: multiSelectionSection)
+
+        // when
+        sut.simulateItemSelection(at: 7)
+
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: multiSelectionSection)
+
+        // when
+        sut.simulateItemDeselection(at: 1)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemDeselection(at: 1)
+        sut.simulateItemSelection(at: 8)
+
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](2...8), for: multiSelectionSection)
+    }
 
     
     // MARK: - Helpers
@@ -231,7 +270,7 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     private func makeItems() -> [DefaultTaskInput.SelectableItem] {
-        return ["a", "b", "c"]
+        return (1...10).map { String($0)}
     }
     
     private func makeError() -> NSError {
@@ -271,6 +310,18 @@ class ZZTaskInputViewTests: XCTestCase {
         }
     }
     
+    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
+        assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimitFor: CLOCSelectableProperty(rawValue: section)!, file: file, line: line)
+        
+        for index in 0..<sut.numberOfRenderedItems {
+            if selectedIndexes.contains(index) {
+                assertThat(sut, isRenderingSelectedIndicatorElementsAt: index, file: file, line: line)
+            } else {
+                assertThat(sut, isNotRenderingSelectedIndicatorElementsAt: index, file: file, line: line)
+            }
+        }
+    }
+    
     private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
@@ -281,6 +332,14 @@ class ZZTaskInputViewTests: XCTestCase {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
         XCTAssertFalse(view0!.isSelectedAndShowingIndicator, file: file, line: line)
+    }
+    
+    private func assertThat(_ sut: ZZTaskInputView, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: CLOCSelectableProperty, file: StaticString = #file, line: UInt = #line) {
+        var selectionLimit = 1
+        if case .multiple(let max) = section.selectionType {
+            selectionLimit = max
+        }
+        XCTAssertTrue(selectedIndexes.count <= selectionLimit, file: file, line: line)
     }
 
     
@@ -339,7 +398,7 @@ extension ZZTaskInputView {
         tableView.numberOfRows(inSection: section)
     }
     
-    private var section: Int { 0 }
+    var section: Int { 0 }
 }
 
 extension UISegmentedControl {
