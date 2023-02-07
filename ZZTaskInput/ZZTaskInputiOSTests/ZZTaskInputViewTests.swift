@@ -171,9 +171,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items)
 
         // when
-        sut.simulateItemSelection(at: 0)
-        sut.simulateItemSelection(at: 1)
-        sut.simulateItemSelection(at: 2)
+        sut.simulateItemSelection(at: 0,1,2)
         // then
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...2), for: section)
 
@@ -206,13 +204,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items)
 
         // when
-        sut.simulateItemSelection(at: 0)
-        sut.simulateItemSelection(at: 1)
-        sut.simulateItemSelection(at: 2)
-        sut.simulateItemSelection(at: 3)
-        sut.simulateItemSelection(at: 4)
-        sut.simulateItemSelection(at: 5)
-        sut.simulateItemSelection(at: 6)
+        sut.simulateItemSelection(at: 0,1,2,3,4,5,6)
         // then
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...6), for: section)
 
@@ -314,81 +306,5 @@ class ZZTaskInputViewTests: XCTestCase {
             selectionLimit = max
         }
         XCTAssertTrue(selectedIndexes.count <= selectionLimit, file: file, line: line)
-    }
-
-    
-    class TaskInputSpy: DefaultTaskInput {
-        let textParser = MockTextParser()
-        let loader = ItemLoaderSpy()
-        
-        var preselectedItems: [DefaultTaskInput.Data.Item]?
-        var loadCallCount: Int { loader.receivedMessages.count }
-        
-        override func select(section: CLOCSelectableProperty, withPreselectedItems: [DefaultTaskInput.Data.Item]?, completion: @escaping DefaultTaskInput.FetchItemsCompletion) {
-            loader.loadItems(for: section) { [weak self] result in
-                do {
-                    let items = try result.get()
-                    let container = CLOCItemsContainer(items: items, preSelectedItems: self?.preselectedItems, selectionType: section.selectionType)
-                    completion(.success(container))
-                } catch {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-}
-
-extension ZZTaskInputView {
-    func simulateSelection(section: Int = 0) {
-        segmentedControl.simulateSelectingItem(at: section)
-    }
-    
-    func simulateItemSelection(at index: Int) {
-        let indexPath = IndexPath(row: index, section: section)
-        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
-    }
-    
-    func simulateItemDeselection(at index: Int) {
-        let indexPath = IndexPath(row: index, section: section)
-        tableView.deselectRow(at: indexPath, animated: false)
-        tableView.delegate?.tableView?(tableView, didDeselectRowAt: indexPath)
-    }
-    
-    func itemView(at index: Int) -> UITableViewCell? {
-        let ds = tableView.dataSource
-        return ds?.tableView(tableView, cellForRowAt: IndexPath(row: index, section: section))
-    }
-        
-    var isTextFieldFirstResponder: Bool {
-        textField.isFirstResponder
-    }
-    
-    var isSectionTextHidden: Bool {
-        selectedSectionLabel.isHidden
-    }
-    
-    var numberOfRenderedItems: Int {
-        tableView.numberOfRows(inSection: section)
-    }
-    
-    var section: Int { 0 }
-}
-
-extension UISegmentedControl {
-    func simulateSelectingItem(at index: Int) {
-        selectedSegmentIndex = index
-
-        self.allTargets.forEach({ target in
-            self.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach({ selector in
-                (target as NSObject).perform(Selector(selector))
-            })
-        })
-    }
-}
-
-extension UITableViewCell {
-    var isSelectedAndShowingIndicator: Bool {
-        return isSelected && accessoryType == .checkmark
     }
 }

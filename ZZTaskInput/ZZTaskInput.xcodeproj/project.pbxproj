@@ -32,6 +32,9 @@
 		04CEFD6D298BE80E00715BD3 /* ZZTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */; };
 		04CEFD6F298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */; };
 		04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD71298BF37F00715BD3 /* MockTextParser.swift */; };
+		04E04071299270CA000EC9D2 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */; };
+		04E04073299270ED000EC9D2 /* UIKit+Simulating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */; };
+		04E040752992712D000EC9D2 /* TaskInputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E040742992712D000EC9D2 /* TaskInputSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		04CEFD6C298BE80E00715BD3 /* ZZTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInput.swift; sourceTree = "<group>"; };
 		04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSelectableItemsUseCasTests.swift; sourceTree = "<group>"; };
 		04CEFD71298BF37F00715BD3 /* MockTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextParser.swift; sourceTree = "<group>"; };
+		04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
+		04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Simulating.swift"; sourceTree = "<group>"; };
+		04E040742992712D000EC9D2 /* TaskInputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInputSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 		040CE0C6298FAA28003BB6DC /* ZZTaskInputiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				04E0406F29927094000EC9D2 /* Helpers */,
 				040CE0D0298FADB5003BB6DC /* ZZTaskInputViewTests.swift */,
 			);
 			path = ZZTaskInputiOSTests;
@@ -222,6 +229,16 @@
 				045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		04E0406F29927094000EC9D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */,
+				04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */,
+				04E040742992712D000EC9D2 /* TaskInputSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,8 +427,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E040752992712D000EC9D2 /* TaskInputSpy.swift in Sources */,
+				04E04071299270CA000EC9D2 /* ZZTaskInputView.swift in Sources */,
 				040CE0D1298FADB5003BB6DC /* ZZTaskInputViewTests.swift in Sources */,
 				040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				04E04073299270ED000EC9D2 /* UIKit+Simulating.swift in Sources */,
 				040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */,
 				040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */,
 			);
