@@ -25,7 +25,6 @@ open class DefaultTaskInput: ZZTaskInput {
     public typealias FetchItemsResult = Result<ItemType, Error>
     public typealias FetchItemsCompletion = (FetchItemsResult) -> Void
 
-
     open var onSent: SendCompletion?
     
     public init() {}

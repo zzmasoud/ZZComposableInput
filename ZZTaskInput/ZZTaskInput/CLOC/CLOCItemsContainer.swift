@@ -16,10 +16,12 @@ public class CLOCItemsContainer: ZZItemsContainer {
     private(set) public var selectedItems: [Item]?
     public let selectionType: CLOCItemSelectionType
     
-    public init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: CLOCItemSelectionType = .single) {
-        self.items = items
-        self.selectedItems = preSelectedIndexes?.compactMap{ items?[$0] }
-        self.selectionType = selectionType
+    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: CLOCItemSelectionType = .single) {
+        self.init(
+            items: items,
+            preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
+            selectionType: selectionType
+        )
     }
     
     public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: CLOCItemSelectionType = .single) {
@@ -34,6 +36,7 @@ public class CLOCItemsContainer: ZZItemsContainer {
 }
 
 // MARK: - Select
+
 extension CLOCItemsContainer {
     public func select(at index: Int) {
         guard let items = items else { return }
@@ -65,6 +68,7 @@ extension CLOCItemsContainer {
 }
 
 // MARK: - Unselect
+
 extension CLOCItemsContainer {
     public func unselect(at index: Int) {
         guard case .multiple = selectionType,
