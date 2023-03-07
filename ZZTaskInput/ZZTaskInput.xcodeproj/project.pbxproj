@@ -20,13 +20,12 @@
 		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
 		04378803298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */; };
 		045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */; };
-		045C50D6298D1A89005C44AE /* CLOCTaskInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
-		04665896298F922E00BA5C9A /* CLOCTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04665895298F922E00BA5C9A /* CLOCTaskModel.swift */; };
 		046C5F6F2992A80000672906 /* ZZSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* ZZSelectableCellController.swift */; };
 		046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F702992A81900672906 /* ZZSelectableCell.swift */; };
 		046C5F762992C08600672906 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F752992C08600672906 /* ZZTaskInputViewUIComposer.swift */; };
+		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
@@ -87,13 +86,12 @@
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
 		04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAndUnSelectItemsInSectionUseCaseTests.swift; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemLoader.swift; sourceTree = "<group>"; };
-		045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskInput.swift; sourceTree = "<group>"; };
 		045C50D7298D1AC7005C44AE /* ZZTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTextParser.swift; sourceTree = "<group>"; };
 		045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
-		04665895298F922E00BA5C9A /* CLOCTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTaskModel.swift; sourceTree = "<group>"; };
 		046C5F6E2992A80000672906 /* ZZSelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSelectableCellController.swift; sourceTree = "<group>"; };
 		046C5F702992A81900672906 /* ZZSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSelectableCell.swift; sourceTree = "<group>"; };
 		046C5F752992C08600672906 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
+		04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCSelectableProperty.swift; sourceTree = "<group>"; };
 		04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoaderSpy.swift; sourceTree = "<group>"; };
 		04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParser.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,10 +169,9 @@
 		045C50D4298D1A76005C44AE /* CLOC */ = {
 			isa = PBXGroup;
 			children = (
-				045C50D5298D1A89005C44AE /* CLOCTaskInput.swift */,
-				04665895298F922E00BA5C9A /* CLOCTaskModel.swift */,
 				04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */,
 				043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */,
+				04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */,
 			);
 			path = CLOC;
 			sourceTree = "<group>";
@@ -475,13 +472,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				045C50D6298D1A89005C44AE /* CLOCTaskInput.swift in Sources */,
 				043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */,
-				04665896298F922E00BA5C9A /* CLOCTaskModel.swift in Sources */,
 				04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */,
 				045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */,
+				04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
