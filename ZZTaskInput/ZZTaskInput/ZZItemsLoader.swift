@@ -4,11 +4,11 @@
 
 import Foundation
 
-public protocol ZZItemLoader {
-    associatedtype Section
+public protocol ZZItemsLoader {
+    associatedtype Section: Hashable
     associatedtype Item
-    typealias FetchItemsResut = Result<[Item]?, Error>
-    typealias FetchItemsCompletion = (FetchItemsResut) -> Void
+    typealias FetchItemsResult = Result<[Item]?, Error>
+    typealias FetchItemsCompletion = (FetchItemsResult) -> Void
 
     func loadItems(for section: Section, completion: @escaping FetchItemsCompletion)
 }

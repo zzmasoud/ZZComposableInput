@@ -5,7 +5,7 @@
 import Foundation
 import ZZTaskInput
 
-class ItemLoaderSpy: ZZItemLoader {
+class ItemLoaderSpy: ZZItemsLoader {
     typealias Section = CLOCSelectableProperty
     typealias Item = String
 

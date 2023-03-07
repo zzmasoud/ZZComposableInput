@@ -19,19 +19,20 @@
 		043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */; };
 		04378803298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */; };
-		045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */; };
+		045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		046C5F6F2992A80000672906 /* ZZSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* ZZSelectableCellController.swift */; };
 		046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F702992A81900672906 /* ZZSelectableCell.swift */; };
 		046C5F762992C08600672906 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F752992C08600672906 /* ZZTaskInputViewUIComposer.swift */; };
 		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
+		04A5728B29B76B5F000E0D08 /* CLOCItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728A29B76B5E000E0D08 /* CLOCItemsLoader.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZTaskInputView.swift */; };
 		04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */; };
-		04CEFD6F298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */; };
+		04CEFD6F298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6E298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift */; };
 		04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD71298BF37F00715BD3 /* MockTextParser.swift */; };
 		04E04071299270CA000EC9D2 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */; };
 		04E04073299270ED000EC9D2 /* UIKit+Simulating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */; };
@@ -85,20 +86,21 @@
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
 		04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAndUnSelectItemsInSectionUseCaseTests.swift; sourceTree = "<group>"; };
-		045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemLoader.swift; sourceTree = "<group>"; };
+		045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsLoader.swift; sourceTree = "<group>"; };
 		045C50D7298D1AC7005C44AE /* ZZTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTextParser.swift; sourceTree = "<group>"; };
 		045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		046C5F6E2992A80000672906 /* ZZSelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSelectableCellController.swift; sourceTree = "<group>"; };
 		046C5F702992A81900672906 /* ZZSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSelectableCell.swift; sourceTree = "<group>"; };
 		046C5F752992C08600672906 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
 		04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCSelectableProperty.swift; sourceTree = "<group>"; };
+		04A5728A29B76B5E000E0D08 /* CLOCItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsLoader.swift; sourceTree = "<group>"; };
 		04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoaderSpy.swift; sourceTree = "<group>"; };
 		04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParser.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZTaskInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZTaskInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZTaskInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZTaskInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCTextParserTests.swift; sourceTree = "<group>"; };
-		04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSelectableItemsUseCasTests.swift; sourceTree = "<group>"; };
+		04CEFD6E298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsLoaderTests.swift; sourceTree = "<group>"; };
 		04CEFD71298BF37F00715BD3 /* MockTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextParser.swift; sourceTree = "<group>"; };
 		04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Simulating.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */,
 				043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */,
 				04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */,
+				04A5728A29B76B5E000E0D08 /* CLOCItemsLoader.swift */,
 			);
 			path = CLOC;
 			sourceTree = "<group>";
@@ -230,7 +233,7 @@
 			children = (
 				045C50D4298D1A76005C44AE /* CLOC */,
 				043787FA298E4BC600CD2F26 /* ZZItemsContainer.swift */,
-				045C50D2298D1A5F005C44AE /* ZZItemLoader.swift */,
+				045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */,
 				045C50D7298D1AC7005C44AE /* ZZTextParser.swift */,
 			);
 			path = ZZTaskInput;
@@ -240,8 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				04CEFD70298BF37300715BD3 /* Shared */,
-				04CEFD6E298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift */,
 				04378802298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift */,
+				04CEFD6E298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift */,
 				04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */,
 				04CEFD68298BB87B00715BD3 /* CLOCTextParserTests.swift */,
 			);
@@ -473,8 +476,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				043787FB298E4BC600CD2F26 /* ZZItemsContainer.swift in Sources */,
+				04A5728B29B76B5F000E0D08 /* CLOCItemsLoader.swift in Sources */,
 				04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */,
-				045C50D3298D1A5F005C44AE /* ZZItemLoader.swift in Sources */,
+				045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */,
 				045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */,
 				04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */,
@@ -485,7 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CEFD6F298BEAAC00715BD3 /* LoadSelectableItemsUseCasTests.swift in Sources */,
+				04CEFD6F298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift in Sources */,
 				04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */,
 				04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */,
 				04378803298E6D8C00CD2F26 /* SelectAndUnSelectItemsInSectionUseCaseTests.swift in Sources */,
