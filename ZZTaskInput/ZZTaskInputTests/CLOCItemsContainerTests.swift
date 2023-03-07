@@ -16,7 +16,10 @@ class CLOCItemsContainerTests: XCTestCase {
     func test_initWithPreSelectedIndexes_selectedItemsIsAssigned() {
         let preSelectedIndex = 1
         let items = makeItems()
-        let sut = CLOCItemsContainer(items: makeItems(), preSelectedIndexes: [preSelectedIndex], selectionType: .single)
+        let sut = CLOCItemsContainer(
+            items: makeItems(),
+            preSelectedIndexes: [preSelectedIndex],
+            selectionType: .single)
         
         expect(sut, toHaveSelectedItems: [items[preSelectedIndex]])
     }
@@ -24,7 +27,10 @@ class CLOCItemsContainerTests: XCTestCase {
     func test_initWithPreSelectedItems_selectedItemsIsAssigned() {
         let items = makeItems()
         let preSelectedItems = [items[0], items[1]]
-        let sut = CLOCItemsContainer(items: makeItems(), preSelectedItems: preSelectedItems, selectionType: .single)
+        let sut = CLOCItemsContainer(
+            items: makeItems(),
+            preSelectedItems: preSelectedItems,
+            selectionType: .single)
         
         expect(sut, toHaveSelectedItems: preSelectedItems)
     }
@@ -124,8 +130,11 @@ class CLOCItemsContainerTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(selectionType: CLOCItemSelectionType = .single) -> (sut: CLOCItemsContainer, items: [String]) {
-        let items = ["a", "b", "c"]
-        let sut = CLOCItemsContainer(items: items, preSelectedIndexes: nil, selectionType: selectionType)
+        let items = makeItems()
+        let sut = CLOCItemsContainer(
+            items: items,
+            preSelectedIndexes: nil,
+            selectionType: selectionType)
         
         return (sut, items)
     }

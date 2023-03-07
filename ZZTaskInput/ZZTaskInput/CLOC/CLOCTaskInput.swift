@@ -17,13 +17,14 @@ public enum CLOCSelectableProperty: Int {
     }
 }
 
-open class DefaultTaskInput: ZZTaskInput {
+open class DefaultTaskInput {
     public typealias Data = CLOCTaskModel
     public typealias SelectableItem = Data.Item
     public typealias ItemType = CLOCItemsContainer
     public typealias Section = CLOCSelectableProperty
     public typealias FetchItemsResult = Result<ItemType, Error>
     public typealias FetchItemsCompletion = (FetchItemsResult) -> Void
+    public typealias SendCompletion = (Data) -> Void
 
     open var onSent: SendCompletion?
     
