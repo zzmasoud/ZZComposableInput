@@ -6,9 +6,11 @@ import Foundation
 
 public final class CLOCTextParser: ZZTextParser {
     public typealias Parsed = (title: String, description: String?)
-    public let separator: Character = "\n"
+    private let separator: Character
     
-    public init() {}
+    public init(separator: Character = "\n") {
+        self.separator = separator
+    }
     
     public func parse(text: String) -> (title: String, description: String?) {
         var result: (String, String?) = ("", nil)
