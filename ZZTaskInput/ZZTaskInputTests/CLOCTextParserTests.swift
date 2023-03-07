@@ -67,8 +67,8 @@ class CLOCTextParserTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTextParser {
-        let sut = CLOCTextParser()
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTextParser<(title: String, description: String?)> {
+        let sut = CLOCTextParser<(title: String, description: String?)>()
         return sut
     }
 }

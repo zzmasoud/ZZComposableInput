@@ -4,15 +4,16 @@
 
 import Foundation
 
-public final class CLOCTextParser: ZZTextParser {
-    public typealias Parsed = (title: String, description: String?)
+public final class CLOCTextParser<Output> {
     private let separator: Character
     
     public init(separator: Character = "\n") {
         self.separator = separator
     }
-    
-    public func parse(text: String) -> (title: String, description: String?) {
+}
+
+extension CLOCTextParser: ZZTextParser where Output == (title: String, description: String?) {
+    public func parse(text: String) -> Output {
         var result: (String, String?) = ("", nil)
         
         let components = text.split(separator: separator)
