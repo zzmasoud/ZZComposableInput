@@ -25,7 +25,7 @@ class CLOCItemsLoaderTests: XCTestCase {
     func test_select_failsOnRetrievalError() {
         let (sut, loader) = makeSUT()
         let section = getSection()
-        let retrievalError = NSError(domain: "error", code: -1)
+        let retrievalError = makeError()
 
         expect(sut, toCompleteWith: .failure(retrievalError), onSelectingSection: section) {
             loader.completeRetrieval(with: retrievalError)
@@ -44,7 +44,7 @@ class CLOCItemsLoaderTests: XCTestCase {
     func test_select_deliversSelectableItemsOnNonEmptyRetrieval() {
         let (sut, loader) = makeSUT()
         let section = getSection()
-        let rawItems = ["a", "b", "c"]
+        let rawItems = makeItems()
 
         expect(sut, toCompleteWith: .success(rawItems), onSelectingSection: section) {
             loader.completeRetrieval(with: rawItems)
@@ -90,7 +90,7 @@ class CLOCItemsLoaderTests: XCTestCase {
         let (sut, loader) = makeSUT()
         let section = getSection()
         let section2 = getSection2()
-        let expectedItems = ["a", "b", "c"]
+        let expectedItems = makeItems()
         let expectedItems2 = ["aaa", "bbb", "ccc"]
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
@@ -158,17 +158,5 @@ class CLOCItemsLoaderTests: XCTestCase {
         action()
 
         wait(for: [exp], timeout: 1)
-    }
-
-    private func getSection() -> CLOCSelectableProperty {
-        return .date
-    }
-
-    private func getSection2() -> CLOCSelectableProperty {
-        return .time
-    }
-    
-    private func makeError() -> NSError {
-        NSError(domain: "error", code: -1)
     }
 }

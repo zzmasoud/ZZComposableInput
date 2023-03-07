@@ -139,10 +139,6 @@ class CLOCItemsContainerTests: XCTestCase {
         return (sut, items)
     }
     
-    private func makeItems() -> [String] {
-        return ["a", "b", "c"]
-    }
-    
     private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [String]?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
     }
