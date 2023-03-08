@@ -10,7 +10,7 @@ public enum CLOCItemSelectionType {
 }
 
 public class CLOCItemsContainer: ZZItemsContainer {
-    public typealias Item = String
+    public typealias Item = NEED_TO_BE_GENERIC
     
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?

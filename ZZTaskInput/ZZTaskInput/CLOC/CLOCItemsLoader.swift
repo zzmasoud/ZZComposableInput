@@ -4,18 +4,15 @@
 
 import Foundation
 
-public final class CLOCItemsLoader<L: ZZItemsLoader>: ZZItemsLoader {
-    public typealias Section = L.Section
-    public typealias Item = L.Item
+public final class CLOCItemsLoader: ZZItemsLoader {
+    private let loader: ZZItemsLoader
+    private var cachedItems = [Int: [NEED_TO_BE_GENERIC]?]()
     
-    private let loader: L
-    private var cachedItems = [Section: [Item]?]()
-    
-    public init(loader: L) {
+    public init(loader: ZZItemsLoader) {
         self.loader = loader
     }
     
-    public func loadItems(for section: L.Section, completion: @escaping FetchItemsCompletion) {
+    public func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
         if let loadedAlready = cachedItems[section] {
             completion(.success(loadedAlready))
         } else {

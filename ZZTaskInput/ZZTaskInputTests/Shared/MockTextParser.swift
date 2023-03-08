@@ -4,15 +4,14 @@
 
 import ZZTaskInput
 
-class MockTextParser: ZZTextParser {
-    
-    var result = Parsed("", nil)
+class MockTextParser<Parsed>: ZZTextParser {
+    var result: Parsed!
     private(set) var separator: Character = "\n"
     private var parseTextCalles = [String]()
     
     var parseTextCount: Int { parseTextCalles.count }
     
-    func parse(text: String) -> (title: String, description: String?) {
+    func parse(text: String) -> Parsed {
         parseTextCalles.append(text)
         return result
     }

@@ -17,7 +17,7 @@ class CLOCItemsContainerTests: XCTestCase {
         let preSelectedIndex = 1
         let items = makeItems()
         let sut = CLOCItemsContainer(
-            items: makeItems(),
+            items: items,
             preSelectedIndexes: [preSelectedIndex],
             selectionType: .single)
         
@@ -129,7 +129,7 @@ class CLOCItemsContainerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(selectionType: CLOCItemSelectionType = .single) -> (sut: CLOCItemsContainer, items: [String]) {
+    private func makeSUT(selectionType: CLOCItemSelectionType = .single) -> (sut: CLOCItemsContainer, items: [NEED_TO_BE_GENERIC]) {
         let items = makeItems()
         let sut = CLOCItemsContainer(
             items: items,
@@ -139,7 +139,7 @@ class CLOCItemsContainerTests: XCTestCase {
         return (sut, items)
     }
     
-    private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [String]?, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [NEED_TO_BE_GENERIC]?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
     }
 }

@@ -6,16 +6,16 @@ import XCTest
 import ZZTaskInput
 
 extension XCTestCase {
-    func getSection() -> CLOCSelectableProperty {
-        return .date
+    func getSection() -> Int {
+        return CLOCSelectableProperty.date.rawValue
     }
 
-    func getSection2() -> CLOCSelectableProperty {
-        return .time
+    func getSection2() -> Int {
+        return CLOCSelectableProperty.time.rawValue
     }
     
-    func makeItems() -> [String] {
-        return ["a", "b", "c"]
+    func makeItems() -> [NEED_TO_BE_GENERIC] {
+        return (1...10).map { _ in NEED_TO_BE_GENERIC(id: UUID(), title: UUID().uuidString) }
     }
     
     func makeError() -> NSError {

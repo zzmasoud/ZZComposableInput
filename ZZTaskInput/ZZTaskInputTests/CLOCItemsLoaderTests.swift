@@ -91,7 +91,7 @@ class CLOCItemsLoaderTests: XCTestCase {
         let section = getSection()
         let section2 = getSection2()
         let expectedItems = makeItems()
-        let expectedItems2 = ["aaa", "bbb", "ccc"]
+        let expectedItems2 = makeItems()
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
@@ -119,7 +119,7 @@ class CLOCItemsLoaderTests: XCTestCase {
       
     // MARK: - Helpers
 
-    private typealias SUT = CLOCItemsLoader<ItemLoaderSpy>
+    private typealias SUT = CLOCItemsLoader
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let itemLoader = ItemLoaderSpy()
@@ -134,14 +134,14 @@ class CLOCItemsLoaderTests: XCTestCase {
     private func expect(
         _ sut: SUT,
         toCompleteWith expectedResult: SUT.FetchItemsResult,
-        onSelectingSection section: CLOCSelectableProperty,
+        onSelectingSection section: Int,
         andPreselectedItems preselectedItems: [ItemLoaderSpy.Item]? = nil,
         when action: () -> Void,
         file: StaticString = #file,
         line: UInt = #line) {
         let exp = expectation(description: "waiting for completion...")
 
-        sut.loadItems(for: section) { result in
+            sut.loadItems(for: section) { result in
             switch (expectedResult, result) {
             case let (.failure(expectedError), .failure(error)):
                 XCTAssertEqual(expectedError as NSError, error as NSError, file: file, line: line)

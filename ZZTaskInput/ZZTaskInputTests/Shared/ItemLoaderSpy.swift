@@ -6,8 +6,8 @@ import Foundation
 import ZZTaskInput
 
 class ItemLoaderSpy: ZZItemsLoader {
-    typealias Section = CLOCSelectableProperty
-    typealias Item = String
+    typealias Section = Int
+    typealias Item = NEED_TO_BE_GENERIC
 
     private(set) var receivedMessages = [Section]()
     private(set) var completions = [FetchItemsCompletion]()
