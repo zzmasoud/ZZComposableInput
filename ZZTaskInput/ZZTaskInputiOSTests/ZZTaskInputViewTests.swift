@@ -274,6 +274,8 @@ class ZZTaskInputViewTests: XCTestCase {
             let isPreselected = selectedItems?.contains(item) ?? false
             XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator, file: file, line: line)
         }
+        
+        executeRunLoopToCleanUpReferences()
     }
     
     private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
