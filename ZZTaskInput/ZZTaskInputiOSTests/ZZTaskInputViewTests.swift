@@ -264,8 +264,12 @@ class ZZTaskInputViewTests: XCTestCase {
         window.addSubview(sut)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRendering items: [DefaultTaskInput.SelectableItem], selectedItems: [DefaultTaskInput.SelectableItem]? = nil, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(sut.numberOfRenderedItems, items.count, file: file, line: line)
+    private func assertThat(_ sut: ZZTaskInputView, isRendering items: [ItemLoaderSpy.Item], selectedItems: [ItemLoaderSpy.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
+        sut.enforceLayoutCycle()
+
+        guard sut.numberOfRenderedItems == items.count else {
+            return XCTFail("expected \(items.count) items but got \(sut.numberOfRenderedItems) items!", file: file, line: line)
+        }
         
         for (index, item) in items.enumerated() {
             let view = sut.itemView(at: index)

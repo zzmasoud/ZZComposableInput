@@ -27,7 +27,6 @@
 		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
 		04A5728B29B76B5F000E0D08 /* CLOCItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728A29B76B5E000E0D08 /* CLOCItemsLoader.swift */; };
 		04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
-		04A5728E29B78276000E0D08 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04A5A210298D7E9300C76384 /* CLOCTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20F298D7E9300C76384 /* CLOCTextParser.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZTaskInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZTaskInput.framework */; };
@@ -37,7 +36,8 @@
 		04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD71298BF37F00715BD3 /* MockTextParser.swift */; };
 		04E04071299270CA000EC9D2 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */; };
 		04E04073299270ED000EC9D2 /* UIKit+Simulating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */; };
-		04E040752992712D000EC9D2 /* TaskInputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E040742992712D000EC9D2 /* TaskInputSpy.swift */; };
+		04F7831229B8741B00DD849B /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
+		04F7831429B90A7200DD849B /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7831329B90A7200DD849B /* UIView+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +105,7 @@
 		04CEFD71298BF37F00715BD3 /* MockTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextParser.swift; sourceTree = "<group>"; };
 		04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Simulating.swift"; sourceTree = "<group>"; };
-		04E040742992712D000EC9D2 /* TaskInputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInputSpy.swift; sourceTree = "<group>"; };
+		04F7831329B90A7200DD849B /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +267,7 @@
 			children = (
 				04E04070299270CA000EC9D2 /* ZZTaskInputView.swift */,
 				04E04072299270ED000EC9D2 /* UIKit+Simulating.swift */,
-				04E040742992712D000EC9D2 /* TaskInputSpy.swift */,
+				04F7831329B90A7200DD849B /* UIView+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -462,14 +462,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04E040752992712D000EC9D2 /* TaskInputSpy.swift in Sources */,
 				04E04071299270CA000EC9D2 /* ZZTaskInputView.swift in Sources */,
 				040CE0D1298FADB5003BB6DC /* ZZTaskInputViewTests.swift in Sources */,
+				04F7831429B90A7200DD849B /* UIView+TestHelpers.swift in Sources */,
+				04F7831229B8741B00DD849B /* TestHelpers.swift in Sources */,
 				040CCEEF298FFE320053194A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				04E04073299270ED000EC9D2 /* UIKit+Simulating.swift in Sources */,
 				040CCEE8298FC3E60053194A /* MockTextParser.swift in Sources */,
 				040CCEE9298FC3E90053194A /* ItemLoaderSpy.swift in Sources */,
-				04A5728E29B78276000E0D08 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
