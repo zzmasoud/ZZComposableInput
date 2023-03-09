@@ -4,7 +4,7 @@
 
 import ZZTaskInput
 
-public protocol ItemsLoadingView: AnyObject {
+public protocol ItemsLoadingView {
     func display(isLoading: Bool)
 }
 
@@ -25,7 +25,7 @@ public final class ItemsPresenter {
         self.indexMapper = indexMapper
     }
 
-    weak var loadingView: ItemsLoadingView?
+    var loadingView: ItemsLoadingView?
     var listView: ItemsListView?
     
     func selectSection(index: Int) {
