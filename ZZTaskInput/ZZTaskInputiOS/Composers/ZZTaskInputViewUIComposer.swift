@@ -40,7 +40,7 @@ public final class ZZTaskInputViewComposer {
     }
 }
 
-public final class ItemsListViewAdapter: ItemsListView {
+final class ItemsListViewAdapter: ItemsListView {
     private weak var controller: ZZTaskInputView?
     private let preSelectedItemsHandler: PreSelectedItemsHandler
     

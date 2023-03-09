@@ -4,15 +4,15 @@
 
 import ZZTaskInput
 
-public protocol ItemsLoadingView {
+protocol ItemsLoadingView {
     func display(isLoading: Bool)
 }
 
-public protocol ItemsListView {
+protocol ItemsListView {
     func display(index: Int, items: [NEED_TO_BE_GENERIC])
 }
 
-public final class ItemsPresenter {
+final class ItemsPresenter {
     typealias IndexMapper = (Int) -> CLOCSelectableProperty
         
     private let loader: ZZItemsLoader
