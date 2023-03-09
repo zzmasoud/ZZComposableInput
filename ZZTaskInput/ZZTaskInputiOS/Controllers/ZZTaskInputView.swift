@@ -46,6 +46,7 @@ final public class ZZTaskInputView: UIView {
         self.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsMultipleSelection = true
         tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
     }
     

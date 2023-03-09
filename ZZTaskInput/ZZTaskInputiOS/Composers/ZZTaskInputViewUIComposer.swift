@@ -25,11 +25,15 @@ public final class ZZTaskInputViewComposer {
                 let (title, description) = textParser.parse(text: text)
             }
             
-            sectionsController.onLoad = { [weak inputView] result in
+            sectionsController.onLoad = { [weak inputView] (index, result) in
                 guard let inputView = inputView else { return }
                 if let items = try? result.get() {
-                    let preSelectedItems = inputView.preSelectedItems as? [CLOCItemsContainer.Item]
-                    let container = CLOCItemsContainer(items: items, preSelectedItems: preSelectedItems)
+                    let preSelectedItems = inputView.preSelectedItems
+                    let container = CLOCItemsContainer(
+                        items: items,
+                        preSelectedItems: preSelectedItems,
+                        selectionType: CLOCSelectableProperty(rawValue: index)!.selectionType)
+                    
                     inputView.cellControllers = adaptContainerItemsToCellControllers(forwardingTo: inputView, container: container)
                     
                     inputView.onSelection = { [weak container] index in

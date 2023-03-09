@@ -32,7 +32,7 @@ final class ZZSectionsController: NSObject {
     }
     
     var onLoading: (() -> Void)?
-    var onLoad: CLOCItemsLoader.FetchItemsCompletion?
+    var onLoad: ((Int, CLOCItemsLoader.FetchItemsResult) -> Void)?
     
     @objc private func selectSection() {
         let index = view.selectedSegmentIndex
@@ -41,7 +41,7 @@ final class ZZSectionsController: NSObject {
         label.isHidden = true
         loader.loadItems(for: index, completion: { [weak self] result in
             self?.label.isHidden = false
-            self?.onLoad?(result)
+            self?.onLoad?(index, result)
         })
     }
 }
