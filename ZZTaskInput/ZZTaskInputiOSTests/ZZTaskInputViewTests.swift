@@ -85,10 +85,9 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
-        let (sut, loader) = makeSUT()
         let items = makeItems()
         let preSelectedItems = [items[1]] as? [NEED_TO_BE_GENERIC]
-        sut.preSelectedItems = preSelectedItems
+        let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
         
         // when
         sut.simulateSelection()
@@ -226,12 +225,13 @@ class ZZTaskInputViewTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
+    private func makeSUT(preSelectedItems: [NEED_TO_BE_GENERIC]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
         let spyLoader = ItemLoaderSpy()
         let loader = CLOCItemsLoader(loader: spyLoader)
         let sut = ZZTaskInputViewComposer.composedWith(
             textParser: CLOCTextParser(),
-            itemsLoader: loader)
+            itemsLoader: loader,
+            preSelectedItemsHandler: { _ in preSelectedItems })
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

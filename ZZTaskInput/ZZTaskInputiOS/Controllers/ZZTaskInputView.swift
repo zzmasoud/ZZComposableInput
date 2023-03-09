@@ -9,8 +9,7 @@ final public class ZZTaskInputView: UIView {
     private(set) public var segmentedControl: UISegmentedControl?
     private (set) public var textField: UITextField = UITextField()
     private(set) public var tableView = UITableView()
-    
-    
+
     var sectionsController: ZZSectionsController?
     var cellControllers = [ZZSelectableCellController]() {
         didSet {
@@ -19,10 +18,7 @@ final public class ZZTaskInputView: UIView {
     }
     
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
-    public var text: String? { textField.text }
-    #warning("this is a bad dependancy!")
-    public var preSelectedItems: [NEED_TO_BE_GENERIC]?
-    
+    public var text: String? { textField.text }    
     public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?

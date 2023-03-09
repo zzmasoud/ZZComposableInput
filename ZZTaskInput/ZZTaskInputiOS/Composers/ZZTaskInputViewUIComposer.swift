@@ -7,11 +7,14 @@ import ZZTaskInput
 
 public final class ZZTaskInputViewComposer {
     public typealias ParsedText = (title: String, description: String?)
+    public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
     private init() {}
     
     public static func composedWith(
         textParser: CLOCTextParser,
-        itemsLoader: ZZItemsLoader) -> ZZTaskInputView {
+        itemsLoader: ZZItemsLoader,
+        preSelectedItemsHandler: PreSelectedItemsHandler?
+    ) -> ZZTaskInputView {
             let sectionsController = ZZSectionsController(
                 loader: itemsLoader,
                 sections: ["date", "time", "project", "weekdaysRepeat"],
@@ -28,13 +31,15 @@ public final class ZZTaskInputViewComposer {
             sectionsController.onLoad = { [weak inputView] (index, result) in
                 guard let inputView = inputView else { return }
                 if let items = try? result.get() {
-                    let preSelectedItems = inputView.preSelectedItems
+                    let preSelectedItems = preSelectedItemsHandler?(index)
                     let container = CLOCItemsContainer(
                         items: items,
                         preSelectedItems: preSelectedItems,
                         selectionType: CLOCSelectableProperty(rawValue: index)!.selectionType)
                     
-                    inputView.cellControllers = adaptContainerItemsToCellControllers(forwardingTo: inputView, container: container)
+                    inputView.cellControllers = adaptContainerItemsToCellControllers(
+                        forwardingTo: inputView,
+                        container: container)
                     
                     inputView.onSelection = { [weak container] index in
                         container?.select(at: index)
