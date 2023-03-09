@@ -14,7 +14,7 @@ final class WeakRefVirtualProxy<T: AnyObject> {
 }
 
 extension WeakRefVirtualProxy: ItemsLoadingView where T:ItemsLoadingView {
-    func display(isLoading: Bool) {
-        object?.display(isLoading: isLoading)
+    func display(_ viewModel: ItemsLoadingViewModel) {
+        object?.display(viewModel)
     }
 }

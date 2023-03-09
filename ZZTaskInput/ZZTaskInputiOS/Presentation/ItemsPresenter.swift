@@ -4,12 +4,21 @@
 
 import ZZTaskInput
 
+struct ItemsLoadingViewModel {
+    let isLoading: Bool
+}
+
 protocol ItemsLoadingView {
-    func display(isLoading: Bool)
+    func display(_ viewModel: ItemsLoadingViewModel)
+}
+
+struct ItemsListViewModel {
+    let index: Int
+    let items: [NEED_TO_BE_GENERIC]
 }
 
 protocol ItemsListView {
-    func display(index: Int, items: [NEED_TO_BE_GENERIC])
+    func display(_ viewModel: ItemsListViewModel)
 }
 
 final class ItemsPresenter {
@@ -29,12 +38,12 @@ final class ItemsPresenter {
     var listView: ItemsListView?
     
     func selectSection(index: Int) {
-        loadingView?.display(isLoading: true)
+        loadingView?.display(ItemsLoadingViewModel(isLoading: true))
         loader.loadItems(for: index, completion: { [weak self] result in
-            self?.loadingView?.display(isLoading: false)
+            self?.loadingView?.display(ItemsLoadingViewModel(isLoading: false))
             switch result {
             case .success(let items):
-                self?.listView?.display(index: index, items: items ?? [])
+                self?.listView?.display(ItemsListViewModel(index: index, items: items ?? []))
             case.failure:
                 break
             }

@@ -28,7 +28,7 @@ final class ZZSectionsController: NSObject, ItemsLoadingView {
         presenter.selectSection(index: view.selectedSegmentIndex)
     }
     
-    func display(isLoading: Bool) {
-        self.label.isHidden = isLoading
+    func display(_ viewModel: ItemsLoadingViewModel) {
+        self.label.isHidden = viewModel.isLoading
     }
 }

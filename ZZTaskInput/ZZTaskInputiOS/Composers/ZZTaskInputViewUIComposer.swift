@@ -49,12 +49,12 @@ final class ItemsListViewAdapter: ItemsListView {
         self.preSelectedItemsHandler = preSelectedItemsHandler
     }
     
-    public func display(index: Int, items: [NEED_TO_BE_GENERIC]) {
-        let preSelectedItems = preSelectedItemsHandler(index)
+    public func display(_ viewModel: ItemsListViewModel) {
+        let preSelectedItems = preSelectedItemsHandler(viewModel.index)
         let container = CLOCItemsContainer(
-            items: items,
+            items: viewModel.items,
             preSelectedItems: preSelectedItems,
-            selectionType: CLOCSelectableProperty(rawValue: index)!.selectionType)
+            selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
         
         controller?.cellControllers = (container.items ?? []).map { item in
             return ZZSelectableCellController(text: item.title, isSelected: {
