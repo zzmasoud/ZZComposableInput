@@ -31,6 +31,11 @@ public final class ZZTaskInputViewComposer {
                     let preSelectedItems = inputView.preSelectedItems as? [CLOCItemsContainer.Item]
                     let container = CLOCItemsContainer(items: items, preSelectedItems: preSelectedItems)
                     inputView.cellControllers = adaptContainerItemsToCellControllers(forwardingTo: inputView, container: container)
+                    
+                    inputView.onSelection = { [weak container] index in
+                        container?.select(at: index)
+                    }
+                    
                 } else {
                     inputView.cellControllers = []
                 }

@@ -24,6 +24,7 @@ final public class ZZTaskInputView: UIView {
     public var preSelectedItems: [NEED_TO_BE_GENERIC]?
     
     public var onCompletion: (() -> Void)?
+    public var onSelection: ((Int) -> Void)?
     
     convenience init(sectionsController: ZZSectionsController) {
         self.init()
@@ -73,6 +74,7 @@ extension ZZTaskInputView: UITableViewDataSource {
 
 extension ZZTaskInputView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelection?(indexPath.row)
     }
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
