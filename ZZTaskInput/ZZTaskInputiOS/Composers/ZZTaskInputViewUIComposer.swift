@@ -5,65 +5,69 @@
 import Foundation
 import ZZTaskInput
 
+public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
+
 public final class ZZTaskInputViewComposer {
     public typealias ParsedText = (title: String, description: String?)
-    public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
     private init() {}
     
     public static func composedWith(
         textParser: CLOCTextParser,
         itemsLoader: ZZItemsLoader,
-        preSelectedItemsHandler: PreSelectedItemsHandler?
+        preSelectedItemsHandler: @escaping PreSelectedItemsHandler
     ) -> ZZTaskInputView {
-        let sectionsViewModel = ZZSectionsViewModel(
+        let itemsPresenter = ItemsPresenter(
             loader: itemsLoader,
             sections: ["date", "time", "project", "weekdaysRepeat"],
             indexMapper: { index in
                 return CLOCSelectableProperty(rawValue: index)!
             })
-        let sectionsController = ZZSectionsController(viewModel: sectionsViewModel)
-        
+ 
+        let sectionsController = ZZSectionsController(presenter: itemsPresenter)
         let inputView = ZZTaskInputView(sectionsController: sectionsController)
+        
+        itemsPresenter.loadingView = sectionsController
+        itemsPresenter.listView = ItemsListViewAdapter(
+            controller: inputView,
+            preSelectedItemsHandler: preSelectedItemsHandler)
+        
         inputView.onCompletion = { [weak inputView] in
             guard let text = inputView?.text else { return }
             let (title, description) = textParser.parse(text: text)
         }
         
-        sectionsViewModel.onLoad = { [weak inputView] (index, result) in
-            guard let inputView = inputView else { return }
-            if let items = try? result.get() {
-                let preSelectedItems = preSelectedItemsHandler?(index)
-                let container = CLOCItemsContainer(
-                    items: items,
-                    preSelectedItems: preSelectedItems,
-                    selectionType: CLOCSelectableProperty(rawValue: index)!.selectionType)
-                
-                inputView.cellControllers = adaptContainerItemsToCellControllers(
-                    forwardingTo: inputView,
-                    container: container)
-                
-                inputView.onSelection = { [weak container] index in
-                    container?.select(at: index)
-                }
-                
-                inputView.onDeselection = { [weak container] index in
-                    container?.unselect(at: index)
-                }
-                
-            } else {
-                inputView.cellControllers = []
-            }
-        }
-        
         return inputView
     }
+}
+
+public final class ItemsListViewAdapter: ItemsListView {
+    private weak var controller: ZZTaskInputView?
+    private let preSelectedItemsHandler: PreSelectedItemsHandler
     
-    private static func adaptContainerItemsToCellControllers(forwardingTo controller: ZZTaskInputView, container: CLOCItemsContainer) -> [ZZSelectableCellController] {
-        (container.items ?? []).map { item in
+    init(controller: ZZTaskInputView, preSelectedItemsHandler: @escaping PreSelectedItemsHandler) {
+        self.controller = controller
+        self.preSelectedItemsHandler = preSelectedItemsHandler
+    }
+    
+    public func display(index: Int, items: [NEED_TO_BE_GENERIC]) {
+        let preSelectedItems = preSelectedItemsHandler(index)
+        let container = CLOCItemsContainer(
+            items: items,
+            preSelectedItems: preSelectedItems,
+            selectionType: CLOCSelectableProperty(rawValue: index)!.selectionType)
+        
+        controller?.cellControllers = (container.items ?? []).map { item in
             return ZZSelectableCellController(text: item.title, isSelected: {
                 container.selectedItems?.contains(item) ?? false
             })
         }
+        
+        controller?.onSelection = { [weak container] index in
+            container?.select(at: index)
+        }
+        
+        controller?.onDeselection = { [weak container] index in
+            container?.unselect(at: index)
+        }
     }
 }
-

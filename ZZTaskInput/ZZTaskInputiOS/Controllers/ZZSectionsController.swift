@@ -4,11 +4,12 @@
 
 import UIKit
 
-final class ZZSectionsController: NSObject {
+final class ZZSectionsController: NSObject, ItemsLoadingView {
     private(set) lazy var view: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: viewModel.sections)
+        let segmentedControl = UISegmentedControl(items: presenter.sections)
+        segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = -1
-        return bind(segmentedControl)
+        return segmentedControl
     }()
     
     private(set) lazy var label: UILabel = {
@@ -17,22 +18,17 @@ final class ZZSectionsController: NSObject {
         return label
     }()
     
-    private let viewModel: ZZSectionsViewModel
-    var onLoading: (() -> Void)?
+    private let presenter: ItemsPresenter
     
-    init(viewModel: ZZSectionsViewModel) {
-        self.viewModel = viewModel
+    init(presenter: ItemsPresenter) {
+        self.presenter = presenter
     }
-    
-    private func bind(_ view: UISegmentedControl) -> UISegmentedControl {
-        view.addTarget(self, action: #selector(selectSection), for: .valueChanged)
-        viewModel.onLoading = { [weak self] isLoading in
-            self?.label.isHidden = isLoading
-        }
-        return view
-    }
-    
+
     @objc private func selectSection() {
-        viewModel.selectSection(index: view.selectedSegmentIndex)
+        presenter.selectSection(index: view.selectedSegmentIndex)
+    }
+    
+    func display(isLoading: Bool) {
+        self.label.isHidden = isLoading
     }
 }

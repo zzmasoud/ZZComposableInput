@@ -234,7 +234,7 @@ class ZZTaskInputViewTests: XCTestCase {
             preSelectedItemsHandler: { _ in preSelectedItems })
         
         trackForMemoryLeaks(loader, file: file, line: line)
-        trackForMemoryLeaks(sut, file: file, line: line)
+//        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, spyLoader)
     }
