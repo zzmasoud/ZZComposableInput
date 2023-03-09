@@ -21,25 +21,25 @@ final class ZZSectionsController: NSObject {
         return label
     }()
     
-    private let loader: DefaultTaskInput
+    private let loader: ZZItemsLoader
     private let sections: [String]
     private let indexMapper: IndexMapper
     
-    init(loader: DefaultTaskInput, sections: [String], indexMapper: @escaping IndexMapper) {
+    init(loader: ZZItemsLoader, sections: [String], indexMapper: @escaping IndexMapper) {
         self.loader = loader
         self.sections = sections
         self.indexMapper = indexMapper
     }
     
     var onLoading: (() -> Void)?
-    var onLoad: DefaultTaskInput.FetchItemsCompletion?
+    var onLoad: CLOCItemsLoader.FetchItemsCompletion?
     
     @objc private func selectSection() {
         let index = view.selectedSegmentIndex
-        let section = indexMapper(index)
+//        let section = indexMapper(index)
 
         label.isHidden = true
-        loader.select(section: section, withPreselectedItems: nil, completion: { [weak self] result in
+        loader.loadItems(for: index, completion: { [weak self] result in
             self?.label.isHidden = false
             self?.onLoad?(result)
         })

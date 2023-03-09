@@ -7,19 +7,23 @@ import ZZTaskInput
 
 final public class ZZTaskInputView: UIView {
     private(set) public var segmentedControl: UISegmentedControl?
-    public let textField: UITextField = UITextField()
-    public let tableView = UITableView()
+    private (set) public var textField: UITextField = UITextField()
+    private(set) public var tableView = UITableView()
+    
     
     var sectionsController: ZZSectionsController?
-    var model: DefaultTaskInput.ItemType?
     var cellControllers = [ZZSelectableCellController]() {
         didSet {
             tableView.reloadData()
         }
     }
-    public var selectedSectionLabel: UILabel? {
-        sectionsController?.label
-    }
+    
+    public var selectedSectionLabel: UILabel? { sectionsController?.label }
+    public var text: String? { textField.text }
+    #warning("this is a bad dependancy!")
+    public var preSelectedItems: [NEED_TO_BE_GENERIC]?
+    
+    public var onCompletion: (() -> Void)?
     
     convenience init(sectionsController: ZZSectionsController) {
         self.init()
@@ -69,10 +73,8 @@ extension ZZTaskInputView: UITableViewDataSource {
 
 extension ZZTaskInputView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        model?.select(at: indexPath.row)
     }
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        model?.unselect(at: indexPath.row)
     }
 }

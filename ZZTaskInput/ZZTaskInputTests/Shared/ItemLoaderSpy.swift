@@ -11,7 +11,6 @@ class ItemLoaderSpy: ZZItemsLoader {
 
     private(set) var receivedMessages = [Section]()
     private(set) var completions = [FetchItemsCompletion]()
-    var preselectedItems: [Item]?
     
     public var loadCallCount: Int {
         return receivedMessages.count

@@ -9,13 +9,13 @@ import ZZTaskInputiOS
 
 class ZZTaskInputViewTests: XCTestCase {
     
-    func test_loadItemsActions_requestSelectFromInputController() {
-        let (sut, inputController) = makeSUT()
-        XCTAssertEqual(inputController.loadCallCount, 0)
+    func test_loadItemsActions_requestSelectFromloader() {
+        let (sut, loader) = makeSUT()
+        XCTAssertEqual(loader.loadCallCount, 0)
         
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: makeItems())
-        XCTAssertEqual(inputController.loadCallCount, 1)
+        loader.completeRetrieval(with: makeItems())
+        XCTAssertEqual(loader.loadCallCount, 1)
     }
 
     func test_didMoveToWindow_makesTextFieldFirstResponder() {
@@ -30,81 +30,82 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_selectedSectionText_isVisibleWhenItemsIsLoaded() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         XCTAssertTrue(sut.isSectionTextHidden)
  
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: makeItems())
+        loader.completeRetrieval(with: makeItems())
         XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: singleSelectionSection1)
         XCTAssertTrue(sut.isSectionTextHidden)
 
-        inputController.loader.completeRetrieval(with: .none, at: 1)
+        loader.completeRetrieval(with: .none, at: 1)
         XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: singleSelectionSection2)
         XCTAssertTrue(sut.isSectionTextHidden)
 
-        inputController.loader.completeRetrieval(with: makeError(), at: 2)
+        loader.completeRetrieval(with: makeError(), at: 2)
         XCTAssertFalse(sut.isSectionTextHidden)
     }
     
     func test_loadItemsInSectionCompletion_rendersSuccessfullyLoadedItems() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let items = makeItems()
 
         // when
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
         assertThat(sut, isRendering: items)
         
         // when
         sut.simulateSelection(section: singleSelectionSection1)
-        inputController.loader.completeRetrieval(with: .none, at: 1)
+        loader.completeRetrieval(with: .none, at: 1)
         // then
         assertThat(sut, isRendering: [])
     }
     
     func test_loadItemsInSectionCompletion_doesNotAlterCurrentRenderingStateOnError() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let items = makeItems()
 
         // when
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
         assertThat(sut, isRendering: items)
 
         // when
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: makeError())
+        loader.completeRetrieval(with: makeError())
         // then
         assertThat(sut, isRendering: items)
     }
     
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let items = makeItems()
-        inputController.preselectedItems = [items[1]]
+        let preSelectedItems = [items[1]] as? [NEED_TO_BE_GENERIC]
+        sut.preSelectedItems = preSelectedItems
         
         // when
         sut.simulateSelection()
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
-        assertThat(sut, isRendering: items, selectedItems: inputController.preselectedItems)
-    }
+        assertThat(sut, isRendering: items, selectedItems: preSelectedItems)
+     }
     
     // MARK: - Single Selection Behaviour
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let section = singleSelectionSection0
         let items = makeItems()
 
         sut.simulateSelection(section: singleSelectionSection0)
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         assertThat(sut, isRendering: items)
 
         // when
@@ -119,13 +120,13 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let section = singleSelectionSection0
         let items = makeItems()
         
         // when
         sut.simulateSelection(section: section)
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
         assertThat(sut, isRendering: items)
 
@@ -144,12 +145,12 @@ class ZZTaskInputViewTests: XCTestCase {
     // MARK: - Multi Selection Behaviour
     
     func test_selectingRenderedItemOnMultiSelectionType_doesNotremoveSelectionIndicatorFromPreviouslySelectedItem() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let section = multiSelectionSection
         let items = makeItems()
 
         sut.simulateSelection(section: section)
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         assertThat(sut, isRendering: items)
 
         // when
@@ -160,13 +161,13 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_deselectingRenderedItemOnMultiSelectionType_removesSelectionIndicator() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let section = multiSelectionSection
         let items = makeItems()
         
         // when
         sut.simulateSelection(section: section)
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
         assertThat(sut, isRendering: items)
 
@@ -193,13 +194,13 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
-        let (sut, inputController) = makeSUT()
+        let (sut, loader) = makeSUT()
         let section = multiSelectionSection
         let items = makeItems()
         
         // when
         sut.simulateSelection(section: section)
-        inputController.loader.completeRetrieval(with: items)
+        loader.completeRetrieval(with: items)
         // then
         assertThat(sut, isRendering: items)
 
@@ -225,24 +226,19 @@ class ZZTaskInputViewTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, inputController: TaskInputSpy) {
-        let inputController = TaskInputSpy()
-        let sut = ZZTaskInputViewComposer.composedWith(inputController: inputController)
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
+        let spyLoader = ItemLoaderSpy()
+        let loader = CLOCItemsLoader(loader: spyLoader)
+        let sut = ZZTaskInputViewComposer.composedWith(
+            textParser: CLOCTextParser(),
+            itemsLoader: loader)
         
-        trackForMemoryLeaks(inputController, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, inputController)
+        return (sut, spyLoader)
     }
-    
-    private func makeItems() -> [DefaultTaskInput.SelectableItem] {
-        return (1...10).map { String($0)}
-    }
-    
-    private func makeError() -> NSError {
-        return NSError(domain: "error", code: -1)
-    }
-    
+
     private var singleSelectionSection0: Int {
         CLOCSelectableProperty.date.rawValue
     }
@@ -274,7 +270,7 @@ class ZZTaskInputViewTests: XCTestCase {
         for (index, item) in items.enumerated() {
             let view = sut.itemView(at: index)
             XCTAssertNotNil(view, file: file, line: line)
-            XCTAssertEqual(view?.textLabel?.text, item, file: file, line: line)
+            XCTAssertEqual(view?.textLabel?.text, item.title, file: file, line: line)
             let isPreselected = selectedItems?.contains(item) ?? false
             XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator, file: file, line: line)
         }
@@ -312,5 +308,9 @@ class ZZTaskInputViewTests: XCTestCase {
             selectionLimit = max
         }
         XCTAssertTrue(selectedIndexes.count <= selectionLimit, file: file, line: line)
+    }
+    
+    private func executeRunLoopToCleanUpReferences() {
+        RunLoop.current.run(until: Date())
     }
 }

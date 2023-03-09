@@ -20,7 +20,11 @@ public final class CLOCItemsLoader: ZZItemsLoader {
                 if let items = try? result.get() {
                     self?.cachedItems[section] = items
                 }
-                completion(result)
+                if let loadedAlready = self?.cachedItems[section] {
+                    completion(.success(loadedAlready))
+                } else {
+                    completion(result)
+                }
             })
         }
     }
