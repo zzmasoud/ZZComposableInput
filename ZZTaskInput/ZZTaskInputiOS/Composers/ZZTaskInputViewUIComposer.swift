@@ -40,6 +40,10 @@ public final class ZZTaskInputViewComposer {
                         container?.select(at: index)
                     }
                     
+                    inputView.onDeselection = { [weak container] index in
+                        container?.unselect(at: index)
+                    }
+                    
                 } else {
                     inputView.cellControllers = []
                 }

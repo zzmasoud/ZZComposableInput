@@ -25,6 +25,7 @@ final public class ZZTaskInputView: UIView {
     
     public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
+    public var onDeselection: ((Int) -> Void)?
     
     convenience init(sectionsController: ZZSectionsController) {
         self.init()
@@ -79,5 +80,6 @@ extension ZZTaskInputView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        onDeselection?(indexPath.row)
     }
 }
