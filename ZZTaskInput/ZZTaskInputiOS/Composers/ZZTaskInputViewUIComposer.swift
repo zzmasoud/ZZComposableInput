@@ -23,7 +23,9 @@ public final class ZZTaskInputViewComposer {
                 return CLOCSelectableProperty(rawValue: index)!
             })
  
-        let sectionsController = ZZSectionsController(presenter: itemsPresenter)
+        let sectionsController = ZZSectionsController(
+            sections: itemsPresenter.sections,
+            loadSection: itemsPresenter.selectSection(index:))
         let inputView = ZZTaskInputView(sectionsController: sectionsController)
         
         itemsPresenter.loadingView = WeakRefVirtualProxy(sectionsController)

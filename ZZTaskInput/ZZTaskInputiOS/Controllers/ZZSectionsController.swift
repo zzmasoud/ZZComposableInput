@@ -6,7 +6,7 @@ import UIKit
 
 final class ZZSectionsController: NSObject, ItemsLoadingView {
     private(set) lazy var view: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: presenter.sections)
+        let segmentedControl = UISegmentedControl(items: sections)
         segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = -1
         return segmentedControl
@@ -18,14 +18,16 @@ final class ZZSectionsController: NSObject, ItemsLoadingView {
         return label
     }()
     
-    private let presenter: ItemsPresenter
+    private var sections: [String]
+    private let loadSection: (Int) -> Void
     
-    init(presenter: ItemsPresenter) {
-        self.presenter = presenter
+    init(sections: [String], loadSection: @escaping (Int) -> Void) {
+        self.sections = sections
+        self.loadSection = loadSection
     }
 
     @objc private func selectSection() {
-        presenter.selectSection(index: view.selectedSegmentIndex)
+        loadSection(view.selectedSegmentIndex)
     }
     
     func display(_ viewModel: ItemsLoadingViewModel) {
