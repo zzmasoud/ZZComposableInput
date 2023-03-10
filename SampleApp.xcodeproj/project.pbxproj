@@ -13,7 +13,23 @@
 		041483BC29BB824F00406083 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041483BA29BB824F00406083 /* Main.storyboard */; };
 		041483BE29BB824F00406083 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041483BD29BB824F00406083 /* Assets.xcassets */; };
 		041483C129BB824F00406083 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041483BF29BB824F00406083 /* LaunchScreen.storyboard */; };
+		041483CA29BB82DC00406083 /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */; };
+		041483CB29BB82DC00406083 /* ZZTaskInputiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		041483CC29BB82DC00406083 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				041483CB29BB82DC00406083 /* ZZTaskInputiOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		041483B129BB824F00406083 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +40,7 @@
 		041483BD29BB824F00406083 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041483C029BB824F00406083 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041483C229BB824F00406083 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041483CA29BB82DC00406083 /* ZZTaskInputiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +60,7 @@
 			children = (
 				041483B329BB824F00406083 /* SampleApp */,
 				041483B229BB824F00406083 /* Products */,
+				041483C829BB82DC00406083 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +86,14 @@
 			path = SampleApp;
 			sourceTree = "<group>";
 		};
+		041483C829BB82DC00406083 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,6 +104,7 @@
 				041483AD29BB824F00406083 /* Sources */,
 				041483AE29BB824F00406083 /* Frameworks */,
 				041483AF29BB824F00406083 /* Resources */,
+				041483CC29BB82DC00406083 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,7 +319,6 @@
 				INFOPLIST_FILE = SampleApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -319,7 +346,6 @@
 				INFOPLIST_FILE = SampleApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
