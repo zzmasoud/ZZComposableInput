@@ -8,11 +8,10 @@ import ZZTaskInput
 public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
 
 public final class ZZTaskInputViewComposer {
-    public typealias ParsedText = (title: String, description: String?)
     private init() {}
     
     public static func composedWith(
-        textParser: CLOCTextParser,
+        textParser: any ZZTextParser,
         itemsLoader: ZZItemsLoader,
         preSelectedItemsHandler: @escaping PreSelectedItemsHandler
     ) -> ZZTaskInputView {
@@ -38,7 +37,7 @@ public final class ZZTaskInputViewComposer {
         
         inputView.onCompletion = { [weak inputView] in
             guard let text = inputView?.text else { return }
-            let (title, description) = textParser.parse(text: text)
+            let _ = textParser.parse(text: text)
         }
         
         return inputView
