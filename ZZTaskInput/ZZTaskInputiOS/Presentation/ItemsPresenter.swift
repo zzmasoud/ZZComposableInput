@@ -4,22 +4,6 @@
 
 import ZZTaskInput
 
-struct ItemsLoadingViewModel {
-    let isLoading: Bool
-}
-
-protocol ItemsLoadingView {
-    func display(_ viewModel: ItemsLoadingViewModel)
-}
-
-struct ItemsListViewModel {
-    let index: Int
-    let items: [NEED_TO_BE_GENERIC]
-}
-
-protocol ItemsListView {
-    func display(_ viewModel: ItemsListViewModel)
-}
 
 final class ItemsPresenter {
     typealias IndexMapper = (Int) -> CLOCSelectableProperty
