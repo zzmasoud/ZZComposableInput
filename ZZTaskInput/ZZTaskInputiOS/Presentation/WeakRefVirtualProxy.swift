@@ -18,3 +18,9 @@ extension WeakRefVirtualProxy: ItemsLoadingView where T:ItemsLoadingView {
         object?.display(viewModel)
     }
 }
+
+extension WeakRefVirtualProxy: SectionsView where T: SectionsView {
+    func disply(_ viewModel: SectionsViewModel) {
+        object?.disply(viewModel)
+    }
+}

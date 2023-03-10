@@ -25,6 +25,4 @@ final class ItemsPresenter {
     func didFinishLoadingItems(with error: Error) {
         loadingView.display(ItemsLoadingViewModel(isLoading: false))
     }
-    
-    static var sections: [String] {  ["date", "time", "project", "weekdaysRepeat"] }
 }
