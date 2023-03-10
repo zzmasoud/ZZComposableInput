@@ -24,6 +24,7 @@ final class ZZSectionsController: NSObject, SectionsView, ItemsLoadingView {
     }
     
     func disply(_ viewModel: SectionsViewModel) {
+        segmentedControl.removeAllSegments()
         for (index, title) in (viewModel.titles).enumerated() {
             segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
         }

@@ -33,7 +33,7 @@ class ZZTaskInputViewTests: XCTestCase {
         let (sut, _) = makeSUT()
 
         #warning("how to make this test flexible by comparing to a variable not constant number. how to read them from presenter?")
-        XCTAssertEqual(sut.numberOfRenderedSections, 6)
+        XCTAssertEqual(sut.numberOfRenderedSections, 4)
         XCTAssertEqual(sut.selectedSectionIndex, -1)
     }
     
