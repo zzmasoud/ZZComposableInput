@@ -2,7 +2,7 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //  
 
-import Foundation
+import UIKit
 import ZZTaskInput
 
 public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
@@ -21,8 +21,11 @@ public final class ZZTaskInputViewComposer {
  
         let sectionsController = ZZSectionsController(
             sections: ["date", "time", "project", "weekdaysRepeat"],
-            loadSection: presentationAdapter.selectSection(index:) )
-        let inputView = ZZTaskInputView(sectionsController: sectionsController)
+            loadSection: presentationAdapter.selectSection(index:))
+        
+        let storyboard = UIStoryboard(name: "ZZTaskInput", bundle: Bundle(for: ZZTaskInputView.self))
+        let inputView = storyboard.instantiateInitialViewController() as! ZZTaskInputView
+        inputView.sectionsController = sectionsController
         
         let itemsPresenter = ItemsPresenter(
             loadingView: WeakRefVirtualProxy(sectionsController),

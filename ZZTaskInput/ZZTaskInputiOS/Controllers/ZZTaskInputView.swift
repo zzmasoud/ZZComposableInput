@@ -22,12 +22,7 @@ final public class ZZTaskInputView: UIViewController {
     public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
-    
-    convenience init(sectionsController: ZZSectionsController) {
-        self.init()
-        self.sectionsController = sectionsController
-    }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         
