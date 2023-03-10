@@ -13,27 +13,23 @@ public final class ZZTaskInputViewComposer {
     
     public static func composedWith(
         textParser: CLOCTextParser,
-        itemsLoader: ZZ ItemsLoader,
+        itemsLoader: ZZItemsLoader,
         preSelectedItemsHandler: @escaping PreSelectedItemsHandler
     ) -> ZZTaskInputView {
-        let itemsPresenter = ItemsPresenter(
-            sections: ["date", "time", "project", "weekdaysRepeat"],
-            indexMapper: { index in
-                return CLOCSelectableProperty(rawValue: index)!
-            })
         let presentationAdapter = SectionSelectionPresentationAdapter(
-            loader: itemsLoader,
-            presenter: itemsPresenter)
+            loader: itemsLoader)
  
         let sectionsController = ZZSectionsController(
-            sections: itemsPresenter.sections,
+            sections: ["date", "time", "project", "weekdaysRepeat"],
             loadSection: presentationAdapter.selectSection(index:) )
         let inputView = ZZTaskInputView(sectionsController: sectionsController)
         
-        itemsPresenter.loadingView = WeakRefVirtualProxy(sectionsController)
-        itemsPresenter.listView = ItemsListViewAdapter(
-            controller: inputView,
-            preSelectedItemsHandler: preSelectedItemsHandler)
+        let itemsPresenter = ItemsPresenter(
+            loadingView: WeakRefVirtualProxy(sectionsController),
+            listView: ItemsListViewAdapter(
+                controller: inputView,
+                preSelectedItemsHandler: preSelectedItemsHandler))
+        presentationAdapter.presenter = itemsPresenter
         
         inputView.onCompletion = { [weak inputView] in
             guard let text = inputView?.text else { return }
@@ -79,21 +75,20 @@ final class ItemsListViewAdapter: ItemsListView {
 
 final class SectionSelectionPresentationAdapter {
     private let loader: ZZItemsLoader
-    private let presenter: ItemsPresenter
+    var presenter: ItemsPresenter?
     
-    init(loader: ZZItemsLoader, presenter: ItemsPresenter) {
+    init(loader: ZZItemsLoader) {
         self.loader = loader
-        self.presenter = presenter
     }
     
     func selectSection(index: Int) {
-        presenter.didStartLoadingItems()
+        presenter?.didStartLoadingItems()
         loader.loadItems(for: index, completion: { [weak self] result in
             switch result {
             case .success(let items):
-                self?.presenter.didFinishLoadingItems(with: items ?? [], at: index)
+                self?.presenter?.didFinishLoadingItems(with: items ?? [], at: index)
             case.failure(let error):
-                self?.presenter.didFinishLoadingItems(with: error)
+                self?.presenter?.didFinishLoadingItems(with: error)
             }
         })
     }

@@ -4,31 +4,25 @@
 
 import ZZTaskInput
 
-
 final class ItemsPresenter {
-    typealias IndexMapper = (Int) -> CLOCSelectableProperty
-        
-    let sections: [String]
-    private let indexMapper: IndexMapper
+    private let loadingView: ItemsLoadingView
+    private let listView: ItemsListView
 
-    init(sections: [String], indexMapper: @escaping IndexMapper) {
-        self.sections = sections
-        self.indexMapper = indexMapper
+    init(loadingView: ItemsLoadingView, listView: ItemsListView) {
+        self.loadingView = loadingView
+        self.listView = listView
     }
-
-    var loadingView: ItemsLoadingView?
-    var listView: ItemsListView?
     
     func didStartLoadingItems() {
-        loadingView?.display(ItemsLoadingViewModel(isLoading: true))
+        loadingView.display(ItemsLoadingViewModel(isLoading: true))
     }
     
     func didFinishLoadingItems(with items: [NEED_TO_BE_GENERIC], at index: Int) {
-        listView?.display(ItemsListViewModel(index: index, items: items))
-        loadingView?.display(ItemsLoadingViewModel(isLoading: false))
+        listView.display(ItemsListViewModel(index: index, items: items))
+        loadingView.display(ItemsLoadingViewModel(isLoading: false))
     }
     
     func didFinishLoadingItems(with error: Error) {
-        loadingView?.display(ItemsLoadingViewModel(isLoading: false))
+        loadingView.display(ItemsLoadingViewModel(isLoading: false))
     }
 }
