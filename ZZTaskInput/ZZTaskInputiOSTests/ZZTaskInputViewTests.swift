@@ -295,13 +295,13 @@ class ZZTaskInputViewTests: XCTestCase {
     private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
-        XCTAssertTrue(view0!.isSelectedAndShowingIndicator, file: file, line: line)
+        XCTAssertTrue(view0!.isSelectedAndShowingIndicator, "expected to have selection indicator in the view but not found", file: file, line: line)
     }
     
     private func assertThat(_ sut: ZZTaskInputView, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
-        XCTAssertFalse(view0!.isSelectedAndShowingIndicator, file: file, line: line)
+        XCTAssertFalse(view0!.isSelectedAndShowingIndicator, "expected to have no selection indicator in the view but found it", file: file, line: line)
     }
     
     private func assertThat(_ sut: ZZTaskInputView, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: CLOCSelectableProperty, file: StaticString = #file, line: UInt = #line) {
@@ -309,7 +309,7 @@ class ZZTaskInputViewTests: XCTestCase {
         if case .multiple(let max) = section.selectionType {
             selectionLimit = max
         }
-        XCTAssertTrue(selectedIndexes.count <= selectionLimit, file: file, line: line)
+        XCTAssertTrue(selectedIndexes.count <= selectionLimit, "expected selection type: \(section.selectionType) but got \(selectedIndexes.count) items selected", file: file, line: line)
     }
     
     private func executeRunLoopToCleanUpReferences() {

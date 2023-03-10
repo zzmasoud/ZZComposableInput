@@ -13,8 +13,8 @@ final class ZZSelectableCellController {
         self.isSelected = isSelected
     }
     
-    func view() -> UITableViewCell {
-        let cell = ZZSelectableCell()
+    func view(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ZZSelectableCell.id, for: indexPath) as! ZZSelectableCell
         cell.textLabel?.text = text
         cell.setSelected(isSelected(), animated: false)
         return cell

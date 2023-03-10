@@ -19,13 +19,12 @@ public final class ZZTaskInputViewComposer {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
  
-        let sectionsController = ZZSectionsController(
-            sections: ["date", "time", "project", "weekdaysRepeat"],
-            loadSection: presentationAdapter.selectSection(index:))
-        
         let storyboard = UIStoryboard(name: "ZZTaskInput", bundle: Bundle(for: ZZTaskInputView.self))
         let inputView = storyboard.instantiateInitialViewController() as! ZZTaskInputView
-        inputView.sectionsController = sectionsController
+        let sectionsController = inputView.sectionsController!
+        #warning("should set segment titles from compostion layer")
+        sectionsController.sections = ["date", "time", "project", "weekdaysRepeat"]
+        sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
         let itemsPresenter = ItemsPresenter(
             loadingView: WeakRefVirtualProxy(sectionsController),

@@ -5,29 +5,20 @@
 import UIKit
 
 final class ZZSectionsController: NSObject, ItemsLoadingView {
-    private(set) lazy var view: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: sections)
-        segmentedControl.addTarget(self, action: #selector(selectSection), for: .valueChanged)
-        segmentedControl.selectedSegmentIndex = -1
-        return segmentedControl
-    }()
+    @IBOutlet private(set) var segmentedControl: UISegmentedControl!
+    @IBOutlet private(set) var label: UILabel!
     
-    private(set) lazy var label: UILabel = {
-        let label = UILabel()
-        label.isHidden = true
-        return label
-    }()
+    var sections: [String]?
+    var loadSection: ((Int) -> Void)?
     
-    private var sections: [String]
-    private let loadSection: (Int) -> Void
-    
-    init(sections: [String], loadSection: @escaping (Int) -> Void) {
-        self.sections = sections
-        self.loadSection = loadSection
+    func setSections() {
+        for (index, item) in (sections ?? []).enumerated() {
+            segmentedControl.insertSegment(withTitle: item, at: index, animated: false)
+        }
     }
 
-    @objc private func selectSection() {
-        loadSection(view.selectedSegmentIndex)
+    @IBAction private func selectSection() {
+        loadSection?(segmentedControl.selectedSegmentIndex)
     }
     
     func display(_ viewModel: ItemsLoadingViewModel) {
