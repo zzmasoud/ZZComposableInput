@@ -13,19 +13,21 @@ public final class ZZTaskInputViewComposer {
     
     public static func composedWith(
         textParser: CLOCTextParser,
-        itemsLoader: ZZItemsLoader,
+        itemsLoader: ZZ ItemsLoader,
         preSelectedItemsHandler: @escaping PreSelectedItemsHandler
     ) -> ZZTaskInputView {
         let itemsPresenter = ItemsPresenter(
-            loader: itemsLoader,
             sections: ["date", "time", "project", "weekdaysRepeat"],
             indexMapper: { index in
                 return CLOCSelectableProperty(rawValue: index)!
             })
+        let presentationAdapter = SectionSelectionPresentationAdapter(
+            loader: itemsLoader,
+            presenter: itemsPresenter)
  
         let sectionsController = ZZSectionsController(
             sections: itemsPresenter.sections,
-            loadSection: itemsPresenter.selectSection(index:))
+            loadSection: presentationAdapter.selectSection(index:) )
         let inputView = ZZTaskInputView(sectionsController: sectionsController)
         
         itemsPresenter.loadingView = WeakRefVirtualProxy(sectionsController)
@@ -71,5 +73,28 @@ final class ItemsListViewAdapter: ItemsListView {
         controller?.onDeselection = { [weak container] index in
             container?.unselect(at: index)
         }
+    }
+}
+
+
+final class SectionSelectionPresentationAdapter {
+    private let loader: ZZItemsLoader
+    private let presenter: ItemsPresenter
+    
+    init(loader: ZZItemsLoader, presenter: ItemsPresenter) {
+        self.loader = loader
+        self.presenter = presenter
+    }
+    
+    func selectSection(index: Int) {
+        presenter.didStartLoadingItems()
+        loader.loadItems(for: index, completion: { [weak self] result in
+            switch result {
+            case .success(let items):
+                self?.presenter.didFinishLoadingItems(with: items ?? [], at: index)
+            case.failure(let error):
+                self?.presenter.didFinishLoadingItems(with: error)
+            }
+        })
     }
 }

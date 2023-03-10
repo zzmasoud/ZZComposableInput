@@ -8,3 +8,4 @@ struct ItemsListViewModel {
     let index: Int
     let items: [NEED_TO_BE_GENERIC]
 }
+ 

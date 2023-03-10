@@ -8,12 +8,10 @@ import ZZTaskInput
 final class ItemsPresenter {
     typealias IndexMapper = (Int) -> CLOCSelectableProperty
         
-    private let loader: ZZItemsLoader
     let sections: [String]
     private let indexMapper: IndexMapper
 
-    init(loader: ZZItemsLoader, sections: [String], indexMapper: @escaping IndexMapper) {
-        self.loader = loader
+    init(sections: [String], indexMapper: @escaping IndexMapper) {
         self.sections = sections
         self.indexMapper = indexMapper
     }
@@ -21,16 +19,16 @@ final class ItemsPresenter {
     var loadingView: ItemsLoadingView?
     var listView: ItemsListView?
     
-    func selectSection(index: Int) {
+    func didStartLoadingItems() {
         loadingView?.display(ItemsLoadingViewModel(isLoading: true))
-        loader.loadItems(for: index, completion: { [weak self] result in
-            self?.loadingView?.display(ItemsLoadingViewModel(isLoading: false))
-            switch result {
-            case .success(let items):
-                self?.listView?.display(ItemsListViewModel(index: index, items: items ?? []))
-            case.failure:
-                break
-            }
-        })
+    }
+    
+    func didFinishLoadingItems(with items: [NEED_TO_BE_GENERIC], at index: Int) {
+        listView?.display(ItemsListViewModel(index: index, items: items))
+        loadingView?.display(ItemsLoadingViewModel(isLoading: false))
+    }
+    
+    func didFinishLoadingItems(with error: Error) {
+        loadingView?.display(ItemsLoadingViewModel(isLoading: false))
     }
 }
