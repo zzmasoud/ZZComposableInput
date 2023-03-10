@@ -15,6 +15,7 @@ final class ZZSectionsController: NSObject, ItemsLoadingView {
         for (index, item) in (sections ?? []).enumerated() {
             segmentedControl.insertSegment(withTitle: item, at: index, animated: false)
         }
+        segmentedControl.selectedSegmentIndex = -1
     }
 
     @IBAction private func selectSection() {

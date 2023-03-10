@@ -42,6 +42,14 @@ extension ZZTaskInputView {
     }
     
     var section: Int { 0 }
+    
+    var numberOfRenderedSections: Int {
+        segmentedControl.numberOfSegments
+    }
+    
+    var selectedSectionIndex: Int {
+        segmentedControl.selectedSegmentIndex
+    }
 }
 
 extension UITableViewCell {

@@ -29,6 +29,14 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertTrue(sut.isTextFieldFirstResponder)
     }
     
+    func test_sectionsView_rendersSectionsAndNoSectionSelectedAtFirst() {
+        let (sut, _) = makeSUT()
+
+        #warning("how to make this test flexible by comparing to a variable not constant number")
+        XCTAssertEqual(sut.numberOfRenderedSections, 6)
+        XCTAssertEqual(sut.selectedSectionIndex, -1)
+    }
+    
     func test_selectedSectionText_isVisibleWhenItemsIsLoaded() {
         let (sut, loader) = makeSUT()
         XCTAssertTrue(sut.isSectionTextHidden)
