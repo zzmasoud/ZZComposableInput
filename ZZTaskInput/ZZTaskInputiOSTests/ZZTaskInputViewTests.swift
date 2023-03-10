@@ -32,7 +32,7 @@ class ZZTaskInputViewTests: XCTestCase {
     func test_sectionsView_rendersSectionsAndNoSectionSelectedAtFirst() {
         let (sut, _) = makeSUT()
 
-        #warning("how to make this test flexible by comparing to a variable not constant number")
+        #warning("how to make this test flexible by comparing to a variable not constant number. ItemsPresenter is not public so the sections property can't be used")
         XCTAssertEqual(sut.numberOfRenderedSections, 6)
         XCTAssertEqual(sut.selectedSectionIndex, -1)
     }

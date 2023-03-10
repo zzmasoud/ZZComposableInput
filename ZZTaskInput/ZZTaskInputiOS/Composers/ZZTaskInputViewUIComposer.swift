@@ -22,8 +22,8 @@ public final class ZZTaskInputViewComposer {
         let storyboard = UIStoryboard(name: "ZZTaskInput", bundle: Bundle(for: ZZTaskInputView.self))
         let inputView = storyboard.instantiateInitialViewController() as! ZZTaskInputView
         let sectionsController = inputView.sectionsController!
-        #warning("should set segment titles from compostion layer")
-        sectionsController.sections = ["date", "time", "project", "weekdaysRepeat"]
+        #warning("should get sections title from presenter and be set in the composition root. but still setting a useless sections property of SectionsController which will later be used by a function call after view did load. how to fix this?")
+        sectionsController.sections = ItemsPresenter.sections
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
         let itemsPresenter = ItemsPresenter(
