@@ -234,7 +234,9 @@ class ZZTaskInputViewTests: XCTestCase {
             preSelectedItemsHandler: { _ in preSelectedItems })
         
         trackForMemoryLeaks(loader, file: file, line: line)
-//        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        sut.loadViewIfNeeded()
         
         return (sut, spyLoader)
     }
@@ -257,11 +259,11 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func addToWindow(_ sut: ZZTaskInputView) {
         let window = UIWindow()
-        window.addSubview(sut)
+        window.addSubview(sut.view)
     }
     
     private func assertThat(_ sut: ZZTaskInputView, isRendering items: [ItemLoaderSpy.Item], selectedItems: [ItemLoaderSpy.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
-        sut.enforceLayoutCycle()
+        sut.tableView.enforceLayoutCycle()
 
         guard sut.numberOfRenderedItems == items.count else {
             return XCTFail("expected \(items.count) items but got \(sut.numberOfRenderedItems) items!", file: file, line: line)

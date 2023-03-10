@@ -28,6 +28,7 @@
 		046D8CE529BB10B20077BFC8 /* ItemsLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE429BB10B20077BFC8 /* ItemsLoadingViewModel.swift */; };
 		046D8CE729BB10C70077BFC8 /* ItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE629BB10C70077BFC8 /* ItemsListViewModel.swift */; };
 		046D8CE929BB10DE0077BFC8 /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE829BB10DE0077BFC8 /* ItemsListView.swift */; };
+		046D8CEB29BB1D730077BFC8 /* ZZTaskInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D8CEA29BB1D730077BFC8 /* ZZTaskInput.storyboard */; };
 		04854A8029BA5A0B00B05665 /* ItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A7F29BA5A0B00B05665 /* ItemsPresenter.swift */; };
 		04854A8229BA6B7200B05665 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A8129BA6B7200B05665 /* WeakRefVirtualProxy.swift */; };
 		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
@@ -102,6 +103,7 @@
 		046D8CE429BB10B20077BFC8 /* ItemsLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoadingViewModel.swift; sourceTree = "<group>"; };
 		046D8CE629BB10C70077BFC8 /* ItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListViewModel.swift; sourceTree = "<group>"; };
 		046D8CE829BB10DE0077BFC8 /* ItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListView.swift; sourceTree = "<group>"; };
+		046D8CEA29BB1D730077BFC8 /* ZZTaskInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ZZTaskInput.storyboard; sourceTree = "<group>"; };
 		04854A7F29BA5A0B00B05665 /* ItemsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPresenter.swift; sourceTree = "<group>"; };
 		04854A8129BA6B7200B05665 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCSelectableProperty.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				046C5F702992A81900672906 /* ZZSelectableCell.swift */,
+				046D8CEA29BB1D730077BFC8 /* ZZTaskInput.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046D8CEB29BB1D730077BFC8 /* ZZTaskInput.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

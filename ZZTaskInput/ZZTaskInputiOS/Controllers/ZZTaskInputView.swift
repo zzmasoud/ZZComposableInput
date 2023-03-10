@@ -5,7 +5,7 @@
 import UIKit
 import ZZTaskInput
 
-final public class ZZTaskInputView: UIView {
+final public class ZZTaskInputView: UIViewController {
     private(set) public var segmentedControl: UISegmentedControl?
     private (set) public var textField: UITextField = UITextField()
     private(set) public var tableView = UITableView()
@@ -26,13 +26,24 @@ final public class ZZTaskInputView: UIView {
     convenience init(sectionsController: ZZSectionsController) {
         self.init()
         self.sectionsController = sectionsController
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
         setupTextField()
         setupSegmentedControl()
         setupTableView()
     }
     
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.textField.becomeFirstResponder()
+    }
+    
     private func setupTextField() {
-        self.addSubview(textField)
+        self.view.addSubview(textField)
     }
     
     private func setupSegmentedControl() {
@@ -40,19 +51,11 @@ final public class ZZTaskInputView: UIView {
     }
     
     private func setupTableView() {
-        self.addSubview(tableView)
+        self.view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsMultipleSelection = true
         tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
-    }
-    
-    public override func didMoveToWindow() {
-        super.didMoveToWindow()
-        
-        if self.window != nil {
-            self.textField.becomeFirstResponder()
-        }
     }
 }
 
