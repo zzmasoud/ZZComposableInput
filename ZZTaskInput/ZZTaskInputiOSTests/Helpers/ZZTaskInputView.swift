@@ -37,6 +37,10 @@ extension ZZTaskInputView {
         selectedSectionLabel?.isHidden ?? true
     }
     
+    var sectionText: String? {
+        selectedSectionLabel?.text
+    }
+    
     var numberOfRenderedItems: Int {
         tableView.numberOfRows(inSection: section)
     }

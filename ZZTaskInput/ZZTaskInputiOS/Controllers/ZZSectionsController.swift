@@ -6,9 +6,10 @@ import UIKit
 
 protocol ZZSectionsControllerDelegate {
     func didRequestSections()
+    func didSelectSection(at: Int)
 }
 
-final class ZZSectionsController: NSObject, SectionsView, ItemsLoadingView {
+final class ZZSectionsController: NSObject, SectionsView, SectionView {
     @IBOutlet private(set) var segmentedControl: UISegmentedControl!
     @IBOutlet private(set) var label: UILabel!
     
@@ -19,8 +20,11 @@ final class ZZSectionsController: NSObject, SectionsView, ItemsLoadingView {
         delegate?.didRequestSections()
     }
 
+    #warning("here it's sending the selection massege to 2 object. first, a closure to load and couple a table view and second to inform the delegate and change a label's text. is it correct? or it should be one shared presenter to handle both?")
     @IBAction private func selectSection() {
-        loadSection?(segmentedControl.selectedSegmentIndex)
+        let index = segmentedControl.selectedSegmentIndex
+        loadSection?(index)
+        delegate?.didSelectSection(at: index)
     }
     
     func disply(_ viewModel: SectionsViewModel) {
@@ -31,7 +35,8 @@ final class ZZSectionsController: NSObject, SectionsView, ItemsLoadingView {
         segmentedControl.selectedSegmentIndex = viewModel.defaultSelectedIndex
     }
     
-    func display(_ viewModel: ItemsLoadingViewModel) {
-        label.isHidden = viewModel.isLoading
+    func display(_ viewModel: SectionViewModel) {
+        label.isHidden = false
+        label.text = viewModel.title
     }
 }

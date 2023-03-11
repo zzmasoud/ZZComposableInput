@@ -23,4 +23,8 @@ extension WeakRefVirtualProxy: SectionsView where T: SectionsView {
     func disply(_ viewModel: SectionsViewModel) {
         object?.disply(viewModel)
     }
+    
+    func display(_ viewModel: SectionViewModel) {
+        object?.display(viewModel)
+    }
 }

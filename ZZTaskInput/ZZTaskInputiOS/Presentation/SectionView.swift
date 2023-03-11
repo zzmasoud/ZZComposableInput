@@ -4,7 +4,6 @@
 
 import Foundation
 
-protocol SectionsView {
-    func disply(_ viewModel: SectionsViewModel)
+protocol SectionView {
     func display(_ viewModel: SectionViewModel)
 }

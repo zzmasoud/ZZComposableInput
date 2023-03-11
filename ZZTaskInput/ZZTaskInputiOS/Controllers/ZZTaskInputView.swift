@@ -5,7 +5,7 @@
 import UIKit
 import ZZTaskInput
 
-final public class ZZTaskInputView: UIViewController {
+final public class ZZTaskInputView: UIViewController, ItemsLoadingView {
     @IBOutlet private(set) public var textField: UITextField!
     @IBOutlet private(set) public var tableView: UITableView!
     @IBOutlet private(set) var sectionsController: ZZSectionsController!
@@ -38,6 +38,10 @@ final public class ZZTaskInputView: UIViewController {
         super.viewWillAppear(animated)
         
         self.textField.becomeFirstResponder()
+    }
+    
+    func display(_ viewModel: ItemsLoadingViewModel) {
+        
     }
 }
 

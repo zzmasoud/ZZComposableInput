@@ -29,7 +29,7 @@ public final class ZZTaskInputViewComposer {
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
         let itemsPresenter = ItemsPresenter(
-            loadingView: WeakRefVirtualProxy(sectionsController),
+            loadingView: WeakRefVirtualProxy(inputView),
             listView: ItemsListViewAdapter(
                 controller: inputView,
                 preSelectedItemsHandler: preSelectedItemsHandler))
