@@ -232,7 +232,7 @@
 			path = Composers;
 			sourceTree = "<group>";
 		};
-		04854A7E29BA59FB00B05665 /* Presentation */ = {
+		047CA3B329BD2DF500718831 /* Section */ = {
 			isa = PBXGroup;
 			children = (
 				046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */,
@@ -240,11 +240,27 @@
 				047CA3AF29BD18D800718831 /* SectionView.swift */,
 				046D8CEE29BB7D340077BFC8 /* SectionsView.swift */,
 				046D8CEC29BB7D1A0077BFC8 /* SectionsPresenter.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		047CA3B429BD2E0600718831 /* Items */ = {
+			isa = PBXGroup;
+			children = (
 				046D8CE429BB10B20077BFC8 /* ItemsLoadingViewModel.swift */,
 				046D8CE229BB10A00077BFC8 /* ItemsLoadingView.swift */,
 				046D8CE629BB10C70077BFC8 /* ItemsListViewModel.swift */,
 				046D8CE829BB10DE0077BFC8 /* ItemsListView.swift */,
 				04854A7F29BA5A0B00B05665 /* ItemsPresenter.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		04854A7E29BA59FB00B05665 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				047CA3B329BD2DF500718831 /* Section */,
+				047CA3B429BD2E0600718831 /* Items */,
 				04854A8129BA6B7200B05665 /* WeakRefVirtualProxy.swift */,
 			);
 			path = Presentation;

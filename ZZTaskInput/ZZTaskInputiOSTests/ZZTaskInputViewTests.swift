@@ -95,6 +95,26 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items)
     }
     
+    func test_loadItemsInSectionCompletion_removesPreviouslyRenderedItemsOnNewSectionError() {
+        let (sut, loader) = makeSUT()
+        let items = makeItems()
+
+        // when
+        sut.simulateSelection()
+        loader.completeRetrieval(with: items)
+        
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateSelection(section: 1)
+        loader.completeRetrieval(with: makeError(), at: 1)
+        
+        // then
+        assertThat(sut, isRendering: [])
+        
+    }
+    
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
         let items = makeItems()
         let preSelectedItems = [items[1]] as? [NEED_TO_BE_GENERIC]

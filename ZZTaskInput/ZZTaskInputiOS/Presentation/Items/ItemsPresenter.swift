@@ -23,6 +23,7 @@ final class ItemsPresenter {
     }
     
     func didFinishLoadingItems(with error: Error) {
+        listView.display(ItemsListViewModel(index: -1, items: []))
         loadingView.display(ItemsLoadingViewModel(isLoading: false))
     }
 }
