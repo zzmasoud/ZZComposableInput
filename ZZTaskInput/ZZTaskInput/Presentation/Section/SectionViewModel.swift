@@ -4,6 +4,6 @@
 
 import Foundation
 
-struct SectionViewModel {
+public struct SectionViewModel {
     let title: String
 }

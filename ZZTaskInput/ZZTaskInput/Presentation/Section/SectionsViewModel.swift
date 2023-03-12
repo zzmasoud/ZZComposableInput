@@ -4,7 +4,12 @@
 
 import Foundation
 
-struct SectionsViewModel {
-    let titles: [String]
-    let defaultSelectedIndex: Int
+public struct SectionsViewModel {
+    public let titles: [String]
+    public let selectedIndex: Int
+    
+    public init(titles: [String], selectedIndex: Int) {
+        self.titles = titles
+        self.selectedIndex = selectedIndex
+    }
 }

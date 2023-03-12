@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol SectionsView {
-    func disply(_ viewModel: SectionsViewModel)
+public protocol SectionsView {
+    func display(_ viewModel: SectionsViewModel)
     func display(_ viewModel: SectionViewModel)
 }
