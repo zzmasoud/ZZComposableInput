@@ -23,6 +23,7 @@
 		044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3B129BD18E500718831 /* SectionViewModel.swift */; };
 		044160FC29BDF8990070D6CE /* SectionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */; };
 		044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEC29BB7D1A0077BFC8 /* SectionsPresenter.swift */; };
+		044160FF29BDF98E0070D6CE /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */; };
 		045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -100,6 +101,7 @@
 		043787FC298E4BF200CD2F26 /* CLOCItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCItemsContainerTests.swift; sourceTree = "<group>"; };
 		044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsPresenterTests.swift; sourceTree = "<group>"; };
+		044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZItemsLoader.swift; sourceTree = "<group>"; };
 		045C50D7298D1AC7005C44AE /* ZZTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTextParser.swift; sourceTree = "<group>"; };
 		045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */,
+				044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				04CEFD6F298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift in Sources */,
 				04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */,
 				044160FC29BDF8990070D6CE /* SectionsPresenterTests.swift in Sources */,
+				044160FF29BDF98E0070D6CE /* LoadResourcePresenterTests.swift in Sources */,
 				04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */,
 				04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */,
 				04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */,
