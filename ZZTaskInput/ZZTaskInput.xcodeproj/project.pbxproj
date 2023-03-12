@@ -28,6 +28,8 @@
 		0441610129BDFA9B0070D6CE /* ResourceLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE429BB10B20077BFC8 /* ResourceLoadingViewModel.swift */; };
 		0441610229BDFC910070D6CE /* ResourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE829BB10DE0077BFC8 /* ResourceListView.swift */; };
 		0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE629BB10C70077BFC8 /* ResourceListViewModel.swift */; };
+		0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A7F29BA5A0B00B05665 /* LoadResourcePresenter.swift */; };
+		0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3AF29BD18D800718831 /* SectionView.swift */; };
 		045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -35,8 +37,6 @@
 		046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F702992A81900672906 /* ZZSelectableCell.swift */; };
 		046C5F762992C08600672906 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F752992C08600672906 /* ZZTaskInputViewUIComposer.swift */; };
 		046D8CEB29BB1D730077BFC8 /* ZZTaskInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D8CEA29BB1D730077BFC8 /* ZZTaskInput.storyboard */; };
-		047CA3B029BD18D800718831 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3AF29BD18D800718831 /* SectionView.swift */; };
-		04854A8029BA5A0B00B05665 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A7F29BA5A0B00B05665 /* LoadResourcePresenter.swift */; };
 		04854A8229BA6B7200B05665 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A8129BA6B7200B05665 /* WeakRefVirtualProxy.swift */; };
 		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
 		04A5728B29B76B5F000E0D08 /* CLOCItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728A29B76B5E000E0D08 /* CLOCItemsLoader.swift */; };
@@ -526,12 +526,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				046C5F762992C08600672906 /* ZZTaskInputViewUIComposer.swift in Sources */,
-				047CA3B029BD18D800718831 /* SectionView.swift in Sources */,
 				04854A8229BA6B7200B05665 /* WeakRefVirtualProxy.swift in Sources */,
 				046C5F6F2992A80000672906 /* ZZSelectableCellController.swift in Sources */,
 				046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */,
 				04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */,
-				04854A8029BA5A0B00B05665 /* LoadResourcePresenter.swift in Sources */,
 				0405818629929EEC0010B615 /* ZZSectionsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,10 +559,12 @@
 				045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* CLOCItemsContainer.swift in Sources */,
 				045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */,
+				0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */,
 				0441610229BDFC910070D6CE /* ResourceListView.swift in Sources */,
 				0441610129BDFA9B0070D6CE /* ResourceLoadingViewModel.swift in Sources */,
 				044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */,
 				0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */,
+				0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */,
 				044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */,
 				044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */,
 				0441610029BDFA940070D6CE /* ResourceLoadingView.swift in Sources */,

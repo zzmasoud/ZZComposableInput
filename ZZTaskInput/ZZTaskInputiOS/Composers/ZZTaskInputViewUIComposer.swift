@@ -24,7 +24,9 @@ public final class ZZTaskInputViewComposer {
         #warning("should get sections title from presenter and be set in the composition root. but still setting a useless sections property of SectionsController which will later be used by a function call after view did load. how to fix this?")
 //        sectionsController.sections = ItemsPresenter.section
         #warning("Fixed it by using a new presenter for sections. is it correct?")
-        sectionsController.delegate = SectionsPresenter(sectionsView: WeakRefVirtualProxy(sectionsController))
+        sectionsController.delegate = SectionsPresenter(
+            titles: ["date", "time", "project", "repeatDays"],
+            view: WeakRefVirtualProxy(sectionsController))
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
@@ -86,14 +88,17 @@ final class SectionSelectionPresentationAdapter {
     }
     
     func selectSection(index: Int) {
-        presenter?.didStartLoadingItems()
+        presenter?.didStartLoading()
         loader.loadItems(for: index, completion: { [weak self] result in
             switch result {
             case .success(let items):
-                self?.presenter?.didFinishLoadingItems(with: items ?? [], at: index)
+                self?.presenter?.didFinishLoading(with: items ?? [], at: index)
             case.failure(let error):
-                self?.presenter?.didFinishLoadingItems(with: error, at: index)
+                self?.presenter?.didFinishLoading(with: error, at: index)
             }
         })
     }
 }
+
+
+extension SectionsPresenter: ZZSectionsControllerDelegate { }

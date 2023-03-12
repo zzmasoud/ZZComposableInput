@@ -40,9 +40,7 @@ final public class ZZTaskInputView: UIViewController, ResourceLoadingView {
         self.textField.becomeFirstResponder()
     }
     
-    func display(_ viewModel: ResourceLoadingViewModel) {
-        
-    }
+    public func display(_ viewModel: ResourceLoadingViewModel) {}
 }
 
 extension ZZTaskInputView: UITableViewDataSource {

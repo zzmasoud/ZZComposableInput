@@ -3,13 +3,14 @@
 //  
 
 import UIKit
+import ZZTaskInput
 
 protocol ZZSectionsControllerDelegate {
     func didRequestSections()
     func didSelectSection(at: Int)
 }
 
-final class ZZSectionsController: NSObject, SectionsView, SectionView {
+final class ZZSectionsController: NSObject, SectionsView {
     @IBOutlet private(set) var segmentedControl: UISegmentedControl!
     @IBOutlet private(set) var label: UILabel!
     
@@ -27,14 +28,14 @@ final class ZZSectionsController: NSObject, SectionsView, SectionView {
         delegate?.didSelectSection(at: index)
     }
     
-    func disply(_ viewModel: SectionsViewModel) {
+    func display(_ viewModel: SectionsViewModel) {
         segmentedControl.removeAllSegments()
         for (index, title) in (viewModel.titles).enumerated() {
             segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
         }
-        segmentedControl.selectedSegmentIndex = viewModel.defaultSelectedIndex
+        segmentedControl.selectedSegmentIndex = viewModel.selectedIndex
     }
-    
+
     func display(_ viewModel: SectionViewModel) {
         label.isHidden = false
         label.text = viewModel.title

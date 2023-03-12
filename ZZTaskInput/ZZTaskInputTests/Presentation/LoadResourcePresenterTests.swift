@@ -5,42 +5,6 @@
 import XCTest
 import ZZTaskInput
 
-class LoadResourcePresenter {
-    private let loadingView: ResourceLoadingView
-    private let listView: ResourceListView
-    
-    init(loadingView: ResourceLoadingView, listView: ResourceListView) {
-        self.loadingView = loadingView
-        self.listView = listView
-    }
-    
-    func didStartLoading() {
-        loadingView.display(ResourceLoadingViewModel(
-            isLoading: true
-        ))
-    }
-    
-    func didFinishLoading(with items: [NEED_TO_BE_GENERIC], at index: Int) {
-        loadingView.display(ResourceLoadingViewModel(
-            isLoading: false
-        ))
-        listView.display(ResourceListViewModel(
-            index: index,
-            items: items
-        ))
-    }
-    
-    func didFinishLoading(with error: Error, at index: Int) {
-        loadingView.display(ResourceLoadingViewModel(
-            isLoading: false
-        ))
-        listView.display(ResourceListViewModel(
-            index: index,
-            items: []
-        ))
-    }
-}
-
 class LoadResourcePresenterTests: XCTestCase {
     
     func test_init_doesntSendMessagesToView() {
