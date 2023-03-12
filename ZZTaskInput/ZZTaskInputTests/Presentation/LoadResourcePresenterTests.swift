@@ -3,12 +3,19 @@
 //  
 
 import XCTest
+import ZZTaskInput
 
 class LoadResourcePresenter {
-    private let view: Any
+    private let loadingView: ResourceLoadingView
     
-    init(view: Any) {
-        self.view = view
+    init(loadingView: ResourceLoadingView) {
+        self.loadingView = loadingView
+    }
+    
+    func didStartLoading() {
+        loadingView.display(ResourceLoadingViewModel(
+            isLoading: true
+        ))
     }
 }
 
@@ -20,11 +27,21 @@ class LoadResourcePresenterTests: XCTestCase {
         XCTAssertTrue(view.messages.isEmpty)
     }
     
+    func test_didStartLoading_displaysLoadingStarted() {
+        let (sut, view) = makeSUT()
+
+        sut.didStartLoading()
+        
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: true)
+        ])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LoadResourcePresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = LoadResourcePresenter(view: view)
+        let sut = LoadResourcePresenter(loadingView: view)
         
         trackForMemoryLeaks(view)
         trackForMemoryLeaks(sut)
@@ -33,11 +50,15 @@ class LoadResourcePresenterTests: XCTestCase {
     }
     
     
-    private class ViewSpy {
+    private class ViewSpy: ResourceLoadingView {
         enum Message: Hashable {
+            case display(isLoading: Bool)
         }
         
         var messages = [Message]()
+        
+        func display(_ viewModel: ResourceLoadingViewModel) {
+            messages.append(.display(isLoading: true))
+        }
     }
-
 }
