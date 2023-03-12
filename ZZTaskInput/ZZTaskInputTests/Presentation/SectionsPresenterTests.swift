@@ -17,7 +17,14 @@ final class SectionsPresenter {
     func didRequestSections() {
         view.display(SectionsViewModel(
             titles: titles,
-            selectedIndex: -1))
+            selectedIndex: -1
+        ))
+    }
+    
+    func didSelectSection(at index: Int) {
+        view.display(SectionViewModel(
+            title: titles[index]
+        ))
     }
 }
 
@@ -39,6 +46,18 @@ class SectionsPresenterTests: XCTestCase {
         ])
     }
     
+    func test_didSelectSectionAt_displaysSectionTitleToView() {
+        let (sut, view) = makeSUT()
+        let index = 1
+        
+        sut.didSelectSection(at: index)
+        
+        XCTAssertEqual(view.messages, [
+            .display(title: sectionTitles()[index])
+        ])
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: SectionsPresenter, view: ViewSpy) {
@@ -58,6 +77,7 @@ class SectionsPresenterTests: XCTestCase {
     private class ViewSpy: SectionsView {
         enum Message: Hashable {
             case display(titles: [String], index: Int)
+            case display(title: String)
         }
         
         var messages = [Message]()
@@ -69,7 +89,8 @@ class SectionsPresenterTests: XCTestCase {
         }
         
         func display(_ viewModel: SectionViewModel) {
-            
+            messages.append(.display(
+                title: viewModel.title))
         }
     }
 }
