@@ -54,6 +54,10 @@ extension ZZTaskInputView {
     var selectedSectionIndex: Int {
         segmentedControl.selectedSegmentIndex
     }
+    
+    var isMultiSelection: Bool {
+        tableView.allowsMultipleSelection
+    }
 }
 
 extension UITableViewCell {

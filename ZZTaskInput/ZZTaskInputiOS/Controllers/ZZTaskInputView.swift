@@ -16,7 +16,6 @@ final public class ZZTaskInputView: UIViewController, ResourceLoadingView {
     
     var cellControllers = [ZZSelectableCellController]() {
         didSet {
-            tableView.allowsMultipleSelection = true
             tableView.reloadData()
         }
     }

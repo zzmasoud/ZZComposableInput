@@ -158,6 +158,26 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: section0Items, selectedItems: [section0Items[2]])
     }
     
+    func test_listViewSelectionLimit_changesWithSection() {
+        let singleSelectionSection = singleSelectionSection0
+        let multipleSelectionSection = multiSelectionSection
+        let (sut, loader) = makeSUT()
+        
+        // when
+        sut.simulateSelection(section: singleSelectionSection)
+        loader.completeRetrieval(with: makeError(), at: 0)
+        
+        // then
+        XCTAssertFalse(sut.isMultiSelection)
+        
+        // when
+        sut.simulateSelection(section: multipleSelectionSection)
+        loader.completeRetrieval(with: makeError(), at: 1)
+
+        // then
+        XCTAssertTrue(sut.isMultiSelection)
+    }
+    
     // MARK: - Single Selection Behaviour
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {

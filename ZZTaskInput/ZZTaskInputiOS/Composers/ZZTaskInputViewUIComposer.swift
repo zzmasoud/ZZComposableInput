@@ -69,6 +69,9 @@ final class ResourceListViewAdapter: ResourceListView {
                 selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
         }
         
+        #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
+        controller?.tableView.allowsMultipleSelection = container.selectionType != .single
+        
         controller?.cellControllers = (container.items ?? []).map { item in
             return ZZSelectableCellController(text: item.title, isSelected: {
                 container.selectedItems?.contains(item) ?? false

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public enum CLOCItemSelectionType {
+public enum CLOCItemSelectionType: Hashable {
     case single
     case multiple(max: Int)
 }
