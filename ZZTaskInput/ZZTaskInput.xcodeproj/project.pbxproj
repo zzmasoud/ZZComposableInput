@@ -21,7 +21,8 @@
 		044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */; };
 		044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEE29BB7D340077BFC8 /* SectionsView.swift */; };
 		044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3B129BD18E500718831 /* SectionViewModel.swift */; };
-		044160FA29BDF8090070D6CE /* SectionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */; };
+		044160FC29BDF8990070D6CE /* SectionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */; };
+		044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEC29BB7D1A0077BFC8 /* SectionsPresenter.swift */; };
 		045C50D3298D1A5F005C44AE /* ZZItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ZZItemsLoader.swift */; };
 		045C50D8298D1AC7005C44AE /* ZZTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D7298D1AC7005C44AE /* ZZTextParser.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -33,7 +34,6 @@
 		046D8CE729BB10C70077BFC8 /* ResourceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE629BB10C70077BFC8 /* ResourceListViewModel.swift */; };
 		046D8CE929BB10DE0077BFC8 /* ResourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CE829BB10DE0077BFC8 /* ResourceListView.swift */; };
 		046D8CEB29BB1D730077BFC8 /* ZZTaskInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D8CEA29BB1D730077BFC8 /* ZZTaskInput.storyboard */; };
-		046D8CED29BB7D1A0077BFC8 /* SectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEC29BB7D1A0077BFC8 /* SectionsPresenter.swift */; };
 		047CA3B029BD18D800718831 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3AF29BD18D800718831 /* SectionView.swift */; };
 		04854A8029BA5A0B00B05665 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A7F29BA5A0B00B05665 /* LoadResourcePresenter.swift */; };
 		04854A8229BA6B7200B05665 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04854A8129BA6B7200B05665 /* WeakRefVirtualProxy.swift */; };
@@ -529,7 +529,6 @@
 				046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */,
 				046D8CE329BB10A00077BFC8 /* ResourceLoadingView.swift in Sources */,
 				04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */,
-				046D8CED29BB7D1A0077BFC8 /* SectionsPresenter.swift in Sources */,
 				04854A8029BA5A0B00B05665 /* LoadResourcePresenter.swift in Sources */,
 				046D8CE529BB10B20077BFC8 /* ResourceLoadingViewModel.swift in Sources */,
 				046D8CE929BB10DE0077BFC8 /* ResourceListView.swift in Sources */,
@@ -567,6 +566,7 @@
 				044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */,
 				044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */,
 				04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */,
+				044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +576,7 @@
 			files = (
 				04CEFD6F298BEAAC00715BD3 /* CLOCItemsLoaderTests.swift in Sources */,
 				04CEFD72298BF37F00715BD3 /* MockTextParser.swift in Sources */,
-				044160FA29BDF8090070D6CE /* SectionsPresenterTests.swift in Sources */,
+				044160FC29BDF8990070D6CE /* SectionsPresenterTests.swift in Sources */,
 				04CEFD69298BB87B00715BD3 /* CLOCTextParserTests.swift in Sources */,
 				04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */,
 				04378801298E4CCB00CD2F26 /* CLOCItemsContainerTests.swift in Sources */,

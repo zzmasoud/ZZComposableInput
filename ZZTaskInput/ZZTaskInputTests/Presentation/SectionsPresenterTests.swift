@@ -5,29 +5,6 @@
 import XCTest
 import ZZTaskInput
 
-final class SectionsPresenter {
-    private let titles: [String]
-    private let view: SectionsView
-    
-    init(titles: [String], view: SectionsView) {
-        self.titles = titles
-        self.view = view
-    }
-    
-    func didRequestSections() {
-        view.display(SectionsViewModel(
-            titles: titles,
-            selectedIndex: -1
-        ))
-    }
-    
-    func didSelectSection(at index: Int) {
-        view.display(SectionViewModel(
-            title: titles[index]
-        ))
-    }
-}
-
 class SectionsPresenterTests: XCTestCase {
     
     func test_init_doesntSendMessagesToView() {

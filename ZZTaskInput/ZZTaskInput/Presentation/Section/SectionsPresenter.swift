@@ -4,22 +4,25 @@
 
 import Foundation
 
-final class SectionsPresenter: ZZSectionsControllerDelegate {
-    private let sectionsView: SectionsView
-        
-    init(sectionsView: SectionsView) {
-        self.sectionsView = sectionsView
+public final class SectionsPresenter {
+    private let titles: [String]
+    private let view: SectionsView
+    
+    public init(titles: [String], view: SectionsView) {
+        self.titles = titles
+        self.view = view
     }
     
-    private let titles = ["date", "time", "project", "weekdaysRepeat"]
-
-    func didRequestSections() {
-        sectionsView.disply(SectionsViewModel(
+    public func didRequestSections() {
+        view.display(SectionsViewModel(
             titles: titles,
-            defaultSelectedIndex: -1))
+            selectedIndex: -1
+        ))
     }
     
-    func didSelectSection(at index: Int) {
-        sectionsView.display(SectionViewModel(title: titles[index]))
+    public func didSelectSection(at index: Int) {
+        view.display(SectionViewModel(
+            title: titles[index]
+        ))
     }
 }
