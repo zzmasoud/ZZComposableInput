@@ -30,12 +30,12 @@ public final class ZZTaskInputViewComposer {
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
-        let itemsPresenter = LoadResourcePresenter(
+        let loadResourcePresenter = LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputView),
-            listView: ItemsListViewAdapter(
+            listView: ResourceListViewAdapter(
                 controller: inputView,
                 preSelectedItemsHandler: preSelectedItemsHandler))
-        presentationAdapter.presenter = itemsPresenter
+        presentationAdapter.presenter = loadResourcePresenter
         
         inputView.onCompletion = { [weak inputView] in
             guard let text = inputView?.text else { return }
@@ -46,9 +46,10 @@ public final class ZZTaskInputViewComposer {
     }
 }
 
-final class ItemsListViewAdapter: ResourceListView {
+final class ResourceListViewAdapter: ResourceListView {
     private weak var controller: ZZTaskInputView?
     private let preSelectedItemsHandler: PreSelectedItemsHandler
+    private var loadedContainers = [Int: CLOCItemsContainer]()
     
     init(controller: ZZTaskInputView, preSelectedItemsHandler: @escaping PreSelectedItemsHandler) {
         self.controller = controller
@@ -56,11 +57,17 @@ final class ItemsListViewAdapter: ResourceListView {
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
-        let preSelectedItems = preSelectedItemsHandler(viewModel.index)
-        let container = CLOCItemsContainer(
-            items: viewModel.items,
-            preSelectedItems: preSelectedItems,
-            selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
+        var container: CLOCItemsContainer
+        
+        if let loadedContainer = loadedContainers[viewModel.index] {
+            container = loadedContainer
+        } else {
+            let preSelectedItems = preSelectedItemsHandler(viewModel.index)
+            container = CLOCItemsContainer(
+                items: viewModel.items,
+                preSelectedItems: preSelectedItems,
+                selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
+        }
         
         controller?.cellControllers = (container.items ?? []).map { item in
             return ZZSelectableCellController(text: item.title, isSelected: {
@@ -75,6 +82,8 @@ final class ItemsListViewAdapter: ResourceListView {
         controller?.onDeselection = { [weak container] index in
             container?.unselect(at: index)
         }
+
+        loadedContainers[viewModel.index] = container
     }
 }
 

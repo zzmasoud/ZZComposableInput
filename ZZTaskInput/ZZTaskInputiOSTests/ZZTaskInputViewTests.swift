@@ -126,6 +126,38 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRendering: items, selectedItems: preSelectedItems)
      }
     
+    func test_selectingSection_keepsSelectedItemsOnPreviouslyChangedSection() {
+        let section0Items = makeItems()
+        let section1Items = makeItems()
+        let preSelectedItems = [section0Items[1]] as? [NEED_TO_BE_GENERIC]
+        let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
+        
+        // when
+        sut.simulateSelection(section: singleSelectionSection0)
+        loader.completeRetrieval(with: section0Items)
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemSelection(at: 2)
+
+        // then
+        assertThat(sut, isRendering: section0Items, selectedItems: [section0Items[2]])
+        
+        // when
+        sut.simulateSelection(section: multiSelectionSection)
+        loader.completeRetrieval(with: section1Items, at: 1)
+        sut.simulateItemSelection(at: 0, 1, 2)
+        
+        // then
+        assertThat(sut, isRendering: section1Items, selectedItems: Array(section1Items[0...2]))
+        
+        // when selecting the previously section again
+        sut.simulateSelection(section: singleSelectionSection0)
+        loader.completeRetrieval(with: section0Items)
+
+        // then
+        assertThat(sut, isRendering: section0Items, selectedItems: [section0Items[2]])
+    }
+    
     // MARK: - Single Selection Behaviour
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
