@@ -4,7 +4,7 @@
 
 import ZZTaskInput
 
-struct ItemsListViewModel {
+struct ResourceListViewModel {
     let index: Int
     let items: [NEED_TO_BE_GENERIC]
 }

@@ -28,7 +28,7 @@ public final class ZZTaskInputViewComposer {
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
-        let itemsPresenter = ItemsPresenter(
+        let itemsPresenter = LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputView),
             listView: ItemsListViewAdapter(
                 controller: inputView,
@@ -44,7 +44,7 @@ public final class ZZTaskInputViewComposer {
     }
 }
 
-final class ItemsListViewAdapter: ItemsListView {
+final class ItemsListViewAdapter: ResourceListView {
     private weak var controller: ZZTaskInputView?
     private let preSelectedItemsHandler: PreSelectedItemsHandler
     
@@ -53,7 +53,7 @@ final class ItemsListViewAdapter: ItemsListView {
         self.preSelectedItemsHandler = preSelectedItemsHandler
     }
     
-    public func display(_ viewModel: ItemsListViewModel) {
+    public func display(_ viewModel: ResourceListViewModel) {
         let preSelectedItems = preSelectedItemsHandler(viewModel.index)
         let container = CLOCItemsContainer(
             items: viewModel.items,
@@ -79,7 +79,7 @@ final class ItemsListViewAdapter: ItemsListView {
 
 final class SectionSelectionPresentationAdapter {
     private let loader: ZZItemsLoader
-    var presenter: ItemsPresenter?
+    var presenter: LoadResourcePresenter?
     
     init(loader: ZZItemsLoader) {
         self.loader = loader
