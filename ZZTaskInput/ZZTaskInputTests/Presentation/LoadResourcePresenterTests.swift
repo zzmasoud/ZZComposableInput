@@ -29,6 +29,16 @@ class LoadResourcePresenter {
             items: items
         ))
     }
+    
+    func didFinishLoading(with error: Error, at index: Int) {
+        loadingView.display(ResourceLoadingViewModel(
+            isLoading: false
+        ))
+        listView.display(ResourceListViewModel(
+            index: index,
+            items: []
+        ))
+    }
 }
 
 class LoadResourcePresenterTests: XCTestCase {
@@ -49,7 +59,7 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingResource_displaysResourceAndStopsLoading() {
+    func test_didFinishLoadingResource_displaysResourcesAndStopsLoading() {
         let (sut, view) = makeSUT()
         let items = makeItems()
         let index = 0
@@ -61,6 +71,20 @@ class LoadResourcePresenterTests: XCTestCase {
             .display(items: items, index: index)
         ])
     }
+    
+    func test_didFinishLoadingWithError_displaysEmptyResourcesAndStopsLoading() {
+        let (sut, view) = makeSUT()
+        let error = makeError()
+        let index = 0
+        
+        sut.didFinishLoading(with: error, at: index)
+        
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: false),
+            .display(items: [], index: index)
+        ])
+    }
+
     
     // MARK: - Helpers
     
