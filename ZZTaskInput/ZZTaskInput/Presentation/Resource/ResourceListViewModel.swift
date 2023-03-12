@@ -2,10 +2,15 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //  
 
-import ZZTaskInput
+import Foundation
 
-struct ResourceListViewModel {
-    let index: Int
-    let items: [NEED_TO_BE_GENERIC]
+public struct ResourceListViewModel {
+    public let index: Int
+    public let items: [NEED_TO_BE_GENERIC]
+    
+    public init(index: Int, items: [NEED_TO_BE_GENERIC]) {
+        self.index = index
+        self.items = items
+    }
 }
  

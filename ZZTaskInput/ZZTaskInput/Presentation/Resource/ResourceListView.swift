@@ -4,6 +4,6 @@
 
 import Foundation
 
-protocol ResourceListView {
+public protocol ResourceListView {
     func display(_ viewModel: ResourceListViewModel)
 }
