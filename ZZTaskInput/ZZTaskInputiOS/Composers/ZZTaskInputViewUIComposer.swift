@@ -92,7 +92,7 @@ final class SectionSelectionPresentationAdapter {
             case .success(let items):
                 self?.presenter?.didFinishLoadingItems(with: items ?? [], at: index)
             case.failure(let error):
-                self?.presenter?.didFinishLoadingItems(with: error)
+                self?.presenter?.didFinishLoadingItems(with: error, at: index)
             }
         })
     }
