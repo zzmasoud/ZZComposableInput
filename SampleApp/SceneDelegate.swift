@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let textParser = CLOCTextParser()
+        let textParser = DefaultTextParser()
         
         window?.rootViewController = ZZTaskInputViewComposer.composedWith(
             textParser: textParser,
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Item 2")
 
-class ItemsLoader: ZZItemsLoader {
+class ItemsLoader: ItemsLoader {
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
         switch section {
         case 0:
