@@ -51,7 +51,6 @@ class CLOCItemsLoaderTests: XCTestCase {
         }
     }
 
-
     func test_select_doesNotRequestItemsRetrievalAfterFirstSuccessRetrieval() {
         let (sut, loader) = makeSUT()
         let section = getSection()
@@ -95,16 +94,19 @@ class CLOCItemsLoaderTests: XCTestCase {
 
         XCTAssertTrue(loader.receivedMessages.isEmpty)
 
+        // 0: loading section 1
         sut.loadItems(for: section, completion: {_ in })
         loader.completeRetrieval(with: makeError())
 
         XCTAssertEqual(loader.receivedMessages.count, 1)
 
+        // 1: loading section 1
         sut.loadItems(for: section) { result in
             let receivedItems = try? result.get()
             XCTAssertEqual(receivedItems, expectedItems)
         }
         
+        // 2: loading section 2
         sut.loadItems(for: section2) { result in
             let receivedItems = try? result.get()
             XCTAssertEqual(receivedItems, expectedItems2)
