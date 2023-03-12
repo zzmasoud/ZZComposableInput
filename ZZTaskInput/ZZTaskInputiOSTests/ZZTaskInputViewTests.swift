@@ -112,7 +112,6 @@ class ZZTaskInputViewTests: XCTestCase {
         
         // then
         assertThat(sut, isRendering: [])
-        
     }
     
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
