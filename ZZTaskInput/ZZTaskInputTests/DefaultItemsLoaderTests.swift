@@ -5,7 +5,7 @@
 import XCTest
 import ZZTaskInput
 
-class CLOCItemsLoaderTests: XCTestCase {
+class DefaultItemsLoaderTests: XCTestCase {
     
     func test_init_doesNotMessageLoaderUponCreation() {
         let (_, loader) = makeSUT()
@@ -121,7 +121,7 @@ class CLOCItemsLoaderTests: XCTestCase {
       
     // MARK: - Helpers
 
-    private typealias SUT = CLOCItemsLoader
+    private typealias SUT = DefaultItemsLoader
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let itemLoader = ItemLoaderSpy()

@@ -5,12 +5,12 @@
 public enum CLOCSelectableProperty: Int {
     case date = 0, time, project, repeatWeekDays
     
-    public var selectionType: CLOCItemSelectionType {
+    public var selectionType: ItemsContainerSelectionType {
         switch self {
         case .date, .time, .project:
-            return CLOCItemSelectionType.single
+            return ItemsContainerSelectionType.single
         case .repeatWeekDays:
-            return CLOCItemSelectionType.multiple(max: 7)
+            return ItemsContainerSelectionType.multiple(max: 7)
         }
     }
 }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol ZZItemsContainer {
+public protocol ItemsContainer {
     associatedtype Item: Hashable
     
     var items: [Item]? { get }

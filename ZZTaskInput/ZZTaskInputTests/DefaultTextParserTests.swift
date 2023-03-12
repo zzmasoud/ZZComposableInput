@@ -5,7 +5,7 @@
 import XCTest
 import ZZTaskInput
 
-class CLOCTextParserTests: XCTestCase {
+class DefaultTextParserTests: XCTestCase {
     
     func test_send_deliversTitleAndDescriptionIfTextIsNotEmpty() {
         let title = "title"
@@ -67,8 +67,8 @@ class CLOCTextParserTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CLOCTextParser {
-        let sut = CLOCTextParser()
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> DefaultTextParser {
+        let sut = DefaultTextParser()
         return sut
     }
 }

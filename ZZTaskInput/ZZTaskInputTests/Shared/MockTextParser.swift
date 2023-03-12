@@ -4,7 +4,7 @@
 
 import ZZTaskInput
 
-class MockTextParser<Parsed>: ZZTextParser {
+class MockTextParser<Parsed>: TextParser {
     var result: Parsed!
     private(set) var separator: Character = "\n"
     private var parseTextCalles = [String]()

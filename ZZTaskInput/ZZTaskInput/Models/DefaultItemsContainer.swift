@@ -4,19 +4,19 @@
 
 import Foundation
 
-public enum CLOCItemSelectionType: Hashable {
+public enum ItemsContainerSelectionType: Hashable {
     case single
     case multiple(max: Int)
 }
 
-public class CLOCItemsContainer: ZZItemsContainer {
+public class DefaultItemsContainer: ItemsContainer {
     public typealias Item = NEED_TO_BE_GENERIC
     
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
-    public let selectionType: CLOCItemSelectionType
+    public let selectionType: ItemsContainerSelectionType
     
-    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: CLOCItemSelectionType = .single) {
+    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType = .single) {
         self.init(
             items: items,
             preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
@@ -24,7 +24,7 @@ public class CLOCItemsContainer: ZZItemsContainer {
         )
     }
     
-    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: CLOCItemSelectionType = .single) {
+    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType = .single) {
         self.items = items
         self.selectedItems = preSelectedItems
         self.selectionType = selectionType
@@ -37,7 +37,7 @@ public class CLOCItemsContainer: ZZItemsContainer {
 
 // MARK: - Select
 
-extension CLOCItemsContainer {
+extension DefaultItemsContainer {
     public func select(at index: Int) {
         guard let items = items else { return }
         let newItem = items[index]
@@ -69,7 +69,7 @@ extension CLOCItemsContainer {
 
 // MARK: - Unselect
 
-extension CLOCItemsContainer {
+extension DefaultItemsContainer {
     public func unselect(at index: Int) {
         guard case .multiple = selectionType,
               let items = items else { return }

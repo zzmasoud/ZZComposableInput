@@ -11,8 +11,8 @@ public final class ZZTaskInputViewComposer {
     private init() {}
     
     public static func composedWith(
-        textParser: any ZZTextParser,
-        itemsLoader: ZZItemsLoader,
+        textParser: any TextParser,
+        itemsLoader: ItemsLoader,
         preSelectedItemsHandler: @escaping PreSelectedItemsHandler
     ) -> ZZTaskInputView {
         let presentationAdapter = SectionSelectionPresentationAdapter(
@@ -49,7 +49,7 @@ public final class ZZTaskInputViewComposer {
 final class ResourceListViewAdapter: ResourceListView {
     private weak var controller: ZZTaskInputView?
     private let preSelectedItemsHandler: PreSelectedItemsHandler
-    private var loadedContainers = [Int: CLOCItemsContainer]()
+    private var loadedContainers = [Int: DefaultItemsContainer]()
     
     init(controller: ZZTaskInputView, preSelectedItemsHandler: @escaping PreSelectedItemsHandler) {
         self.controller = controller
@@ -57,13 +57,13 @@ final class ResourceListViewAdapter: ResourceListView {
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
-        var container: CLOCItemsContainer
+        var container: DefaultItemsContainer
         
         if let loadedContainer = loadedContainers[viewModel.index] {
             container = loadedContainer
         } else {
             let preSelectedItems = preSelectedItemsHandler(viewModel.index)
-            container = CLOCItemsContainer(
+            container = DefaultItemsContainer(
                 items: viewModel.items,
                 preSelectedItems: preSelectedItems,
                 selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
@@ -92,10 +92,10 @@ final class ResourceListViewAdapter: ResourceListView {
 
 
 final class SectionSelectionPresentationAdapter {
-    private let loader: ZZItemsLoader
+    private let loader: ItemsLoader
     var presenter: LoadResourcePresenter?
     
-    init(loader: ZZItemsLoader) {
+    init(loader: ItemsLoader) {
         self.loader = loader
     }
     

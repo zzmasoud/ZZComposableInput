@@ -4,11 +4,11 @@
 
 import Foundation
 
-public final class CLOCItemsLoader: ZZItemsLoader {
-    private let loader: ZZItemsLoader
+public final class DefaultItemsLoader: ItemsLoader {
+    private let loader: ItemsLoader
     private var cachedItems = [Int: [NEED_TO_BE_GENERIC]?]()
     
-    public init(loader: ZZItemsLoader) {
+    public init(loader: ItemsLoader) {
         self.loader = loader
     }
     

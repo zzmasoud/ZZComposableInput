@@ -309,9 +309,9 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func makeSUT(preSelectedItems: [NEED_TO_BE_GENERIC]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
         let spyLoader = ItemLoaderSpy()
-        let loader = CLOCItemsLoader(loader: spyLoader)
+        let loader = DefaultItemsLoader(loader: spyLoader)
         let sut = ZZTaskInputViewComposer.composedWith(
-            textParser: CLOCTextParser(),
+            textParser: DefaultTextParser(),
             itemsLoader: loader,
             preSelectedItemsHandler: { _ in preSelectedItems })
         

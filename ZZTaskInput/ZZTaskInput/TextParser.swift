@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol ZZTextParser {
+public protocol TextParser {
     associatedtype Parsed
     
     func parse(text: String) -> Parsed

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public final class CLOCTextParser: ZZTextParser {
+public final class DefaultTextParser: TextParser {
     public typealias Parsed = (title: String, description: String?)
     
     private let separator: Character

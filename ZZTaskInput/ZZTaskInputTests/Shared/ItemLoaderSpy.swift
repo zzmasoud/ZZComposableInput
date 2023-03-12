@@ -5,7 +5,7 @@
 import Foundation
 import ZZTaskInput
 
-class ItemLoaderSpy: ZZItemsLoader {
+class ItemLoaderSpy: ItemsLoader {
     typealias Section = Int
     typealias Item = NEED_TO_BE_GENERIC
 

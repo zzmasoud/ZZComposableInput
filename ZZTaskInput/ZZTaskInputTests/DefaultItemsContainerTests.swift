@@ -5,7 +5,7 @@
 import XCTest
 import ZZTaskInput
 
-class CLOCItemsContainerTests: XCTestCase {
+class DefaultItemsContainerTests: XCTestCase {
     
     func test_init_selectedItemsIsEmpty() {
         let (sut, _) = makeSUT()
@@ -16,7 +16,7 @@ class CLOCItemsContainerTests: XCTestCase {
     func test_initWithPreSelectedIndexes_selectedItemsIsAssigned() {
         let preSelectedIndex = 1
         let items = makeItems()
-        let sut = CLOCItemsContainer(
+        let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: [preSelectedIndex],
             selectionType: .single)
@@ -27,7 +27,7 @@ class CLOCItemsContainerTests: XCTestCase {
     func test_initWithPreSelectedItems_selectedItemsIsAssigned() {
         let items = makeItems()
         let preSelectedItems = [items[0], items[1]]
-        let sut = CLOCItemsContainer(
+        let sut = DefaultItemsContainer(
             items: makeItems(),
             preSelectedItems: preSelectedItems,
             selectionType: .single)
@@ -129,9 +129,9 @@ class CLOCItemsContainerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(selectionType: CLOCItemSelectionType = .single) -> (sut: CLOCItemsContainer, items: [NEED_TO_BE_GENERIC]) {
+    private func makeSUT(selectionType: ItemsContainerSelectionType = .single) -> (sut: DefaultItemsContainer, items: [NEED_TO_BE_GENERIC]) {
         let items = makeItems()
-        let sut = CLOCItemsContainer(
+        let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: nil,
             selectionType: selectionType)
@@ -139,7 +139,7 @@ class CLOCItemsContainerTests: XCTestCase {
         return (sut, items)
     }
     
-    private func expect(_ sut: CLOCItemsContainer, toHaveSelectedItems expectedItems: [NEED_TO_BE_GENERIC]?, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: DefaultItemsContainer, toHaveSelectedItems expectedItems: [NEED_TO_BE_GENERIC]?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
     }
 }

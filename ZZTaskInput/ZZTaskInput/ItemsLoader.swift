@@ -16,7 +16,7 @@ public struct NEED_TO_BE_GENERIC: Hashable {
 }
 
 
-public protocol ZZItemsLoader {
+public protocol ItemsLoader {
     
 //    associatedtype Section: Hashable
 //    associatedtype Item:
