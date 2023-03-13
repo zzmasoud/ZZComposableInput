@@ -4,19 +4,30 @@
 
 import UIKit
 
-final class ZZSelectableCellController {
-    let text: String
+public final class ZZSelectableCellController {
+    let id: AnyHashable
+    let dataSource: UITableViewDataSource
+    let delegate: UITableViewDelegate?
+    let dataSourcePrefetching: UITableViewDataSourcePrefetching?
     let isSelected: (() -> Bool)
     
-    init(text: String, isSelected: @escaping (() -> Bool)) {
-        self.text = text
+    init(id: AnyHashable, dataSource: UITableViewDataSource, delegate: UITableViewDelegate?, dataSourcePrefetching: UITableViewDataSourcePrefetching? = nil, isSelected: @escaping () -> Bool) {
+        self.id = id
+        self.dataSource = dataSource
+        self.delegate = delegate
+        self.dataSourcePrefetching = dataSourcePrefetching
         self.isSelected = isSelected
     }
-    
-    func view(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ZZSelectableCell.id, for: indexPath) as! ZZSelectableCell
-        cell.textLabel?.text = text
-        cell.setSelected(isSelected(), animated: false)
-        return cell
+}
+
+extension ZZSelectableCellController: Equatable {
+    public static func == (lhs: ZZSelectableCellController, rhs: ZZSelectableCellController) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension ZZSelectableCellController: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

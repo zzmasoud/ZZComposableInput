@@ -32,6 +32,8 @@ public final class ZZTaskInputViewComposer {
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
+        inputView.resourceListController.resourceListView = CustomTableView(onSelection: { _ in}, onDeselection: { _ in })
+        
         let loadResourcePresenter = LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputView),
             listView: ResourceListViewAdapter(
@@ -72,12 +74,17 @@ final class ResourceListViewAdapter: ResourceListView {
         }
         
         #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
-        controller?.tableView.allowsMultipleSelection = container.selectionType != .single
+        controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
         
-        controller?.cellControllers = (container.items ?? []).map { item in
-            return ZZSelectableCellController(text: item.title, isSelected: {
-                container.selectedItems?.contains(item) ?? false
-            })
+        controller?.resourceListController.cellControllers = (container.items ?? []).map { item in
+            let cell = DefaultSelectableCell(text: item.title)
+            return ZZSelectableCellController(
+                id: item,
+                dataSource: cell,
+                delegate: cell,
+                isSelected: {
+                    container.selectedItems?.contains(item) ?? false
+                })
         }
         
         controller?.onSelection = { [weak container] index in
@@ -89,6 +96,24 @@ final class ResourceListViewAdapter: ResourceListView {
         }
 
         loadedContainers[viewModel.index] = container
+    }
+}
+
+final class DefaultSelectableCell: NSObject, UITableViewDataSource, UITableViewDelegate {
+    let text: String
+    
+    init(text: String) {
+        self.text = text
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ZZSelectableCell.id, for: indexPath) as! ZZSelectableCell
+        cell.textLabel?.text = text
+        return cell
     }
 }
 

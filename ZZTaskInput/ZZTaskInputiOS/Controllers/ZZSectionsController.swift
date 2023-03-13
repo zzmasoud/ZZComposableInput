@@ -36,6 +36,7 @@ final class ZZSectionsController: NSObject, SectionsView {
         }
         add(sectionedView: sectionedView.view, to: containerView)
         sectionedView.view.addTarget(self, action: #selector(selectSection), for: .valueChanged)
+        setSections()
     }
     
     private func add(sectionedView: UIView, to containerView: UIView) {

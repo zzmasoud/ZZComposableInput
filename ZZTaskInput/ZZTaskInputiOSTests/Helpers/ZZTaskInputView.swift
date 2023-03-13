@@ -10,6 +10,8 @@ extension ZZTaskInputView {
         (sectionedView.view as! UISegmentedControl).simulateSelectingItem(at: section)
     }
     
+    var tableView: UITableView { resourceListView.view as! UITableView }
+    
     func simulateItemSelection(at indexes: Int...) {
         for index in indexes {
             let indexPath = IndexPath(row: index, section: section)

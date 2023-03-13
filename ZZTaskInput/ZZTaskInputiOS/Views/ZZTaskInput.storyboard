@@ -40,33 +40,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bni-zP-Zjz">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VE-XK-tQe">
                                         <rect key="frame" x="0.0" y="192.33333333333334" width="393" height="510.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ZZSelectableCell" textLabel="Ooh-02-Bt6" style="IBUITableViewCellStyleDefault" id="QGs-NR-FQI" customClass="ZZSelectableCell" customModule="ZZTaskInputiOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QGs-NR-FQI" id="q3X-Wh-iN5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="349" height="43.666667938232422"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ooh-02-Bt6">
-                                                            <rect key="frame" x="20" y="0.0" width="321" height="43.666667938232422"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="b4S-yD-75M"/>
-                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="Doq-5K-TIv"/>
-                                        </connections>
-                                    </tableView>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arJ-vz-e5g" userLabel="Sectioned View">
                                         <rect key="frame" x="0.0" y="719" width="393" height="40"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -87,8 +64,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="resourceListController" destination="Die-ZV-aDu" id="VE9-2J-cO0"/>
                         <outlet property="sectionsController" destination="deF-Tj-YVQ" id="N6R-Vb-fy9"/>
-                        <outlet property="tableView" destination="bni-zP-Zjz" id="55g-Z2-X3L"/>
                         <outlet property="textField" destination="lFz-va-fud" id="m8O-x9-Lhs"/>
                     </connections>
                 </viewController>
@@ -97,6 +74,11 @@
                     <connections>
                         <outlet property="label" destination="2Le-dQ-4AH" id="Wt0-a4-4Rc"/>
                         <outlet property="sectionedViewContainer" destination="arJ-vz-e5g" id="pfz-TJ-c3L"/>
+                    </connections>
+                </customObject>
+                <customObject id="Die-ZV-aDu" customClass="ZZResourceListController" customModule="ZZTaskInputiOS" customModuleProvider="target">
+                    <connections>
+                        <outlet property="listViewContainer" destination="6VE-XK-tQe" id="Co9-px-HBl"/>
                     </connections>
                 </customObject>
             </objects>
