@@ -13,18 +13,18 @@ public protocol SectionedViewProtocol {
     func insertSection(withTitle: String, at: Int)
 }
 
-protocol ZZSectionsControllerDelegate {
+public protocol ZZSectionsControllerDelegate {
     func didRequestSections()
     func didSelectSection(at: Int)
 }
 
-final class ZZSectionsController: NSObject, SectionsView {
+public final class ZZSectionsController: NSObject, SectionsView {
     @IBOutlet private(set) var sectionedViewContainer: UIView?
     @IBOutlet private(set) var label: UILabel?
     
-    var sectionedView: SectionedViewProtocol?
-    var delegate: ZZSectionsControllerDelegate?
-    var loadSection: ((Int) -> Void)?
+    public var sectionedView: SectionedViewProtocol?
+    public var delegate: ZZSectionsControllerDelegate?
+    public var loadSection: ((Int) -> Void)?
 
     func viewDidLoad() {
         label?.isHidden = true
@@ -76,7 +76,7 @@ final class ZZSectionsController: NSObject, SectionsView {
         delegate?.didSelectSection(at: index)
     }
     
-    func display(_ viewModel: SectionsViewModel) {
+    public func display(_ viewModel: SectionsViewModel) {
         sectionedView?.removeAllSections()
         for (index, title) in (viewModel.titles).enumerated() {
             sectionedView?.insertSection(withTitle: title, at: index)
@@ -84,7 +84,7 @@ final class ZZSectionsController: NSObject, SectionsView {
         sectionedView?.selectedSectionIndex = viewModel.selectedIndex
     }
 
-    func display(_ viewModel: SectionViewModel) {
+    public func display(_ viewModel: SectionViewModel) {
         label?.isHidden = false
         label?.text = viewModel.title
     }

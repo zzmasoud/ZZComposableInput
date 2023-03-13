@@ -5,10 +5,10 @@
 import UIKit
 import ZZTaskInput
 
-final public class ZZTaskInputView: UIViewController, ResourceLoadingView {
+public final class ZZTaskInputView: UIViewController, ResourceLoadingView {
     @IBOutlet private(set) public var textField: UITextField!
-    @IBOutlet private(set) var sectionsController: ZZSectionsController!
-    @IBOutlet private(set) var resourceListController: ZZResourceListController!
+    @IBOutlet private(set) public var sectionsController: ZZSectionsController!
+    @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }

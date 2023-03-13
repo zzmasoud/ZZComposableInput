@@ -13,22 +13,22 @@ public protocol ResourceListViewProtocol {
     func allowMultipleSelection(_ isOn: Bool)
 }
 
-class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
+public class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
     
     let tableView: UITableView = UITableView()
-    var onSelection: ((Int) -> Void)
-    var onDeselection: ((Int) -> Void)
+    public var onSelection: ((Int) -> Void)
+    public var onDeselection: ((Int) -> Void)
     
-    init(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) {
+    public init(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) {
         self.onSelection = onSelection
         self.onDeselection = onDeselection
     }
     
-    var view: UIView { return tableView }
+    public var view: UIView { return tableView }
     
     private var cellControllers: [ZZSelectableCellController] = []
 
-    func reloadData(with cellControllers: [ZZSelectableCellController]) {
+    public func reloadData(with cellControllers: [ZZSelectableCellController]) {
         self.cellControllers = cellControllers
         tableView.dataSource = self
         tableView.delegate = self
@@ -36,35 +36,35 @@ class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource
         tableView.reloadData()
     }
     
-    func allowMultipleSelection(_ isOn: Bool) {
+    public func allowMultipleSelection(_ isOn: Bool) {
         tableView.allowsMultipleSelection = isOn
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cellControllers.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellControllers[indexPath.row]
         let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
         cell.setSelected(controller.isSelected(), animated: true)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onSelection(indexPath.row)
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         onDeselection(indexPath.row)
     }
 }
 
-final class ZZResourceListController: NSObject, ResourceLoadingView {
+public final class ZZResourceListController: NSObject, ResourceLoadingView {
     @IBOutlet private(set) var listViewContainer: UIView?
-    var resourceListView: ResourceListViewProtocol?
+    public var resourceListView: ResourceListViewProtocol?
     
-    var cellControllers = [ZZSelectableCellController]() {
+    public var cellControllers = [ZZSelectableCellController]() {
         didSet {
             resourceListView?.reloadData(with: cellControllers)
         }
@@ -80,11 +80,11 @@ final class ZZResourceListController: NSObject, ResourceLoadingView {
         add(resourceListView: resourceListView.view, to: containerView)
     }
     
-    func display(_ viewModel: ZZTaskInput.ResourceListViewModel) {
+    public func display(_ viewModel: ZZTaskInput.ResourceListViewModel) {
         
     }
     
-    func display(_ viewModel: ZZTaskInput.ResourceLoadingViewModel) {
+    public func display(_ viewModel: ZZTaskInput.ResourceLoadingViewModel) {
         
     }
     
