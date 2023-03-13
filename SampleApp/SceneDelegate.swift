@@ -6,10 +6,30 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
+private class CustomSegmentedControl: SectionedViewProtocol {
+    let segmentedControl = UISegmentedControl()
+    
+    var selectedSectionIndex: Int {
+        get { segmentedControl.selectedSegmentIndex }
+        set { segmentedControl.selectedSegmentIndex = newValue }
+    }
+    
+    var numberOfSections: Int { segmentedControl.numberOfSegments }
+    
+    func removeAllSections() {
+        segmentedControl.removeAllSegments()
+    }
+    
+    func insertSection(withTitle: String, at: Int) {
+        segmentedControl.insertSegment(withTitle: withTitle, at: at, animated: false)
+    }
+    
+    var view: UIControl { segmentedControl }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -22,7 +42,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = ZZTaskInputViewComposer.composedWith(
             textParser: textParser,
-            itemsLoader: ItemsLoader(),
+            itemsLoader: MockItemsLoader(),
+            sectionSelectionView: CustomSegmentedControl(),
             preSelectedItemsHandler: { section in
                 return section == 0 ? [preselectedItem] : []
             })
@@ -32,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Item 2")
 
-class ItemsLoader: ItemsLoader {
+class MockItemsLoader: ItemsLoader {
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
         switch section {
         case 0:
