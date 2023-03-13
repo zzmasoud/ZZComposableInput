@@ -313,6 +313,7 @@ class ZZTaskInputViewTests: XCTestCase {
         let sut = ZZTaskInputViewComposer.composedWith(
             textParser: DefaultTextParser(),
             itemsLoader: loader,
+            sectionSelectionView: CustomSegmentedControl(),
             preSelectedItemsHandler: { _ in preSelectedItems })
         
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -396,5 +397,26 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
+    }
+    
+    private class CustomSegmentedControl: SectionedViewProtocol {
+        let segmentedControl = UISegmentedControl()
+        
+        var selectedSectionIndex: Int {
+            get { segmentedControl.selectedSegmentIndex }
+            set { segmentedControl.selectedSegmentIndex = newValue }
+        }
+        
+        var numberOfSections: Int { segmentedControl.numberOfSegments }
+        
+        func removeAllSections() {
+            segmentedControl.removeAllSegments()
+        }
+        
+        func insertSection(withTitle: String, at: Int) {
+            segmentedControl.insertSegment(withTitle: withTitle, at: at, animated: false)
+        }
+        
+        var view: UIControl { segmentedControl }
     }
 }

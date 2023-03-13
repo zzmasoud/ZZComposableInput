@@ -10,8 +10,8 @@ final public class ZZTaskInputView: UIViewController, ResourceLoadingView {
     @IBOutlet private(set) public var tableView: UITableView!
     @IBOutlet private(set) var sectionsController: ZZSectionsController!
     
-    public var segmentedControl: UISegmentedControl {
-        return sectionsController.segmentedControl
+    public var sectionedView: SectionedViewProtocol {
+        return sectionsController.sectionedView!
     }
     
     var cellControllers = [ZZSelectableCellController]() {
@@ -29,7 +29,7 @@ final public class ZZTaskInputView: UIViewController, ResourceLoadingView {
     public override func viewDidLoad() {
         super.viewDidLoad()
         #warning("how to achive this? where should I set default UI config? setting this to hidden in the storyboard is somehow ugly because it got disappear from the interface builder")
-        sectionsController.label.isHidden = true
+        sectionsController.viewDidLoad()
         sectionsController.setSections()
     }
     

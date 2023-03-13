@@ -7,7 +7,7 @@ import UIKit
 
 extension ZZTaskInputView {
     func simulateSelection(section: Int = 0) {
-        segmentedControl.simulateSelectingItem(at: section)
+        (sectionedView.view as! UISegmentedControl).simulateSelectingItem(at: section)
     }
     
     func simulateItemSelection(at indexes: Int...) {
@@ -48,11 +48,11 @@ extension ZZTaskInputView {
     var section: Int { 0 }
     
     var numberOfRenderedSections: Int {
-        segmentedControl.numberOfSegments
+        sectionedView.numberOfSections
     }
     
     var selectedSectionIndex: Int {
-        segmentedControl.selectedSegmentIndex
+        sectionedView.selectedSectionIndex
     }
     
     var isMultiSelection: Bool {
