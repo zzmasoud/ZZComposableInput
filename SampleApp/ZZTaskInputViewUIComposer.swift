@@ -18,7 +18,7 @@ public final class ZZTaskInputViewComposer {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
  
-        let storyboard = UIStoryboard(name: "ZZTaskInput", bundle: Bundle(for: ZZTaskInputView.self))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
         let inputView = storyboard.instantiateInitialViewController() as! ZZTaskInputView
         let sectionsController = inputView.sectionsController!
         sectionsController.sectionedView = sectionSelectionView

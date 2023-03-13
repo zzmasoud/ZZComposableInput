@@ -24,6 +24,7 @@
 		046E8D1E29BFB46D0061716D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D1B29BFB46D0061716D /* XCTestCase+MemoryLeakTracking.swift */; };
 		046E8D1F29BFB46D0061716D /* MockTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D1C29BFB46D0061716D /* MockTextParser.swift */; };
 		046E8D2129BFB4870061716D /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2029BFB4870061716D /* UIView+TestHelpers.swift */; };
+		046E8D2729BFB7C90061716D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046E8D2629BFB7C90061716D /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		046E8D1B29BFB46D0061716D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		046E8D1C29BFB46D0061716D /* MockTextParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTextParser.swift; sourceTree = "<group>"; };
 		046E8D2029BFB4870061716D /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
+		046E8D2629BFB7C90061716D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		041483B329BB824F00406083 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				046E8D2629BFB7C90061716D /* Main.storyboard */,
 				046E8D0F29BF9F4F0061716D /* WeakRefVirtualProxy.swift */,
 				046E8D0B29BF9E590061716D /* ZZTaskInputViewUIComposer.swift */,
 				041483B429BB824F00406083 /* AppDelegate.swift */,
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				041483C129BB824F00406083 /* LaunchScreen.storyboard in Resources */,
+				046E8D2729BFB7C90061716D /* Main.storyboard in Resources */,
 				041483BE29BB824F00406083 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
