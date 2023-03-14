@@ -51,29 +51,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Item 2")
+let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Avocado")
 
 class MockItemsLoader: ItemsLoader {
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
-        switch section {
-        case 0:
+        guard let category = Category(rawValue: section) else { fatalError("Failed to init Category enum case.") }
+        switch category {
+        case .fruits:
             completion(.success([
-                .init(id: UUID(), title: "Item 0"),
-                .init(id: UUID(), title: "Item 1"),
+                .init(id: UUID(), title: "Orange"),
+                .init(id: UUID(), title: "Apple"),
+                .init(id: UUID(), title: "Watermelon"),
+                .init(id: UUID(), title: "Banana"),
                 preselectedItem,
-                .init(id: UUID(), title: "Item 3"),
+                .init(id: UUID(), title: "Carrot"),
             ]))
-            
-        case 1:
+        case .animals:
             completion(.success([
-                .init(id: UUID(), title: "Item --0"),
-                .init(id: UUID(), title: "Item --1"),
+                .init(id: UUID(), title: "Fox"),
+                .init(id: UUID(), title: "Tiger"),
+                .init(id: UUID(), title: "Elephant"),
+                .init(id: UUID(), title: "Panda"),
+                .init(id: UUID(), title: "Eagle"),
+                .init(id: UUID(), title: "Lion"),
             ]))
 
-        case 2:
+        case .symbols:
             completion(.success([
-                .init(id: UUID(), title: "Item --0--"),
-                .init(id: UUID(), title: "Item --1--"),
+                .init(id: UUID(), title: "Up"),
+                .init(id: UUID(), title: "Down"),
+                .init(id: UUID(), title: "Left"),
+                .init(id: UUID(), title: "Right"),
             ]))
             
         default:

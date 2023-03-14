@@ -6,8 +6,8 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
-enum Category: Hashable, CaseIterable {
-    case fruits, animals, symbols, flags
+enum Category: Int, CaseIterable {
+    case fruits = 0, animals, symbols, flags
     
     var title: String {
         switch self {
