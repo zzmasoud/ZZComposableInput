@@ -6,6 +6,34 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
+enum Category: Hashable, CaseIterable {
+    case fruits, animals, symbols, flags
+    
+    var title: String {
+        switch self {
+        case .fruits:
+            return "🍎"
+        case .animals:
+            return "🦊"
+        case .symbols:
+            return "🔠"
+        case .flags:
+            return "🏴"
+        }
+    }
+    
+    var selectionType: ItemsContainerSelectionType {
+        switch self {
+        case .fruits:
+            return .multiple(max: 2)
+        case .animals:
+            return .multiple(max: 3)
+        case .symbols, .flags:
+            return .single
+        }
+    }
+}
+
 public final class ZZTaskInputViewComposer {
     private init() {}
     
@@ -26,7 +54,7 @@ public final class ZZTaskInputViewComposer {
 //        sectionsController.sections = ItemsPresenter.section
         #warning("Fixed it by using a new presenter for sections. is it correct?")
         sectionsController.delegate = SectionsPresenter(
-            titles: ["date", "time", "project", "repeatDays"],
+            titles: Category.allCases.map { $0.title },
             view: WeakRefVirtualProxy(sectionsController))
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
