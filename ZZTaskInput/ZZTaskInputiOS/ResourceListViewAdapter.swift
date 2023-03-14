@@ -28,6 +28,7 @@ public final class ResourceListViewAdapter: ResourceListView {
                 items: viewModel.items,
                 preSelectedItems: preSelectedItems,
                 selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
+            #warning("The selectionType should be based on the client's used entity not a fixed enum!")
         }
         
         #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
