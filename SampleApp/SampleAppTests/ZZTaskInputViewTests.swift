@@ -315,7 +315,12 @@ class ZZTaskInputViewTests: XCTestCase {
             textParser: DefaultTextParser(),
             itemsLoader: loader,
             sectionSelectionView: CustomSegmentedControl(),
-            preSelectedItemsHandler: { _ in preSelectedItems })
+            containerMapper: { _, items in
+                return DefaultItemsContainer(
+                    items: items,
+                    preSelectedItems: preSelectedItems
+                )
+            })
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

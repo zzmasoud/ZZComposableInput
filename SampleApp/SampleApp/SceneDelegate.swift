@@ -44,8 +44,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             textParser: textParser,
             itemsLoader: MockItemsLoader(),
             sectionSelectionView: CustomSegmentedControl(),
-            preSelectedItemsHandler: { section in
-                return section == 0 ? [preselectedItem] : []
+            containerMapper: { section, items in
+                let preselectedItems = section == 0 ? [preselectedItem] : []
+                return DefaultItemsContainer(
+                    items: items,
+                    preSelectedItems: preselectedItems
+                )
             })
         window?.makeKeyAndVisible()
     }

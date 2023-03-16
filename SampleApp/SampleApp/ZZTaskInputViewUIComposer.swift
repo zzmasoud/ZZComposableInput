@@ -41,7 +41,7 @@ public final class ZZTaskInputViewComposer {
         textParser: any TextParser,
         itemsLoader: ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
-        preSelectedItemsHandler: @escaping PreSelectedItemsHandler
+        containerMapper: @escaping ContainerMapper
     ) -> ZZTaskInputView {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
@@ -65,7 +65,7 @@ public final class ZZTaskInputViewComposer {
             loadingView: WeakRefVirtualProxy(inputView),
             listView: ResourceListViewAdapter(
                 controller: inputView,
-                preSelectedItemsHandler: preSelectedItemsHandler))
+                containerMapper: containerMapper))
         presentationAdapter.presenter = loadResourcePresenter
         
         inputView.onCompletion = { [weak inputView] in

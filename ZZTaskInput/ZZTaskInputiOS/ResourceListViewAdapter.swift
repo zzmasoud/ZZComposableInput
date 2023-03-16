@@ -6,28 +6,27 @@ import UIKit
 import ZZTaskInput
 
 public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
+#warning("this typealias is just accepting DefaultItemsContainer, should fix it")
+public typealias ContainerMapper = (Int, [NEED_TO_BE_GENERIC]?) -> DefaultItemsContainer
 
 public final class ResourceListViewAdapter: ResourceListView {
     private weak var controller: ZZTaskInputView?
-    private let preSelectedItemsHandler: PreSelectedItemsHandler
+    private let containerMapper: ContainerMapper
     private var loadedContainers = [Int: DefaultItemsContainer]()
     
-    public init(controller: ZZTaskInputView, preSelectedItemsHandler: @escaping PreSelectedItemsHandler) {
+    public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper) {
         self.controller = controller
-        self.preSelectedItemsHandler = preSelectedItemsHandler
+        self.containerMapper = containerMapper
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
+        let index = viewModel.index
         var container: DefaultItemsContainer
         
-        if let loadedContainer = loadedContainers[viewModel.index] {
+        if let loadedContainer = loadedContainers[index] {
             container = loadedContainer
         } else {
-            let preSelectedItems = preSelectedItemsHandler(viewModel.index)
-            container = DefaultItemsContainer(
-                items: viewModel.items,
-                preSelectedItems: preSelectedItems,
-                selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
+            container = containerMapper(index, viewModel.items)
             #warning("The selectionType should be based on the client's used entity not a fixed enum!")
         }
         
