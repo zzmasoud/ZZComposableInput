@@ -16,7 +16,7 @@ public class DefaultItemsContainer: ItemsContainer {
     private(set) public var selectedItems: [Item]?
     public let selectionType: ItemsContainerSelectionType
     
-    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType = .single) {
+    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType) {
         self.init(
             items: items,
             preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
