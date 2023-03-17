@@ -48,14 +48,13 @@ class ZZTaskInputViewTests: XCTestCase {
 
         sut.simulateSelection(section: singleSelectionSection1)
         XCTAssertFalse(sut.isSectionTextHidden)
-        #warning("testing with constant value!")
-        XCTAssertEqual(sut.sectionText, "time")
+        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection1].title)
 
         loader.completeRetrieval(with: .none, at: 1)
         XCTAssertFalse(sut.isSectionTextHidden)
 
         sut.simulateSelection(section: singleSelectionSection2)
-        XCTAssertEqual(sut.sectionText, "project")
+        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection2].title)
         XCTAssertFalse(sut.isSectionTextHidden)
 
         loader.completeRetrieval(with: makeError(), at: 2)

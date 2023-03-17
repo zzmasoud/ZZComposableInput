@@ -6,10 +6,10 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
-enum Category: Int, CaseIterable {
+public enum Category: Int, CaseIterable {
     case fruits = 0, animals, symbols, flags
     
-    var title: String {
+    public var title: String {
         switch self {
         case .fruits:
             return "🍎"
