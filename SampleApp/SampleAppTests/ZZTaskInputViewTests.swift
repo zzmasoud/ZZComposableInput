@@ -42,8 +42,7 @@ class ZZTaskInputViewTests: XCTestCase {
     func test_sectionsView_rendersSectionsAndNoSectionSelectedAtFirst() {
         let (sut, _) = makeSUT()
 
-        #warning("how to make this test flexible by comparing to a variable not constant number. how to read them from presenter?")
-        XCTAssertEqual(sut.numberOfRenderedSections, Category.allCases)
+        XCTAssertEqual(sut.numberOfRenderedSections, Category.allCases.count)
         XCTAssertEqual(sut.selectedSectionIndex, -1)
     }
     
