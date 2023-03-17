@@ -203,7 +203,7 @@ class ZZTaskInputViewTests: XCTestCase {
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
 
         // when
-        sut.simulateItemSelection(at: singleSelectionSection1)
+        sut.simulateItemSelection(at: 1)
         // then
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [1], for: section)
     }
@@ -293,6 +293,8 @@ class ZZTaskInputViewTests: XCTestCase {
         // then
         assertThat(sut, isRendering: items)
 
+        #warning("In this test, every action depends on Category eunm case, e.g. maximum limit. should fix it. For example in the *** assertion, it fails if the max limit is bigger than 7")
+        
         // when
         sut.simulateItemSelection(at: 0,1,2,3,4,5,6)
         // then
@@ -301,6 +303,7 @@ class ZZTaskInputViewTests: XCTestCase {
         // when
         sut.simulateItemSelection(at: 7)
         // then
+        // ***
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: section)
 
         // when
@@ -374,7 +377,7 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
-        assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimitFor: CLOCSelectableProperty(rawValue: section)!, file: file, line: line)
+        assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimitFor: Category(rawValue: section)!, file: file, line: line)
         
         for index in 0..<sut.numberOfRenderedItems {
             if selectedIndexes.contains(index) {
@@ -397,7 +400,7 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertFalse(view0!.isSelectedAndShowingIndicator, "expected to have no selection indicator in the view but found it", file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: CLOCSelectableProperty, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputView, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: SampleApp.Category, file: StaticString = #file, line: UInt = #line) {
         var selectionLimit = 1
         if case .multiple(let max) = section.selectionType {
             selectionLimit = max

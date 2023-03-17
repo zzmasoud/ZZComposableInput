@@ -77,7 +77,12 @@ class MockItemsLoader: ItemsLoader {
                 .init(id: UUID(), title: "Elephant"),
                 .init(id: UUID(), title: "Panda"),
                 .init(id: UUID(), title: "Eagle"),
+                .init(id: UUID(), title: "Polar bear"),
+                .init(id: UUID(), title: "Dolphin"),
+                .init(id: UUID(), title: "Chimpanzee"),
                 .init(id: UUID(), title: "Lion"),
+                .init(id: UUID(), title: "Kangaroo"),
+
             ]))
 
         case .symbols:

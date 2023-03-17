@@ -25,9 +25,9 @@ public enum Category: Int, CaseIterable {
     public var selectionType: ItemsContainerSelectionType {
         switch self {
         case .fruits:
-            return .multiple(max: 2)
+            return .multiple(max: 4)
         case .animals:
-            return .multiple(max: 3)
+            return .multiple(max: 7)
         case .symbols, .flags:
             return .single
         }
