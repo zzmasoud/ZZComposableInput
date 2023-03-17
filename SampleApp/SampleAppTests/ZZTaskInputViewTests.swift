@@ -19,22 +19,31 @@ class ZZTaskInputViewTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1)
     }
 
+    #warning("This test isn't time benfical, need to think more about it.")
     func test_didMoveToWindow_makesTextFieldFirstResponder() {
         let (sut, _) = makeSUT()
 
-        XCTAssertFalse(sut.isTextFieldFirstResponder)
+        XCTAssertFalse(sut.isTextInputFirstResponder)
         
-        // Adding the view to window will trigger `didMoveToWindow`
+        //  When you call becomeFirstResponder() on a text input, it does not immediately become the first responder. The actual first responder will be set at the next run loop iteration. This means that if you immediately check the value of isFirstResponder after calling becomeFirstResponder(), it may still be false.
+        // Create an expectation that the text input will become the first responder
+        let expectation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "isFirstResponder == true"),
+            object: sut.textInput
+        )
+
         addToWindow(sut)
 
-        XCTAssertTrue(sut.isTextFieldFirstResponder)
+
+        wait(for: [expectation], timeout: 2)
+        XCTAssertTrue(sut.isTextInputFirstResponder)
     }
     
     func test_sectionsView_rendersSectionsAndNoSectionSelectedAtFirst() {
         let (sut, _) = makeSUT()
 
         #warning("how to make this test flexible by comparing to a variable not constant number. how to read them from presenter?")
-        XCTAssertEqual(sut.numberOfRenderedSections, 4)
+        XCTAssertEqual(sut.numberOfRenderedSections, Category.allCases)
         XCTAssertEqual(sut.selectedSectionIndex, -1)
     }
     
