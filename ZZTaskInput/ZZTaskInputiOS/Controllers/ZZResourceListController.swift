@@ -47,7 +47,7 @@ public class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDat
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellControllers[indexPath.row]
         let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
-        cell.setSelected(controller.isSelected(), animated: true)
+        cell.setSelected(controller.isSelected(), animated: false)
         return cell
     }
     

@@ -22,7 +22,7 @@ public enum Category: Int, CaseIterable {
         }
     }
     
-    var selectionType: ItemsContainerSelectionType {
+    public var selectionType: ItemsContainerSelectionType {
         switch self {
         case .fruits:
             return .multiple(max: 2)

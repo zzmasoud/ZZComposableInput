@@ -54,15 +54,15 @@ class ZZTaskInputViewTests: XCTestCase {
         loader.completeRetrieval(with: makeItems())
         XCTAssertFalse(sut.isSectionTextHidden)
 
-        sut.simulateSelection(section: singleSelectionSection1)
+        sut.simulateSelection(section: singleSelectionSection0)
         XCTAssertFalse(sut.isSectionTextHidden)
-        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection1].title)
+        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection0].title)
 
         loader.completeRetrieval(with: .none, at: 1)
         XCTAssertFalse(sut.isSectionTextHidden)
 
-        sut.simulateSelection(section: singleSelectionSection2)
-        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection2].title)
+        sut.simulateSelection(section: singleSelectionSection1)
+        XCTAssertEqual(sut.sectionText, Category.allCases[singleSelectionSection1].title)
         XCTAssertFalse(sut.isSectionTextHidden)
 
         loader.completeRetrieval(with: makeError(), at: 2)
@@ -322,10 +322,11 @@ class ZZTaskInputViewTests: XCTestCase {
             textParser: DefaultTextParser(),
             itemsLoader: loader,
             sectionSelectionView: CustomSegmentedControl(),
-            containerMapper: { _, items in
+            containerMapper: { index, items in
                 return DefaultItemsContainer(
                     items: items,
-                    preSelectedItems: preSelectedItems
+                    preSelectedItems: preSelectedItems,
+                    selectionType: Category.allCases[index].selectionType
                 )
             })
         
@@ -338,19 +339,15 @@ class ZZTaskInputViewTests: XCTestCase {
     }
 
     private var singleSelectionSection0: Int {
-        CLOCSelectableProperty.date.rawValue
+        Category.symbols.rawValue
     }
     
     private var singleSelectionSection1: Int {
-        CLOCSelectableProperty.time.rawValue
-    }
-    
-    private var singleSelectionSection2: Int {
-        CLOCSelectableProperty.project.rawValue
+        Category.flags.rawValue
     }
 
     private var multiSelectionSection: Int {
-        CLOCSelectableProperty.repeatWeekDays.rawValue
+        Category.animals.rawValue
     }
     
     private func addToWindow(_ sut: ZZTaskInputView) {
