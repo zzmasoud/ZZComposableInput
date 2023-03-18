@@ -5,9 +5,9 @@
 import UIKit
 import ZZTaskInput
 
-public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
+public typealias PreSelectedItemsHandler = (Int) -> ([AnyItem]?)
 #warning("this typealias is just accepting DefaultItemsContainer, should fix it")
-public typealias ContainerMapper = (Int, [NEED_TO_BE_GENERIC]?) -> DefaultItemsContainer
+public typealias ContainerMapper = (Int, [AnyItem]?) -> DefaultItemsContainer
 
 public final class ResourceListViewAdapter: ResourceListView {
     private weak var controller: ZZTaskInputView?
@@ -34,7 +34,9 @@ public final class ResourceListViewAdapter: ResourceListView {
         controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
         
         controller?.resourceListController.cellControllers = (container.items ?? []).map { item in
-            let cell = DefaultSelectableCell(text: item.title)
+            #warning("how to fix this? (the selectable item might not have a title property! e.g. image-only cells! #ISSUE_01")
+//            let cell = DefaultSelectableCell(text: item.title)
+            let cell = DefaultSelectableCell(text: nil)
             return ZZSelectableCellController(
                 id: item,
                 dataSource: cell,
@@ -57,9 +59,9 @@ public final class ResourceListViewAdapter: ResourceListView {
 }
 
 public final class DefaultSelectableCell: NSObject, UITableViewDataSource, UITableViewDelegate {
-    let text: String
+    let text: String?
     
-    init(text: String) {
+    init(text: String?) {
         self.text = text
     }
     

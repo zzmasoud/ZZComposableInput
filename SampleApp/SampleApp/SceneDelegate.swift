@@ -27,6 +27,16 @@ private class CustomSegmentedControl: SectionedViewProtocol {
     var view: UIControl { segmentedControl }
 }
 
+public struct MockItem: Hashable {
+    let id: UUID
+    public let title: String
+    
+    public init(id: UUID, title: String) {
+        self.id = id
+        self.title = title
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -55,7 +65,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Avocado")
+let preselectedItem = MockItem(id: UUID(), title: "Avocado")
 
 class MockItemsLoader: ItemsLoader {
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
@@ -72,7 +82,7 @@ class MockItemsLoader: ItemsLoader {
             ]))
         case .animals:
             completion(.success([
-                .init(id: UUID(), title: "Fox"),
+                MockItem.init(id: UUID(), title: "Fox"),
                 .init(id: UUID(), title: "Tiger"),
                 .init(id: UUID(), title: "Elephant"),
                 .init(id: UUID(), title: "Panda"),
@@ -87,7 +97,7 @@ class MockItemsLoader: ItemsLoader {
 
         case .symbols:
             completion(.success([
-                .init(id: UUID(), title: "Up"),
+                MockItem.init(id: UUID(), title: "Up"),
                 .init(id: UUID(), title: "Down"),
                 .init(id: UUID(), title: "Left"),
                 .init(id: UUID(), title: "Right"),

@@ -9,6 +9,11 @@ enum MockSection: Int {
     case section0 = 0, section1, section2, section3
 }
 
+struct MockItem: Hashable {
+    let id: UUID
+    let title: String
+}
+
 extension XCTestCase {
     func getSection() -> Int {
         return MockSection.section0.rawValue
@@ -18,8 +23,8 @@ extension XCTestCase {
         return MockSection.section1.rawValue
     }
     
-    func makeItems() -> [NEED_TO_BE_GENERIC] {
-        return (1...10).map { _ in NEED_TO_BE_GENERIC(id: UUID(), title: UUID().uuidString) }
+    func makeItems() -> [MockItem] {
+        return (1...10).map { _ in MockItem(id: UUID(), title: UUID().uuidString) }
     }
     
     func makeError() -> NSError {

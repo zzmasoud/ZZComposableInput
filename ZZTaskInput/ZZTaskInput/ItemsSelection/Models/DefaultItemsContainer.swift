@@ -10,7 +10,7 @@ public enum ItemsContainerSelectionType: Hashable {
 }
 
 public class DefaultItemsContainer: ItemsContainer {
-    public typealias Item = NEED_TO_BE_GENERIC
+    public typealias Item = AnyItem
     
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?

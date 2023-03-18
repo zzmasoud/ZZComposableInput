@@ -15,8 +15,8 @@ extension XCTestCase {
         return SampleApp.Category(rawValue: 1)!.rawValue
     }
     
-    func makeItems() -> [NEED_TO_BE_GENERIC] {
-        return (1...10).map { _ in NEED_TO_BE_GENERIC(id: UUID(), title: UUID().uuidString) }
+    func makeItems() -> [AnyItem] {
+        return (1...10).map { _ in MockItem(id: UUID(), title: UUID().uuidString) }
     }
     
     func makeError() -> NSError {
