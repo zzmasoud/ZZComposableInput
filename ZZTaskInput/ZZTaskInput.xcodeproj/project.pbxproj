@@ -38,7 +38,6 @@
 		046E8CFD29BF50FE0061716D /* ZZResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8CFC29BF50FE0061716D /* ZZResourceListController.swift */; };
 		046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
 		046E8D2529BFB5E50061716D /* SectionSelectionPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* SectionSelectionPresentationAdapter.swift */; };
-		04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */; };
 		04A5728B29B76B5F000E0D08 /* DefaultItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */; };
 		04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
@@ -120,7 +119,6 @@
 		047CA3AF29BD18D800718831 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		047CA3B129BD18E500718831 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		04854A7F29BA5A0B00B05665 /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
-		04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLOCSelectableProperty.swift; sourceTree = "<group>"; };
 		04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsLoader.swift; sourceTree = "<group>"; };
 		04A5728C29B78255000E0D08 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoaderSpy.swift; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */,
-				04A5728829B76670000E0D08 /* CLOCSelectableProperty.swift */,
 				04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */,
 			);
 			path = Models;
@@ -576,7 +573,6 @@
 				044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */,
 				044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */,
 				0441610029BDFA940070D6CE /* ResourceLoadingView.swift in Sources */,
-				04A5728929B76670000E0D08 /* CLOCSelectableProperty.swift in Sources */,
 				044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
