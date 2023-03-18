@@ -303,7 +303,7 @@ class ZZTaskInputViewTests: XCTestCase {
         // when
         sut.simulateItemSelection(at: 7)
         // then
-        // ***
+        #warning("***")
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: section)
 
         // when

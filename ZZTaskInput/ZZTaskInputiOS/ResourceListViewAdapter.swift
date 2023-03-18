@@ -6,13 +6,14 @@ import UIKit
 import ZZTaskInput
 
 public typealias PreSelectedItemsHandler = (Int) -> ([AnyItem]?)
-#warning("this typealias is just accepting DefaultItemsContainer, should fix it")
-public typealias ContainerMapper = (Int, [AnyItem]?) -> DefaultItemsContainer
 
-public final class ResourceListViewAdapter: ResourceListView {
+public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
+    #warning("this typealias is just accepting DefaultItemsContainer, should fix it")
+    public typealias ContainerMapper = (Int, [AnyItem]?) -> Container
+
     private weak var controller: ZZTaskInputView?
     private let containerMapper: ContainerMapper
-    private var loadedContainers = [Int: DefaultItemsContainer]()
+    private var loadedContainers = [Int: Container]()
     
     public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper) {
         self.controller = controller
@@ -21,13 +22,12 @@ public final class ResourceListViewAdapter: ResourceListView {
     
     public func display(_ viewModel: ResourceListViewModel) {
         let index = viewModel.index
-        var container: DefaultItemsContainer
+        var container: Container
         
         if let loadedContainer = loadedContainers[index] {
             container = loadedContainer
         } else {
             container = containerMapper(index, viewModel.items)
-            #warning("The selectionType should be based on the client's used entity not a fixed enum!")
         }
         
         #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
