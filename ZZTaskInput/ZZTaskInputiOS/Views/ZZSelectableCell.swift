@@ -5,7 +5,7 @@
 import UIKit
 
 public class ZZSelectableCell: UITableViewCell {
-    static let id = "ZZSelectableCell"
+    public static let id = "ZZSelectableCell"
     
     public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

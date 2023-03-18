@@ -59,7 +59,7 @@ public final class ZZTaskInputViewComposer {
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         
-        inputView.resourceListController.resourceListView = CustomTableView(onSelection: { _ in}, onDeselection: { _ in })
+        inputView.resourceListController.resourceListView = CustomTableView()
         
         let loadResourcePresenter = LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputView),
@@ -74,5 +74,47 @@ public final class ZZTaskInputViewComposer {
         }
         
         return inputView
+    }
+}
+
+private final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
+    
+    let tableView: UITableView = UITableView()
+    public var onSelection: ((Int) -> Void) = { _ in }
+    public var onDeselection: ((Int) -> Void) = { _ in }
+    
+    public var view: UIView { return tableView }
+    
+    private var cellControllers: [ZZSelectableCellController] = []
+
+    public func reloadData(with cellControllers: [ZZSelectableCellController]) {
+        self.cellControllers = cellControllers
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
+        tableView.reloadData()
+    }
+    
+    public func allowMultipleSelection(_ isOn: Bool) {
+        tableView.allowsMultipleSelection = isOn
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cellControllers.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let controller = cellControllers[indexPath.row]
+        let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
+        cell.setSelected(controller.isSelected(), animated: false)
+        return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelection(indexPath.row)
+    }
+    
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        onDeselection(indexPath.row)
     }
 }

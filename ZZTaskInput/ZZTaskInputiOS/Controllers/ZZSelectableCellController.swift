@@ -5,11 +5,11 @@
 import UIKit
 
 public final class ZZSelectableCellController {
-    let id: AnyHashable
-    let dataSource: UITableViewDataSource
-    let delegate: UITableViewDelegate?
-    let dataSourcePrefetching: UITableViewDataSourcePrefetching?
-    let isSelected: (() -> Bool)
+    public let id: AnyHashable
+    public let dataSource: UITableViewDataSource
+    public let delegate: UITableViewDelegate?
+    public let dataSourcePrefetching: UITableViewDataSourcePrefetching?
+    public let isSelected: (() -> Bool)
     
     init(id: AnyHashable, dataSource: UITableViewDataSource, delegate: UITableViewDelegate?, dataSourcePrefetching: UITableViewDataSourcePrefetching? = nil, isSelected: @escaping () -> Bool) {
         self.id = id
