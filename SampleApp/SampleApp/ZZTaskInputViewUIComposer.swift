@@ -37,13 +37,13 @@ public enum Category: Int, CaseIterable {
 public final class ZZTaskInputViewComposer {
     private init() {}
     
-    public static func composedWith<Container: ItemsContainer>(
+    public static func composedWith(
         inputView: ZZTaskInputView,
         textParser: any TextParser,
         itemsLoader: ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
         sectionsPresenter: SectionsPresenter,
-        containerMapper: @escaping ResourceListViewAdapter<Container>.ContainerMapper
+        loadResourcePresenter: LoadResourcePresenter
     ) -> ZZTaskInputView {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
@@ -54,16 +54,8 @@ public final class ZZTaskInputViewComposer {
 //        sectionsController.sections = ItemsPresenter.section
         #warning("Fixed it by using a new presenter for sections. is it correct?")
         sectionsController.delegate = sectionsPresenter
-        
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
-        
         inputView.resourceListController.resourceListView = CustomTableView()
-        
-        let loadResourcePresenter = LoadResourcePresenter(
-            loadingView: WeakRefVirtualProxy(inputView),
-            listView: ResourceListViewAdapter<Container>(
-                controller: inputView,
-                containerMapper: containerMapper))
         presentationAdapter.presenter = loadResourcePresenter
         
         inputView.onCompletion = { [weak inputView] in

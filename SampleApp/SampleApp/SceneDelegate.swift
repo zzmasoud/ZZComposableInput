@@ -60,19 +60,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 titles: Category.allCases.map { $0.title },
                 view: WeakRefVirtualProxy(inputView.sectionsController!)
             ),
-            containerMapper: { section, items in
-                let preselectedItems = section == 0 ? [preselectedItem] : []
-                return DefaultItemsContainer(
-                    items: items,
-                    preSelectedItems: preselectedItems
-                )
-            })
+            loadResourcePresenter: makeLoadResourcePresenter(inputController: inputView)
+        )
         window?.makeKeyAndVisible()
     }
     
     private func makeInputViewController() -> ZZTaskInputView {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
         return storyboard.instantiateInitialViewController() as! ZZTaskInputView
+    }
+    
+    private func makeLoadResourcePresenter(inputController: ZZTaskInputView) -> LoadResourcePresenter {
+        return LoadResourcePresenter(
+            loadingView: WeakRefVirtualProxy(inputController),
+            listView: ResourceListViewAdapter<DefaultItemsContainer>(
+                controller: inputController,
+                containerMapper: containerMapper))
+    }
+    
+    private func containerMapper(section: Int, items: [AnyItem]?) -> DefaultItemsContainer {
+        let preselectedItems = section == 0 ? [preselectedItem] : []
+        return DefaultItemsContainer(
+            items: items,
+            preSelectedItems: preselectedItems,
+            selectionType: Category.allCases[section].selectionType
+        )
     }
 }
 

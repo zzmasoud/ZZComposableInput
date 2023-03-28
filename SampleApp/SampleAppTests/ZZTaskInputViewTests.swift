@@ -167,19 +167,17 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     func test_listViewSelectionLimit_changesWithSection() {
-        let singleSelectionSection = singleSelectionSection0
-        let multipleSelectionSection = multiSelectionSection
         let (sut, loader) = makeSUT()
         
         // when
-        sut.simulateSelection(section: singleSelectionSection)
+        sut.simulateSelection(section: singleSelectionSection0)
         loader.completeRetrieval(with: makeError(), at: 0)
         
         // then
         XCTAssertFalse(sut.isMultiSelection)
         
         // when
-        sut.simulateSelection(section: multipleSelectionSection)
+        sut.simulateSelection(section: multiSelectionSection)
         loader.completeRetrieval(with: makeError(), at: 1)
 
         // then
@@ -331,13 +329,8 @@ class ZZTaskInputViewTests: XCTestCase {
                 titles: Category.allCases.map { $0.title },
                 view: WeakRefVirtualProxy(inputView.sectionsController!)
             ),
-            containerMapper: { index, items in
-                return DefaultItemsContainer(
-                    items: items,
-                    preSelectedItems: preSelectedItems,
-                    selectionType: Category.allCases[index].selectionType
-                )
-            })
+            loadResourcePresenter: makeLoadResourcePresenter(inputController: inputView, preSelectedItems: preSelectedItems)
+        )
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -350,6 +343,26 @@ class ZZTaskInputViewTests: XCTestCase {
     private func makeInputViewController() -> ZZTaskInputView {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
         return storyboard.instantiateInitialViewController() as! ZZTaskInputView
+    }
+    
+    private func makeLoadResourcePresenter(inputController: ZZTaskInputView, preSelectedItems: [AnyItem]?) -> LoadResourcePresenter {
+        return LoadResourcePresenter(
+            loadingView: WeakRefVirtualProxy(inputController),
+            listView: ResourceListViewAdapter<DefaultItemsContainer>(
+                controller: inputController,
+                containerMapper: { section, items in
+                    self.containerMapper(section: section, items: items, preSelectedItems: preSelectedItems)
+                }
+            )
+        )
+    }
+    
+    private func containerMapper(section: Int, items: [AnyItem]?, preSelectedItems: [AnyItem]?) -> DefaultItemsContainer {
+        return DefaultItemsContainer(
+            items: items,
+            preSelectedItems: preSelectedItems,
+            selectionType: Category.allCases[section].selectionType
+        )
     }
 
     private var singleSelectionSection0: Int {
