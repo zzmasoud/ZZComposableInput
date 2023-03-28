@@ -24,7 +24,7 @@ public class DefaultItemsContainer: ItemsContainer {
         )
     }
     
-    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType = .single) {
+    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType) {
         self.items = items
         self.selectedItems = preSelectedItems
         self.selectionType = selectionType
