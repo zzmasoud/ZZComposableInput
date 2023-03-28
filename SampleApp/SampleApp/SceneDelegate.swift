@@ -109,12 +109,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    private func makeInputViewController() -> ZZTaskInputView {
+    private func makeInputViewController() -> ZZTaskInputViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SceneDelegate.self))
-        return storyboard.instantiateInitialViewController() as! ZZTaskInputView
+        return storyboard.instantiateInitialViewController() as! ZZTaskInputViewController
     }
     
-    private func makeLoadResourcePresenter(inputController: ZZTaskInputView) -> LoadResourcePresenter {
+    private func makeLoadResourcePresenter(inputController: ZZTaskInputViewController) -> LoadResourcePresenter {
         return LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputController),
             listView: ResourceListViewAdapter<DefaultItemsContainer>(

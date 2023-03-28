@@ -5,7 +5,21 @@
 import UIKit
 import ZZTaskInput
 
-public final class ZZTaskInputView: UIViewController, ResourceLoadingView {
+#warning("This way I removed exposing implementation details (no need to be concerete UIViewController anymore, it can be a view too), but it's missing critical calls in viewDidLoad and ViewDidAppear")
+public protocol ZZTaskInputView: AnyObject {
+    var text: String? { get }
+    var sectionsController: ZZSectionsController! { get }
+    var resourceListController: ZZResourceListController! { get }
+    var sectionedView: SectionedViewProtocol { get }
+    var resourceListView: ResourceListViewProtocol { get }
+    
+    var onCompletion: (() -> Void)? { get set }
+    var onSelection: ((Int) -> Void)? { get set }
+    var onDeselection: ((Int) -> Void)? { get set }
+}
+
+
+public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView, ResourceLoadingView {
     @IBOutlet private(set) public var textField: UITextField!
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!

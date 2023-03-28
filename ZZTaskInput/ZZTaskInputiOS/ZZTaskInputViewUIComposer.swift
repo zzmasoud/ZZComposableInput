@@ -8,15 +8,15 @@ import ZZTaskInput
 public final class ZZTaskInputViewComposer {
     private init() {}
     
-    public static func composedWith(
-        inputView: ZZTaskInputView,
+    public static func composedWith<T: ZZTaskInputView>(
+        inputView: T,
         textParser: any TextParser,
         itemsLoader: ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
         resourceListView: ResourceListViewProtocol,
         sectionsPresenter: SectionsPresenter,
         loadResourcePresenter: LoadResourcePresenter
-    ) -> ZZTaskInputView {
+    ) -> T {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
  
