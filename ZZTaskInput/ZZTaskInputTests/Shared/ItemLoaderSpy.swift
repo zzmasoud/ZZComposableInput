@@ -7,7 +7,7 @@ import ZZTaskInput
 
 class ItemLoaderSpy: ItemsLoader {
     typealias Section = Int
-    typealias Item = NEED_TO_BE_GENERIC
+    typealias Item = AnyItem
 
     private(set) var receivedMessages = [Section]()
     private(set) var completions = [FetchItemsCompletion]()

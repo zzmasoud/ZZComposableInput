@@ -6,9 +6,9 @@ import Foundation
 
 public struct ResourceListViewModel {
     public let index: Int
-    public let items: [NEED_TO_BE_GENERIC]
+    public let items: [AnyItem]
     
-    public init(index: Int, items: [NEED_TO_BE_GENERIC]) {
+    public init(index: Int, items: [AnyItem]) {
         self.index = index
         self.items = items
     }

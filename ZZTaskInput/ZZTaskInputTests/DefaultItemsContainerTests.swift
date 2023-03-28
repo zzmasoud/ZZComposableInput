@@ -129,7 +129,7 @@ class DefaultItemsContainerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(selectionType: ItemsContainerSelectionType = .single) -> (sut: DefaultItemsContainer, items: [NEED_TO_BE_GENERIC]) {
+    private func makeSUT(selectionType: ItemsContainerSelectionType = .single) -> (sut: DefaultItemsContainer, items: [AnyItem]) {
         let items = makeItems()
         let sut = DefaultItemsContainer(
             items: items,
@@ -139,7 +139,7 @@ class DefaultItemsContainerTests: XCTestCase {
         return (sut, items)
     }
     
-    private func expect(_ sut: DefaultItemsContainer, toHaveSelectedItems expectedItems: [NEED_TO_BE_GENERIC]?, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: DefaultItemsContainer, toHaveSelectedItems expectedItems: [AnyItem]?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
     }
 }

@@ -31,9 +31,9 @@ public final class ZZTaskInputView: UIViewController, ResourceLoadingView {
             self?.onDeselection?(index)
         }
     }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         self.textField.becomeFirstResponder()
     }

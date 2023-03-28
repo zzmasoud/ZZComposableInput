@@ -4,9 +4,11 @@
 
 import Foundation
 
-public protocol ItemsContainer {
+#warning("Leaking implemetion detail, using AnyObject (force only classes to confrom this protocol)")
+public protocol ItemsContainer: AnyObject {
     associatedtype Item: Hashable
     
+    var selectionType: ItemsContainerSelectionType { get }
     var items: [Item]? { get }
     var selectedItems: [Item]? { get }
     func select(at index: Int)

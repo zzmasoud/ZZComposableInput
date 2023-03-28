@@ -30,9 +30,13 @@ extension ZZTaskInputView {
         let ds = tableView.dataSource
         return ds?.tableView(tableView, cellForRowAt: IndexPath(row: index, section: section))
     }
-        
-    var isTextFieldFirstResponder: Bool {
-        textField.isFirstResponder
+       
+    var textInput: UITextField {
+        textField
+    }
+    
+    var isTextInputFirstResponder: Bool {
+        textInput.isFirstResponder
     }
     
     var isSectionTextHidden: Bool {

@@ -65,7 +65,7 @@ class LoadResourcePresenterTests: XCTestCase {
     private class ViewSpy: ResourceLoadingView, ResourceListView {
         enum Message: Hashable {
             case display(isLoading: Bool)
-            case display(items: [NEED_TO_BE_GENERIC], index: Int)
+            case display(items: [AnyItem], index: Int)
         }
         
         var messages = [Message]()

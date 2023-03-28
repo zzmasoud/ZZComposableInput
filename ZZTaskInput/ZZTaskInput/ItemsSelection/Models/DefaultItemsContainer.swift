@@ -10,13 +10,13 @@ public enum ItemsContainerSelectionType: Hashable {
 }
 
 public class DefaultItemsContainer: ItemsContainer {
-    public typealias Item = NEED_TO_BE_GENERIC
+    public typealias Item = AnyItem
     
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
     public let selectionType: ItemsContainerSelectionType
     
-    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType = .single) {
+    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType) {
         self.init(
             items: items,
             preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
@@ -24,7 +24,7 @@ public class DefaultItemsContainer: ItemsContainer {
         )
     }
     
-    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType = .single) {
+    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType) {
         self.items = items
         self.selectedItems = preSelectedItems
         self.selectionType = selectionType

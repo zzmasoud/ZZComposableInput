@@ -5,37 +5,38 @@
 import UIKit
 import ZZTaskInput
 
-public typealias PreSelectedItemsHandler = (Int) -> ([NEED_TO_BE_GENERIC]?)
+public typealias PreSelectedItemsHandler = (Int) -> ([AnyItem]?)
 
-public final class ResourceListViewAdapter: ResourceListView {
+public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
+    #warning("this typealias is just accepting DefaultItemsContainer, should fix it")
+    public typealias ContainerMapper = (Int, [AnyItem]?) -> Container
+
     private weak var controller: ZZTaskInputView?
-    private let preSelectedItemsHandler: PreSelectedItemsHandler
-    private var loadedContainers = [Int: DefaultItemsContainer]()
+    private let containerMapper: ContainerMapper
+    private var loadedContainers = [Int: Container]()
     
-    public init(controller: ZZTaskInputView, preSelectedItemsHandler: @escaping PreSelectedItemsHandler) {
+    public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper) {
         self.controller = controller
-        self.preSelectedItemsHandler = preSelectedItemsHandler
+        self.containerMapper = containerMapper
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
-        var container: DefaultItemsContainer
+        let index = viewModel.index
+        var container: Container
         
-        if let loadedContainer = loadedContainers[viewModel.index] {
+        if let loadedContainer = loadedContainers[index] {
             container = loadedContainer
         } else {
-            let preSelectedItems = preSelectedItemsHandler(viewModel.index)
-            container = DefaultItemsContainer(
-                items: viewModel.items,
-                preSelectedItems: preSelectedItems,
-                selectionType: CLOCSelectableProperty(rawValue: viewModel.index)!.selectionType)
-            #warning("The selectionType should be based on the client's used entity not a fixed enum!")
+            container = containerMapper(index, viewModel.items)
         }
         
         #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
         controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
         
         controller?.resourceListController.cellControllers = (container.items ?? []).map { item in
-            let cell = DefaultSelectableCell(text: item.title)
+            #warning("how to fix this? (the selectable item might not have a title property! e.g. image-only cells! #ISSUE_01")
+//            let cell = DefaultSelectableCell(text: item.title)
+            let cell = DefaultSelectableCell(text: nil)
             return ZZSelectableCellController(
                 id: item,
                 dataSource: cell,
@@ -58,9 +59,9 @@ public final class ResourceListViewAdapter: ResourceListView {
 }
 
 public final class DefaultSelectableCell: NSObject, UITableViewDataSource, UITableViewDelegate {
-    let text: String
+    let text: String?
     
-    init(text: String) {
+    init(text: String?) {
         self.text = text
     }
     

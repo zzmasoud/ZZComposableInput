@@ -6,7 +6,50 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
-private class CustomSegmentedControl: SectionedViewProtocol {
+final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
+    
+    let tableView: UITableView = UITableView()
+    public var onSelection: ((Int) -> Void) = { _ in }
+    public var onDeselection: ((Int) -> Void) = { _ in }
+    
+    public var view: UIView { return tableView }
+    
+    private var cellControllers: [ZZSelectableCellController] = []
+
+    public func reloadData(with cellControllers: [ZZSelectableCellController]) {
+        self.cellControllers = cellControllers
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
+        tableView.reloadData()
+    }
+    
+    func allowMultipleSelection(_ isOn: Bool) {
+        tableView.allowsMultipleSelection = isOn
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cellControllers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let controller = cellControllers[indexPath.row]
+        let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
+        cell.setSelected(controller.isSelected(), animated: false)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelection(indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        onDeselection(indexPath.row)
+    }
+}
+
+
+final class CustomSegmentedControl: SectionedViewProtocol {
     let segmentedControl = UISegmentedControl()
     
     var selectedSectionIndex: Int {
@@ -27,6 +70,16 @@ private class CustomSegmentedControl: SectionedViewProtocol {
     var view: UIControl { segmentedControl }
 }
 
+public struct MockItem: Hashable {
+    let id: UUID
+    public let title: String
+    
+    public init(id: UUID, title: String) {
+        self.id = id
+        self.title = title
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -39,19 +92,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureWindow() {
         let textParser = DefaultTextParser()
-        
+        let inputView = makeInputViewController()
+                
         window?.rootViewController = ZZTaskInputViewComposer.composedWith(
+            inputView: inputView,
             textParser: textParser,
             itemsLoader: MockItemsLoader(),
             sectionSelectionView: CustomSegmentedControl(),
-            preSelectedItemsHandler: { section in
-                return section == 0 ? [preselectedItem] : []
-            })
+            resourceListView: CustomTableView(),
+            sectionsPresenter: SectionsPresenter(
+                titles: Category.allCases.map { $0.title },
+                view: WeakRefVirtualProxy(inputView.sectionsController!)
+            ),
+            loadResourcePresenter: makeLoadResourcePresenter(inputController: inputView)
+        )
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeInputViewController() -> ZZTaskInputView {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SceneDelegate.self))
+        return storyboard.instantiateInitialViewController() as! ZZTaskInputView
+    }
+    
+    private func makeLoadResourcePresenter(inputController: ZZTaskInputView) -> LoadResourcePresenter {
+        return LoadResourcePresenter(
+            loadingView: WeakRefVirtualProxy(inputController),
+            listView: ResourceListViewAdapter<DefaultItemsContainer>(
+                controller: inputController,
+                containerMapper: containerMapper))
+    }
+    
+    private func containerMapper(section: Int, items: [AnyItem]?) -> DefaultItemsContainer {
+        let preselectedItems = section == 0 ? [preselectedItem] : []
+        return DefaultItemsContainer(
+            items: items,
+            preSelectedItems: preselectedItems,
+            selectionType: Category.allCases[section].selectionType
+        )
     }
 }
 
-let preselectedItem = NEED_TO_BE_GENERIC.init(id: UUID(), title: "Avocado")
+let preselectedItem = MockItem(id: UUID(), title: "Avocado")
 
 class MockItemsLoader: ItemsLoader {
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
@@ -68,17 +149,22 @@ class MockItemsLoader: ItemsLoader {
             ]))
         case .animals:
             completion(.success([
-                .init(id: UUID(), title: "Fox"),
+                MockItem.init(id: UUID(), title: "Fox"),
                 .init(id: UUID(), title: "Tiger"),
                 .init(id: UUID(), title: "Elephant"),
                 .init(id: UUID(), title: "Panda"),
                 .init(id: UUID(), title: "Eagle"),
+                .init(id: UUID(), title: "Polar bear"),
+                .init(id: UUID(), title: "Dolphin"),
+                .init(id: UUID(), title: "Chimpanzee"),
                 .init(id: UUID(), title: "Lion"),
+                .init(id: UUID(), title: "Kangaroo"),
+
             ]))
 
         case .symbols:
             completion(.success([
-                .init(id: UUID(), title: "Up"),
+                MockItem.init(id: UUID(), title: "Up"),
                 .init(id: UUID(), title: "Down"),
                 .init(id: UUID(), title: "Left"),
                 .init(id: UUID(), title: "Right"),

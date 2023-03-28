@@ -6,7 +6,7 @@ import Foundation
 
 public final class DefaultItemsLoader: ItemsLoader {
     private let loader: ItemsLoader
-    private var cachedItems = [Int: [NEED_TO_BE_GENERIC]?]()
+    private var cachedItems = [Int: [AnyItem]?]()
     
     public init(loader: ItemsLoader) {
         self.loader = loader
