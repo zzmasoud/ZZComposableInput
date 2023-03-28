@@ -6,7 +6,7 @@ import XCTest
 import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
-import SampleApp
+@testable import SampleApp
 
 class ZZTaskInputViewTests: XCTestCase {
     
@@ -325,6 +325,7 @@ class ZZTaskInputViewTests: XCTestCase {
             textParser: DefaultTextParser(),
             itemsLoader: loader,
             sectionSelectionView: CustomSegmentedControl(),
+            resourceListView: CustomTableView(),
             sectionsPresenter: SectionsPresenter(
                 titles: Category.allCases.map { $0.title },
                 view: WeakRefVirtualProxy(inputView.sectionsController!)
@@ -341,7 +342,7 @@ class ZZTaskInputViewTests: XCTestCase {
     }
     
     private func makeInputViewController() -> ZZTaskInputView {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SampleApp.SceneDelegate.self))
         return storyboard.instantiateInitialViewController() as! ZZTaskInputView
     }
     
@@ -437,26 +438,5 @@ class ZZTaskInputViewTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
-    }
-    
-    private class CustomSegmentedControl: SectionedViewProtocol {
-        let segmentedControl = UISegmentedControl()
-        
-        var selectedSectionIndex: Int {
-            get { segmentedControl.selectedSegmentIndex }
-            set { segmentedControl.selectedSegmentIndex = newValue }
-        }
-        
-        var numberOfSections: Int { segmentedControl.numberOfSegments }
-        
-        func removeAllSections() {
-            segmentedControl.removeAllSegments()
-        }
-        
-        func insertSection(withTitle: String, at: Int) {
-            segmentedControl.insertSegment(withTitle: withTitle, at: at, animated: false)
-        }
-        
-        var view: UIControl { segmentedControl }
     }
 }

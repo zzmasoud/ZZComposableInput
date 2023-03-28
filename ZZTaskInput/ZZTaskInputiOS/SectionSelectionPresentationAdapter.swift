@@ -4,7 +4,7 @@
 
 import ZZTaskInput
 
-public final class SectionSelectionPresentationAdapter {
+final class SectionSelectionPresentationAdapter {
     private let loader: ItemsLoader
     public var presenter: LoadResourcePresenter?
     

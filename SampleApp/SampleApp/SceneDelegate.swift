@@ -6,7 +6,50 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
-private class CustomSegmentedControl: SectionedViewProtocol {
+final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
+    
+    let tableView: UITableView = UITableView()
+    public var onSelection: ((Int) -> Void) = { _ in }
+    public var onDeselection: ((Int) -> Void) = { _ in }
+    
+    public var view: UIView { return tableView }
+    
+    private var cellControllers: [ZZSelectableCellController] = []
+
+    public func reloadData(with cellControllers: [ZZSelectableCellController]) {
+        self.cellControllers = cellControllers
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ZZSelectableCell.self, forCellReuseIdentifier: ZZSelectableCell.id)
+        tableView.reloadData()
+    }
+    
+    func allowMultipleSelection(_ isOn: Bool) {
+        tableView.allowsMultipleSelection = isOn
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cellControllers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let controller = cellControllers[indexPath.row]
+        let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
+        cell.setSelected(controller.isSelected(), animated: false)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelection(indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        onDeselection(indexPath.row)
+    }
+}
+
+
+final class CustomSegmentedControl: SectionedViewProtocol {
     let segmentedControl = UISegmentedControl()
     
     var selectedSectionIndex: Int {
@@ -56,6 +99,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             textParser: textParser,
             itemsLoader: MockItemsLoader(),
             sectionSelectionView: CustomSegmentedControl(),
+            resourceListView: CustomTableView(),
             sectionsPresenter: SectionsPresenter(
                 titles: Category.allCases.map { $0.title },
                 view: WeakRefVirtualProxy(inputView.sectionsController!)
@@ -66,7 +110,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeInputViewController() -> ZZTaskInputView {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SceneDelegate.self))
         return storyboard.instantiateInitialViewController() as! ZZTaskInputView
     }
     
