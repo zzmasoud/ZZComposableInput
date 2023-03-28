@@ -38,24 +38,22 @@ public final class ZZTaskInputViewComposer {
     private init() {}
     
     public static func composedWith<Container: ItemsContainer>(
+        inputView: ZZTaskInputView,
         textParser: any TextParser,
         itemsLoader: ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
+        sectionsPresenter: SectionsPresenter,
         containerMapper: @escaping ResourceListViewAdapter<Container>.ContainerMapper
     ) -> ZZTaskInputView {
         let presentationAdapter = SectionSelectionPresentationAdapter(
             loader: itemsLoader)
  
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
-        let inputView = storyboard.instantiateInitialViewController() as! ZZTaskInputView
         let sectionsController = inputView.sectionsController!
         sectionsController.sectionedView = sectionSelectionView
         #warning("should get sections title from presenter and be set in the composition root. but still setting a useless sections property of SectionsController which will later be used by a function call after view did load. how to fix this?")
 //        sectionsController.sections = ItemsPresenter.section
         #warning("Fixed it by using a new presenter for sections. is it correct?")
-        sectionsController.delegate = SectionsPresenter(
-            titles: Category.allCases.map { $0.title },
-            view: WeakRefVirtualProxy(sectionsController))
+        sectionsController.delegate = sectionsPresenter
         
         sectionsController.loadSection = presentationAdapter.selectSection(index:)
         

@@ -49,11 +49,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureWindow() {
         let textParser = DefaultTextParser()
-        
+        let inputView = makeInputViewController()
+                
         window?.rootViewController = ZZTaskInputViewComposer.composedWith(
+            inputView: inputView,
             textParser: textParser,
             itemsLoader: MockItemsLoader(),
             sectionSelectionView: CustomSegmentedControl(),
+            sectionsPresenter: SectionsPresenter(
+                titles: Category.allCases.map { $0.title },
+                view: WeakRefVirtualProxy(inputView.sectionsController!)
+            ),
             containerMapper: { section, items in
                 let preselectedItems = section == 0 ? [preselectedItem] : []
                 return DefaultItemsContainer(
@@ -62,6 +68,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 )
             })
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeInputViewController() -> ZZTaskInputView {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
+        return storyboard.instantiateInitialViewController() as! ZZTaskInputView
     }
 }
 

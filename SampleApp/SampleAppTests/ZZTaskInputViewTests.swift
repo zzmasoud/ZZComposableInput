@@ -321,10 +321,16 @@ class ZZTaskInputViewTests: XCTestCase {
     private func makeSUT(preSelectedItems: [AnyItem]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
         let spyLoader = ItemLoaderSpy()
         let loader = DefaultItemsLoader(loader: spyLoader)
+        let inputView = makeInputViewController()
         let sut = ZZTaskInputViewComposer.composedWith(
+            inputView: inputView,
             textParser: DefaultTextParser(),
             itemsLoader: loader,
             sectionSelectionView: CustomSegmentedControl(),
+            sectionsPresenter: SectionsPresenter(
+                titles: Category.allCases.map { $0.title },
+                view: WeakRefVirtualProxy(inputView.sectionsController!)
+            ),
             containerMapper: { index, items in
                 return DefaultItemsContainer(
                     items: items,
@@ -339,6 +345,11 @@ class ZZTaskInputViewTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         return (sut, spyLoader)
+    }
+    
+    private func makeInputViewController() -> ZZTaskInputView {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ZZTaskInputViewComposer.self))
+        return storyboard.instantiateInitialViewController() as! ZZTaskInputView
     }
 
     private var singleSelectionSection0: Int {
