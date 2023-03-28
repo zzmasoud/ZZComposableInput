@@ -49,8 +49,14 @@ final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewData
 }
 
 
-final class CustomSegmentedControl: SectionedViewProtocol {
-    let segmentedControl = UISegmentedControl()
+final class CustomSegmentedControl: NSObject, SectionedViewProtocol {
+    var onSectionChange: (() -> Void)?
+    
+    private lazy var segmentedControl: UISegmentedControl = {
+        let view = UISegmentedControl()
+        view.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+        return view
+    }()
     
     var selectedSectionIndex: Int {
         get { segmentedControl.selectedSegmentIndex }
@@ -67,7 +73,11 @@ final class CustomSegmentedControl: SectionedViewProtocol {
         segmentedControl.insertSegment(withTitle: withTitle, at: at, animated: false)
     }
     
-    var view: UIControl { segmentedControl }
+    var view: UIView { segmentedControl }
+    
+    @objc private func valueChanged() {
+        onSectionChange?()
+    }
 }
 
 public struct MockItem: Hashable {

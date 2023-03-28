@@ -5,9 +5,10 @@
 import ZZTaskInputiOS
 import UIKit
 
-extension ZZTaskInputView {
+extension ZZTaskInputViewController {
     func simulateSelection(section: Int = 0) {
-        (sectionedView.view as! UISegmentedControl).simulateSelectingItem(at: section)
+        let segmented = sectionedView.view as! UISegmentedControl
+        segmented.simulateSelectingItem(at: section)
     }
     
     var tableView: UITableView { resourceListView.view as! UITableView }

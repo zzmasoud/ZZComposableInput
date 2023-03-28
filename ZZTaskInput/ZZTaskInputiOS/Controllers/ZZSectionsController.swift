@@ -6,9 +6,10 @@ import UIKit
 import ZZTaskInput
 
 public protocol SectionedViewProtocol {
-    var view: UIControl { get }
+    var view: UIView { get }
     var selectedSectionIndex: Int { set get }
     var numberOfSections: Int { get }
+    var onSectionChange: (() -> Void)? { set get }
     func removeAllSections()
     func insertSection(withTitle: String, at: Int)
 }
@@ -31,12 +32,14 @@ public final class ZZSectionsController: NSObject, SectionsView {
         guard let containerView = sectionedViewContainer else {
             fatalError("sectionedViewContainer property is nil, should be connected in the interface builder.")
         }
-        guard let sectionedView = sectionedView else {
+        guard var sectionedView = sectionedView else {
             fatalError("sectionedView property should be assigned before viewDidLoad().")
         }
         add(sectionedView: sectionedView.view, to: containerView)
-        sectionedView.view.addTarget(self, action: #selector(selectSection), for: .valueChanged)
         setSections()
+        sectionedView.onSectionChange = { [weak self] in
+            self?.selectSection()
+        }
     }
     
     private func add(sectionedView: UIView, to containerView: UIView) {
@@ -70,7 +73,7 @@ public final class ZZSectionsController: NSObject, SectionsView {
     }
 
     #warning("here it's sending the selection massege to 2 object. first, a closure to load and couple a table view and second to inform the delegate and change a label's text. is it correct? or it should be one shared presenter to handle both?")
-    @objc private func selectSection() {
+    private func selectSection() {
         guard let index = sectionedView?.selectedSectionIndex else { return }
         loadSection?(index)
         delegate?.didSelectSection(at: index)

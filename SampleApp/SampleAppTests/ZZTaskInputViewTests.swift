@@ -8,7 +8,7 @@ import ZZTaskInput
 import ZZTaskInputiOS
 @testable import SampleApp
 
-class ZZTaskInputViewTests: XCTestCase {
+class ZZTaskInputViewControllerTests: XCTestCase {
     
     func test_loadItemsActions_requestSelectFromloader() {
         let (sut, loader) = makeSUT()
@@ -316,7 +316,7 @@ class ZZTaskInputViewTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(preSelectedItems: [AnyItem]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputView, loader: ItemLoaderSpy) {
+    private func makeSUT(preSelectedItems: [AnyItem]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZTaskInputViewController, loader: ItemLoaderSpy) {
         let spyLoader = ItemLoaderSpy()
         let loader = DefaultItemsLoader(loader: spyLoader)
         let inputView = makeInputViewController()
@@ -341,12 +341,12 @@ class ZZTaskInputViewTests: XCTestCase {
         return (sut, spyLoader)
     }
     
-    private func makeInputViewController() -> ZZTaskInputView {
+    private func makeInputViewController() -> ZZTaskInputViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SampleApp.SceneDelegate.self))
-        return storyboard.instantiateInitialViewController() as! ZZTaskInputView
+        return storyboard.instantiateInitialViewController() as! ZZTaskInputViewController
     }
     
-    private func makeLoadResourcePresenter(inputController: ZZTaskInputView, preSelectedItems: [AnyItem]?) -> LoadResourcePresenter {
+    private func makeLoadResourcePresenter(inputController: ZZTaskInputViewController, preSelectedItems: [AnyItem]?) -> LoadResourcePresenter {
         return LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputController),
             listView: ResourceListViewAdapter<DefaultItemsContainer>(
@@ -378,12 +378,12 @@ class ZZTaskInputViewTests: XCTestCase {
         Category.animals.rawValue
     }
     
-    private func addToWindow(_ sut: ZZTaskInputView) {
+    private func addToWindow(_ sut: ZZTaskInputViewController) {
         let window = UIWindow()
         window.addSubview(sut.view)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRendering items: [ItemLoaderSpy.Item], selectedItems: [ItemLoaderSpy.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputViewController, isRendering items: [ItemLoaderSpy.Item], selectedItems: [ItemLoaderSpy.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
         sut.tableView.enforceLayoutCycle()
 
         guard sut.numberOfRenderedItems == items.count else {
@@ -404,7 +404,7 @@ class ZZTaskInputViewTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputViewController, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
         assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimitFor: Category(rawValue: section)!, file: file, line: line)
         
         for index in 0..<sut.numberOfRenderedItems {
@@ -416,19 +416,19 @@ class ZZTaskInputViewTests: XCTestCase {
         }
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputViewController, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
         XCTAssertTrue(view0!.isSelectedAndShowingIndicator, "expected to have selection indicator in the view but not found", file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputViewController, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
         XCTAssertFalse(view0!.isSelectedAndShowingIndicator, "expected to have no selection indicator in the view but found it", file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZTaskInputView, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: SampleApp.Category, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ZZTaskInputViewController, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimitFor section: SampleApp.Category, file: StaticString = #file, line: UInt = #line) {
         var selectionLimit = 1
         if case .multiple(let max) = section.selectionType {
             selectionLimit = max
