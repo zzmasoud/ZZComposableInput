@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import Foundation
 
@@ -15,19 +15,22 @@ public class DefaultItemsContainer: ItemsContainer {
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
     public let selectionType: ItemsContainerSelectionType
+    public let allowAdding: Bool
     
-    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType) {
+    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
         self.init(
             items: items,
             preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
-            selectionType: selectionType
+            selectionType: selectionType,
+            allowAdding: allowAdding
         )
     }
     
-    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType) {
+    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
         self.items = items
         self.selectedItems = preSelectedItems
         self.selectionType = selectionType
+        self.allowAdding = allowAdding
     }
         
     private func indexOf(_ item: Item, in collection: [Item]?) -> Int? {

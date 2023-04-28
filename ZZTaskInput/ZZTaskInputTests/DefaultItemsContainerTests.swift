@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import XCTest
 import ZZTaskInput
@@ -19,7 +19,8 @@ class DefaultItemsContainerTests: XCTestCase {
         let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: [preSelectedIndex],
-            selectionType: .single)
+            selectionType: .single,
+            allowAdding: true)
         
         expect(sut, toHaveSelectedItems: [items[preSelectedIndex]])
     }
@@ -30,7 +31,8 @@ class DefaultItemsContainerTests: XCTestCase {
         let sut = DefaultItemsContainer(
             items: makeItems(),
             preSelectedItems: preSelectedItems,
-            selectionType: .single)
+            selectionType: .single,
+            allowAdding: true)
         
         expect(sut, toHaveSelectedItems: preSelectedItems)
     }
@@ -134,7 +136,8 @@ class DefaultItemsContainerTests: XCTestCase {
         let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: nil,
-            selectionType: selectionType)
+            selectionType: selectionType,
+            allowAdding: true)
         
         return (sut, items)
     }
