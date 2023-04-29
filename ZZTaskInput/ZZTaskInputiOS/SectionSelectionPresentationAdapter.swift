@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import ZZTaskInput
 
@@ -24,6 +24,3 @@ final class SectionSelectionPresentationAdapter {
         })
     }
 }
-
-
-extension SectionsPresenter: ZZSectionsControllerDelegate { }

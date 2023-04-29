@@ -320,17 +320,37 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         let spyLoader = ItemLoaderSpy()
         let loader = DefaultItemsLoader(loader: spyLoader)
         let inputView = makeInputViewController()
+        
+        let resourceViewTogglingPresenter = ResourceViewTogglingPresenter(view: WeakRefVirtualProxy(inputView))
+        inputView.onViewDidLoad = { [weak self] in
+            resourceViewTogglingPresenter.viewDidLoad()
+        }
+        
+        let sectionsPresenter = SectionsPresenter(
+            titles: Category.allCases.map { $0.title },
+            view: WeakRefVirtualProxy(inputView.sectionsController!)
+        )
+        
+        let resourceListViewAdapter = ResourceListViewAdapter<DefaultItemsContainer>(
+            controller: inputView,
+            containerMapper: containerMapper,
+            cellControllerMapper: cellControllerMapper)
+
         let sut = ZZTaskInputViewComposer.composedWith(
             inputView: inputView,
             textParser: DefaultTextParser(),
             itemsLoader: loader,
             sectionSelectionView: CustomSegmentedControl(),
             resourceListView: CustomTableView(),
-            sectionsPresenter: SectionsPresenter(
-                titles: Category.allCases.map { $0.title },
-                view: WeakRefVirtualProxy(inputView.sectionsController!)
+            sectionsPresenter: sectionsPresenter,
+            loadResourcePresenter: makeLoadResourcePresenter(
+                resourceListViewAdapter: resourceListViewAdapter,
+                inputController: inputView
             ),
-            loadResourcePresenter: makeLoadResourcePresenter(inputController: inputView, preSelectedItems: preSelectedItems)
+            sectionsControllerDelegate: SectionsControllerDelegateAdapter(
+                sectionsPresenter: sectionsPresenter,
+                resourceViewTogglingPresenter: resourceViewTogglingPresenter
+            )
         )
         
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -346,24 +366,33 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         return storyboard.instantiateInitialViewController() as! ZZTaskInputViewController
     }
     
-    private func makeLoadResourcePresenter(inputController: ZZTaskInputViewController, preSelectedItems: [AnyItem]?) -> LoadResourcePresenter {
+    private func makeLoadResourcePresenter(
+        resourceListViewAdapter: ResourceListViewAdapter<DefaultItemsContainer>,
+        inputController: ZZTaskInputViewController
+    ) -> LoadResourcePresenter {
         return LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputController),
-            listView: ResourceListViewAdapter<DefaultItemsContainer>(
-                controller: inputController,
-                containerMapper: { section, items in
-                    self.containerMapper(section: section, items: items, preSelectedItems: preSelectedItems)
-                }
-            )
-        )
+            listView: resourceListViewAdapter)
     }
-    
-    private func containerMapper(section: Int, items: [AnyItem]?, preSelectedItems: [AnyItem]?) -> DefaultItemsContainer {
+
+    private func containerMapper(section: Int, items: [AnyItem]?) -> DefaultItemsContainer {
+        let preselectedItems = section == 0 ? [preselectedItem] : []
+        let section = Category.allCases[section]
         return DefaultItemsContainer(
             items: items,
-            preSelectedItems: preSelectedItems,
-            selectionType: Category.allCases[section].selectionType
+            preSelectedItems: preselectedItems,
+            selectionType: section.selectionType, allowAdding: section != .fruits
         )
+    }
+
+    private func cellControllerMapper(items: [AnyItem]) -> [ZZSelectableCellController] {
+        items.map { item in
+            let view = CustomView()
+            return ZZSelectableCellController(
+                id: item,
+                dataSource: view,
+                delegate: nil)
+        }
     }
 
     private var singleSelectionSection0: Int {

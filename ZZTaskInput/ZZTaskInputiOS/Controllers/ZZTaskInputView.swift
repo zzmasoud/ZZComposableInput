@@ -1,13 +1,13 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import UIKit
 import ZZTaskInput
 
 #warning("This way I removed exposing implementation details (no need to be concerete UIViewController anymore, it can be a view too), but it's missing critical calls in viewDidLoad and ViewDidAppear")
 public protocol ZZTaskInputView: AnyObject {
-    var text: String? { get }
+    var text: String? { get set }
     var sectionsController: ZZSectionsController! { get }
     var resourceListController: ZZResourceListController! { get }
     var sectionedView: SectionedViewProtocol { get }
@@ -27,11 +27,15 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
-    public var text: String? { textField.text }
+    public var text: String? {
+        get { textField.text }
+        set { textField.text = text }
+    }
     
     public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
+    public var onViewDidLoad: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,8 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
         resourceListController.resourceListView?.onDeselection = { [weak self] index in
             self?.onDeselection?(index)
         }
+        
+        onViewDidLoad?()
     }
 
     public override func viewDidAppear(_ animated: Bool) {

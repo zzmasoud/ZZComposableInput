@@ -14,6 +14,7 @@
 		041483C129BB824F00406083 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041483BF29BB824F00406083 /* LaunchScreen.storyboard */; };
 		041483CA29BB82DC00406083 /* ZZTaskInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */; };
 		041483CB29BB82DC00406083 /* ZZTaskInputiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0439FEB329FD372C007A0EA0 /* ResourceViewToggling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439FEB229FD372C007A0EA0 /* ResourceViewToggling.swift */; };
 		046E8D0C29BF9E590061716D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D0B29BF9E590061716D /* Category.swift */; };
 		046E8D1029BF9F4F0061716D /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D0F29BF9F4F0061716D /* WeakRefVirtualProxy.swift */; };
 		046E8D1229BFB08A0061716D /* ZZTaskInputViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D1129BFB08A0061716D /* ZZTaskInputViewTests.swift */; };
@@ -60,6 +61,7 @@
 		041483C029BB824F00406083 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041483C229BB824F00406083 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041483C929BB82DC00406083 /* ZZTaskInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZZTaskInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439FEB229FD372C007A0EA0 /* ResourceViewToggling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewToggling.swift; sourceTree = "<group>"; };
 		046E8D0229BF9DFA0061716D /* SampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		046E8D0B29BF9E590061716D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		046E8D0F29BF9F4F0061716D /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				046E8D2629BFB7C90061716D /* Main.storyboard */,
 				046E8D0F29BF9F4F0061716D /* WeakRefVirtualProxy.swift */,
 				046E8D0B29BF9E590061716D /* Category.swift */,
+				0439FEB229FD372C007A0EA0 /* ResourceViewToggling.swift */,
 				041483B429BB824F00406083 /* AppDelegate.swift */,
 				041483B629BB824F00406083 /* SceneDelegate.swift */,
 				041483B829BB824F00406083 /* ViewController.swift */,
@@ -266,6 +269,7 @@
 				046E8D1029BF9F4F0061716D /* WeakRefVirtualProxy.swift in Sources */,
 				046E8D0C29BF9E590061716D /* Category.swift in Sources */,
 				041483B729BB824F00406083 /* SceneDelegate.swift in Sources */,
+				0439FEB329FD372C007A0EA0 /* ResourceViewToggling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,3 +28,9 @@ extension WeakRefVirtualProxy: SectionsView where T: SectionsView {
         object?.display(viewModel)
     }
 }
+
+extension WeakRefVirtualProxy: ResourceViewToggling where T: ResourceViewToggling {
+    public func display(_ viewModel: ResourceViewTogglingViewModel) {
+        object?.display(viewModel)
+    }
+}

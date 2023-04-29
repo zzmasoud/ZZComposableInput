@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import UIKit
 import ZZTaskInput
@@ -8,44 +8,43 @@ import ZZTaskInput
 public typealias PreSelectedItemsHandler = (Int) -> ([AnyItem]?)
 
 public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
-    #warning("this typealias is just accepting DefaultItemsContainer, should fix it")
     public typealias ContainerMapper = (Int, [AnyItem]?) -> Container
+    public typealias CellControllerMapper = ([AnyItem]) -> [ZZSelectableCellController]
 
     private weak var controller: ZZTaskInputView?
     private let containerMapper: ContainerMapper
+    private var cellControllerMapper: CellControllerMapper
     private var loadedContainers = [Int: Container]()
     
-    public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper) {
+    public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
         self.controller = controller
         self.containerMapper = containerMapper
+        self.cellControllerMapper = cellControllerMapper
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
         let index = viewModel.index
-        var container: Container
-        
-        if let loadedContainer = loadedContainers[index] {
-            container = loadedContainer
-        } else {
-            container = containerMapper(index, viewModel.items)
-        }
+        let container = containerMapper(index, viewModel.items)
+        loadedContainers[index]?.selectedItems?.forEach({ item in
+            if let index = container.items!.firstIndex(of: item) {
+                container.select(at: index)
+            }
+        })
         
         #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
         controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
+        controller?.resourceListView.allowAddNew(container.allowAdding)
         
-        controller?.resourceListController.cellControllers = (container.items ?? []).map { item in
-            #warning("how to fix this? (the selectable item might not have a title property! e.g. image-only cells! #ISSUE_01")
-//            let cell = DefaultSelectableCell(text: item.title)
-            let cell = DefaultSelectableCell(text: nil)
-            return ZZSelectableCellController(
-                id: item,
-                dataSource: cell,
-                delegate: cell,
-                isSelected: {
-                    container.selectedItems?.contains(item) ?? false
+        let cellControllers = cellControllerMapper(container.items ?? [])
+        cellControllers.forEach { controller in
+            controller.isSelected = {
+                (container.selectedItems ?? []).contains(where: { item in
+                    return item.hashValue == controller.id.hashValue
                 })
+            }
         }
-        
+        controller?.resourceListController.cellControllers = cellControllers
+
         controller?.onSelection = { [weak container] index in
             container?.select(at: index)
         }
@@ -56,22 +55,15 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
 
         loadedContainers[viewModel.index] = container
     }
-}
-
-public final class DefaultSelectableCell: NSObject, UITableViewDataSource, UITableViewDelegate {
-    let text: String?
     
-    init(text: String?) {
-        self.text = text
+    public func containerHasSelectedItems(at index: Int) -> Bool? {
+        guard let container = loadedContainers[index] else { return nil }
+        return !(container.selectedItems ?? []).isEmpty
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ZZSelectableCell.id, for: indexPath) as! ZZSelectableCell
-        cell.textLabel?.text = text
-        return cell
+    public func getLoadedItems() -> [Int: [AnyItem]?] {
+        loadedContainers.reduce(into: [Int: [AnyItem]?]()) { partialResult, object in
+            partialResult[object.key] = object.value.selectedItems
+        }
     }
 }

@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import UIKit
 import ZZTaskInput
@@ -10,7 +10,10 @@ public protocol ResourceListViewProtocol {
     var onSelection: ((Int) -> Void) { get set }
     var onDeselection: ((Int) -> Void) { get set }
     func reloadData(with: [ZZSelectableCellController])
+    #warning("this method is added just to be able to call reloadData() of collection view, so the text on cells shows fully on large large font size!")
+    func reload()
     func allowMultipleSelection(_ isOn: Bool)
+    func allowAddNew(_ isOn: Bool)
 }
 
 public final class ZZResourceListController: NSObject, ResourceLoadingView {
@@ -23,7 +26,7 @@ public final class ZZResourceListController: NSObject, ResourceLoadingView {
         }
     }
     
-    func viewDidLoad() {
+    public func viewDidLoad() {
         guard let containerView = listViewContainer else {
             fatalError("listViewContainer property is nil, should be connected in the interface builder.")
         }
@@ -31,10 +34,6 @@ public final class ZZResourceListController: NSObject, ResourceLoadingView {
             fatalError("resourceListView property should be assigned before viewDidLoad().")
         }
         add(resourceListView: resourceListView.view, to: containerView)
-    }
-    
-    public func display(_ viewModel: ZZTaskInput.ResourceListViewModel) {
-        
     }
     
     public func display(_ viewModel: ZZTaskInput.ResourceLoadingViewModel) {

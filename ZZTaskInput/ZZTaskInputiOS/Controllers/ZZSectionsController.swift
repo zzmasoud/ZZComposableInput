@@ -1,6 +1,6 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import UIKit
 import ZZTaskInput
@@ -21,13 +21,13 @@ public protocol ZZSectionsControllerDelegate {
 
 public final class ZZSectionsController: NSObject, SectionsView {
     @IBOutlet private(set) var sectionedViewContainer: UIView?
-    @IBOutlet private(set) var label: UILabel?
+    @IBOutlet private(set) public var label: UILabel?
     
     public var sectionedView: SectionedViewProtocol?
     public var delegate: ZZSectionsControllerDelegate?
     public var loadSection: ((Int) -> Void)?
 
-    func viewDidLoad() {
+    public func viewDidLoad() {
         label?.isHidden = true
         guard let containerView = sectionedViewContainer else {
             fatalError("sectionedViewContainer property is nil, should be connected in the interface builder.")

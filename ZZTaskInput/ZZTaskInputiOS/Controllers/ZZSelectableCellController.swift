@@ -1,22 +1,23 @@
 //
 //  Copyright © zzmasoud (github.com/zzmasoud).
-//  
+//
 
 import UIKit
 
+public protocol SectionedViewDataSource: UITableViewDataSource, UICollectionViewDataSource {}
+
 public final class ZZSelectableCellController {
     public let id: AnyHashable
-    public let dataSource: UITableViewDataSource
+    public let dataSource: SectionedViewDataSource
     public let delegate: UITableViewDelegate?
     public let dataSourcePrefetching: UITableViewDataSourcePrefetching?
-    public let isSelected: (() -> Bool)
+    public var isSelected: (() -> (Bool))?
     
-    init(id: AnyHashable, dataSource: UITableViewDataSource, delegate: UITableViewDelegate?, dataSourcePrefetching: UITableViewDataSourcePrefetching? = nil, isSelected: @escaping () -> Bool) {
+    public init(id: AnyHashable, dataSource: SectionedViewDataSource, delegate: UITableViewDelegate?, dataSourcePrefetching: UITableViewDataSourcePrefetching? = nil) {
         self.id = id
         self.dataSource = dataSource
         self.delegate = delegate
         self.dataSourcePrefetching = dataSourcePrefetching
-        self.isSelected = isSelected
     }
 }
 
