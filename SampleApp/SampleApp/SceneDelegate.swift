@@ -6,48 +6,6 @@ import UIKit
 import ZZTaskInput
 import ZZTaskInputiOS
 
-public final class SectionsControllerDelegateAdapter: ZZSectionsControllerDelegate {
-    private let sectionsPresenter: SectionsPresenter
-    private var resourceViewTogglingPresenter: ResourceViewTogglingPresenter?
-    
-    public init(sectionsPresenter: SectionsPresenter, resourceViewTogglingPresenter: ResourceViewTogglingPresenter) {
-        self.sectionsPresenter = sectionsPresenter
-        self.resourceViewTogglingPresenter = resourceViewTogglingPresenter
-    }
-    
-    public func didRequestSections() {
-        sectionsPresenter.didRequestSections()
-    }
-    
-    public func didSelectSection(at index: Int) {
-        sectionsPresenter.didSelectSection(at: index)
-        callTogglingPresenterOnlyOnce()
-    }
-    
-    private func callTogglingPresenterOnlyOnce() {
-        resourceViewTogglingPresenter?.selectSection()
-        resourceViewTogglingPresenter = nil
-    }
-}
-
-class CustomView: UIView, SectionedViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fatalError()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
-    }
-}
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -110,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func cellControllerMapper(items: [AnyItem]) -> [ZZSelectableCellController] {
         items.map { item in            
-            let view = CustomView()
+            let view = CustomCellView()
             return ZZSelectableCellController(
                 id: item,
                 dataSource: view,
@@ -126,50 +84,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             preSelectedItems: preselectedItems,
             selectionType: section.selectionType, allowAdding: section != .fruits
         )
-    }
-}
-
-let preselectedItem = MockItem(id: UUID(), title: "Avocado")
-
-class MockItemsLoader: ItemsLoader {
-    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) {
-        guard let category = Category(rawValue: section) else { fatalError("Failed to init Category enum case.") }
-        switch category {
-        case .fruits:
-            completion(.success([
-                .init(id: UUID(), title: "Orange"),
-                .init(id: UUID(), title: "Apple"),
-                .init(id: UUID(), title: "Watermelon"),
-                .init(id: UUID(), title: "Banana"),
-                preselectedItem,
-                .init(id: UUID(), title: "Carrot"),
-            ]))
-        case .animals:
-            completion(.success([
-                MockItem.init(id: UUID(), title: "Fox"),
-                .init(id: UUID(), title: "Tiger"),
-                .init(id: UUID(), title: "Elephant"),
-                .init(id: UUID(), title: "Panda"),
-                .init(id: UUID(), title: "Eagle"),
-                .init(id: UUID(), title: "Polar bear"),
-                .init(id: UUID(), title: "Dolphin"),
-                .init(id: UUID(), title: "Chimpanzee"),
-                .init(id: UUID(), title: "Lion"),
-                .init(id: UUID(), title: "Kangaroo"),
-
-            ]))
-
-        case .symbols:
-            completion(.success([
-                MockItem.init(id: UUID(), title: "Up"),
-                .init(id: UUID(), title: "Down"),
-                .init(id: UUID(), title: "Left"),
-                .init(id: UUID(), title: "Right"),
-            ]))
-            
-        default:
-            completion(.failure(NSError(domain: "error", code: -1)))
-        }
     }
 }
 

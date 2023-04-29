@@ -387,7 +387,7 @@ class ZZTaskInputViewControllerTests: XCTestCase {
 
     private func cellControllerMapper(items: [AnyItem]) -> [ZZSelectableCellController] {
         items.map { item in
-            let view = CustomView()
+            let view = CustomCellView()
             return ZZSelectableCellController(
                 id: item,
                 dataSource: view,
