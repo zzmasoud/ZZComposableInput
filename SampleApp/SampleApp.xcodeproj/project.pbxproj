@@ -173,8 +173,8 @@
 		046E8D0329BF9DFA0061716D /* SampleAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				046E8D1929BFB4330061716D /* Helpers */,
 				046E8D1129BFB08A0061716D /* ZZTaskInputViewTests.swift */,
+				046E8D1929BFB4330061716D /* Helpers */,
 			);
 			path = SampleAppTests;
 			sourceTree = "<group>";

@@ -333,7 +333,11 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         
         let resourceListViewAdapter = ResourceListViewAdapter<DefaultItemsContainer>(
             controller: inputView,
-            containerMapper: containerMapper,
+            containerMapper: { [weak self] section, items in
+                #warning("!!!")
+                guard let self = self else { fatalError() }
+                return self.containerMapper(section: section, items: items, preSelectedItems: preSelectedItems)
+            },
             cellControllerMapper: cellControllerMapper)
 
         let sut = ZZTaskInputViewComposer.composedWith(
@@ -375,8 +379,8 @@ class ZZTaskInputViewControllerTests: XCTestCase {
             listView: resourceListViewAdapter)
     }
 
-    private func containerMapper(section: Int, items: [AnyItem]?) -> DefaultItemsContainer {
-        let preselectedItems = section == 0 ? [preselectedItem] : []
+    private func containerMapper(section: Int, items: [AnyItem]?, preSelectedItems: [AnyItem]?) -> DefaultItemsContainer {
+        let preselectedItems = section == 0 ? preSelectedItems : []
         let section = Category.allCases[section]
         return DefaultItemsContainer(
             items: items,
@@ -387,7 +391,7 @@ class ZZTaskInputViewControllerTests: XCTestCase {
 
     private func cellControllerMapper(items: [AnyItem]) -> [ZZSelectableCellController] {
         items.map { item in
-            let view = CustomCellController()
+            let view = CustomCellController(model: item as! CustomCellPresentable)
             return ZZSelectableCellController(
                 id: item,
                 dataSource: view,
