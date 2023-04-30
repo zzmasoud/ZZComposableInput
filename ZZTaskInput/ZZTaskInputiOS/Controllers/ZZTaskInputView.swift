@@ -20,7 +20,7 @@ public protocol ZZTaskInputView: AnyObject {
 
 
 public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView, ResourceLoadingView {
-    @IBOutlet private(set) public var textField: UITextField!
+    @IBOutlet private(set) public var textInput: UITextView!
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     
@@ -28,8 +28,8 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
     public var text: String? {
-        get { textField.text }
-        set { textField.text = newValue }
+        get { textInput.text }
+        set { textInput.text = newValue }
     }
     
     public var onCompletion: (() -> Void)?
@@ -55,7 +55,7 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.textField.becomeFirstResponder()
+        self.textInput.becomeFirstResponder()
     }
     
     public func display(_ viewModel: ResourceLoadingViewModel) {}

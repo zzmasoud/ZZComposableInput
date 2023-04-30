@@ -93,7 +93,7 @@ extension ZZTaskInputViewController: ResourceViewToggling {
         if viewModel.isHidden {
             targetView?.isHidden = viewModel.isHidden
         } else {
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveLinear) {
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveLinear) {
                 targetView?.isHidden = false
                 self.view.layoutIfNeeded()
             }
