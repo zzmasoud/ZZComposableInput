@@ -29,7 +29,7 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
     public var text: String? {
         get { textField.text }
-        set { textField.text = text }
+        set { textField.text = newValue }
     }
     
     public var onCompletion: (() -> Void)?

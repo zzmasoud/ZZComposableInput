@@ -13,3 +13,5 @@ public struct MockItem: Hashable {
         self.title = title
     }
 }
+
+extension MockItem: CustomCellPresentable {}

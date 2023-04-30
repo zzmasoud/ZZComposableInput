@@ -67,8 +67,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func cellControllerMapper(items: [AnyItem]) -> [ZZSelectableCellController] {
-        items.map { item in            
-            let view = CustomCellView()
+        items.map { item in
+            let view = CustomCellController(model: item as! CustomCellPresentable)
             return ZZSelectableCellController(
                 id: item,
                 dataSource: view,
