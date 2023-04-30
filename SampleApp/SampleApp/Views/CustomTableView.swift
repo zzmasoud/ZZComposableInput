@@ -8,11 +8,19 @@ import ZZTaskInputiOS
 
 final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewDataSource, UITableViewDelegate {
 
+    private lazy var addButton = {
+        let btn = UIButton(type: .roundedRect)
+        btn.backgroundColor = #colorLiteral(red: 0.7976415753, green: 0.8931569457, blue: 0.9983754754, alpha: 1)
+        btn.layer.cornerRadius = 8
+        btn.setTitle("Add New Item", for: .normal)
+        return btn
+    }()
+    
     let tableView: UITableView = UITableView()
-    public var onSelection: ((Int) -> Void) = { _ in }
-    public var onDeselection: ((Int) -> Void) = { _ in }
     
     public var view: UIView { return tableView }
+    public var onSelection: ((Int) -> Void) = { _ in }
+    public var onDeselection: ((Int) -> Void) = { _ in }
     
     private var cellControllers: [ZZSelectableCellController] = []
 
@@ -28,6 +36,10 @@ final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewData
         tableView.allowsMultipleSelection = isOn
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return addButton
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cellControllers.count
     }
@@ -53,6 +65,6 @@ final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewData
     }
     
     func allowAddNew(_ isOn: Bool) {
-        // show a button e.g. in header or footer
+        addButton.isHidden = !isOn
     }
 }
