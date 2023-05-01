@@ -48,6 +48,9 @@ final class CustomTableView: NSObject, ResourceListViewProtocol, UITableViewData
         let controller = cellControllers[indexPath.row]
         let isSelected = controller.isSelected?() ?? false
         let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
+        if isSelected {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
         cell.setSelected(isSelected, animated: false)
         return cell
     }

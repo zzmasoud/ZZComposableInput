@@ -72,7 +72,6 @@ public final class ZZSectionsController: NSObject, SectionsView {
         delegate?.didRequestSections()
     }
 
-    #warning("here it's sending the selection massege to 2 object. first, a closure to load and couple a table view and second to inform the delegate and change a label's text. is it correct? or it should be one shared presenter to handle both?")
     private func selectSection() {
         guard let index = sectionedView?.selectedSectionIndex else { return }
         loadSection?(index)

@@ -5,18 +5,19 @@
 import UIKit
 import ZZTaskInput
 
+#warning("#6 - see below warning first")
 public protocol ResourceListViewProtocol {
     var view: UIView { get }
     var onSelection: ((Int) -> Void) { get set }
     var onDeselection: ((Int) -> Void) { get set }
     func reloadData(with: [ZZSelectableCellController])
-    #warning("this method is added just to be able to call reloadData() of collection view, so the text on cells shows fully on large large font size!")
     func reload()
     func allowMultipleSelection(_ isOn: Bool)
     func allowAddNew(_ isOn: Bool)
 }
 
 public final class ZZResourceListController: NSObject, ResourceLoadingView {
+    #warning("#6 - using place holder view, bcz I couldn't use @IBOutlet for a protocol (ResourceListViewProtocol) and also I want a specific view not any kinf of UIView")
     @IBOutlet private(set) var listViewContainer: UIView?
     public var resourceListView: ResourceListViewProtocol?
     
@@ -37,7 +38,7 @@ public final class ZZResourceListController: NSObject, ResourceLoadingView {
     }
     
     public func display(_ viewModel: ZZTaskInput.ResourceLoadingViewModel) {
-        
+            // no loading for now
     }
     
     private func add(resourceListView: UIView, to containerView: UIView) {

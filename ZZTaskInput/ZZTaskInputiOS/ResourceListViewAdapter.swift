@@ -31,7 +31,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
             }
         })
         
-        #warning("How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
+        #warning("#5 - How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
         controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
         controller?.resourceListView.allowAddNew(container.allowAdding)
         

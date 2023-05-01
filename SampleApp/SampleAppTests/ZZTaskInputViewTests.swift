@@ -19,7 +19,6 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1)
     }
 
-    #warning("This test isn't time benfical, need to think more about it.")
     func test_didMoveToWindow_makesTextFieldFirstResponder() {
         let (sut, _) = makeSUT()
 
@@ -301,7 +300,7 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         // when
         sut.simulateItemSelection(at: 7)
         // then
-        #warning("***")
+
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...7), for: section)
 
         // when
@@ -334,7 +333,6 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         let resourceListViewAdapter = ResourceListViewAdapter<DefaultItemsContainer>(
             controller: inputView,
             containerMapper: { [weak self] section, items in
-                #warning("!!!")
                 guard let self = self else { fatalError() }
                 return self.containerMapper(section: section, items: items, preSelectedItems: preSelectedItems)
             },
@@ -426,10 +424,6 @@ class ZZTaskInputViewControllerTests: XCTestCase {
         for (index, item) in items.enumerated() {
             let view = sut.itemView(at: index)
             XCTAssertNotNil(view, file: file, line: line)
-            #warning("casting AnyHashable to mock item, related to ISSUE_01")
-//            if let text = (item as? MockItem)?.title {
-//                XCTAssertEqual(view?.textLabel?.text, text, file: file, line: line)
-//            }
             let isPreselected = selectedItems?.contains(item) ?? false
             XCTAssertEqual(isPreselected, view!.isSelectedAndShowingIndicator, file: file, line: line)
         }

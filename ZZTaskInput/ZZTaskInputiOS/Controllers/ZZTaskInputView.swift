@@ -5,7 +5,6 @@
 import UIKit
 import ZZTaskInput
 
-#warning("This way I removed exposing implementation details (no need to be concerete UIViewController anymore, it can be a view too), but it's missing critical calls in viewDidLoad and ViewDidAppear")
 public protocol ZZTaskInputView: AnyObject {
     var text: String? { get set }
     var sectionsController: ZZSectionsController! { get }
@@ -39,7 +38,7 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        #warning("how to achive this? where should I set default UI config? setting this to hidden in the storyboard is somehow ugly because it got disappear from the interface builder")
+        #warning("#5 - how to achive this? where should I set default UI config? setting this to hidden in the storyboard is somehow ugly because it got disappear from the interface builder")
         sectionsController.viewDidLoad()
         resourceListController.viewDidLoad()
         resourceListController.resourceListView?.onSelection = { [weak self] index in
