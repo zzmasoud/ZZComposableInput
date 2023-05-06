@@ -42,28 +42,6 @@ public final class ZZResourceListController: NSObject, ResourceLoadingView {
     }
     
     private func add(resourceListView: UIView, to containerView: UIView) {
-        resourceListView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(resourceListView)
-        
-        let constraints = [
-            resourceListView.leadingAnchor.constraint(
-                equalTo: containerView.leadingAnchor,
-                constant: 0
-            ),
-            resourceListView.trailingAnchor.constraint(
-                equalTo: containerView.trailingAnchor,
-                constant: 0
-            ),
-            resourceListView.topAnchor.constraint(
-                equalTo: containerView.topAnchor,
-                constant: 0
-            ),
-            resourceListView.bottomAnchor.constraint(
-                equalTo: containerView.bottomAnchor,
-                constant: 0
-            )
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        containerView.addSubviewWithConstraints(resourceListView)
     }
 }

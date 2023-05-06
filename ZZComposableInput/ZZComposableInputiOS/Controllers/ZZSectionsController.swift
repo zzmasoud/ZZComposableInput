@@ -42,29 +42,7 @@ public final class ZZSectionsController: NSObject, SectionsView {
     }
     
     private func add(sectionedView: UIView, to containerView: UIView) {
-        sectionedView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(sectionedView)
-        
-        let constraints = [
-            sectionedView.leadingAnchor.constraint(
-                equalTo: containerView.leadingAnchor,
-                constant: 0
-            ),
-            sectionedView.trailingAnchor.constraint(
-                equalTo: containerView.trailingAnchor,
-                constant: 0
-            ),
-            sectionedView.topAnchor.constraint(
-                equalTo: containerView.topAnchor,
-                constant: 0
-            ),
-            sectionedView.bottomAnchor.constraint(
-                equalTo: containerView.bottomAnchor,
-                constant: 0
-            )
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        containerView.addSubviewWithConstraints(sectionedView)
     }
     
     func setSections() {
