@@ -15,20 +15,15 @@ public protocol ZZComposableInputDataSource: AnyObject {
 }
 
 public protocol ZZComposableInputDelegate {
-    var onCompletion: (() -> Void)? { get set }
     var onSelection: ((Int) -> Void)? { get set }
     var onDeselection: ((Int) -> Void)? { get set }
 }
 
-public final class ZZTaskInputViewController: UIViewController, ZZComposableInputDataSource, ZZComposableInputDelegate, ResourceLoadingView {
+public final class ZZComposableInputViewController: UIViewController {
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     
-    public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
-    public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
-  
-    public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
     public var onViewDidLoad: (() -> Void)?
@@ -47,6 +42,15 @@ public final class ZZTaskInputViewController: UIViewController, ZZComposableInpu
         
         onViewDidLoad?()
     }
+}
 
+extension ZZComposableInputViewController: ZZComposableInputDataSource {
+    public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
+    public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
+}
+
+extension ZZComposableInputViewController: ZZComposableInputDelegate {}
+
+extension ZZComposableInputViewController: ResourceLoadingView {
     public func display(_ viewModel: ResourceLoadingViewModel) {}
 }
