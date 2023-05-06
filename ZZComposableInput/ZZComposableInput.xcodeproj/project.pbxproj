@@ -37,6 +37,7 @@
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZTaskInputView.swift */; };
+		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CEFD6F298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6E298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		04C36F93298AF6C700712C6E /* ZZComposableInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZComposableInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
+		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CEFD6E298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsLoaderTests.swift; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				046E8CFA29BF0B470061716D /* ItemsSelection */,
+				04CDEB062A063AAD008C7BCF /* ItemType.swift */,
 			);
 			path = ZZComposableInput;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			files = (
 				043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */,
 				04A5728B29B76B5F000E0D08 /* DefaultItemsLoader.swift in Sources */,
+				04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */,
 				0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */,

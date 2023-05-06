@@ -9,9 +9,7 @@ public enum ItemsContainerSelectionType: Hashable {
     case multiple(max: Int)
 }
 
-public class DefaultItemsContainer: ItemsContainer {
-    public typealias Item = AnyItem
-    
+public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?
     public let selectionType: ItemsContainerSelectionType

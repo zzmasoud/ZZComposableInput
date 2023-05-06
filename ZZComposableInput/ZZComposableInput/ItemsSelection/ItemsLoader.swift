@@ -4,15 +4,12 @@
 
 import Foundation
 
-#warning("#1 - using AnyHashable just to make things easier!")
-public typealias AnyItem = AnyHashable
+public typealias AnyItem = ItemType
 
 public protocol ItemsLoader {
+    associatedtype Item: AnyItem
     
-//    associatedtype Section: Hashable
-//    associatedtype Item:
-    
-    typealias FetchItemsResult = Result<[AnyItem]?, Error>
+    typealias FetchItemsResult = Result<[Item]?, Error>
     typealias FetchItemsCompletion = (FetchItemsResult) -> Void
 
     func loadItems(for section: Int, completion: @escaping FetchItemsCompletion)

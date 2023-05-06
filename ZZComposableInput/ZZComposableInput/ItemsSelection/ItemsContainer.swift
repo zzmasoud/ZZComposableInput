@@ -4,9 +4,8 @@
 
 import Foundation
 
-#warning("Leaking implemetion detail, using AnyObject (force only classes to confrom this protocol)")
 public protocol ItemsContainer: AnyObject {
-    associatedtype Item: Hashable
+    associatedtype Item
     
     var selectionType: ItemsContainerSelectionType { get }
     var items: [Item]? { get }

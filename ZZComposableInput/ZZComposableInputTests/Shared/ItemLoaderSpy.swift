@@ -7,7 +7,7 @@ import ZZComposableInput
 
 class ItemLoaderSpy: ItemsLoader {
     typealias Section = Int
-    typealias Item = AnyItem
+    typealias Item = MockItem
 
     private(set) var receivedMessages = [Section]()
     private(set) var completions = [FetchItemsCompletion]()

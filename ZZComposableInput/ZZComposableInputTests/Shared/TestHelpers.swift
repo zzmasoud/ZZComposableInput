@@ -9,7 +9,7 @@ enum MockSection: Int {
     case section0 = 0, section1, section2, section3
 }
 
-struct MockItem: Hashable {
+struct MockItem: AnyItem {
     let id: UUID
     let title: String
 }

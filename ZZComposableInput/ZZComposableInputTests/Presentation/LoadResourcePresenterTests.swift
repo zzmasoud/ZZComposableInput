@@ -65,7 +65,7 @@ class LoadResourcePresenterTests: XCTestCase {
     private class ViewSpy: ResourceLoadingView, ResourceListView {
         enum Message: Hashable {
             case display(isLoading: Bool)
-            case display(items: [AnyItem], index: Int)
+            case display(items: [MockItem], index: Int)
         }
         
         var messages = [Message]()
@@ -75,7 +75,7 @@ class LoadResourcePresenterTests: XCTestCase {
         }
         
         func display(_ viewModel: ResourceListViewModel) {
-            messages.append(.display(items: viewModel.items, index: viewModel.index))
+            messages.append(.display(items: viewModel.items as! [MockItem], index: viewModel.index))
         }
     }
 }

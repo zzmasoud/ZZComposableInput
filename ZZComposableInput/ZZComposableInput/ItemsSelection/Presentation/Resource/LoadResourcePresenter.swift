@@ -19,7 +19,7 @@ public final class LoadResourcePresenter {
         ))
     }
     
-    public func didFinishLoading(with items: [AnyItem], at index: Int) {
+    public func didFinishLoading(with items: [any AnyItem], at index: Int) {
         loadingView.display(ResourceLoadingViewModel(
             isLoading: false
         ))
