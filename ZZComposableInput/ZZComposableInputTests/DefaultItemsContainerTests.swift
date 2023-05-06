@@ -73,6 +73,17 @@ class DefaultItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
     }
     
+    func test_selecAtAndUnselectAt_onEmptyHasNoSideEffectsIfSingleSelection() {
+        let selectionIndex = 0
+        let (sut, _) = makeSUT(withNoItems: true)
+        
+        sut.select(at: selectionIndex)
+        expect(sut, toHaveSelectedItems: nil)
+        
+        sut.unselect(at: selectionIndex)
+        expect(sut, toHaveSelectedItems: nil)
+    }
+    
     // MARK: - Multiple Selection Type
     
     func test_selectAt_appendsSelectedItemIfMultipleSelection() {
@@ -128,11 +139,22 @@ class DefaultItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: .none)
     }
 
+    func test_selecAtAndUnselectAt_onEmptyHasNoSideEffectsIfMultipleSelection() {
+        let selectionIndex = 0
+        let (sut, _) = makeSUT(selectionType: .multiple(max: 2), withNoItems: true)
+        
+        sut.select(at: selectionIndex)
+        expect(sut, toHaveSelectedItems: nil)
+        
+        sut.unselect(at: selectionIndex)
+        expect(sut, toHaveSelectedItems: nil)
+    }
+
     
     // MARK: - Helpers
     
-    private func makeSUT(selectionType: ItemsContainerSelectionType = .single) -> (sut: DefaultItemsContainer<MockItem>, items: [MockItem]) {
-        let items = makeItems()
+    private func makeSUT(selectionType: ItemsContainerSelectionType = .single, withNoItems: Bool = false) -> (sut: DefaultItemsContainer<MockItem>, items: [MockItem]) {
+        let items = withNoItems ? [] : makeItems()
         let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: nil,

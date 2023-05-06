@@ -35,7 +35,7 @@ public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
 
 extension DefaultItemsContainer {
     public func select(at index: Int) {
-        guard let items = items else { return }
+        guard let items = items, !items.isEmpty else { return }
         let newItem = items[index]
 
         switch selectionType {
@@ -47,7 +47,7 @@ extension DefaultItemsContainer {
                 selectedItems = [newItem]
             } else {
                 appendIfNotExist(newItem, collection: &selectedItems)
-                removeFirstSelectedItemIf(maxSelection: max, in: &selectedItems)
+                removeFirstSelectedItemIf(maxSelection: max, in: &selectedItems!)
             }
         }
     }
@@ -57,9 +57,9 @@ extension DefaultItemsContainer {
         collection?.append(item)
     }
     
-    private func removeFirstSelectedItemIf(maxSelection max: Int, in collection: inout [Item]?) {
-        guard (collection?.count ?? 0) > max else { return }
-        collection?.remove(at: 0)
+    private func removeFirstSelectedItemIf(maxSelection max: Int, in collection: inout [Item]) {
+        guard collection.count > max else { return }
+        collection.remove(at: 0)
     }
 }
 
@@ -68,7 +68,7 @@ extension DefaultItemsContainer {
 extension DefaultItemsContainer {
     public func unselect(at index: Int) {
         guard case .multiple = selectionType,
-              let items = items else { return }
+              let items = items, !items.isEmpty else { return }
         let unselectedItem = items[index]
         
         guard let foundIndex = indexOf(unselectedItem, in: selectedItems) else { return }
@@ -77,7 +77,7 @@ extension DefaultItemsContainer {
     }
 
     private func nilifyIfSelectedItemsIsEmpty() {
-        guard selectedItems?.isEmpty ?? false else { return }
+        guard selectedItems!.isEmpty else { return }
         selectedItems = nil
     }
 }

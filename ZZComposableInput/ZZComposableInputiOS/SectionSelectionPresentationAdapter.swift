@@ -19,7 +19,7 @@ final class SectionSelectionPresentationAdapter {
             case .success(let items):
                 self?.presenter?.didFinishLoading(with: items ?? [], at: index)
             case.failure(let error):
-                self?.presenter?.didFinishLoading(with: error, at: index)
+                self?.presenter?.didFinishLoading(withError: error, at: index)
             }
         })
     }
