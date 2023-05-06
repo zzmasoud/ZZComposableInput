@@ -10,8 +10,7 @@ public protocol SectionedViewProtocol {
     var selectedSectionIndex: Int { set get }
     var numberOfSections: Int { get }
     var onSectionChange: (() -> Void)? { set get }
-    func removeAllSections()
-    func insertSection(withTitle: String, at: Int)
+    func reload(withTitles: [String])
 }
 
 public protocol ZZSectionsControllerDelegate {
@@ -79,10 +78,7 @@ public final class ZZSectionsController: NSObject, SectionsView {
     }
     
     public func display(_ viewModel: SectionsViewModel) {
-        sectionedView?.removeAllSections()
-        for (index, title) in (viewModel.titles).enumerated() {
-            sectionedView?.insertSection(withTitle: title, at: index)
-        }
+        sectionedView?.reload(withTitles: viewModel.titles)
         sectionedView?.selectedSectionIndex = viewModel.selectedIndex
     }
 
