@@ -4,13 +4,18 @@
 
 import Foundation
 
+public protocol ItemsContainerDelegate {
+    func didDeselect(at index: Int)
+}
+
 public protocol ItemsContainer: AnyObject {
     associatedtype Item: AnyItem
     
+    var delegate: ItemsContainerDelegate? { get }
     var selectionType: ItemsContainerSelectionType { get }
     var items: [Item]? { get }
     var selectedItems: [Item]? { get }
     var allowAdding: Bool { get }
     func select(at index: Int)
-    func unselect(at index: Int)
+    func deselect(at index: Int)
 }

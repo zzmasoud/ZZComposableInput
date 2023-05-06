@@ -62,25 +62,25 @@ class DefaultItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
     }
     
-    func test_unselectAt_doesNothingIfSingleSelection() {
+    func test_deselectAt_doesNothingIfSingleSelection() {
         let selectionIndex = 0
         let (sut, items) = makeSUT()
         
         sut.select(at: selectionIndex)
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
 
-        sut.unselect(at: selectionIndex)
+        sut.deselect(at: selectionIndex)
         expect(sut, toHaveSelectedItems: [items[selectionIndex]])
     }
     
-    func test_selecAtAndUnselectAt_onEmptyHasNoSideEffectsIfSingleSelection() {
+    func test_selectAtAndDeselectAt_onEmptyHasNoSideEffectsIfSingleSelection() {
         let selectionIndex = 0
         let (sut, _) = makeSUT(withNoItems: true)
         
         sut.select(at: selectionIndex)
         expect(sut, toHaveSelectedItems: nil)
         
-        sut.unselect(at: selectionIndex)
+        sut.deselect(at: selectionIndex)
         expect(sut, toHaveSelectedItems: nil)
     }
     
@@ -118,7 +118,7 @@ class DefaultItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: [items[2], items[0]])
     }
     
-    func test_unselectAt_removesSelectedItemIfMultipleSelection() {
+    func test_deselectAt_removesSelectedItemIfMultipleSelection() {
         let (sut, items) = makeSUT(selectionType: .multiple(max: 2))
         
         expect(sut, toHaveSelectedItems: .none)
@@ -129,27 +129,59 @@ class DefaultItemsContainerTests: XCTestCase {
         sut.select(at: 1)
         expect(sut, toHaveSelectedItems: [items[0], items[1]])
 
-        sut.unselect(at: 0)
+        sut.deselect(at: 0)
         expect(sut, toHaveSelectedItems: [items[1]])
 
-        sut.unselect(at: 0)
+        sut.deselect(at: 0)
         expect(sut, toHaveSelectedItems: [items[1]])
 
-        sut.unselect(at: 1)
+        sut.deselect(at: 1)
         expect(sut, toHaveSelectedItems: .none)
     }
 
-    func test_selecAtAndUnselectAt_onEmptyHasNoSideEffectsIfMultipleSelection() {
+    func test_selectAtAndDeselectAt_onEmptyHasNoSideEffectsIfMultipleSelection() {
         let selectionIndex = 0
         let (sut, _) = makeSUT(selectionType: .multiple(max: 2), withNoItems: true)
         
         sut.select(at: selectionIndex)
         expect(sut, toHaveSelectedItems: nil)
         
-        sut.unselect(at: selectionIndex)
+        sut.deselect(at: selectionIndex)
         expect(sut, toHaveSelectedItems: nil)
     }
+    
+    // MARK: - Delegate
+    
+    func test_selectAndDeselect_hasNoSideEffectsOnDelegation() {
+        let (sut, _) = makeSUT()
+        let delegate = MockDelegate()
+        sut.delegate = delegate
+        
+        sut.select(at: 0)
+        sut.select(at: 1)
+        sut.deselect(at: 0)
+        sut.deselect(at: 1)
+        sut.select(at: 0)
+        
+        XCTAssertEqual(delegate.deselections, [])
+    }
+    
+    func test_delegate_callsAfterMaximumSelection() {
+        let (sut, _) = makeSUT(selectionType: .multiple(max: 2))
+        let delegate = MockDelegate()
+        sut.delegate = delegate
 
+        XCTAssertEqual(delegate.deselections, [])
+
+        sut.select(at: 0)
+        sut.select(at: 1)
+        sut.select(at: 2)
+        XCTAssertEqual(delegate.deselections, [0])
+        
+        sut.select(at: 3)
+        XCTAssertEqual(delegate.deselections, [0, 1])
+    }
+    
     
     // MARK: - Helpers
     
@@ -166,6 +198,14 @@ class DefaultItemsContainerTests: XCTestCase {
     
     private func expect(_ sut: DefaultItemsContainer<MockItem>, toHaveSelectedItems expectedItems: [MockItem]?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(expectedItems, sut.selectedItems, "expected to get \(String(describing: expectedItems)) selected items but got \(String(describing: sut.selectedItems)) selected items.", file: file, line: line)
+    }
+    
+    private class MockDelegate: ItemsContainerDelegate {
+        private(set) var deselections: [Int] = []
+        
+        func didDeselect(at index: Int) {
+            deselections.append(index)
+        }
     }
 }
 
