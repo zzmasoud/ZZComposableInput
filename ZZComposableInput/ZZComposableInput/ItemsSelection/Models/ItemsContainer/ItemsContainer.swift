@@ -5,7 +5,7 @@
 import Foundation
 
 public protocol ItemsContainer: AnyObject {
-    associatedtype Item
+    associatedtype Item: AnyItem
     
     var selectionType: ItemsContainerSelectionType { get }
     var items: [Item]? { get }

@@ -5,19 +5,22 @@
 import UIKit
 import ZZComposableInput
 
-public protocol ZZTaskInputView: AnyObject {
+public protocol ZZComposableInput: ZZComposableInputDataSource, ZZComposableInputDelegate {}
+
+public protocol ZZComposableInputDataSource: AnyObject {
     var sectionsController: ZZSectionsController! { get }
     var resourceListController: ZZResourceListController! { get }
     var sectionedView: SectionedViewProtocol { get }
     var resourceListView: ResourceListViewProtocol { get }
-    
+}
+
+public protocol ZZComposableInputDelegate {
     var onCompletion: (() -> Void)? { get set }
     var onSelection: ((Int) -> Void)? { get set }
     var onDeselection: ((Int) -> Void)? { get set }
 }
 
-
-public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView, ResourceLoadingView {
+public final class ZZTaskInputViewController: UIViewController, ZZComposableInputDataSource, ZZComposableInputDelegate, ResourceLoadingView {
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     

@@ -5,18 +5,19 @@
 import UIKit
 import ZZComposableInput
 
-public typealias PreSelectedItemsHandler = (Int) -> ([AnyItem]?)
+public typealias PreSelectedItemsHandler = (Int) -> ([any AnyItem]?)
 
 public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
-    public typealias ContainerMapper = (Int, [AnyItem]?) -> Container
-    public typealias CellControllerMapper = ([AnyItem]) -> [ZZSelectableCellController]
+    public typealias Item = Container.Item
+    public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
+    public typealias CellControllerMapper = ([Item]) -> [ZZSelectableCellController]
 
-    private weak var controller: ZZTaskInputView?
+    private weak var controller: ZZComposableInput?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private var loadedContainers = [Int: Container]()
     
-    public init(controller: ZZTaskInputView, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
+    public init(controller: ZZComposableInput, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
         self.controller = controller
         self.containerMapper = containerMapper
         self.cellControllerMapper = cellControllerMapper
@@ -61,8 +62,8 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         return !(container.selectedItems ?? []).isEmpty
     }
     
-    public func getLoadedItems() -> [Int: [AnyItem]?] {
-        loadedContainers.reduce(into: [Int: [AnyItem]?]()) { partialResult, object in
+    public func getLoadedItems() -> [Int: [Item]?] {
+        loadedContainers.reduce(into: [Int: [Item]?]()) { partialResult, object in
             partialResult[object.key] = object.value.selectedItems
         }
     }

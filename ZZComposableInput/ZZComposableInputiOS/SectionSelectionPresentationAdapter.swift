@@ -4,11 +4,11 @@
 
 import ZZComposableInput
 
-final class SectionSelectionPresentationAdapter {
-    private let loader: ItemsLoader
+final class SectionSelectionPresentationAdapter<Loader: ItemsLoader> {
+    private let loader: Loader
     public var presenter: LoadResourcePresenter?
     
-    public init(loader: ItemsLoader) {
+    public init(loader: Loader) {
         self.loader = loader
     }
     
@@ -19,7 +19,7 @@ final class SectionSelectionPresentationAdapter {
             case .success(let items):
                 self?.presenter?.didFinishLoading(with: items ?? [], at: index)
             case.failure(let error):
-                self?.presenter?.didFinishLoading(withError: error, at: index)
+                self?.presenter?.didFinishLoading(with: error, at: index)
             }
         })
     }

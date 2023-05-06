@@ -8,9 +8,9 @@ import ZZComposableInput
 public final class ZZTaskInputViewComposer {
     private init() {}
     
-    public static func composedWith<T: ZZTaskInputView>(
+    public static func composedWith<T: ZZComposableInput>(
         inputView: T,
-        itemsLoader: ItemsLoader,
+        itemsLoader: some ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
         resourceListView: ResourceListViewProtocol,
         sectionsPresenter: SectionsPresenter,
