@@ -4,11 +4,6 @@
 
 import Foundation
 
-public enum ItemsContainerSelectionType: Hashable {
-    case single
-    case multiple(max: Int)
-}
-
 public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?

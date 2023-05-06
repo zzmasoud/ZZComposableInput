@@ -38,6 +38,7 @@
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZTaskInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZTaskInputView.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
+		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04CEFD6F298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEFD6E298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZTaskInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZTaskInputView.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04CEFD6E298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsLoaderTests.swift; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,8 +170,9 @@
 		045C50D4298D1A76005C44AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */,
-				04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */,
+				04CDEB062A063AAD008C7BCF /* ItemType.swift */,
+				04CDEB0B2A0643E5008C7BCF /* ItemsLoader */,
+				04CDEB0A2A0643DB008C7BCF /* ItemsContainer */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,8 +201,6 @@
 			children = (
 				04854A7E29BA59FB00B05665 /* Presentation */,
 				045C50D4298D1A76005C44AE /* Models */,
-				043787FA298E4BC600CD2F26 /* ItemsContainer.swift */,
-				045C50D2298D1A5F005C44AE /* ItemsLoader.swift */,
 			);
 			path = ItemsSelection;
 			sourceTree = "<group>";
@@ -262,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				046E8CFA29BF0B470061716D /* ItemsSelection */,
-				04CDEB062A063AAD008C7BCF /* ItemType.swift */,
 			);
 			path = ZZComposableInput;
 			sourceTree = "<group>";
@@ -276,6 +276,25 @@
 				04CEFD6E298BEAAC00715BD3 /* DefaultItemsLoaderTests.swift */,
 			);
 			path = ZZComposableInputTests;
+			sourceTree = "<group>";
+		};
+		04CDEB0A2A0643DB008C7BCF /* ItemsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */,
+				043787FA298E4BC600CD2F26 /* ItemsContainer.swift */,
+				043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */,
+			);
+			path = ItemsContainer;
+			sourceTree = "<group>";
+		};
+		04CDEB0B2A0643E5008C7BCF /* ItemsLoader */ = {
+			isa = PBXGroup;
+			children = (
+				045C50D2298D1A5F005C44AE /* ItemsLoader.swift */,
+				04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */,
+			);
+			path = ItemsLoader;
 			sourceTree = "<group>";
 		};
 		04CEFD70298BF37300715BD3 /* Shared */ = {
@@ -461,6 +480,7 @@
 				0441610129BDFA9B0070D6CE /* ResourceLoadingViewModel.swift in Sources */,
 				044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */,
 				0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */,
+				04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */,
 				0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */,
 				044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */,
 				044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */,

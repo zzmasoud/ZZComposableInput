@@ -4,8 +4,6 @@
 
 import Foundation
 
-public typealias AnyItem = ItemType
-
 public protocol ItemsLoader {
     associatedtype Item: AnyItem
     
