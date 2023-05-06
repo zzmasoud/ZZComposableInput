@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ZZTaskInput
+import ZZComposableInput
 
 public protocol ZZTaskInputView: AnyObject {
     var text: String? { get set }

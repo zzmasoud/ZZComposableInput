@@ -2,7 +2,7 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //  
 
-import ZZTaskInput
+import ZZComposableInput
 
 class MockTextParser<Parsed>: TextParser {
     var result: Parsed!

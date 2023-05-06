@@ -3,7 +3,7 @@
 //  
 
 import XCTest
-import ZZTaskInput
+import ZZComposableInput
 
 enum MockSection: Int {
     case section0 = 0, section1, section2, section3

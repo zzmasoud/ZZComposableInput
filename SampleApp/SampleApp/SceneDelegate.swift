@@ -23,6 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         inputView.onViewDidLoad = { [weak self] in
             resourceViewTogglingPresenter.viewDidLoad()
         }
+        
+        inputView.onCompletion
+        
         let sectionsPresenter = SectionsPresenter(
             titles: Category.allCases.map { $0.title },
             view: WeakRefVirtualProxy(inputView.sectionsController!)

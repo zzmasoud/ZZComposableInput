@@ -2,7 +2,7 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //
 
-import ZZTaskInput
+import ZZComposableInput
 
 final class SectionSelectionPresentationAdapter {
     private let loader: ItemsLoader

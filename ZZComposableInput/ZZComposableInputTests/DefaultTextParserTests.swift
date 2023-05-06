@@ -3,7 +3,7 @@
 //  
 
 import XCTest
-import ZZTaskInput
+import ZZComposableInput
 
 class DefaultTextParserTests: XCTestCase {
     

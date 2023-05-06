@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1340"
+   LastUpgradeVersion = "1420"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C36F92298AF6C700712C6E"
-               BuildableName = "ZZTaskInput.framework"
-               BlueprintName = "ZZTaskInput"
-               ReferencedContainer = "container:ZZTaskInput.xcodeproj">
+               BuildableName = "ZZComposableInput.framework"
+               BlueprintName = "ZZComposableInput"
+               ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C36F9A298AF6C700712C6E"
-               BuildableName = "ZZTaskInputTests.xctest"
-               BlueprintName = "ZZTaskInputTests"
-               ReferencedContainer = "container:ZZTaskInput.xcodeproj">
+               BuildableName = "ZZComposableInputTests.xctest"
+               BlueprintName = "ZZComposableInputTests"
+               ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C36F92298AF6C700712C6E"
-            BuildableName = "ZZTaskInput.framework"
-            BlueprintName = "ZZTaskInput"
-            ReferencedContainer = "container:ZZTaskInput.xcodeproj">
+            BuildableName = "ZZComposableInput.framework"
+            BlueprintName = "ZZComposableInput"
+            ReferencedContainer = "container:ZZComposableInput.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

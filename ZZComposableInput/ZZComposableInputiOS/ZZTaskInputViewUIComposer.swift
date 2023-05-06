@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ZZTaskInput
+import ZZComposableInput
 
 public final class ZZTaskInputViewComposer {
     private init() {}

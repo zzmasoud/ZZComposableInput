@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ZZTaskInput
+import ZZComposableInput
 
 #warning("#6 - see below warning first")
 public protocol ResourceListViewProtocol {
@@ -37,7 +37,7 @@ public final class ZZResourceListController: NSObject, ResourceLoadingView {
         add(resourceListView: resourceListView.view, to: containerView)
     }
     
-    public func display(_ viewModel: ZZTaskInput.ResourceLoadingViewModel) {
+    public func display(_ viewModel: ResourceLoadingViewModel) {
             // no loading for now
     }
     

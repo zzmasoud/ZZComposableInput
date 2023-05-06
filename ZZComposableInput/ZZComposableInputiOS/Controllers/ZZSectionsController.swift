@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ZZTaskInput
+import ZZComposableInput
 
 public protocol SectionedViewProtocol {
     var view: UIView { get }

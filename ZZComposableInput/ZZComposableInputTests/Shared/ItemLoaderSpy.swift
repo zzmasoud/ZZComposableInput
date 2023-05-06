@@ -3,7 +3,7 @@
 //  
 
 import Foundation
-import ZZTaskInput
+import ZZComposableInput
 
 class ItemLoaderSpy: ItemsLoader {
     typealias Section = Int
