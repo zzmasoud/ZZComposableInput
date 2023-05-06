@@ -6,7 +6,6 @@ import UIKit
 import ZZComposableInput
 
 public protocol ZZTaskInputView: AnyObject {
-    var text: String? { get set }
     var sectionsController: ZZSectionsController! { get }
     var resourceListController: ZZResourceListController! { get }
     var sectionedView: SectionedViewProtocol { get }
@@ -19,18 +18,13 @@ public protocol ZZTaskInputView: AnyObject {
 
 
 public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView, ResourceLoadingView {
-    @IBOutlet private(set) public var textInput: UITextView!
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
-    public var text: String? {
-        get { textInput.text }
-        set { textInput.text = newValue }
-    }
-    
+  
     public var onCompletion: (() -> Void)?
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
@@ -51,11 +45,5 @@ public final class ZZTaskInputViewController: UIViewController, ZZTaskInputView,
         onViewDidLoad?()
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.textInput.becomeFirstResponder()
-    }
-    
     public func display(_ viewModel: ResourceLoadingViewModel) {}
 }

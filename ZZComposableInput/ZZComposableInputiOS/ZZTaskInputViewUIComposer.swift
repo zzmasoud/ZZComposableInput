@@ -10,7 +10,6 @@ public final class ZZTaskInputViewComposer {
     
     public static func composedWith<T: ZZTaskInputView>(
         inputView: T,
-        textParser: some TextParser,
         itemsLoader: ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,
         resourceListView: ResourceListViewProtocol,
