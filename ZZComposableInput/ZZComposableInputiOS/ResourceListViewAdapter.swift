@@ -51,7 +51,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         }
         
         controller?.onDeselection = { [weak container] index in
-            container?.unselect(at: index)
+            container?.deselect(at: index)
         }
 
         loadedContainers[viewModel.index] = container

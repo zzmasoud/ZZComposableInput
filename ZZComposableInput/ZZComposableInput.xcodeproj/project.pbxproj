@@ -182,8 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				04CDEB062A063AAD008C7BCF /* ItemType.swift */,
-				04CDEB0B2A0643E5008C7BCF /* ItemsLoader */,
-				04CDEB0A2A0643DB008C7BCF /* ItemsContainer */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,15 +203,6 @@
 				046C5F702992A81900672906 /* ZZSelectableCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		046E8CFA29BF0B470061716D /* ItemsSelection */ = {
-			isa = PBXGroup;
-			children = (
-				04854A7E29BA59FB00B05665 /* Presentation */,
-				045C50D4298D1A76005C44AE /* Models */,
-			);
-			path = ItemsSelection;
 			sourceTree = "<group>";
 		};
 		047CA3B329BD2DF500718831 /* Section */ = {
@@ -273,7 +262,10 @@
 		04C36F95298AF6C700712C6E /* ZZComposableInput */ = {
 			isa = PBXGroup;
 			children = (
-				046E8CFA29BF0B470061716D /* ItemsSelection */,
+				045C50D4298D1A76005C44AE /* Models */,
+				04CDEB0A2A0643DB008C7BCF /* ItemsContainer */,
+				04CDEB0B2A0643E5008C7BCF /* ItemsLoader */,
+				04854A7E29BA59FB00B05665 /* Presentation */,
 			);
 			path = ZZComposableInput;
 			sourceTree = "<group>";
