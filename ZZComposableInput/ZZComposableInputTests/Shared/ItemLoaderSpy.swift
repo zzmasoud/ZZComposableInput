@@ -5,7 +5,7 @@
 import Foundation
 import ZZComposableInput
 
-class ItemLoaderSpy: ItemsLoader {
+final class ItemLoaderSpy: ItemsLoader {
     typealias Section = Int
     typealias Item = MockItem
 

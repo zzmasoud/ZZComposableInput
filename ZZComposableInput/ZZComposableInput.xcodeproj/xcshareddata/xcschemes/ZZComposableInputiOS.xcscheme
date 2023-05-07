@@ -44,9 +44,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "040CE0C1298FAA28003BB6DC"
-               BuildableName = "ZZTaskInputiOSTests.xctest"
-               BlueprintName = "ZZTaskInputiOSTests"
+               BlueprintIdentifier = "0438FFC22A077CBB00469D1A"
+               BuildableName = "ZZComposableInputiOSTests.xctest"
+               BlueprintName = "ZZComposableInputiOSTests"
                ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>
