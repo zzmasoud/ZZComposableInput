@@ -19,10 +19,14 @@ public final class LoadResourcePresenter {
         ))
     }
     
-    public func didFinishLoading(with items: [any AnyItem], at index: Int) {
+    private func stopLoading() {
         loadingView.display(ResourceLoadingViewModel(
             isLoading: false
         ))
+    }
+    
+    public func didFinishLoading(with items: [any AnyItem], at index: Int) {
+        stopLoading()
         listView.display(ResourceListViewModel(
             index: index,
             items: items
@@ -30,9 +34,7 @@ public final class LoadResourcePresenter {
     }
     
     public func didFinishLoading(with error: Error, at index: Int) {
-        loadingView.display(ResourceLoadingViewModel(
-            isLoading: false
-        ))
+        stopLoading()
         listView.display(ResourceListViewModel(
             index: index,
             items: []

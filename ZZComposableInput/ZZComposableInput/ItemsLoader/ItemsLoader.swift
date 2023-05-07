@@ -4,11 +4,15 @@
 
 import Foundation
 
+public protocol CancellableFetch {
+    func cancel()
+}
+
 public protocol ItemsLoader {
     associatedtype Item: AnyItem
     
     typealias FetchItemsResult = Result<[Item]?, Error>
     typealias FetchItemsCompletion = (FetchItemsResult) -> Void
 
-    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion)
+    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) -> CancellableFetch
 }

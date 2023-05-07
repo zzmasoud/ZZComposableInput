@@ -55,6 +55,32 @@ final class SectionSelectionPresentationAdapterTests: XCTestCase {
             .display(items: [], index: 0)
         ])
     }
+    
+    func test_selectSection_hasNoSideEffects() {
+        let items = makeItems()
+        let error = makeError()
+        
+        let (sut, loader, view) = makeSUT()
+        
+        sut.selectSection(index: 0)
+        sut.selectSection(index: 1)
+        
+        loader.completeRetrieval(with: items, at: 0)
+        
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: true),
+            .display(isLoading: true),
+        ])
+        
+        loader.completeRetrieval(with: error, at: 1)
+        
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: true),
+            .display(isLoading: true),
+            .display(isLoading: false),
+            .display(items: [], index: 1)
+        ])
+    }
 
     // MARK: - Helpers
     

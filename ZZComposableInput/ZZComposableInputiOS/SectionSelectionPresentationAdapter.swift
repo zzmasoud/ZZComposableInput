@@ -7,6 +7,11 @@ import ZZComposableInput
 final class SectionSelectionPresentationAdapter<Loader: ItemsLoader> {
     private let loader: Loader
     public var presenter: LoadResourcePresenter?
+    private var currentTask: CancellableFetch? {
+        didSet {
+             oldValue?.cancel()
+        }
+    }
     
     init(loader: Loader) {
         self.loader = loader
@@ -14,7 +19,7 @@ final class SectionSelectionPresentationAdapter<Loader: ItemsLoader> {
     
     func selectSection(index: Int) {
         presenter?.didStartLoading()
-        loader.loadItems(for: index, completion: { [weak self] result in
+        currentTask = loader.loadItems(for: index, completion: { [weak self] result in
             switch result {
             case .success(let items):
                 self?.presenter?.didFinishLoading(with: items ?? [], at: index)
