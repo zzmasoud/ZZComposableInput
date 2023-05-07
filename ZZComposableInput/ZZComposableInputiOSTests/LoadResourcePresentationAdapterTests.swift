@@ -6,7 +6,7 @@ import XCTest
 import ZZComposableInput
 @testable import ZZComposableInputiOS
 
-final class SectionSelectionPresentationAdapterTests: XCTestCase {
+final class LoadResourcePresentationAdapterTests: XCTestCase {
     
     func test_init_doesntMessageLoader() {
         let (_,loader,_) = makeSUT()
@@ -84,7 +84,7 @@ final class SectionSelectionPresentationAdapterTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private typealias SUT = SectionSelectionPresentationAdapter<ItemLoaderSpy>
+    private typealias SUT = LoadResourcePresentationAdapter<ItemLoaderSpy>
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy, view: ViewSpy) {
         let loader = ItemLoaderSpy()

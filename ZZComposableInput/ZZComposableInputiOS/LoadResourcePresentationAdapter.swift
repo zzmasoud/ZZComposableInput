@@ -4,7 +4,7 @@
 
 import ZZComposableInput
 
-final class SectionSelectionPresentationAdapter<Loader: ItemsLoader> {
+final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
     private let loader: Loader
     public var presenter: LoadResourcePresenter?
     private var currentTask: CancellableFetch? {

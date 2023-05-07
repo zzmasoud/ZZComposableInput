@@ -17,7 +17,7 @@ public final class ZZTaskInputViewComposer {
         loadResourcePresenter: LoadResourcePresenter,
         sectionsControllerDelegate: ZZSectionsControllerDelegate
     ) -> T {
-        let presentationAdapter = SectionSelectionPresentationAdapter(
+        let presentationAdapter = LoadResourcePresentationAdapter(
             loader: itemsLoader)
  
         let sectionsController = inputView.sectionsController!
