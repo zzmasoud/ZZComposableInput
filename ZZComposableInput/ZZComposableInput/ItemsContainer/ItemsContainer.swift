@@ -6,6 +6,7 @@ import Foundation
 
 public protocol ItemsContainerDelegate {
     func didDeselect(at index: Int)
+    func newItemAdded(at index: Int)
 }
 
 public protocol ItemsContainer: AnyObject {
@@ -18,4 +19,5 @@ public protocol ItemsContainer: AnyObject {
     var allowAdding: Bool { get }
     func select(at index: Int)
     func deselect(at index: Int)
+    func add(item: Item)
 }

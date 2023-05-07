@@ -182,18 +182,44 @@ class DefaultItemsContainerTests: XCTestCase {
         XCTAssertEqual(delegate.deselections, [0, 1])
     }
     
+    func test_delegate_callsAfterAddingNewItemWhenHasItems() {
+        let (sut, _) = makeSUT()
+        let delegate = MockDelegate()
+        sut.delegate = delegate
+
+        XCTAssertEqual(delegate.newItemIndexes, [])
+
+        let newItem = makeItems().first!
+        sut.add(item: newItem)
+        
+        XCTAssertEqual(delegate.newItemIndexes, [sut.items!.count-1])
+    }
+    
+    func test_delegate_callsAfterAddingNewItemWhenHasNoItems() {
+        let (sut, _) = makeSUT(withNoItems: true)
+        let delegate = MockDelegate()
+        sut.delegate = delegate
+
+        XCTAssertEqual(delegate.newItemIndexes, [])
+
+        let newItem = makeItems().first!
+        sut.add(item: newItem)
+        
+        XCTAssertEqual(delegate.newItemIndexes, [0])
+    }
+    
     
     // MARK: - Helpers
     
     private func makeSUT(selectionType: ItemsContainerSelectionType = .single, withNoItems: Bool = false) -> (sut: DefaultItemsContainer<MockItem>, items: [MockItem]) {
-        let items = withNoItems ? [] : makeItems()
+        let items = withNoItems ? nil : makeItems()
         let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: nil,
             selectionType: selectionType,
             allowAdding: true)
         
-        return (sut, items)
+        return (sut, items ?? [])
     }
     
     private func expect(_ sut: DefaultItemsContainer<MockItem>, toHaveSelectedItems expectedItems: [MockItem]?, file: StaticString = #file, line: UInt = #line) {
@@ -202,9 +228,14 @@ class DefaultItemsContainerTests: XCTestCase {
     
     private class MockDelegate: ItemsContainerDelegate {
         private(set) var deselections: [Int] = []
+        private(set) var newItemIndexes: [Int] = []
         
         func didDeselect(at index: Int) {
             deselections.append(index)
+        }
+        
+        func newItemAdded(at index: Int) {
+            newItemIndexes.append(index)
         }
     }
 }

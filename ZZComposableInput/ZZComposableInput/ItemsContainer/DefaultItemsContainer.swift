@@ -30,6 +30,14 @@ public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
     private func indexOf(_ item: Item, in collection: [Item]?) -> Int? {
         return collection?.firstIndex(of: item)
     }
+
+    public func add(item: Item) {
+        if items?.append(item) == nil {
+            items = [item]
+        }
+        self.delegate?.newItemAdded(at: items!.count-1)
+    }
+
 }
 
 // MARK: - Select

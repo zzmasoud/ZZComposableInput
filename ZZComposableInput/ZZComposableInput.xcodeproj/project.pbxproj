@@ -43,6 +43,7 @@
 		04A5728B29B76B5F000E0D08 /* DefaultItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */; };
 		04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
+		04B4593C2A07BE5F004C7B73 /* ResourceListViewAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4593B2A07BE5F004C7B73 /* ResourceListViewAdapterTests.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZComposableInput.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
@@ -121,6 +122,7 @@
 		04A5728A29B76B5E000E0D08 /* DefaultItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsLoader.swift; sourceTree = "<group>"; };
 		04A5728C29B78255000E0D08 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoaderSpy.swift; sourceTree = "<group>"; };
+		04B4593B2A07BE5F004C7B73 /* ResourceListViewAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListViewAdapterTests.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZComposableInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZComposableInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
+				04B4593B2A07BE5F004C7B73 /* ResourceListViewAdapterTests.swift */,
 			);
 			path = ZZComposableInputiOSTests;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,
 				0438FFC62A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift in Sources */,
 				0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				04B4593C2A07BE5F004C7B73 /* ResourceListViewAdapterTests.swift in Sources */,
 				0438FFD12A07812F00469D1A /* ViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
