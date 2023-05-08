@@ -14,7 +14,7 @@ public protocol ZZComposableInputDataSource: AnyObject {
     var resourceListView: ResourceListViewProtocol { get }
 }
 
-public protocol ZZComposableInputDelegate {
+public protocol ZZComposableInputDelegate: AnyObject {
     var onSelection: ((Int) -> Void)? { get set }
     var onDeselection: ((Int) -> Void)? { get set }
 }

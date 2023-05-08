@@ -25,14 +25,21 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     
     public func display(_ viewModel: ResourceListViewModel) {
         let section = viewModel.index
+        // map data to container and then sync new container with selected items if exists
         let container = containerMapper(section, viewModel.items)
         selectionManager.sync(container: container, forSection: section)
-        
-        #warning("#5 - How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
-        controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
-        controller?.resourceListView.allowAddNew(container.allowAdding)
+        configuareResourceListViewBasedOn(container: container, in: controller)
         
         let cellControllers = cellControllerMapper(container.items ?? [])
+        pass(cellControllers: cellControllers, to: controller, using: container)
+    }
+    
+    private func configuareResourceListViewBasedOn(container: Container, in controller: ZZComposableInput?) {
+        controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
+        controller?.resourceListView.allowAddNew(container.allowAdding)
+    }
+    
+    private func pass(cellControllers: [ZZSelectableCellController], to controller: ZZComposableInput?, using container: Container) {
         cellControllers.forEach { controller in
             controller.isSelected = {
                 (container.selectedItems ?? []).contains(where: { item in
