@@ -19,10 +19,12 @@ public protocol ZZComposableInputDelegate: AnyObject {
     var onDeselection: ((Int) -> Void)? { get set }
 }
 
-public final class ZZComposableInputViewController: UIViewController {
+public final class ZZComposableInputViewController: UIViewController, ZZComposableInput {
     @IBOutlet private(set) public var sectionsController: ZZSectionsController!
     @IBOutlet private(set) public var resourceListController: ZZResourceListController!
     
+    public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
+    public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { sectionsController?.label }
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
@@ -43,13 +45,6 @@ public final class ZZComposableInputViewController: UIViewController {
         onViewDidLoad?()
     }
 }
-
-extension ZZComposableInputViewController: ZZComposableInputDataSource {
-    public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
-    public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
-}
-
-extension ZZComposableInputViewController: ZZComposableInputDelegate {}
 
 extension ZZComposableInputViewController: ResourceLoadingView {
     public func display(_ viewModel: ResourceLoadingViewModel) {}

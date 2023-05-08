@@ -18,7 +18,6 @@
 		0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		0438FFD02A07811500469D1A /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
-		0438FFD12A07812F00469D1A /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
 		0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */; };
 		044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEE29BB7D340077BFC8 /* SectionsView.swift */; };
@@ -46,6 +45,8 @@
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZComposableInput.swift */; };
 		04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */; };
+		04CB3DAA2A08F2530024D327 /* SectionSelectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */; };
+		04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
@@ -125,6 +126,7 @@
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
 		04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySelectionManager.swift; sourceTree = "<group>"; };
+		04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionSelectionUseCaseTests.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
+				04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */,
 			);
 			path = ZZComposableInputiOSTests;
 			sourceTree = "<group>";
@@ -538,11 +541,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CB3DAA2A08F2530024D327 /* SectionSelectionUseCaseTests.swift in Sources */,
+				04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */,
 				0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */,
 				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,
 				0438FFC62A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift in Sources */,
 				0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				0438FFD12A07812F00469D1A /* ViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

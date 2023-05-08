@@ -45,7 +45,7 @@ public final class ZZSectionsController: NSObject, SectionsView {
         containerView.addSubviewWithConstraints(sectionedView)
     }
     
-    func setSections() {
+    private func setSections() {
         delegate?.didRequestSections()
     }
 
