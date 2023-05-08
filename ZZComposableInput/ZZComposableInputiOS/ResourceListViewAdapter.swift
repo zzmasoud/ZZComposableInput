@@ -15,7 +15,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     private weak var controller: ZZComposableInput?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
-    private var loadedContainers = [Int: Container]()
+    private let selectionManager = InMemorySelectionManager<Container>()
     
     public init(controller: ZZComposableInput, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
         self.controller = controller
@@ -24,13 +24,9 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
-        let index = viewModel.index
-        let container = containerMapper(index, viewModel.items)
-        loadedContainers[index]?.selectedItems?.forEach({ item in
-            if let index = container.items!.firstIndex(of: item) {
-                container.select(at: index)
-            }
-        })
+        let section = viewModel.index
+        let container = containerMapper(section, viewModel.items)
+        selectionManager.sync(container: container, forSection: section)
         
         #warning("#5 - How to set the tableview's allowMultipleSelection? Where and how? should it be handled in a presenter?")
         controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
@@ -53,17 +49,15 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         controller?.onDeselection = { [weak container] index in
             container?.deselect(at: index)
         }
-
-        loadedContainers[viewModel.index] = container
     }
     
     public func containerHasSelectedItems(at index: Int) -> Bool? {
-        guard let container = loadedContainers[index] else { return nil }
+        guard let container = selectionManager.loadedContainers[index] else { return nil }
         return !(container.selectedItems ?? []).isEmpty
     }
     
     public func getLoadedItems() -> [Int: [Item]?] {
-        loadedContainers.reduce(into: [Int: [Item]?]()) { partialResult, object in
+        selectionManager.loadedContainers.reduce(into: [Int: [Item]?]()) { partialResult, object in
             partialResult[object.key] = object.value.selectedItems
         }
     }
