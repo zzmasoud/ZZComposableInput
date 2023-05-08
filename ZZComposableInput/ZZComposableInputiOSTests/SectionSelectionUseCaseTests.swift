@@ -8,6 +8,12 @@ import ZZComposableInput
 
 final class SectionSelectionUseCaseTests: XCTestCase {
     
+    func test_init_renderedSectionsAreEmpty() {
+        let sut = makeSUT()
+
+        XCTAssertEqual(sut.sectionedView!.numberOfSections, 0)
+    }
+    
     func test_sectionedView_rendersSections() {
         let sut = makeSUT()
         
@@ -25,7 +31,7 @@ final class SectionSelectionUseCaseTests: XCTestCase {
         XCTAssertTrue(sut.label!.isHidden)
     }
     
-    func test_changingSection_rendersTitleOnLabel() {
+    func test_changingSection_rendersTitle() {
         let selection = 0
         let sut = makeSUT()
         sut.viewDidLoad()
@@ -34,6 +40,11 @@ final class SectionSelectionUseCaseTests: XCTestCase {
         
         XCTAssertFalse(sut.label!.isHidden)
         XCTAssertEqual(sut.label!.text, sections[selection])
+        
+        sut.sectionedView!.simulateSelection(section: selection+1)
+        
+        XCTAssertFalse(sut.label!.isHidden)
+        XCTAssertEqual(sut.label!.text, sections[selection+1])
     }
     
     // MARK: - Helpers

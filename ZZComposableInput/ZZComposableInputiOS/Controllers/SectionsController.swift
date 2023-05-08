@@ -29,7 +29,6 @@ final class SectionsController: SectionsView {
         delegate.didRequestSections()
     }
     
-    
     func select(section: Int) {
         delegate?.didSelectSection(at: section)
     }
