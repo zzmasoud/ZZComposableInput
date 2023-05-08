@@ -45,8 +45,9 @@
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZComposableInput.swift */; };
 		04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */; };
-		04CB3DAA2A08F2530024D327 /* SectionSelectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */; };
+		04CB3DAA2A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */; };
 		04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
+		04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DAC2A091EB10024D327 /* SectionsController.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
@@ -126,7 +127,8 @@
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C76728299030ED00EB3403 /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
 		04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySelectionManager.swift; sourceTree = "<group>"; };
-		04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionSelectionUseCaseTests.swift; sourceTree = "<group>"; };
+		04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegateUseCaseTests.swift; sourceTree = "<group>"; };
+		04CB3DAC2A091EB10024D327 /* SectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsController.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
-				04CB3DA92A08F2530024D327 /* SectionSelectionUseCaseTests.swift */,
+				04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */,
 			);
 			path = ZZComposableInputiOSTests;
 			sourceTree = "<group>";
@@ -228,6 +230,7 @@
 				0405818529929EEC0010B615 /* ZZSectionsController.swift */,
 				046E8CFC29BF50FE0061716D /* ZZResourceListController.swift */,
 				046C5F6E2992A80000672906 /* ZZSelectableCellController.swift */,
+				04CB3DAC2A091EB10024D327 /* SectionsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */,
 				046C5F6F2992A80000672906 /* ZZSelectableCellController.swift in Sources */,
 				04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */,
+				04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */,
 				046C5F712992A81900672906 /* ZZSelectableCell.swift in Sources */,
 				046E8D2529BFB5E50061716D /* LoadResourcePresentationAdapter.swift in Sources */,
 				046E8CFD29BF50FE0061716D /* ZZResourceListController.swift in Sources */,
@@ -541,7 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CB3DAA2A08F2530024D327 /* SectionSelectionUseCaseTests.swift in Sources */,
+				04CB3DAA2A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift in Sources */,
 				04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */,
 				0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */,
 				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,

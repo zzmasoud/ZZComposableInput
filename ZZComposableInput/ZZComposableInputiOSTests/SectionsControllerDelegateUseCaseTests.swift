@@ -3,29 +3,9 @@
 //  
 
 import XCTest
-import ZZComposableInput
-import ZZComposableInputiOS
+@testable import ZZComposableInputiOS
 
-public protocol SectionsControllerDelegate {
-    func didRequestSections()
-    func didSelectSection(at: Int)
-}
-
-final class SectionsController {
-    var delegate: SectionsControllerDelegate?
-    
-    func viewDidLoad() {
-        guard let delegate = delegate else { fatalError("The delegate should be assigned before viewDidLoad()") }
-        
-        delegate.didRequestSections()
-    }
-    
-    func select(section: Int) {
-        delegate?.didSelectSection(at: section)
-    }
-}
-
-final class SectionSelectionUseCaseTests: XCTestCase {
+final class SectionsControllerDelegateUseCaseTests: XCTestCase {
     
     func test_init_doesntRequestSectionsUponCreation() {
         let (_, delegate) = makeSUT()
