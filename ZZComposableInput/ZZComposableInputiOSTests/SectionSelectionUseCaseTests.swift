@@ -14,13 +14,14 @@ final class SectionSelectionUseCaseTests: XCTestCase {
         XCTAssertEqual(sut.sectionedView!.numberOfSections, 0)
     }
     
-    func test_sectionedView_rendersSections() {
+    func test_viewDidLoad_addsSectionedViewIntoContainerView() {
         let sut = makeSUT()
+        
+        XCTAssertTrue(sut.sectionedViewContainer!.subviews.isEmpty)
         
         sut.viewDidLoad()
 
-        XCTAssertEqual(sut.sectionedView!.selectedSectionIndex, -1)
-        XCTAssertEqual(sut.sectionedView!.numberOfSections, sections.count)
+        XCTAssertEqual(sut.sectionedViewContainer!.subviews, [sut.sectionedView!.view])
     }
     
     func test_viewDidLoad_labelIsHidden() {
@@ -29,6 +30,15 @@ final class SectionSelectionUseCaseTests: XCTestCase {
         sut.viewDidLoad()
         
         XCTAssertTrue(sut.label!.isHidden)
+    }
+    
+    func test_sectionedView_rendersSections() {
+        let sut = makeSUT()
+        
+        sut.viewDidLoad()
+
+        XCTAssertEqual(sut.sectionedView!.selectedSectionIndex, -1)
+        XCTAssertTrue(sut.sectionedView!.isRendering(sections: sections))
     }
     
     func test_changingSection_rendersTitle() {
@@ -58,6 +68,7 @@ final class SectionSelectionUseCaseTests: XCTestCase {
                 titles: sections,
                 view: WeakRefVirtualProxy(controller)))
         controller.delegate = delegate
+        controller.sectionedViewContainer = UIView()
         controller.sectionedView = MockSectionedView()
         controller.label = UILabel()
 

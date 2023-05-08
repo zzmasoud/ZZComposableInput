@@ -11,6 +11,7 @@ protocol SectionsControllerDelegate {
 }
 
 final class SectionsController: SectionsView {
+    @IBOutlet public var sectionedViewContainer: UIView?
     @IBOutlet public var label: UILabel?
 
     var delegate: SectionsControllerDelegate?
@@ -25,8 +26,17 @@ final class SectionsController: SectionsView {
     
     func viewDidLoad() {
         guard let delegate = delegate else { fatalError("The delegate should be assigned before viewDidLoad()") }
-        
         delegate.didRequestSections()
+        
+        guard let containerView = sectionedViewContainer,
+              let sectionedView = sectionedView else {
+            fatalError("sectionedViewContainer or sectionedView property is nil, should be connected in the interface builder.")
+        }
+        add(sectionedView: sectionedView.view, to: containerView)
+    }
+    
+    private func add(sectionedView: UIView, to containerView: UIView) {
+        containerView.addSubviewWithConstraints(sectionedView)
     }
     
     func select(section: Int) {

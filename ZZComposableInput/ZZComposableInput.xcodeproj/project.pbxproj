@@ -50,7 +50,7 @@
 		04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DAC2A091EB10024D327 /* SectionsController.swift */; };
 		04CB3DAF2A0936B70024D327 /* SectionSelectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DAE2A0936B70024D327 /* SectionSelectionUseCaseTests.swift */; };
 		04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
-		04CB3DB42A09414A0024D327 /* UIView+Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Simulation.swift */; };
+		04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
@@ -134,7 +134,7 @@
 		04CB3DAC2A091EB10024D327 /* SectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsController.swift; sourceTree = "<group>"; };
 		04CB3DAE2A0936B70024D327 /* SectionSelectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionSelectionUseCaseTests.swift; sourceTree = "<group>"; };
 		04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSectionedView.swift; sourceTree = "<group>"; };
-		04CB3DB32A09414A0024D327 /* UIView+Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Simulation.swift"; sourceTree = "<group>"; };
+		04CB3DB32A09414A0024D327 /* UIView+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test.swift"; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */,
-				04CB3DB32A09414A0024D327 /* UIView+Simulation.swift */,
+				04CB3DB32A09414A0024D327 /* UIView+Test.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -567,7 +567,7 @@
 				04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */,
 				0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */,
 				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,
-				04CB3DB42A09414A0024D327 /* UIView+Simulation.swift in Sources */,
+				04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */,
 				04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */,
 				0438FFC62A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift in Sources */,
 				0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */,

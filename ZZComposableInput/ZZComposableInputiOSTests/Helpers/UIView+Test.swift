@@ -10,6 +10,14 @@ extension SectionedViewProtocol {
         let segmented = self.view as! UISegmentedControl
         segmented.simulateSelectingItem(at: section)
     }
+    
+    func isRendering(sections: [String]) -> Bool {
+        let segmented = self.view as! UISegmentedControl
+        for (index, title) in sections.enumerated() {
+            guard segmented.titleForSegment(at: index) == title else { return false }
+        }
+        return true
+    }
 }
 
 extension UISegmentedControl {

@@ -40,6 +40,8 @@ final class SectionsControllerDelegateUseCaseTests: XCTestCase {
         let controller = SectionsController()
         let delegate = MockDelegate()
         controller.delegate = delegate
+        controller.sectionedViewContainer = UIView()
+        controller.sectionedView = MockSectionedView()
         
         return (controller, delegate)
     }
