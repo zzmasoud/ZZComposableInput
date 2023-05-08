@@ -22,7 +22,7 @@ final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
         currentTask = loader.loadItems(for: index, completion: { [weak self] result in
             switch result {
             case .success(let items):
-                self?.presenter?.didFinishLoading(with: items ?? [], at: index)
+                self?.presenter?.didFinishLoading(with: items, at: index)
             case.failure(let error):
                 self?.presenter?.didFinishLoading(with: error, at: index)
             }

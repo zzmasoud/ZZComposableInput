@@ -30,7 +30,7 @@ final class ItemLoaderSpy: ItemsLoader {
         task.completion(.failure(error))
     }
     
-    func completeRetrieval(with items: [Item]?, at index: Int = 0) {
+    func completeRetrieval(with items: [Item], at index: Int = 0) {
         let task = tasks[index]
         guard !task.isCancelled else { return }
         
