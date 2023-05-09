@@ -16,7 +16,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_sectionSelection_triggersLoader() {
-        let section = 0
+        let section = 1
         let (sut, loader) = makeSUT()
 
         XCTAssertEqual(loader.loadCallCount, 0)
@@ -28,7 +28,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_loadItemsInSectionCompletion_rendersSuccessfullyLoadedItems() {
-        let section = 0
+        let section = 1
         let items = makeItems()
         let (sut, loader) = makeSUT()
 
@@ -49,7 +49,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
 
     func test_loadItemsInSectionCompletion_removesPreviouslyRenderedItemsOnNewSectionError() {
-        let section = 0
+        let section = 1
         let items = makeItems()
         let (sut, loader) = makeSUT()
 
@@ -63,7 +63,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
-        let section = 0
+        let section = 1
         let items = makeItems()
         let preSelectedItems = [section: [items[1]]]
         let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
@@ -75,7 +75,7 @@ final class iOSIntegrationTests: XCTestCase {
      }
     
     func test_selectingSection_keepsSelectedItemsOnPreviouslyChangedSection() {
-        let section = 0
+        let section = 1
         let section0Items = makeItems()
         let section1Items = makeItems()
         let preSelectedItems = [section: [section0Items[1]]]
@@ -106,7 +106,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_listViewSelectionLimit_changesWithSection() {
-        let section = 0
+        let section = 1
         let (sut, loader) = makeSUT()
         
         // when
@@ -127,7 +127,7 @@ final class iOSIntegrationTests: XCTestCase {
     // MARK: - Single Selection Behaviour
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
-        let section = 0
+        let section = 1
         let items = makeItems()
         let (sut, loader) = makeSUT()
 
@@ -147,7 +147,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
-        let section = 0
+        let section = 1
         let items = makeItems()
         let (sut, loader) = makeSUT()
         
@@ -167,11 +167,92 @@ final class iOSIntegrationTests: XCTestCase {
         // then
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
     }
+    
+    // MARK: - Multi Selection Behaviour
+    
+    func test_selectingRenderedItemOnMultiSelectionType_doesNotremoveSelectionIndicatorFromPreviouslySelectedItem() {
+        let section = 3
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
 
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemSelection(at: 1)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...1), for: section)
+    }
+    
+    func test_deselectingRenderedItemOnMultiSelectionType_removesSelectionIndicator() {
+        let section = 3
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
+        
+        // when
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0,1,2)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](0...2), for: section)
+
+        // when
+        sut.simulateItemDeselection(at: 0)
+        sut.simulateItemDeselection(at: 0)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](1...2), for: section)
+
+        // when
+        sut.simulateItemDeselection(at: 1)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [2], for: section)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0, 2], for: section)
+    }
+    
+    func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
+        let section = 3
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
+        
+        // when
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        // then
+        assertThat(sut, isRendering: items)
+        
+        // when
+        sut.simulateItemSelection(at: 0,1,2,3,4,5,6)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](4...6), for: section)
+
+        // when
+        sut.simulateItemSelection(at: 7)
+        // then
+
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](5...7), for: section)
+
+        // when
+        sut.simulateItemDeselection(at: 1)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemDeselection(at: 1)
+        sut.simulateItemSelection(at: 8)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](6...8), for: section)
+    }
     
     // MARK: - Helpers
     
-    private let sections = ["A", "B", "C"]
+    private let sections = ["A", "B", "C", "D"]
     private typealias Container = DefaultItemsContainer<MockItem>
     
     private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
@@ -239,7 +320,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     private func containerMapper(section: Int, items: [any AnyItem]?, preselectedItems: [MockItem]? = nil) -> Container {
-        let mockSection = MockSection(rawValue: section+1)!
+        let mockSection = MockSection(rawValue: section)!
         return Container(
             items: items as! [MockItem]?,
             preSelectedItems: preselectedItems,
@@ -276,7 +357,12 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     private func assertThat(_ sut: ZZComposableInputViewController, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
-        assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimit: 1, file: file, line: line)
+        let mockSection = MockSection(rawValue: section)!
+        var selectionLimit = 1
+        if case .multiple(let max) = mockSection.selectionType {
+            selectionLimit = max
+        }
+        assertThat(sut, renderedSelectedIndexes: selectedIndexes, notExceedSelectionLimit: selectionLimit, file: file, line: line)
         
         for index in 0..<sut.numberOfRenderedItems {
             if selectedIndexes.contains(index) {
@@ -300,7 +386,7 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     private func assertThat(_ sut: ZZComposableInputViewController, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimit selectionLimit: Int, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertTrue(selectedIndexes.count <= selectionLimit, "expected single selection but got \(selectedIndexes.count) items selected", file: file, line: line)
+        XCTAssertTrue(selectedIndexes.count <= selectionLimit, "expected maximum \(selectionLimit) selection but got \(selectedIndexes.count) items selected.", file: file, line: line)
     }
     
     private func executeRunLoopToCleanUpReferences() {
