@@ -11,8 +11,6 @@ final class iOSIntegrationTests: XCTestCase {
     func test_viewDidLoad_subviewsAreAdded() {
         let (sut, _) = makeSUT()
         
-        sut.loadViewIfNeeded()
-        
         XCTAssertNotNil(sut.sectionedView)
         XCTAssertNotNil(sut.resourceListView)
     }
@@ -20,7 +18,7 @@ final class iOSIntegrationTests: XCTestCase {
     func test_sectionSelection_triggersLoader() {
         let section = 0
         let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
+
         XCTAssertEqual(loader.loadCallCount, 0)
 
         sut.simulateSelection(section: section)
@@ -33,7 +31,6 @@ final class iOSIntegrationTests: XCTestCase {
         let section = 0
         let items = makeItems()
         let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
 
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: items)
@@ -51,7 +48,20 @@ final class iOSIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
 
+    func test_loadItemsInSectionCompletion_removesPreviouslyRenderedItemsOnNewSectionError() {
+        let section = 0
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
 
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: makeError(), at: 1)
+        
+        assertThat(sut, isRendering: [])
+    }
+    
     // MARK: - Helpers
     
     private let sections = ["A", "B", "C"]
@@ -83,6 +93,8 @@ final class iOSIntegrationTests: XCTestCase {
                 resourceListViewAdapter: resourceListViewAdapter,
                 inputController: inputController)
         )
+        
+        sut.loadViewIfNeeded()
         
         return (sut, loader)
     }
@@ -179,46 +191,5 @@ final class iOSIntegrationTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
-    }
-    
-}
-
-extension UIView {
-    func enforceLayoutCycle() {
-        layoutIfNeeded()
-        RunLoop.current.run(until: Date())
-    }
-}
-
-final class MockCellController: NSObject {
-    private let model: MockItem
-    private var cell: UITableViewCell?
-    
-    init(model: MockItem) {
-        self.model = model
-    }
-}
-
-extension MockCellController: SectionedViewDataSource {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = UITableViewCell()
-        cell?.textLabel?.text = model.title
-        return cell!
-    }
-
-    private func releaseCellForReuse() {
-        cell = nil
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fatalError()
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
     }
 }
