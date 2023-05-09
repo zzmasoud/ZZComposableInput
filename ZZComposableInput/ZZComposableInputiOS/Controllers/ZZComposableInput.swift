@@ -32,7 +32,6 @@ public final class ZZComposableInputViewController: UIViewController, ZZComposab
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        #warning("#5 - how to achive this? where should I set default UI config? setting this to hidden in the storyboard is somehow ugly because it got disappear from the interface builder")
         sectionsController.viewDidLoad()
         resourceListController.viewDidLoad()
         resourceListController.resourceListView?.onSelection = { [weak self] index in

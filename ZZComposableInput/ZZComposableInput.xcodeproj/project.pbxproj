@@ -62,6 +62,7 @@
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
+		04D30A5D2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
 /* End PBXBuildFile section */
 
@@ -156,6 +157,7 @@
 		04CB3DB32A09414A0024D327 /* UIView+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test.swift"; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
+		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
 		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */,
+				04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */,
 				040850942A0A4117007DEF50 /* MockListView.swift */,
 			);
 			path = iOSIntegrationTests;
@@ -619,6 +622,7 @@
 				040850912A0A3FBE007DEF50 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */,
 				040850902A0A3FBE007DEF50 /* ItemLoaderSpy.swift in Sources */,
+				04D30A5D2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift in Sources */,
 				040850932A0A40E2007DEF50 /* MockSectionedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

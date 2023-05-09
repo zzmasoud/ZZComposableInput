@@ -12,6 +12,8 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
+        view.dataSource = self
+        view.delegate = self
         return view
     }()
 
