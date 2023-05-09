@@ -8,16 +8,32 @@ import ZZComposableInput
 
 final class iOSIntegrationTests: XCTestCase {
     
-    func test_x() {
-        let sut = makeSUT()
+    func test_viewDidLoad_subviewsAreAdded() {
+        let (sut, _) = makeSUT()
+        
         sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(sut.sectionedView)
+        XCTAssertNotNil(sut.resourceListView)
+    }
+    
+    func test_sectionSelection_triggersLoader() {
+        let section = 0
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.loadCallCount, 0)
+
+        sut.sectionedView.simulateSelection(section: section)
+        
+        XCTAssertEqual(loader.loadCallCount, 1)
+        XCTAssertEqual(loader.receivedMessages, [section])
     }
 
     // MARK: - Helpers
     
     private typealias Container = DefaultItemsContainer<MockItem>
     
-    private func makeSUT() -> ZZComposableInputViewController {
+    private func makeSUT() -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
         let inputController = makeInputViewController(
             onSelection: { index in
@@ -44,7 +60,7 @@ final class iOSIntegrationTests: XCTestCase {
                 inputController: inputController)
         )
         
-        return sut
+        return (sut, loader)
     }
     
     private func makeLoadResourcePresenter(

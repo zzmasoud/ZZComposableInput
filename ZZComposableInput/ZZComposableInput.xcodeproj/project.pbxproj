@@ -61,6 +61,7 @@
 		04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
+		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
 /* End PBXBuildFile section */
 
@@ -611,6 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */,
 				040850922A0A3FBE007DEF50 /* ViewSpy.swift in Sources */,
 				040850952A0A4117007DEF50 /* MockListView.swift in Sources */,
 				040850882A0A3747007DEF50 /* iOSIntegrationTests.swift in Sources */,
