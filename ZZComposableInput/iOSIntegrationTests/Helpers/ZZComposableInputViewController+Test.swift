@@ -33,10 +33,24 @@ extension ZZComposableInputViewController {
         let ds = tableView.dataSource
         return ds?.tableView(tableView, cellForRowAt: IndexPath(row: index, section: section))
     }
+    
+    func simulateItemSelection(at indexes: Int...) {
+        for index in indexes {
+            let indexPath = IndexPath(row: index, section: section)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+        }
+    }
+    
+    func simulateItemDeselection(at index: Int) {
+        let indexPath = IndexPath(row: index, section: section)
+        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.delegate?.tableView?(tableView, didDeselectRowAt: indexPath)
+    }
 }
 
 extension UITableViewCell {
     var isSelectedAndShowingIndicator: Bool {
-        return isSelected && accessoryType == .checkmark
+        return isSelected
     }
 }

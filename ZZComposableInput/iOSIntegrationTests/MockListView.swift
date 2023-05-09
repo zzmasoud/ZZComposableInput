@@ -58,7 +58,12 @@ extension MockListView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellControllers[indexPath.row]
-        let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath) 
+        let isSelected = controller.isSelected?() ?? false
+        let cell = controller.dataSource.tableView(tableView, cellForRowAt: indexPath)
+        if isSelected {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            cell.isSelected = true
+        }
         return cell
     }
     

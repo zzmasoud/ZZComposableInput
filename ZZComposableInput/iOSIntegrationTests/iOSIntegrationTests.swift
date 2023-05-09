@@ -62,12 +62,119 @@ final class iOSIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
+    func test_loadItemsInSectionCompletion_rendersPreselectedItems() {
+        let section = 0
+        let items = makeItems()
+        let preSelectedItems = [section: [items[1]]]
+        let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
+        
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+
+        assertThat(sut, isRendering: items, selectedItems: preSelectedItems[section]!)
+     }
+    
+    func test_selectingSection_keepsSelectedItemsOnPreviouslyChangedSection() {
+        let section = 0
+        let section0Items = makeItems()
+        let section1Items = makeItems()
+        let preSelectedItems = [section: [section0Items[1]]]
+        let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
+        
+        // when
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: section0Items)
+        sut.simulateItemSelection(at: 2)
+
+        // then
+        assertThat(sut, isRendering: section0Items, selectedItems: [section0Items[2]])
+        
+        // when
+        sut.simulateSelection(section: section+1)
+        loader.completeRetrieval(with: section1Items, at: 1)
+        sut.simulateItemSelection(at: 0, 1)
+        
+        // then
+        assertThat(sut, isRendering: section1Items, selectedItems: Array(section1Items[0...1]))
+
+        // when selecting the previous section again
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: section0Items, at: 2)
+
+        // then
+        assertThat(sut, isRendering: section0Items, selectedItems: [section0Items[2]])
+    }
+    
+    func test_listViewSelectionLimit_changesWithSection() {
+        let section = 0
+        let (sut, loader) = makeSUT()
+        
+        // when
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: makeError(), at: 0)
+        
+        // then
+        XCTAssertFalse(sut.isMultiSelection)
+        
+        // when
+        sut.simulateSelection(section: section+1)
+        loader.completeRetrieval(with: makeError(), at: 1)
+
+        // then
+        XCTAssertTrue(sut.isMultiSelection)
+    }
+    
+    // MARK: - Single Selection Behaviour
+    
+    func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
+        let section = 0
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
+
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
+
+        // when
+        sut.simulateItemSelection(at: 1)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [1], for: section)
+    }
+    
+    func test_deselectingRenderedItemOnSingleSelectionType_doesNotRemoveSelectionIndicator() {
+        let section = 0
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
+        
+        // when
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        // then
+        assertThat(sut, isRendering: items)
+
+        // when
+        sut.simulateItemSelection(at: 0)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
+
+        // when
+        sut.simulateItemDeselection(at: 0)
+        // then
+        assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0], for: section)
+    }
+
+    
     // MARK: - Helpers
     
     private let sections = ["A", "B", "C"]
     private typealias Container = DefaultItemsContainer<MockItem>
     
-    private func makeSUT() -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
+    private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
         let inputController = makeInputViewController(
             onSelection: { index in
@@ -78,7 +185,10 @@ final class iOSIntegrationTests: XCTestCase {
         
         let resourceListViewAdapter = ResourceListViewAdapter(
             controller: inputController,
-            containerMapper: containerMapper,
+            containerMapper: { [weak self] section, items in
+                let preselectedItems = preSelectedItems?[section]
+                return self!.containerMapper(section: section, items: items, preselectedItems: preselectedItems)
+            },
             cellControllerMapper: cellControllerMapper(items:))
         
         let sut = ZZTaskInputViewComposer.composedWith(
@@ -95,6 +205,10 @@ final class iOSIntegrationTests: XCTestCase {
         )
         
         sut.loadViewIfNeeded()
+        
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(resourceListViewAdapter, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, loader)
     }
@@ -124,12 +238,12 @@ final class iOSIntegrationTests: XCTestCase {
         return vc
     }
     
-    private func containerMapper(section: Int, items: [any AnyItem]?) -> Container {
-        let preselectedItems = [MockItem]()
+    private func containerMapper(section: Int, items: [any AnyItem]?, preselectedItems: [MockItem]? = nil) -> Container {
+        let mockSection = MockSection(rawValue: section+1)!
         return Container(
             items: items as! [MockItem]?,
             preSelectedItems: preselectedItems,
-            selectionType: .single,
+            selectionType: mockSection.selectionType,
             allowAdding: false
         )
     }
@@ -191,5 +305,16 @@ final class iOSIntegrationTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
+    }
+}
+
+enum MockSection: Int {
+    case a=1, b, c, d
+    
+    var selectionType: ItemsContainerSelectionType {
+        switch self {
+        case .a: return .single
+        default: return .multiple(max: self.rawValue)
+        }
     }
 }
