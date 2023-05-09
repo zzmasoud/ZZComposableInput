@@ -20,8 +20,8 @@ public protocol ZZComposableInputDelegate: AnyObject {
 }
 
 public final class ZZComposableInputViewController: UIViewController, ZZComposableInput {
-    @IBOutlet private(set) public var sectionsController: SectionsController!
-    @IBOutlet private(set) public var resourceListController: ResourceListController!
+    @IBOutlet public var sectionsController: SectionsController!
+    @IBOutlet public var resourceListController: ResourceListController!
     
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }

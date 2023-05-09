@@ -3,30 +3,125 @@
 //  
 
 import XCTest
+import ZZComposableInput
+@testable import ZZComposableInputiOS
 
 final class iOSIntegrationTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func test_x() {
+        let sut = makeSUT()
+        sut.loadViewIfNeeded()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // MARK: - Helpers
+    
+    private typealias Container = DefaultItemsContainer<MockItem>
+    
+    private func makeSUT() -> ZZComposableInputViewController {
+        let loader = ItemLoaderSpy()
+        let inputController = makeInputViewController(
+            onSelection: { index in
+            
+        }, onDeselection: { index in
+            
+        })
+        
+        let resourceListViewAdapter = ResourceListViewAdapter(
+            controller: inputController,
+            containerMapper: containerMapper,
+            cellControllerMapper: cellControllerMapper(items:))
+        
+        let sut = ZZTaskInputViewComposer.composedWith(
+            inputView: inputController,
+            itemsLoader: loader,
+            sectionSelectionView: inputController.sectionedView,
+            resourceListView: inputController.resourceListView,
+            sectionsPresenter: SectionsPresenter(
+                titles: ["A", "B", "C"],
+                view: WeakRefVirtualProxy(inputController.sectionsController)),
+            loadResourcePresenter: makeLoadResourcePresenter(
+                resourceListViewAdapter: resourceListViewAdapter,
+                inputController: inputController)
+        )
+        
+        return sut
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    private func makeLoadResourcePresenter(
+        resourceListViewAdapter: ResourceListViewAdapter<Container>,
+        inputController: ZZComposableInputViewController
+    ) -> LoadResourcePresenter {
+        return LoadResourcePresenter(
+            loadingView: WeakRefVirtualProxy(inputController),
+            listView: resourceListViewAdapter)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    private func makeInputViewController(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) -> ZZComposableInputViewController {
+        let sectionsController = SectionsController()
+        sectionsController.sectionedViewContainer = UIView()
+        sectionsController.sectionedView = MockSectionedView()
+        
+        let resourceController = ResourceListController()
+        resourceController.listViewContainer = UIView()
+        resourceController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
+        
+        let vc = ZZComposableInputViewController()
+        vc.sectionsController = sectionsController
+        vc.resourceListController = resourceController
+        
+        return vc
+    }
+    
+    private func containerMapper(section: Int, items: [any AnyItem]?) -> Container {
+        let preselectedItems = [MockItem]()
+        return Container(
+            items: items as! [MockItem]?,
+            preSelectedItems: preselectedItems,
+            selectionType: .single,
+            allowAdding: false
+        )
+    }
+    
+    private func cellControllerMapper(items: [MockItem]) -> [SelectableCellController] {
+        return items.map { item in
+            let view = MockCellController(model: item)
+            return SelectableCellController(
+                id: item,
+                dataSource: view,
+                delegate: nil)
         }
     }
+}
 
+final class MockCellController: NSObject {
+    private let model: MockItem
+    private var cell: UITableViewCell?
+    
+    init(model: MockItem) {
+        self.model = model
+    }
+}
+
+extension MockCellController: SectionedViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        cell = UITableViewCell()
+        cell?.textLabel?.text = model.title
+        return cell!
+    }
+
+    private func releaseCellForReuse() {
+        cell = nil
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        fatalError()
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        fatalError()
+    }
 }

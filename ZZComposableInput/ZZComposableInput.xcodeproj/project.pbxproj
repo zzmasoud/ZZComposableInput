@@ -10,6 +10,12 @@
 		0408507F2A0A220D007DEF50 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */; };
 		040850882A0A3747007DEF50 /* iOSIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */; };
 		040850892A0A3747007DEF50 /* ZZComposableInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */; };
+		0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
+		040850902A0A3FBE007DEF50 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
+		040850912A0A3FBE007DEF50 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
+		040850922A0A3FBE007DEF50 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
+		040850932A0A40E2007DEF50 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
+		040850952A0A4117007DEF50 /* MockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040850942A0A4117007DEF50 /* MockListView.swift */; };
 		040CCEEA298FCE200053194A /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		040CCEEB298FCE200053194A /* ZZComposableInput.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ItemsContainer.swift */; };
@@ -107,6 +113,7 @@
 		0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		040850852A0A3747007DEF50 /* iOSIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSIntegrationTests.swift; sourceTree = "<group>"; };
+		040850942A0A4117007DEF50 /* MockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListView.swift; sourceTree = "<group>"; };
 		040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZComposableInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		043787FA298E4BC600CD2F26 /* ItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsContainer.swift; sourceTree = "<group>"; };
@@ -198,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */,
+				040850942A0A4117007DEF50 /* MockListView.swift */,
 			);
 			path = iOSIntegrationTests;
 			sourceTree = "<group>";
@@ -603,7 +611,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040850922A0A3FBE007DEF50 /* ViewSpy.swift in Sources */,
+				040850952A0A4117007DEF50 /* MockListView.swift in Sources */,
 				040850882A0A3747007DEF50 /* iOSIntegrationTests.swift in Sources */,
+				040850912A0A3FBE007DEF50 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */,
+				040850902A0A3FBE007DEF50 /* ItemLoaderSpy.swift in Sources */,
+				040850932A0A40E2007DEF50 /* MockSectionedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +722,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -725,6 +740,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
