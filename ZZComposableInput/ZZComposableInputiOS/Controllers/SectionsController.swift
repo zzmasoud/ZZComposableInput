@@ -70,9 +70,11 @@ final public class SectionsController: NSObject, SectionsView {
 
 final class SectionsControllerDelegateAdapter: SectionsControllerDelegate {
     private let sectionsPresenter: SectionsPresenter
+    private let sectionLoadCallback: ((Int) -> Void)?
     
-    init(sectionsPresenter: SectionsPresenter) {
+    init(sectionsPresenter: SectionsPresenter, sectionLoadCallback: ((Int) -> Void)? = nil) {
         self.sectionsPresenter = sectionsPresenter
+        self.sectionLoadCallback = sectionLoadCallback
     }
 
     func didRequestSections() {
@@ -81,5 +83,6 @@ final class SectionsControllerDelegateAdapter: SectionsControllerDelegate {
     
     func didSelectSection(at index: Int) {
         sectionsPresenter.didSelectSection(at: index)
+        sectionLoadCallback?(index)
     }
 }

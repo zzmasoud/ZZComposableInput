@@ -50,6 +50,17 @@
                ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "040850842A0A3747007DEF50"
+               BuildableName = "iOSIntegrationTests.xctest"
+               BlueprintName = "iOSIntegrationTests"
+               ReferencedContainer = "container:ZZComposableInput.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
