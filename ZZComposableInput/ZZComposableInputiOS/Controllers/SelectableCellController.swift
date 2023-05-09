@@ -6,7 +6,7 @@ import UIKit
 
 public protocol SectionedViewDataSource: UITableViewDataSource, UICollectionViewDataSource {}
 
-public final class ZZSelectableCellController {
+public final class SelectableCellController {
     public let id: AnyHashable
     public let dataSource: SectionedViewDataSource
     public let delegate: UITableViewDelegate?
@@ -21,13 +21,13 @@ public final class ZZSelectableCellController {
     }
 }
 
-extension ZZSelectableCellController: Equatable {
-    public static func == (lhs: ZZSelectableCellController, rhs: ZZSelectableCellController) -> Bool {
+extension SelectableCellController: Equatable {
+    public static func == (lhs: SelectableCellController, rhs: SelectableCellController) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-extension ZZSelectableCellController: Hashable {
+extension SelectableCellController: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

@@ -10,7 +10,7 @@ public typealias PreSelectedItemsHandler = (Int) -> ([any AnyItem]?)
 public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
     public typealias Item = Container.Item
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
-    public typealias CellControllerMapper = ([Item]) -> [ZZSelectableCellController]
+    public typealias CellControllerMapper = ([Item]) -> [SelectableCellController]
 
     private weak var controller: ZZComposableInput?
     private let containerMapper: ContainerMapper
@@ -39,7 +39,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         controller?.resourceListView.allowAddNew(container.allowAdding)
     }
     
-    private func pass(cellControllers: [ZZSelectableCellController], to controller: ZZComposableInput?, using container: Container) {
+    private func pass(cellControllers: [SelectableCellController], to controller: ZZComposableInput?, using container: Container) {
         cellControllers.forEach { controller in
             controller.isSelected = {
                 (container.selectedItems ?? []).contains(where: { item in

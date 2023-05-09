@@ -8,8 +8,8 @@ import ZZComposableInput
 public protocol ZZComposableInput: ZZComposableInputDataSource, ZZComposableInputDelegate {}
 
 public protocol ZZComposableInputDataSource: AnyObject {
-    var sectionsController: ZZSectionsController! { get }
-    var resourceListController: ZZResourceListController! { get }
+    var sectionsController: SectionsController! { get }
+    var resourceListController: ResourceListController! { get }
     var sectionedView: SectionedViewProtocol { get }
     var resourceListView: ResourceListViewProtocol { get }
 }
@@ -20,8 +20,8 @@ public protocol ZZComposableInputDelegate: AnyObject {
 }
 
 public final class ZZComposableInputViewController: UIViewController, ZZComposableInput {
-    @IBOutlet private(set) public var sectionsController: ZZSectionsController!
-    @IBOutlet private(set) public var resourceListController: ZZResourceListController!
+    @IBOutlet private(set) public var sectionsController: SectionsController!
+    @IBOutlet private(set) public var resourceListController: ResourceListController!
     
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }

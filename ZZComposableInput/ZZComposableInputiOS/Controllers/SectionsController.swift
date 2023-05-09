@@ -5,12 +5,20 @@
 import UIKit
 import ZZComposableInput
 
-protocol SectionsControllerDelegate {
+public protocol SectionedViewProtocol {
+    var view: UIView { get }
+    var selectedSectionIndex: Int { set get }
+    var numberOfSections: Int { get }
+    var onSectionChange: (() -> Void)? { set get }
+    func reload(withTitles: [String])
+}
+
+public protocol SectionsControllerDelegate {
     func didRequestSections()
     func didSelectSection(at: Int)
 }
 
-final class SectionsController: SectionsView {
+final public class SectionsController: NSObject, SectionsView {
     @IBOutlet public var sectionedViewContainer: UIView?
     @IBOutlet public var label: UILabel?
 
@@ -30,7 +38,7 @@ final class SectionsController: SectionsView {
         
         guard let containerView = sectionedViewContainer,
               let sectionedView = sectionedView else {
-            fatalError("sectionedViewContainer or sectionedView property is nil, should be connected in the interface builder.")
+            fatalError("SectionedViewContainer or sectionedView property is nil, should be assigned before viewDidLoad().")
         }
         add(sectionedView: sectionedView.view, to: containerView)
     }
@@ -39,7 +47,7 @@ final class SectionsController: SectionsView {
         containerView.addSubviewWithConstraints(sectionedView)
     }
     
-    func select(section: Int) {
+    public func select(section: Int) {
         delegate?.didSelectSection(at: section)
     }
     
@@ -48,14 +56,14 @@ final class SectionsController: SectionsView {
         label?.isHidden = title == nil
     }
     
-    func display(_ viewModel: SectionsViewModel) {
+    public func display(_ viewModel: SectionsViewModel) {
         sectionedView?.reload(withTitles: viewModel.titles)
         sectionedView?.selectedSectionIndex = viewModel.selectedIndex
         #warning("what if the first state is not -1 index?")
         configureLabel(title: nil)
     }
     
-    func display(_ viewModel: SectionViewModel) {
+    public func display(_ viewModel: SectionViewModel) {
         configureLabel(title: viewModel.title)
     }
 }

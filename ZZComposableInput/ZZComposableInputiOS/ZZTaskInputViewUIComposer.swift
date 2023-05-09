@@ -15,7 +15,7 @@ public final class ZZTaskInputViewComposer {
         resourceListView: ResourceListViewProtocol,
         sectionsPresenter: SectionsPresenter,
         loadResourcePresenter: LoadResourcePresenter,
-        sectionsControllerDelegate: ZZSectionsControllerDelegate
+        sectionsControllerDelegate: SectionsControllerDelegate
     ) -> T {
         let presentationAdapter = LoadResourcePresentationAdapter(
             loader: itemsLoader)
@@ -23,7 +23,7 @@ public final class ZZTaskInputViewComposer {
         let sectionsController = inputView.sectionsController!
         sectionsController.sectionedView = sectionSelectionView
         sectionsController.delegate = sectionsControllerDelegate
-        sectionsController.loadSection = presentationAdapter.selectSection(index:)
+//        sectionsController.loadSection = presentationAdapter.selectSection(index:)
         inputView.resourceListController.resourceListView = resourceListView
         presentationAdapter.presenter = loadResourcePresenter
         
