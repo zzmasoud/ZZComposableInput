@@ -6,7 +6,6 @@ import ZZComposableInput
 
 public protocol ZZComposableInput: AnyObject {
     var sectionsController: SectionsControllerProtocol! { get }
-    var resourceListController: ResourceListControllerProtocol! { get }
 }
 
 final class ZZTaskInputViewComposer {

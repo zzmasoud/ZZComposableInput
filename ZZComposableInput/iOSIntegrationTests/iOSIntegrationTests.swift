@@ -266,7 +266,7 @@ final class iOSIntegrationTests: XCTestCase {
         })
         
         let resourceListViewAdapter = ResourceListViewAdapter(
-            controller: inputController,
+            controller: inputController.resourceListController,
             containerMapper: { [weak self] section, items in
                 let preselectedItems = preSelectedItems?[section]
                 return self!.containerMapper(section: section, items: items, preselectedItems: preselectedItems)

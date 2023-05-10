@@ -12,13 +12,13 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
     public typealias CellControllerMapper = ([Item]) -> [SelectableCellController]
     
-    private weak var controller: ZZComposableInput?
+    private weak var controller: ResourceListControllerProtocol?
     private var container: Container?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private let selectionManager = InMemorySelectionManager<Container>()
     
-    public init(controller: ZZComposableInput, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
+    public init(controller: ResourceListControllerProtocol, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
         self.controller = controller
         self.containerMapper = containerMapper
         self.cellControllerMapper = cellControllerMapper
@@ -37,12 +37,12 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         pass(cellControllers: cellControllers, to: controller, using: container)
     }
     
-    private func configuareResourceListViewBasedOn(container: Container, in controller: ZZComposableInput?) {
-        controller?.resourceListController.resourceListView?.allowMultipleSelection(container.selectionType != .single)
-        controller?.resourceListController.resourceListView?.allowAddNew(container.allowAdding)
+    private func configuareResourceListViewBasedOn(container: Container, in controller: ResourceListControllerProtocol?) {
+        controller?.resourceListView?.allowMultipleSelection(container.selectionType != .single)
+        controller?.resourceListView?.allowAddNew(container.allowAdding)
     }
     
-    private func pass(cellControllers: [SelectableCellController], to controller: ZZComposableInput?, using container: Container) {
+    private func pass(cellControllers: [SelectableCellController], to controller: ResourceListControllerProtocol?, using container: Container) {
         cellControllers.forEach { controller in
             controller.isSelected = {
                 (container.selectedItems ?? []).contains(where: { item in
@@ -50,12 +50,12 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
                 })
             }
         }
-        controller?.resourceListController.set(cellControllers: cellControllers)
+        controller?.set(cellControllers: cellControllers)
     }
     
-    private func bind(container: Container, to controller: ZZComposableInput?) {
+    private func bind(container: Container, to controller: ResourceListControllerProtocol?) {
         container.delegate = self
-        controller?.resourceListController.delegate = self
+        controller?.delegate = self
     }
     
     public func containerHasSelectedItems(at index: Int) -> Bool? {
@@ -72,7 +72,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
  
 extension ResourceListViewAdapter: ItemsContainerDelegate {
     public func didDeselect(at index: Int) {
-        controller?.resourceListController?.resourceListView?.deselect(at: index)
+        controller?.resourceListView?.deselect(at: index)
     }
     
     public func newItemAdded(at index: Int) {
