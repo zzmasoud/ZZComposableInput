@@ -18,7 +18,7 @@ public final class ZZComposableInputViewController: UIViewController, ZZComposab
     @IBOutlet public var _resourceListController: ResourceListController!
     
     public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
-    public var resourceListView: ResourceListViewProtocol { resourceListController.resourceListView! }
+    public var resourceListView: any ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { _sectionsController?.label }
     public var onSelection: ((Int) -> Void)?
     public var onDeselection: ((Int) -> Void)?
