@@ -38,8 +38,8 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     }
     
     private func configuareResourceListViewBasedOn(container: Container, in controller: ZZComposableInput?) {
-        controller?.resourceListView.allowMultipleSelection(container.selectionType != .single)
-        controller?.resourceListView.allowAddNew(container.allowAdding)
+        controller?.resourceListController.resourceListView?.allowMultipleSelection(container.selectionType != .single)
+        controller?.resourceListController.resourceListView?.allowAddNew(container.allowAdding)
     }
     
     private func pass(cellControllers: [SelectableCellController], to controller: ZZComposableInput?, using container: Container) {
@@ -50,7 +50,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
                 })
             }
         }
-        controller?.resourceListController.cellControllers = cellControllers
+        controller?.resourceListController.set(cellControllers: cellControllers)
     }
     
     private func bind(container: Container, to controller: ZZComposableInput?) {
@@ -77,7 +77,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
  
 extension ResourceListViewAdapter: ItemsContainerDelegate {
     public func didDeselect(at index: Int) {
-        controller?.resourceListView.deselect(at: index)
+        controller?.resourceListController?.resourceListView?.deselect(at: index)
     }
     
     public func newItemAdded(at index: Int) {

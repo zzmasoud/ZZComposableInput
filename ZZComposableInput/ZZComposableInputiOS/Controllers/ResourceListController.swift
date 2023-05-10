@@ -16,16 +16,20 @@ public protocol ResourceListViewProtocol {
     func deselect(at: Int)
 }
 
-public final class ResourceListController: NSObject, ResourceLoadingView {
+public protocol ResourceListControllerProtocol: AnyObject, ResourceLoadingView {
+    var resourceListView: ResourceListViewProtocol? { get }
+    func set(cellControllers: [SelectableCellController])
+}
+
+public final class ResourceListController: NSObject, ResourceListControllerProtocol {
     @IBOutlet public var listViewContainer: UIView?
     
-    var resourceListView: ResourceListViewProtocol?
-    var cellControllers = [SelectableCellController]() {
-        didSet {
-            resourceListView?.reloadData(with: cellControllers)
-        }
-    }
+    public var resourceListView: ResourceListViewProtocol?
     
+    public func set(cellControllers: [SelectableCellController]) {
+        resourceListView?.reloadData(with: cellControllers)
+    }
+
     func viewDidLoad() {
         guard let containerView = listViewContainer,
               let resourceListView = resourceListView else {

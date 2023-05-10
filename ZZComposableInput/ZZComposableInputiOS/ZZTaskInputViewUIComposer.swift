@@ -2,8 +2,19 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //
 
-import UIKit
 import ZZComposableInput
+
+public protocol ZZComposableInput: ZZComposableInputDataSource, ZZComposableInputDelegate {}
+
+public protocol ZZComposableInputDataSource: AnyObject {
+    var sectionsController: SectionsControllerProtocol! { get }
+    var resourceListController: ResourceListControllerProtocol! { get }
+}
+
+public protocol ZZComposableInputDelegate: AnyObject {
+    var onSelection: ((Int) -> Void)? { get set }
+    var onDeselection: ((Int) -> Void)? { get set }
+}
 
 final class ZZTaskInputViewComposer {
     private init() {}
@@ -11,19 +22,14 @@ final class ZZTaskInputViewComposer {
     static func composedWith<T: ZZComposableInput>(
         inputView: T,
         itemsLoader: some ItemsLoader,
-        sectionSelectionView: SectionedViewProtocol,
-        resourceListView: ResourceListViewProtocol,
         sectionsPresenter: SectionsPresenter,
         loadResourcePresenter: LoadResourcePresenter
     ) -> T {
         let presentationAdapter = LoadResourcePresentationAdapter(
             loader: itemsLoader)
  
-        let sectionsController = inputView.sectionsController!
-        sectionsController.sectionedView = sectionSelectionView
         let sectionDelegateAdapter = SectionsControllerDelegateAdapter(sectionsPresenter: sectionsPresenter, sectionLoadCallback: presentationAdapter.selectSection(index:))
-        sectionsController.delegate = sectionDelegateAdapter
-        inputView.resourceListController.resourceListView = resourceListView
+        inputView.sectionsController!.delegate = sectionDelegateAdapter
         presentationAdapter.presenter = loadResourcePresenter
         
         return inputView

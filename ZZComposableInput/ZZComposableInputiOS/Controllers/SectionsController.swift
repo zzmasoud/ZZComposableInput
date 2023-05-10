@@ -18,12 +18,17 @@ public protocol SectionsControllerDelegate {
     func didSelectSection(at: Int)
 }
 
-final public class SectionsController: NSObject, SectionsView {
+public protocol SectionsControllerProtocol: AnyObject, SectionsView {
+    var delegate: SectionsControllerDelegate? { get set }
+    var sectionedView: SectionedViewProtocol? { get }
+}
+
+final public class SectionsController: NSObject, SectionsControllerProtocol {
     @IBOutlet public var sectionedViewContainer: UIView?
     @IBOutlet public var label: UILabel?
 
-    var delegate: SectionsControllerDelegate?
-    var sectionedView: SectionedViewProtocol? {
+    public var delegate: SectionsControllerDelegate?
+    public var sectionedView: SectionedViewProtocol? {
         didSet {
             sectionedView?.onSectionChange = { [weak self] in
                 guard let self = self, let view = self.sectionedView else { return }

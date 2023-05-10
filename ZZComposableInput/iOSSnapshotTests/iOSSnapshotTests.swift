@@ -138,7 +138,7 @@ final class iOSSnapshotTests: XCTestCase {
         let vc = storyboard.instantiateInitialViewController() as! ZZComposableInputViewController
         
         vc.sectionsController.sectionedView = MockSectionedView()
-        vc.resourceListController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
+        vc._resourceListController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
         
         return vc
     }

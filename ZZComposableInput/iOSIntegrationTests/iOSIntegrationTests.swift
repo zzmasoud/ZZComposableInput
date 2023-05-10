@@ -276,11 +276,9 @@ final class iOSIntegrationTests: XCTestCase {
         let sut = ZZTaskInputViewComposer.composedWith(
             inputView: inputController,
             itemsLoader: loader,
-            sectionSelectionView: inputController.sectionedView,
-            resourceListView: inputController.resourceListView,
             sectionsPresenter: SectionsPresenter(
                 titles: sections,
-                view: WeakRefVirtualProxy(inputController.sectionsController)),
+                view: WeakRefVirtualProxy(inputController._sectionsController)),
             loadResourcePresenter: makeLoadResourcePresenter(
                 resourceListViewAdapter: resourceListViewAdapter,
                 inputController: inputController)
@@ -314,8 +312,8 @@ final class iOSIntegrationTests: XCTestCase {
         resourceController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
         
         let vc = ZZComposableInputViewController()
-        vc.sectionsController = sectionsController
-        vc.resourceListController = resourceController
+        vc._sectionsController = sectionsController
+        vc._resourceListController = resourceController
         
         return vc
     }
