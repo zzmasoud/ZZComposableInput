@@ -252,7 +252,7 @@ final class iOSIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private let sections = ["A", "B", "C", "D"]
+    private let sections = MockSection.allCases.map { $0.title }
     private typealias Container = DefaultItemsContainer<MockItem>
     
     private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
@@ -391,16 +391,5 @@ final class iOSIntegrationTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
-    }
-}
-
-enum MockSection: Int {
-    case a=1, b, c, d
-    
-    var selectionType: ItemsContainerSelectionType {
-        switch self {
-        case .a: return .single
-        default: return .multiple(max: self.rawValue)
-        }
     }
 }
