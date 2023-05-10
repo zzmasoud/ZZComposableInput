@@ -45,6 +45,10 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     func allowAddNew(_ isOn: Bool) {
         
     }
+    
+    func deselect(at index: Int) {
+        tableView.deselectRow(at: IndexPath(row: index, section: 0), animated: true)
+    }
 }
 
 extension MockListView: UITableViewDataSource, UITableViewDelegate {

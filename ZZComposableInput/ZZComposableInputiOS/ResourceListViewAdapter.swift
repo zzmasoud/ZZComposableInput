@@ -29,6 +29,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         let container = containerMapper(section, viewModel.items)
         selectionManager.sync(container: container, forSection: section)
         configuareResourceListViewBasedOn(container: container, in: controller)
+        container.delegate = self
         
         let cellControllers = cellControllerMapper(container.items ?? [])
         pass(cellControllers: cellControllers, to: controller, using: container)
@@ -67,5 +68,15 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         selectionManager.loadedContainers.reduce(into: [Int: [Item]?]()) { partialResult, object in
             partialResult[object.key] = object.value.selectedItems
         }
+    }
+}
+
+extension ResourceListViewAdapter: ItemsContainerDelegate {
+    public func didDeselect(at index: Int) {
+        controller?.resourceListView.deselect(at: index)
+    }
+    
+    public func newItemAdded(at index: Int) {
+        #warning("Implementation needed!")
     }
 }

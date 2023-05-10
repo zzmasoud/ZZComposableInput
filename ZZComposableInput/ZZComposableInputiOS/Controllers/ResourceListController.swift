@@ -13,6 +13,7 @@ public protocol ResourceListViewProtocol {
     func reload()
     func allowMultipleSelection(_ isOn: Bool)
     func allowAddNew(_ isOn: Bool)
+    func deselect(at: Int)
 }
 
 public final class ResourceListController: NSObject, ResourceLoadingView {

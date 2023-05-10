@@ -5,7 +5,7 @@
 import Foundation
 
 public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
-    public var delegate: ItemsContainerDelegate?
+    public weak var delegate: ItemsContainerDelegate?
     public let selectionType: ItemsContainerSelectionType
     private(set) public var items: [Item]?
     private(set) public var selectedItems: [Item]?

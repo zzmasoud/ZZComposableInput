@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol ItemsContainerDelegate {
+public protocol ItemsContainerDelegate: AnyObject {
     func didDeselect(at index: Int)
     func newItemAdded(at index: Int)
 }
@@ -12,7 +12,7 @@ public protocol ItemsContainerDelegate {
 public protocol ItemsContainer: AnyObject {
     associatedtype Item: AnyItem
     
-    var delegate: ItemsContainerDelegate? { get }
+    var delegate: ItemsContainerDelegate? { get set }
     var selectionType: ItemsContainerSelectionType { get }
     var items: [Item]? { get }
     var selectedItems: [Item]? { get }
