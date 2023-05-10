@@ -55,12 +55,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     
     private func bind(container: Container, to controller: ZZComposableInput?) {
         container.delegate = self
-        controller?.onSelection = { [weak container] index in
-            container?.select(at: index)
-        }
-        controller?.onDeselection = { [weak container] index in
-            container?.deselect(at: index)
-        }
+        controller?.resourceListController.delegate = self
     }
     
     public func containerHasSelectedItems(at index: Int) -> Bool? {
@@ -84,5 +79,15 @@ extension ResourceListViewAdapter: ItemsContainerDelegate {
         guard let items = container?.items else { return }
         let cellControllers = cellControllerMapper(items)
         pass(cellControllers: cellControllers, to: controller, using: container!)
+    }
+}
+
+extension ResourceListViewAdapter: ResourceListControllerDelegate {
+    public func didSelectResource(at index: Int) {
+        container?.select(at: index)
+    }
+    
+    public func didDeselectResource(at index: Int) {
+        container?.deselect(at: index)
     }
 }

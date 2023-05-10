@@ -27,14 +27,7 @@ public final class ZZComposableInputViewController: UIViewController, ZZComposab
     public override func viewDidLoad() {
         super.viewDidLoad()
         _sectionsController.viewDidLoad()
-        _resourceListController.viewDidLoad()
-        _resourceListController.resourceListView?.onSelection = { [weak self] index in
-            self?.onSelection?(index)
-        }
-        _resourceListController.resourceListView?.onDeselection = { [weak self] index in
-            self?.onDeselection?(index)
-        }
-        
+        _resourceListController.viewDidLoad()        
         onViewDidLoad?()
     }
 }

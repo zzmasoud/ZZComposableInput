@@ -5,7 +5,7 @@
 import UIKit
 import ZZComposableInput
 
-public protocol ResourceListViewProtocol {
+public protocol ResourceListViewProtocol: AnyObject {
     var view: UIView { get }
     var onSelection: ((Int) -> Void) { get set }
     var onDeselection: ((Int) -> Void) { get set }
@@ -16,7 +16,13 @@ public protocol ResourceListViewProtocol {
     func deselect(at: Int)
 }
 
+public protocol ResourceListControllerDelegate {
+    func didSelectResource(at: Int)
+    func didDeselectResource(at: Int)
+}
+
 public protocol ResourceListControllerProtocol: AnyObject, ResourceLoadingView {
+    var delegate: ResourceListControllerDelegate? { get set }
     var resourceListView: ResourceListViewProtocol? { get }
     func set(cellControllers: [SelectableCellController])
 }
@@ -24,6 +30,7 @@ public protocol ResourceListControllerProtocol: AnyObject, ResourceLoadingView {
 public final class ResourceListController: NSObject, ResourceListControllerProtocol {
     @IBOutlet public var listViewContainer: UIView?
     
+    public var delegate: ResourceListControllerDelegate?
     public var resourceListView: ResourceListViewProtocol?
     
     public func set(cellControllers: [SelectableCellController]) {
@@ -36,6 +43,13 @@ public final class ResourceListController: NSObject, ResourceListControllerProto
             fatalError("ListViewContainer or resourceListView property is nil, should be assigned before viewDidLoad().")
         }
         add(resourceListView: resourceListView.view, to: containerView)
+        
+        resourceListView.onSelection = { [weak self] index in
+            self?.delegate?.didSelectResource(at: index)
+        }
+        resourceListView.onDeselection = { [weak self] index in
+            self?.delegate?.didDeselectResource(at: index)
+        }
     }
     
     func add(resourceListView: UIView, to containerView: UIView) {

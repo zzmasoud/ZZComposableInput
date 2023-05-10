@@ -4,16 +4,9 @@
 
 import ZZComposableInput
 
-public protocol ZZComposableInput: ZZComposableInputDataSource, ZZComposableInputDelegate {}
-
-public protocol ZZComposableInputDataSource: AnyObject {
+public protocol ZZComposableInput: AnyObject {
     var sectionsController: SectionsControllerProtocol! { get }
     var resourceListController: ResourceListControllerProtocol! { get }
-}
-
-public protocol ZZComposableInputDelegate: AnyObject {
-    var onSelection: ((Int) -> Void)? { get set }
-    var onDeselection: ((Int) -> Void)? { get set }
 }
 
 final class ZZTaskInputViewComposer {
