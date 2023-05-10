@@ -11,8 +11,9 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
     public typealias Item = Container.Item
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
     public typealias CellControllerMapper = ([Item]) -> [SelectableCellController]
-
+    
     private weak var controller: ZZComposableInput?
+    private var container: Container?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private let selectionManager = InMemorySelectionManager<Container>()
@@ -29,7 +30,8 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         let container = containerMapper(section, viewModel.items)
         selectionManager.sync(container: container, forSection: section)
         configuareResourceListViewBasedOn(container: container, in: controller)
-        container.delegate = self
+        bind(container: container, to: controller)
+        self.container = container
         
         let cellControllers = cellControllerMapper(container.items ?? [])
         pass(cellControllers: cellControllers, to: controller, using: container)
@@ -49,11 +51,13 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
             }
         }
         controller?.resourceListController.cellControllers = cellControllers
-
+    }
+    
+    private func bind(container: Container, to controller: ZZComposableInput?) {
+        container.delegate = self
         controller?.onSelection = { [weak container] index in
             container?.select(at: index)
         }
-        
         controller?.onDeselection = { [weak container] index in
             container?.deselect(at: index)
         }
@@ -70,13 +74,15 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         }
     }
 }
-
+ 
 extension ResourceListViewAdapter: ItemsContainerDelegate {
     public func didDeselect(at index: Int) {
         controller?.resourceListView.deselect(at: index)
     }
     
     public func newItemAdded(at index: Int) {
-        #warning("Implementation needed!")
+        guard let items = container?.items else { return }
+        let cellControllers = cellControllerMapper(items)
+        pass(cellControllers: cellControllers, to: controller, using: container!)
     }
 }
