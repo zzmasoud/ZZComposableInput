@@ -5,10 +5,10 @@
 import UIKit
 import ZZComposableInput
 
-public final class ZZTaskInputViewComposer {
+final class ZZTaskInputViewComposer {
     private init() {}
     
-    public static func composedWith<T: ZZComposableInput>(
+    static func composedWith<T: ZZComposableInput>(
         inputView: T,
         itemsLoader: some ItemsLoader,
         sectionSelectionView: SectionedViewProtocol,

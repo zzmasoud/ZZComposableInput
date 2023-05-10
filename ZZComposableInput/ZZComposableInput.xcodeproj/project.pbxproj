@@ -260,8 +260,8 @@
 		040CE0BC298FAA28003BB6DC /* ZZComposableInputiOS */ = {
 			isa = PBXGroup;
 			children = (
-				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
 				04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */,
+				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
 				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
 				046C5F722992C02D00672906 /* Controllers */,
 				045207272A066F400081BF7B /* Helpers */,

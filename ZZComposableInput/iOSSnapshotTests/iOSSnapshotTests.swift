@@ -181,7 +181,7 @@ final class iOSSnapshotTests: XCTestCase {
             var items = [String]()
             switch self {
             case .domain:
-                items = ["Apple", "iOS", "Github"]
+                items = ["Apple", "iOS", "Github.com"]
             case .special:
                 items = ["#", "@", "!", "~", "/"]
             case .letters:
