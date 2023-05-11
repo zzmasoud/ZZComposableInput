@@ -11,24 +11,26 @@ public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceLi
     public typealias CellController = ResourceListController.ResourceListView.CellController
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
     public typealias CellControllerMapper = ([Item]) -> [CellController]
+    public typealias ContainerCacheCallback = (Container, Int) -> Void
     
     private weak var controller: ResourceListController?
     private var container: Container?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
-    private let selectionManager = InMemorySelectionManager<Container>()
+    private var containerCacheCallback: ContainerCacheCallback
     
-    public init(controller: ResourceListController, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
+    public init(controller: ResourceListController, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper, containerCacheCallback: @escaping ContainerCacheCallback) {
         self.controller = controller
         self.containerMapper = containerMapper
         self.cellControllerMapper = cellControllerMapper
+        self.containerCacheCallback = containerCacheCallback
     }
     
     public func display(_ viewModel: ResourceListViewModel) {
         let section = viewModel.index
         // map data to container and then sync new container with selected items if exists
         let container = containerMapper(section, viewModel.items)
-        selectionManager.sync(container: container, forSection: section)
+        containerCacheCallback(container, section)
         configuareResourceListViewBasedOn(container: container, in: controller)
         bind(container: container, to: controller)
         self.container = container
@@ -56,17 +58,6 @@ public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceLi
     private func bind(container: Container, to controller: ResourceListController?) {
         container.delegate = self
         controller?.delegate = self
-    }
-    
-    public func containerHasSelectedItems(at index: Int) -> Bool? {
-        guard let container = selectionManager.loadedContainers[index] else { return nil }
-        return !(container.selectedItems ?? []).isEmpty
-    }
-    
-    public func getLoadedItems() -> [Int: [Item]?] {
-        selectionManager.loadedContainers.reduce(into: [Int: [Item]?]()) { partialResult, object in
-            partialResult[object.key] = object.value.selectedItems
-        }
     }
 }
  

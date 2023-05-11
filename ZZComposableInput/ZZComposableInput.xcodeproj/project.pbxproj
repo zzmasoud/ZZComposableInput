@@ -21,7 +21,6 @@
 		043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift */; };
-		0438FFC62A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */; };
 		0438FFC72A077CBB00469D1A /* ZZComposableInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */; };
 		0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -82,6 +81,7 @@
 		04CBF1F82A0CD12F0002683F /* SelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */; };
 		04CBF1FA2A0CD2720002683F /* SelectableCellControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */; };
 		04CBF1FC2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */; };
+		04CBF1FF2A0D02770002683F /* LoadResourcePresentationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -290,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				04CB3DB02A0938A20024D327 /* Helpers */,
-				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
 				04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */,
 				04CB3DAE2A0936B70024D327 /* SectionSelectionUseCaseTests.swift */,
 			);
@@ -442,6 +441,7 @@
 				04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */,
 				04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */,
 				04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */,
+				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
 			);
 			path = ZZComposableInputTests;
 			sourceTree = "<group>";
@@ -793,7 +793,6 @@
 				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,
 				04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */,
 				04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */,
-				0438FFC62A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift in Sources */,
 				0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,6 +856,7 @@
 				044160FF29BDF98E0070D6CE /* LoadResourcePresenterTests.swift in Sources */,
 				04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */,
 				04378801298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift in Sources */,
+				04CBF1FF2A0D02770002683F /* LoadResourcePresentationAdapterTests.swift in Sources */,
 				045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */,
 				04CBF1FA2A0CD2720002683F /* SelectableCellControllerTests.swift in Sources */,

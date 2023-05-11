@@ -4,7 +4,6 @@
 
 import XCTest
 import ZZComposableInput
-@testable import ZZComposableInputiOS
 
 final class LoadResourcePresentationAdapterTests: XCTestCase {
     

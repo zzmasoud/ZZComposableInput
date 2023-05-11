@@ -261,6 +261,7 @@ final class iOSIntegrationTests: XCTestCase {
     
     private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
+        let selectionManager = InMemorySelectionManager<Container>()
         let inputController = makeInputViewController(
             onSelection: { index in
             
@@ -274,7 +275,11 @@ final class iOSIntegrationTests: XCTestCase {
                 let preselectedItems = preSelectedItems?[section]
                 return self!.containerMapper(section: section, items: items, preselectedItems: preselectedItems)
             },
-            cellControllerMapper: cellControllerMapper(items:))
+            cellControllerMapper: cellControllerMapper(items:),
+            containerCacheCallback: { container, section in
+                selectionManager.sync(container: container, forSection: section)
+            }
+        )
         
         let sut = ZZComposableInputComposer.composedWith(
             inputView: inputController,
