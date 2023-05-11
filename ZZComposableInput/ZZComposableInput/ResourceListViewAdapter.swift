@@ -2,8 +2,7 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //
 
-import UIKit
-import ZZComposableInput
+import Foundation
 
 public typealias PreSelectedItemsHandler = (Int) -> ([any AnyItem]?)
 

@@ -44,7 +44,6 @@
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */; };
 		046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8CFC29BF50FE0061716D /* ResourceListController.swift */; };
-		046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
 		04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */; };
 		04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */; };
 		04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */; };
@@ -75,6 +74,7 @@
 		04CB3DAF2A0936B70024D327 /* SectionSelectionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DAE2A0936B70024D327 /* SectionSelectionUseCaseTests.swift */; };
 		04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
 		04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
+		04CBF1EB2A0CCFDB0002683F /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -266,7 +266,6 @@
 		040CE0BC298FAA28003BB6DC /* ZZComposableInputiOS */ = {
 			isa = PBXGroup;
 			children = (
-				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
 				046C5F722992C02D00672906 /* Controllers */,
 				045207272A066F400081BF7B /* Helpers */,
 			);
@@ -411,6 +410,7 @@
 				04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */,
 				04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */,
 				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
+				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
 				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
 				04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */,
 			);
@@ -729,7 +729,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0408507F2A0A220D007DEF50 /* WeakRefVirtualProxy.swift in Sources */,
-				046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */,
 				046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */,
 				04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */,
 				046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */,
@@ -787,6 +786,7 @@
 				044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */,
 				0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */,
 				04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */,
+				04CBF1EB2A0CCFDB0002683F /* ResourceListViewAdapter.swift in Sources */,
 				04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */,
 				04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */,
 				0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */,
