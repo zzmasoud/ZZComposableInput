@@ -80,6 +80,8 @@
 		04CBF1F32A0CD0F40002683F /* ResourceListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F22A0CD0F40002683F /* ResourceListViewProtocol.swift */; };
 		04CBF1F52A0CD1010002683F /* ResourceListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F42A0CD1010002683F /* ResourceListControllerDelegate.swift */; };
 		04CBF1F82A0CD12F0002683F /* SelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */; };
+		04CBF1FA2A0CD2720002683F /* SelectableCellControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */; };
+		04CBF1FC2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -196,6 +198,8 @@
 		04CBF1F22A0CD0F40002683F /* ResourceListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListViewProtocol.swift; sourceTree = "<group>"; };
 		04CBF1F42A0CD1010002683F /* ResourceListControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListControllerDelegate.swift; sourceTree = "<group>"; };
 		04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellController.swift; sourceTree = "<group>"; };
+		04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellControllerTests.swift; sourceTree = "<group>"; };
+		04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegateAdapterTests.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
@@ -436,6 +440,8 @@
 				044160F329BDEF310070D6CE /* Presentation */,
 				04378800298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift */,
 				04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */,
+				04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */,
+				04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */,
 			);
 			path = ZZComposableInputTests;
 			sourceTree = "<group>";
@@ -853,7 +859,9 @@
 				04378801298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift in Sources */,
 				045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */,
+				04CBF1FA2A0CD2720002683F /* SelectableCellControllerTests.swift in Sources */,
 				0438FFD02A07811500469D1A /* ViewSpy.swift in Sources */,
+				04CBF1FC2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift in Sources */,
 				04B459402A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

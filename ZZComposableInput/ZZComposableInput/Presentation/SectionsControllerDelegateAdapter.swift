@@ -6,11 +6,11 @@ import Foundation
 
 public final class SectionsControllerDelegateAdapter: SectionsControllerDelegate {
     private let sectionsPresenter: SectionsPresenter
-    private let sectionLoadCallback: ((Int) -> Void)?
+    private let sectionSelectionCallback: ((Int) -> Void)?
     
     public init(sectionsPresenter: SectionsPresenter, sectionLoadCallback: ((Int) -> Void)? = nil) {
         self.sectionsPresenter = sectionsPresenter
-        self.sectionLoadCallback = sectionLoadCallback
+        self.sectionSelectionCallback = sectionLoadCallback
     }
 
     public func didRequestSections() {
@@ -19,6 +19,6 @@ public final class SectionsControllerDelegateAdapter: SectionsControllerDelegate
     
     public func didSelectSection(at index: Int) {
         sectionsPresenter.didSelectSection(at: index)
-        sectionLoadCallback?(index)
+        sectionSelectionCallback?(index)
     }
 }
