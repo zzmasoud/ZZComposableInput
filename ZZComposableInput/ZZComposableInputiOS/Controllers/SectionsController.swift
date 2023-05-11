@@ -5,30 +5,12 @@
 import UIKit
 import ZZComposableInput
 
-public protocol SectionedViewProtocol {
-    var view: UIView { get }
-    var selectedSectionIndex: Int { set get }
-    var numberOfSections: Int { get }
-    var onSectionChange: (() -> Void)? { set get }
-    func reload(withTitles: [String])
-}
-
-public protocol SectionsControllerDelegate {
-    func didRequestSections()
-    func didSelectSection(at: Int)
-}
-
-public protocol SectionsControllerProtocol: AnyObject, SectionsView {
-    var delegate: SectionsControllerDelegate? { get set }
-    var sectionedView: SectionedViewProtocol? { get }
-}
-
 final public class SectionsController: NSObject, SectionsControllerProtocol {
     @IBOutlet public var sectionedViewContainer: UIView?
     @IBOutlet public var label: UILabel?
 
     public var delegate: SectionsControllerDelegate?
-    public var sectionedView: SectionedViewProtocol? {
+    public var sectionedView: (any SectionedViewProtocol)? {
         didSet {
             sectionedView?.onSectionChange = { [weak self] in
                 guard let self = self, let view = self.sectionedView else { return }
@@ -45,7 +27,7 @@ final public class SectionsController: NSObject, SectionsControllerProtocol {
               let sectionedView = sectionedView else {
             fatalError("SectionedViewContainer or sectionedView property is nil, should be assigned before viewDidLoad().")
         }
-        add(sectionedView: sectionedView.view, to: containerView)
+        add(sectionedView: sectionedView.view as! UIView, to: containerView)
     }
     
     private func add(sectionedView: UIView, to containerView: UIView) {
@@ -70,24 +52,5 @@ final public class SectionsController: NSObject, SectionsControllerProtocol {
     
     public func display(_ viewModel: SectionViewModel) {
         configureLabel(title: viewModel.title)
-    }
-}
-
-final class SectionsControllerDelegateAdapter: SectionsControllerDelegate {
-    private let sectionsPresenter: SectionsPresenter
-    private let sectionLoadCallback: ((Int) -> Void)?
-    
-    init(sectionsPresenter: SectionsPresenter, sectionLoadCallback: ((Int) -> Void)? = nil) {
-        self.sectionsPresenter = sectionsPresenter
-        self.sectionLoadCallback = sectionLoadCallback
-    }
-
-    func didRequestSections() {
-        sectionsPresenter.didRequestSections()
-    }
-    
-    func didSelectSection(at index: Int) {
-        sectionsPresenter.didSelectSection(at: index)
-        sectionLoadCallback?(index)
     }
 }

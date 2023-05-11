@@ -153,10 +153,10 @@ final class iOSSnapshotTests: XCTestCase {
         )
     }
     
-    private func cellControllerMapper(items: [MockItem]) -> [SelectableCellController] {
+    private func cellControllerMapper(items: [MockItem]) -> [UIKitSelectableCellController] {
         return items.map { item in
             let view = MockCellController(model: item)
-            return SelectableCellController(
+            return UIKitSelectableCellController(
                 id: item,
                 dataSource: view,
                 delegate: nil)

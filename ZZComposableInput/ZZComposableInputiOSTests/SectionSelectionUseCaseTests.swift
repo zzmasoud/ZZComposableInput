@@ -21,7 +21,7 @@ final class SectionSelectionUseCaseTests: XCTestCase {
         
         sut.viewDidLoad()
 
-        XCTAssertEqual(sut.sectionedViewContainer!.subviews, [sut.sectionedView!.view])
+        XCTAssertEqual(sut.sectionedViewContainer!.subviews, [sut.sectionedView!.view as! UIView])
     }
     
     func test_viewDidLoad_labelIsHidden() {

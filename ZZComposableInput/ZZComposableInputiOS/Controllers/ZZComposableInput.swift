@@ -5,9 +5,9 @@
 import UIKit
 import ZZComposableInput
 
-public final class ZZComposableInputViewController: UIViewController, ZZComposableInput {
-    public var resourceListController: ResourceListControllerProtocol! {
-        return _resourceListController
+public final class ZZComposableInputViewController<ResourceListController: ResourceListControllerProtocol, ResourceListView: ResourceListViewProtocol>: UIViewController, ZZComposableInput where ResourceListController.ResourceListView.CellController == ResourceListView.CellController, ResourceListView.CellController == UIKitSelectableCellController {
+    public var resourceListController: ResourceListController! {
+        return _resourceListController as! ResourceListController
     }
     
     public var sectionsController: SectionsControllerProtocol! {
@@ -15,9 +15,9 @@ public final class ZZComposableInputViewController: UIViewController, ZZComposab
     }
     
     @IBOutlet public var _sectionsController: SectionsController!
-    @IBOutlet public var _resourceListController: ResourceListController!
+    public var _resourceListController: ResourceController<ResourceListView>!
     
-    public var sectionedView: SectionedViewProtocol { sectionsController.sectionedView! }
+    public var sectionedView: any SectionedViewProtocol { sectionsController.sectionedView! }
     public var resourceListView: any ResourceListViewProtocol { resourceListController.resourceListView! }
     public var selectedSectionLabel: UILabel? { _sectionsController?.label }
     public var onSelection: ((Int) -> Void)?

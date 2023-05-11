@@ -2,16 +2,16 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //
 
-import ZZComposableInput
+import Foundation
 
 public protocol ZZComposableInput: AnyObject {
     var sectionsController: SectionsControllerProtocol! { get }
 }
 
-final class ZZTaskInputViewComposer {
+public final class ZZComposableInputComposer {
     private init() {}
     
-    static func composedWith<T: ZZComposableInput>(
+    public static func composedWith<T: ZZComposableInput>(
         inputView: T,
         itemsLoader: some ItemsLoader,
         sectionsPresenter: SectionsPresenter,

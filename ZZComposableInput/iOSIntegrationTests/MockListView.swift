@@ -3,10 +3,10 @@
 //  
 
 import UIKit
+import ZZComposableInput
 import ZZComposableInputiOS
 
 final class MockListView: NSObject, ResourceListViewProtocol {
-    
     var onSelection: ((Int) -> Void)
     var onDeselection: ((Int) -> Void)
     
@@ -22,7 +22,7 @@ final class MockListView: NSObject, ResourceListViewProtocol {
         self.onDeselection = onDeselection
     }
     
-    private var cellControllers = [SelectableCellController]() {
+    private var cellControllers = [UIKitSelectableCellController]() {
         didSet {
             tableView.reloadData()
         }
@@ -30,7 +30,7 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     
     var view: UIView { tableView }
         
-    func reloadData(with newCellControllers: [ZZComposableInputiOS.SelectableCellController]) {
+    func reloadData(with newCellControllers: [UIKitSelectableCellController]) {
         cellControllers = newCellControllers
     }
     

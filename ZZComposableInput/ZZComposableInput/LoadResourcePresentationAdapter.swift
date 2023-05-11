@@ -2,9 +2,9 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //
 
-import ZZComposableInput
+import Foundation
 
-final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
+public final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
     private let loader: Loader
     public var presenter: LoadResourcePresenter?
     private var currentTask: CancellableFetch? {
@@ -13,11 +13,11 @@ final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
         }
     }
     
-    init(loader: Loader) {
+    public init(loader: Loader) {
         self.loader = loader
     }
     
-    func selectSection(index: Int) {
+    public func selectSection(index: Int) {
         presenter?.didStartLoading()
         currentTask = loader.loadItems(for: index, completion: { [weak self] result in
             switch result {

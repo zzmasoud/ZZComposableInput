@@ -7,18 +7,19 @@ import ZZComposableInput
 
 public typealias PreSelectedItemsHandler = (Int) -> ([any AnyItem]?)
 
-public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceListView {
+public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceListController: ResourceListControllerProtocol>: ResourceListView {
     public typealias Item = Container.Item
+    public typealias CellController = ResourceListController.ResourceListView.CellController
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
-    public typealias CellControllerMapper = ([Item]) -> [SelectableCellController]
+    public typealias CellControllerMapper = ([Item]) -> [CellController]
     
-    private weak var controller: ResourceListControllerProtocol?
+    private weak var controller: ResourceListController?
     private var container: Container?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private let selectionManager = InMemorySelectionManager<Container>()
     
-    public init(controller: ResourceListControllerProtocol, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
+    public init(controller: ResourceListController, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
         self.controller = controller
         self.containerMapper = containerMapper
         self.cellControllerMapper = cellControllerMapper
@@ -37,12 +38,12 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         pass(cellControllers: cellControllers, to: controller, using: container)
     }
     
-    private func configuareResourceListViewBasedOn(container: Container, in controller: ResourceListControllerProtocol?) {
+    private func configuareResourceListViewBasedOn(container: Container, in controller: ResourceListController?) {
         controller?.resourceListView?.allowMultipleSelection(container.selectionType != .single)
         controller?.resourceListView?.allowAddNew(container.allowAdding)
     }
     
-    private func pass(cellControllers: [SelectableCellController], to controller: ResourceListControllerProtocol?, using container: Container) {
+    private func pass(cellControllers: [CellController], to controller: ResourceListController?, using container: Container) {
         cellControllers.forEach { controller in
             controller.isSelected = {
                 (container.selectedItems ?? []).contains(where: { item in
@@ -53,7 +54,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer>: ResourceL
         controller?.set(cellControllers: cellControllers)
     }
     
-    private func bind(container: Container, to controller: ResourceListControllerProtocol?) {
+    private func bind(container: Container, to controller: ResourceListController?) {
         container.delegate = self
         controller?.delegate = self
     }

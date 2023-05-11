@@ -3,6 +3,7 @@
 //  
 
 import XCTest
+import ZZComposableInput
 @testable import ZZComposableInputiOS
 
 final class SectionsControllerDelegateUseCaseTests: XCTestCase {

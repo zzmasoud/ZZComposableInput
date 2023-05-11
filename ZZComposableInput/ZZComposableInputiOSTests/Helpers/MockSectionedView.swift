@@ -3,6 +3,7 @@
 //  
 
 import UIKit
+import ZZComposableInput
 import ZZComposableInputiOS
 
 final class MockSectionedView: NSObject, SectionedViewProtocol {

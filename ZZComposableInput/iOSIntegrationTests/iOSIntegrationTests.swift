@@ -255,8 +255,11 @@ final class iOSIntegrationTests: XCTestCase {
     
     private let sections = MockSection.allCases.map { $0.title }
     private typealias Container = DefaultItemsContainer<MockItem>
+    private typealias RView = MockListView
+    private typealias RController = ResourceController<RView>
+    private typealias SUT = ZZComposableInputViewController<RController, RView>
     
-    private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
+    private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
         let inputController = makeInputViewController(
             onSelection: { index in
@@ -273,7 +276,7 @@ final class iOSIntegrationTests: XCTestCase {
             },
             cellControllerMapper: cellControllerMapper(items:))
         
-        let sut = ZZTaskInputViewComposer.composedWith(
+        let sut = ZZComposableInputComposer.composedWith(
             inputView: inputController,
             itemsLoader: loader,
             sectionsPresenter: SectionsPresenter(
@@ -294,24 +297,24 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     private func makeLoadResourcePresenter(
-        resourceListViewAdapter: ResourceListViewAdapter<Container>,
-        inputController: ZZComposableInputViewController
+        resourceListViewAdapter: ResourceListViewAdapter<Container, RController>,
+        inputController: SUT
     ) -> LoadResourcePresenter {
         return LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(inputController),
             listView: resourceListViewAdapter)
     }
     
-    private func makeInputViewController(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) -> ZZComposableInputViewController {
+    private func makeInputViewController(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) -> SUT {
         let sectionsController = SectionsController()
         sectionsController.sectionedViewContainer = UIView()
         sectionsController.sectionedView = MockSectionedView()
         
-        let resourceController = ResourceListController()
+        let resourceController = ResourceController<MockListView>()
         resourceController.listViewContainer = UIView()
         resourceController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
         
-        let vc = ZZComposableInputViewController()
+        let vc = SUT()
         vc._sectionsController = sectionsController
         vc._resourceListController = resourceController
         
@@ -328,18 +331,18 @@ final class iOSIntegrationTests: XCTestCase {
         )
     }
     
-    private func cellControllerMapper(items: [MockItem]) -> [SelectableCellController] {
+    private func cellControllerMapper(items: [MockItem]) -> [UIKitSelectableCellController] {
         return items.map { item in
             let view = MockCellController(model: item)
-            return SelectableCellController(
+            return UIKitSelectableCellController(
                 id: item,
                 dataSource: view,
                 delegate: nil)
         }
     }
     
-    private func assertThat(_ sut: ZZComposableInputViewController, isRendering items: [Container.Item], selectedItems: [Container.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
-        sut.sectionedView.view.enforceLayoutCycle()
+    private func assertThat(_ sut: SUT, isRendering items: [Container.Item], selectedItems: [Container.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
+        (sut.sectionedView.view as! UIView).enforceLayoutCycle()
 
         guard sut.numberOfRenderedItems == items.count else {
             return XCTFail("expected \(items.count) items but got \(sut.numberOfRenderedItems) items!", file: file, line: line)
@@ -355,7 +358,7 @@ final class iOSIntegrationTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
-    private func assertThat(_ sut: ZZComposableInputViewController, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: SUT, isRenderingSelectionIndicatorForIndexes selectedIndexes: [Int], for section: Int, file: StaticString = #file, line: UInt = #line) {
         let mockSection = MockSection(rawValue: section)!
         var selectionLimit = 1
         if case .multiple(let max) = mockSection.selectionType {
@@ -372,19 +375,19 @@ final class iOSIntegrationTests: XCTestCase {
         }
     }
     
-    private func assertThat(_ sut: ZZComposableInputViewController, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: SUT, isRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
         XCTAssertTrue(view0!.isSelectedAndShowingIndicator, "expected to have selection indicator in the view but not found", file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZComposableInputViewController, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: SUT, isNotRenderingSelectedIndicatorElementsAt index: Int, file: StaticString = #file, line: UInt = #line) {
         let view0 = sut.itemView(at: index)
         XCTAssertNotNil(view0, file: file, line: line)
         XCTAssertFalse(view0!.isSelectedAndShowingIndicator, "expected to have no selection indicator in the view but found it", file: file, line: line)
     }
     
-    private func assertThat(_ sut: ZZComposableInputViewController, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimit selectionLimit: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: SUT, renderedSelectedIndexes selectedIndexes: [Int], notExceedSelectionLimit selectionLimit: Int, file: StaticString = #file, line: UInt = #line) {
         XCTAssertTrue(selectedIndexes.count <= selectionLimit, "expected maximum \(selectionLimit) selection but got \(selectedIndexes.count) items selected.", file: file, line: line)
     }
     

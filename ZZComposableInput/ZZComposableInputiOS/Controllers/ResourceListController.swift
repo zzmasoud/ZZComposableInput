@@ -5,38 +5,16 @@
 import UIKit
 import ZZComposableInput
 
-public protocol ResourceListViewProtocol: AnyObject {
-    associatedtype View
-    var view: View { get }
-    var onSelection: ((Int) -> Void) { get set }
-    var onDeselection: ((Int) -> Void) { get set }
-    func reloadData(with: [SelectableCellController])
-    func reload()
-    func allowMultipleSelection(_ isOn: Bool)
-    func allowAddNew(_ isOn: Bool)
-    func deselect(at: Int)
-}
-
-public protocol ResourceListControllerDelegate {
-    func didSelectResource(at: Int)
-    func didDeselectResource(at: Int)
-}
-
-public protocol ResourceListControllerProtocol: AnyObject, ResourceLoadingView {
-    var delegate: ResourceListControllerDelegate? { get set }
-    var resourceListView: (any ResourceListViewProtocol)? { get }
-    func set(cellControllers: [SelectableCellController])
-}
-
-public final class ResourceListController: NSObject, ResourceListControllerProtocol {
+public final class ResourceController<ResourceListView: ResourceListViewProtocol>: NSObject, ResourceListControllerProtocol where ResourceListView.CellController == UIKitSelectableCellController   {
+    public func set(cellControllers: [UIKitSelectableCellController]) {
+        resourceListView?.reloadData(with: cellControllers)
+    }
+    
     @IBOutlet public var listViewContainer: UIView?
     
     public var delegate: ResourceListControllerDelegate?
-    public var resourceListView: (any ResourceListViewProtocol)?
-    
-    public func set(cellControllers: [SelectableCellController]) {
-        resourceListView?.reloadData(with: cellControllers)
-    }
+    public var resourceListView: ResourceListView?
+
 
     func viewDidLoad() {
         guard let containerView = listViewContainer,
@@ -60,5 +38,4 @@ public final class ResourceListController: NSObject, ResourceListControllerProto
     public func display(_ viewModel: ResourceLoadingViewModel) {
             // no loading for now
     }
-    
 }

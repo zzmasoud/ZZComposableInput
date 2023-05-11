@@ -42,10 +42,14 @@
 		045207262A066F3A0081BF7B /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045207252A066F3A0081BF7B /* UIView+Constraint.swift */; };
 		045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ItemsLoader.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
-		046C5F6F2992A80000672906 /* SelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* SelectableCellController.swift */; };
+		046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */; };
 		046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8CFC29BF50FE0061716D /* ResourceListController.swift */; };
 		046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
-		046E8D2529BFB5E50061716D /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */; };
+		04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */; };
+		04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */; };
+		04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */; };
+		04951B6F2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */; };
+		04951B712A0CC0C600968D74 /* ResourceListControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */; };
 		04A5728D29B78255000E0D08 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		04A5A20E298D7DF400C76384 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04B06F8A2A0B87670084DD3E /* iOSSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B06F892A0B87670084DD3E /* iOSSnapshotTests.swift */; };
@@ -76,7 +80,6 @@
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04D30A5D2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */; };
 		04D30A622A0A6CD9005664AB /* MockCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A612A0A6CD9005664AB /* MockCellController.swift */; };
-		04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,7 +151,7 @@
 		045207252A066F3A0081BF7B /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
 		045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
-		046C5F6E2992A80000672906 /* SelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellController.swift; sourceTree = "<group>"; };
+		046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSelectableCellController.swift; sourceTree = "<group>"; };
 		046D8CE229BB10A00077BFC8 /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
 		046D8CE429BB10B20077BFC8 /* ResourceLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingViewModel.swift; sourceTree = "<group>"; };
 		046D8CE629BB10C70077BFC8 /* ResourceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +165,9 @@
 		047CA3AF29BD18D800718831 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		047CA3B129BD18E500718831 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		04854A7F29BA5A0B00B05665 /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
+		04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerProtocol.swift; sourceTree = "<group>"; };
+		04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegateAdapter.swift; sourceTree = "<group>"; };
+		04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListControllerProtocol.swift; sourceTree = "<group>"; };
 		04A5728C29B78255000E0D08 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoaderSpy.swift; sourceTree = "<group>"; };
 		04B06F872A0B87670084DD3E /* iOSSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,7 +190,7 @@
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
 		04D30A612A0A6CD9005664AB /* MockCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCellController.swift; sourceTree = "<group>"; };
-		04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTaskInputViewUIComposer.swift; sourceTree = "<group>"; };
+		04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZComposableInputComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,8 +266,6 @@
 		040CE0BC298FAA28003BB6DC /* ZZComposableInputiOS */ = {
 			isa = PBXGroup;
 			children = (
-				04E0684329D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift */,
-				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
 				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
 				046C5F722992C02D00672906 /* Controllers */,
 				045207272A066F400081BF7B /* Helpers */,
@@ -310,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				04C76728299030ED00EB3403 /* ZZComposableInput.swift */,
-				046C5F6E2992A80000672906 /* SelectableCellController.swift */,
+				046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */,
 				046E8CFC29BF50FE0061716D /* ResourceListController.swift */,
 				04CB3DAC2A091EB10024D327 /* SectionsController.swift */,
 			);
@@ -404,6 +408,11 @@
 				04CDEB0B2A0643E5008C7BCF /* ItemsLoader */,
 				04854A7E29BA59FB00B05665 /* Presentation */,
 				04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */,
+				04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */,
+				04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */,
+				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
+				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
+				04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */,
 			);
 			path = ZZComposableInput;
 			sourceTree = "<group>";
@@ -721,10 +730,8 @@
 			files = (
 				0408507F2A0A220D007DEF50 /* WeakRefVirtualProxy.swift in Sources */,
 				046E8D2329BFB5AC0061716D /* ResourceListViewAdapter.swift in Sources */,
-				046C5F6F2992A80000672906 /* SelectableCellController.swift in Sources */,
-				04E0684429D2DE79003FF6B7 /* ZZTaskInputViewUIComposer.swift in Sources */,
+				046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */,
 				04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */,
-				046E8D2529BFB5E50061716D /* LoadResourcePresentationAdapter.swift in Sources */,
 				046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */,
 				045207262A066F3A0081BF7B /* UIView+Constraint.swift in Sources */,
 				04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */,
@@ -770,7 +777,9 @@
 			files = (
 				043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */,
 				04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */,
+				04951B712A0CC0C600968D74 /* ResourceListControllerProtocol.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */,
+				04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */,
 				0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */,
 				0441610229BDFC910070D6CE /* ResourceListView.swift in Sources */,
@@ -778,10 +787,13 @@
 				044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */,
 				0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */,
 				04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */,
+				04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */,
 				04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */,
 				0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */,
+				04951B6F2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift in Sources */,
 				044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */,
 				044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */,
+				04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */,
 				0441610029BDFA940070D6CE /* ResourceLoadingView.swift in Sources */,
 				044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */,
 			);
