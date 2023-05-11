@@ -299,8 +299,9 @@
 		044160F329BDEF310070D6CE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */,
 				044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */,
+				044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */,
+				04CBF2012A0D87B40002683F /* Adapters */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -361,9 +362,7 @@
 		04854A7E29BA59FB00B05665 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
-				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
-				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
+				04CBF2002A0D1BAD0002683F /* Adapters */,
 				047CA3B329BD2DF500718831 /* Section */,
 				047CA3B429BD2E0600718831 /* Resource */,
 			);
@@ -440,8 +439,6 @@
 				04378800298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift */,
 				04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */,
 				04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */,
-				04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */,
-				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
 			);
 			path = ZZComposableInputTests;
 			sourceTree = "<group>";
@@ -481,6 +478,25 @@
 				04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		04CBF2002A0D1BAD0002683F /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
+				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
+				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		04CBF2012A0D87B40002683F /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */,
+				0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */,
+			);
+			path = Adapters;
 			sourceTree = "<group>";
 		};
 		04CDEB0A2A0643DB008C7BCF /* ItemsContainer */ = {

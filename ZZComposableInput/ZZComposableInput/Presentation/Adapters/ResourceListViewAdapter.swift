@@ -4,8 +4,6 @@
 
 import Foundation
 
-public typealias PreSelectedItemsHandler = (Int) -> ([any AnyItem]?)
-
 public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceListController: ResourceListControllerProtocol>: ResourceListView {
     public typealias Item = Container.Item
     public typealias CellController = ResourceListController.ResourceListView.CellController

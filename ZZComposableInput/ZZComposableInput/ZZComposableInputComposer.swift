@@ -4,14 +4,14 @@
 
 import Foundation
 
-public protocol ZZComposableInput: AnyObject {
+protocol ZZComposableInput: AnyObject {
     var sectionsController: SectionsControllerProtocol! { get }
 }
 
-public final class ZZComposableInputComposer {
+final class ZZComposableInputComposer {
     private init() {}
     
-    public static func composedWith<T: ZZComposableInput>(
+    static func composedWith<T: ZZComposableInput>(
         inputView: T,
         itemsLoader: some ItemsLoader,
         sectionsPresenter: SectionsPresenter,

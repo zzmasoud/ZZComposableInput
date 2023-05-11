@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ZZComposableInput
+@testable import ZZComposableInput
 
 public final class ZZComposableInputViewController<ResourceListController: ResourceListControllerProtocol, ResourceListView: ResourceListViewProtocol>: UIViewController, ZZComposableInput where ResourceListController.ResourceListView.CellController == ResourceListView.CellController, ResourceListView.CellController == UIKitSelectableCellController {
     public var resourceListController: ResourceListController! {

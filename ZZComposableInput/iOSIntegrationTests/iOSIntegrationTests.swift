@@ -3,7 +3,7 @@
 //  
 
 import XCTest
-import ZZComposableInput
+@testable import ZZComposableInput
 @testable import ZZComposableInputiOS
 
 final class iOSIntegrationTests: XCTestCase {

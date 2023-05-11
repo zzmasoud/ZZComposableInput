@@ -8,9 +8,7 @@ public final class LoadResourcePresentationAdapter<Loader: ItemsLoader> {
     private let loader: Loader
     public var presenter: LoadResourcePresenter?
     private var currentTask: CancellableFetch? {
-        didSet {
-             oldValue?.cancel()
-        }
+        didSet { oldValue?.cancel() }
     }
     
     public init(loader: Loader) {
