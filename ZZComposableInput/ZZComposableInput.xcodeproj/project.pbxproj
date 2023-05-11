@@ -75,6 +75,11 @@
 		04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
 		04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04CBF1EB2A0CCFDB0002683F /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
+		04CBF1EE2A0CD0C80002683F /* SectionedViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1ED2A0CD0C80002683F /* SectionedViewProtocol.swift */; };
+		04CBF1F12A0CD0DF0002683F /* SectionsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F02A0CD0DF0002683F /* SectionsControllerDelegate.swift */; };
+		04CBF1F32A0CD0F40002683F /* ResourceListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F22A0CD0F40002683F /* ResourceListViewProtocol.swift */; };
+		04CBF1F52A0CD1010002683F /* ResourceListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F42A0CD1010002683F /* ResourceListControllerDelegate.swift */; };
+		04CBF1F82A0CD12F0002683F /* SelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -186,6 +191,11 @@
 		04CB3DAE2A0936B70024D327 /* SectionSelectionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionSelectionUseCaseTests.swift; sourceTree = "<group>"; };
 		04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSectionedView.swift; sourceTree = "<group>"; };
 		04CB3DB32A09414A0024D327 /* UIView+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test.swift"; sourceTree = "<group>"; };
+		04CBF1ED2A0CD0C80002683F /* SectionedViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedViewProtocol.swift; sourceTree = "<group>"; };
+		04CBF1F02A0CD0DF0002683F /* SectionsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegate.swift; sourceTree = "<group>"; };
+		04CBF1F22A0CD0F40002683F /* ResourceListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListViewProtocol.swift; sourceTree = "<group>"; };
+		04CBF1F42A0CD1010002683F /* ResourceListControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListControllerDelegate.swift; sourceTree = "<group>"; };
+		04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellController.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
@@ -304,6 +314,7 @@
 		045C50D4298D1A76005C44AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */,
 				04CDEB062A063AAD008C7BCF /* ItemType.swift */,
 			);
 			path = Models;
@@ -347,6 +358,9 @@
 		04854A7E29BA59FB00B05665 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
+				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
+				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
 				047CA3B329BD2DF500718831 /* Section */,
 				047CA3B429BD2E0600718831 /* Resource */,
 			);
@@ -402,16 +416,14 @@
 		04C36F95298AF6C700712C6E /* ZZComposableInput */ = {
 			isa = PBXGroup;
 			children = (
-				045C50D4298D1A76005C44AE /* Models */,
-				04CDEB0A2A0643DB008C7BCF /* ItemsContainer */,
 				04CDEB0B2A0643E5008C7BCF /* ItemsLoader */,
+				04CDEB0A2A0643DB008C7BCF /* ItemsContainer */,
+				045C50D4298D1A76005C44AE /* Models */,
+				04CBF1EF2A0CD0D70002683F /* Delegates */,
+				04CBF1EC2A0CD0BC0002683F /* Views */,
+				04CBF1F62A0CD11E0002683F /* Controllers */,
 				04854A7E29BA59FB00B05665 /* Presentation */,
 				04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */,
-				04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */,
-				04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */,
-				046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */,
-				046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */,
-				04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */,
 				04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */,
 			);
 			path = ZZComposableInput;
@@ -437,12 +449,39 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		04CBF1EC2A0CD0BC0002683F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04CBF1ED2A0CD0C80002683F /* SectionedViewProtocol.swift */,
+				04CBF1F22A0CD0F40002683F /* ResourceListViewProtocol.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04CBF1EF2A0CD0D70002683F /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				04CBF1F02A0CD0DF0002683F /* SectionsControllerDelegate.swift */,
+				04CBF1F42A0CD1010002683F /* ResourceListControllerDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		04CBF1F62A0CD11E0002683F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */,
+				04951B702A0CC0C600968D74 /* ResourceListControllerProtocol.swift */,
+				04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		04CDEB0A2A0643DB008C7BCF /* ItemsContainer */ = {
 			isa = PBXGroup;
 			children = (
-				04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */,
 				043787FA298E4BC600CD2F26 /* ItemsContainer.swift */,
-				043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */,
+				04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */,
 			);
 			path = ItemsContainer;
 			sourceTree = "<group>";
@@ -774,20 +813,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CBF1EE2A0CD0C80002683F /* SectionedViewProtocol.swift in Sources */,
 				043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */,
 				04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */,
 				04951B712A0CC0C600968D74 /* ResourceListControllerProtocol.swift in Sources */,
+				04CBF1F12A0CD0DF0002683F /* SectionsControllerDelegate.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */,
 				04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */,
+				04CBF1F52A0CD1010002683F /* ResourceListControllerDelegate.swift in Sources */,
 				0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */,
 				0441610229BDFC910070D6CE /* ResourceListView.swift in Sources */,
 				0441610129BDFA9B0070D6CE /* ResourceLoadingViewModel.swift in Sources */,
 				044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */,
 				0441610329BDFC970070D6CE /* ResourceListViewModel.swift in Sources */,
 				04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */,
+				04CBF1F82A0CD12F0002683F /* SelectableCellController.swift in Sources */,
 				04CBF1EB2A0CCFDB0002683F /* ResourceListViewAdapter.swift in Sources */,
 				04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */,
+				04CBF1F32A0CD0F40002683F /* ResourceListViewProtocol.swift in Sources */,
 				04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */,
 				0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */,
 				04951B6F2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift in Sources */,
