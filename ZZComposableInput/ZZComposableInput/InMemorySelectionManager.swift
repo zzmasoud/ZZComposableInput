@@ -18,12 +18,12 @@ import Foundation
  Even if <ItemsLoader> caches items, mapping data to <ItemsContainer> happens, so this is mandatory to keep user's selected items.
  */
 
-public final class InMemorySelectionManager<Container: ItemsContainer> {
+final class InMemorySelectionManager<Container: ItemsContainer> {
     private(set) public var loadedContainers = [Int: Container]()
     
-    public init() {}
+    init() {}
 
-    public func sync(container: Container, forSection section: Int) {
+    func sync(container: Container, forSection section: Int) {
         loadedContainers[section]?.selectedItems?.forEach({ item in
             if let index = container.items!.firstIndex(of: item) {
                 container.select(at: index)
