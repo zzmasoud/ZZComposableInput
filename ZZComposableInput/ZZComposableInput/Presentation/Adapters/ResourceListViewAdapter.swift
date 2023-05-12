@@ -33,7 +33,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceLi
         bind(container: container, to: controller)
         self.container = container
         
-        let cellControllers = cellControllerMapper(container.items ?? [])
+        let cellControllers = cellControllerMapper(container.items)
         pass(cellControllers: cellControllers, to: controller, using: container)
     }
     

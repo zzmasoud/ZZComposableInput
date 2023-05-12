@@ -292,7 +292,7 @@ final class iOSIntegrationTests: XCTestCase {
     private func containerMapper(section: Int, items: [any AnyItem]?, preselectedItems: [MockItem]? = nil) -> Container {
         let mockSection = MockSection(rawValue: section)!
         return Container(
-            items: items as! [MockItem]?,
+            items: items as! [MockItem],
             preSelectedItems: preselectedItems,
             selectionType: mockSection.selectionType,
             allowAdding: false

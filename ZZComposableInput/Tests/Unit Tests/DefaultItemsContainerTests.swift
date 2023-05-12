@@ -192,7 +192,7 @@ class DefaultItemsContainerTests: XCTestCase {
         let newItem = makeItems().first!
         sut.add(item: newItem)
         
-        XCTAssertEqual(delegate.newItemIndexes, [sut.items!.count-1])
+        XCTAssertEqual(delegate.newItemIndexes, [sut.items.count-1])
     }
     
     func test_delegate_callsAfterAddingNewItemWhenHasNoItems() {
@@ -212,14 +212,14 @@ class DefaultItemsContainerTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(selectionType: ItemsContainerSelectionType = .single, withNoItems: Bool = false) -> (sut: DefaultItemsContainer<MockItem>, items: [MockItem]) {
-        let items = withNoItems ? nil : makeItems()
+        let items = withNoItems ? [] : makeItems()
         let sut = DefaultItemsContainer(
             items: items,
             preSelectedIndexes: nil,
             selectionType: selectionType,
             allowAdding: true)
         
-        return (sut, items ?? [])
+        return (sut, items)
     }
     
     private func expect(_ sut: DefaultItemsContainer<MockItem>, toHaveSelectedItems expectedItems: [MockItem]?, file: StaticString = #file, line: UInt = #line) {

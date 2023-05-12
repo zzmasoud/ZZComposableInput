@@ -7,20 +7,20 @@ import Foundation
 public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
     public weak var delegate: ItemsContainerDelegate?
     public let selectionType: ItemsContainerSelectionType
-    private(set) public var items: [Item]?
+    private(set) public var items: [Item]
     private(set) public var selectedItems: [Item]?
     public let allowAdding: Bool
     
-    public convenience init(items: [Item]? = nil, preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
+    public convenience init(items: [Item], preSelectedIndexes: [Int]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
         self.init(
             items: items,
-            preSelectedItems: preSelectedIndexes?.compactMap { items?[$0] },
+            preSelectedItems: preSelectedIndexes?.compactMap { items[$0] },
             selectionType: selectionType,
             allowAdding: allowAdding
         )
     }
     
-    public init(items: [Item]? = nil, preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
+    public init(items: [Item], preSelectedItems: [Item]? = nil, selectionType: ItemsContainerSelectionType, allowAdding: Bool) {
         self.items = items
         self.selectedItems = preSelectedItems
         self.selectionType = selectionType
@@ -32,10 +32,8 @@ public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
     }
 
     public func add(item: Item) {
-        if items?.append(item) == nil {
-            items = [item]
-        }
-        self.delegate?.newItemAdded(at: items!.count-1)
+        items.append(item)
+        self.delegate?.newItemAdded(at: items.count-1)
     }
 
 }
@@ -44,9 +42,9 @@ public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
 
 extension DefaultItemsContainer {
     public func select(at index: Int) {
-        guard let items = items, !items.isEmpty else { return }
+        guard !items.isEmpty else { return }
+        
         let newItem = items[index]
-
         switch selectionType {
         case .single:
             selectedItems = [newItem]
@@ -80,7 +78,8 @@ extension DefaultItemsContainer {
 extension DefaultItemsContainer {
     public func deselect(at index: Int) {
         guard case .multiple = selectionType,
-              let items = items, !items.isEmpty else { return }
+              !items.isEmpty else { return }
+        
         let unselectedItem = items[index]
         
         guard let foundIndex = indexOf(unselectedItem, in: selectedItems) else { return }
