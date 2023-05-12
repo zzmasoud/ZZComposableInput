@@ -259,6 +259,58 @@ final class iOSIntegrationTests: XCTestCase {
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [Int](6...8), for: section)
     }
     
+    // MARK: - Delegate
+    
+    func test_callback_deliversSectionChanges() {
+        let section = 1
+        let (sut, _) = makeSUT()
+        var recievedSections = [Int]()
+                
+        let exp = expectation(description: "waiting for the callback to trigger...")
+        sut.onSectionChange = { index in
+            recievedSections.append(index)
+            guard recievedSections.count == 2 else { return }
+            exp.fulfill()
+        }
+        
+        sut.simulateSelection(section: section)
+        sut.simulateSelection(section: section+1)
+        
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(recievedSections, [section, section+1])
+    }
+    
+    func test_callback_deliversContainerChanges() throws {
+        let section = 2
+        let items = makeItems()
+        let (sut, loader) = makeSUT()
+        var callbackCallCount = 0
+        var recievedContainer: Container?
+        
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        
+        let exp = expectation(description: "waiting for the callback to trigger...")
+        sut.onToggleSelection = { container in
+            callbackCallCount += 1
+            recievedContainer = container
+            guard callbackCallCount == 2 else { return }
+            exp.fulfill()
+        }
+        
+        sut.simulateItemSelection(at: 0)
+        sut.simulateItemDeselection(at: 0)
+        sut.simulateItemSelection(at: 1)
+        sut.simulateItemSelection(at: 2)
+
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(callbackCallCount, 4)
+        let container = try XCTUnwrap(recievedContainer)
+        XCTAssertEqual(container.selectedItems, [items[1], items[2]])
+    }
+    
     // MARK: - Helpers
     
     private let sections = MockSection.allCases.map { $0.title }

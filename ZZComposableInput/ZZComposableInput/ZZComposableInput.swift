@@ -7,15 +7,26 @@ import Foundation
 public final class ZZComposableInput<SectionsController: SectionsControllerProtocol, ResourceListController: ResourceListControllerProtocol, Container: ItemsContainer> {
     public typealias Item = Container.Item
     public typealias CellController = ResourceListController.ResourceListView.CellController
-    
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
     public typealias CellControllerMapper = ([Item]) -> [CellController]
+    public typealias SectionChangeCallback = (Int) -> Void
+    public typealias ToggleSelectionCallback = (Container) -> Void
     
     let sectionsController: SectionsController
     let resourceListController: ResourceListController
     
+    public var onSectionChange: SectionChangeCallback?
+    public var onToggleSelection: ToggleSelectionCallback?
+    
     private lazy var selectionManager = InMemorySelectionManager<Container>()
-    private var resourceListViewAdapter: ResourceListViewAdapter<Container, ResourceListController>?
+    private var resourceListViewAdapter: ResourceListViewAdapter<Container, ResourceListController>? {
+        didSet {
+            resourceListViewAdapter?.onSelectionChange = { [weak self] in
+                guard let self = self, let container = self.resourceListViewAdapter?.container else { return }
+                self.onToggleSelection?(container)
+            }
+        }
+    }
     
     public init(sectionsController: SectionsController, resourceListController: ResourceListController, itemsLoader: some ItemsLoader) {
         self.sectionsController = sectionsController
@@ -47,7 +58,10 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
         let presentationAdapter = LoadResourcePresentationAdapter(
             loader: itemsLoader)
         
-        let sectionDelegateAdapter = SectionsControllerDelegateAdapter(sectionsPresenter: sectionsPresenter, sectionLoadCallback: presentationAdapter.selectSection(index:))
+        let sectionDelegateAdapter = SectionsControllerDelegateAdapter(sectionsPresenter: sectionsPresenter, sectionLoadCallback: { [weak self] index in presentationAdapter.selectSection(index: index)
+            self?.onSectionChange?(index)
+        })
+        
         sectionsController.delegate = sectionDelegateAdapter
         presentationAdapter.presenter = loadResourcePresenter
     }

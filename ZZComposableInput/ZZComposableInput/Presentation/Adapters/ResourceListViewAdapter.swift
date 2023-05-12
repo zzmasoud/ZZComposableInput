@@ -16,6 +16,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceLi
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private var containerCacheCallback: ContainerCacheCallback
+    var onSelectionChange: (() -> Void)?
     
     public init(controller: ResourceListController, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper, containerCacheCallback: @escaping ContainerCacheCallback) {
         self.controller = controller
@@ -74,9 +75,11 @@ extension ResourceListViewAdapter: ItemsContainerDelegate {
 extension ResourceListViewAdapter: ResourceListControllerDelegate {
     public func didSelectResource(at index: Int) {
         container?.select(at: index)
+        onSelectionChange?()
     }
     
     public func didDeselectResource(at index: Int) {
         container?.deselect(at: index)
+        onSelectionChange?()
     }
 }
