@@ -8,65 +8,65 @@ import ZZComposableInput
 final class iOSSnapshotTests: XCTestCase {
     
     func test_initiatedState() {
-        let (sut, _) = makeSUT()
+        let (_, _, viewController) = makeSUT()
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Initial State")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Initial State")
     }
     
     func test_selectSection() {
         let section = 0
-        let (sut, _) = makeSUT()
+        let (sut, _, viewController) = makeSUT()
         
         sut.simulateSelection(section: section)
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Select First Section")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select First Section")
     }
     
     func test_loadedResources() {
         let section = 0
-        let (sut, loader) = makeSUT()
+        let (sut, loader, viewController) = makeSUT()
         
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Load Resource of First Section")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Load Resource of First Section")
     }
     
     func test_selectItemsInFirstSection() {
         let section = 0
-        let (sut, loader) = makeSUT()
-        
+        let (sut, loader, viewController) = makeSUT()
+
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
         
         sut.simulateItemSelection(at: 2,1,0,2,2)
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Select Item of First Section")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Item of First Section")
     }
     
     func test_selectItemInSecondSection() {
         let section = 1
-        let (sut, loader) = makeSUT()
-        
+        let (sut, loader, viewController) = makeSUT()
+
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
         
         sut.simulateItemSelection(at: 0,1,2,3,4)
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Select Item of Second Section")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Item of Second Section")
         
         sut.simulateSelection(section: section-1)
         loader.completeRetrieval(with: makeItems(forSection: section-1))
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Back to First Section and Then Second")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Back to First Section and Then Second")
 
     }
     
     func test_selectItemsInThirdSection() {
         let section = 2
-        let (sut, loader) = makeSUT()
+        let (sut, loader, viewController) = makeSUT()
         
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
@@ -79,7 +79,7 @@ final class iOSSnapshotTests: XCTestCase {
         sut.simulateSelection(section: section)
         loader.completeRetrieval(with: makeItems(forSection: section))
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "Select Items of Third Section")
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Items of Third Section")
     }
     
     
@@ -87,81 +87,57 @@ final class iOSSnapshotTests: XCTestCase {
     
     private let sections = MockSection.allCases.map { $0.title }
     private typealias Container = DefaultItemsContainer<MockItem>
+    private typealias SUT = ZZComposableInput<MockSectionsController, MockResourceListController, Container>
     
-    private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: ZZComposableInputViewController, loader: ItemLoaderSpy) {
+    private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy, viewController: UIViewController) {
+        let viewController = makeInputViewController()
+        viewController.loadViewIfNeeded()
+        
         let loader = ItemLoaderSpy()
-        let inputController = makeInputViewController(
-            onSelection: { index in
-                
-            }, onDeselection: { index in
-                
-            })
+        let sectionsController = MockSectionsController(sectionedView: MockSectionedView(view: viewController.segmentedControl))
+        let resourceListController = MockResourceListController(resourceListView: MockListView(tableView: viewController.tableView))
         
-        let resourceListViewAdapter = ResourceListViewAdapter(
-            controller: inputController,
-            containerMapper: { [weak self] section, items in
-                let preselectedItems = preSelectedItems?[section]
-                return self!.containerMapper(section: section, items: items, preselectedItems: preselectedItems)
-            },
-            cellControllerMapper: cellControllerMapper(items:))
+        let sut = SUT(sectionsController: sectionsController, resourceListController: resourceListController, itemsLoader: loader)
+        sut.start(withSections: sections,
+                  itemsLoader: loader) { index, items in
+            self.containerMapper(section: index, items: items, preselectedItems: preSelectedItems?[index])
+        } cellControllerMapper: { items in
+            self.cellControllerMapper(items: items)
+        }
         
-        let sut = ZZTaskInputViewComposer.composedWith(
-            inputView: inputController,
-            itemsLoader: loader,
-            sectionSelectionView: inputController.sectionedView,
-            resourceListView: inputController.resourceListView,
-            sectionsPresenter: SectionsPresenter(
-                titles: sections,
-                view: WeakRefVirtualProxy(inputController.sectionsController)),
-            loadResourcePresenter: makeLoadResourcePresenter(
-                resourceListViewAdapter: resourceListViewAdapter,
-                inputController: inputController)
-        )
+        sectionsController.viewDidLoad()
+        resourceListController.viewDidLoad()
         
-        sut.loadViewIfNeeded()
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sectionsController, file: file, line: line)
+        trackForMemoryLeaks(resourceListController, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, loader)
-    }
-    
-    private func makeLoadResourcePresenter(
-        resourceListViewAdapter: ResourceListViewAdapter<Container>,
-        inputController: ZZComposableInputViewController
-    ) -> LoadResourcePresenter {
-        return LoadResourcePresenter(
-            loadingView: WeakRefVirtualProxy(inputController),
-            listView: resourceListViewAdapter)
-    }
-    
-    private func makeInputViewController(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) -> ZZComposableInputViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Self.self))
-        let vc = storyboard.instantiateInitialViewController() as! ZZComposableInputViewController
-        
-        vc.sectionsController.sectionedView = MockSectionedView()
-        vc._resourceListController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
-        
-        return vc
+        return (sut, loader, viewController)
     }
     
     private func containerMapper(section: Int, items: [any AnyItem]?, preselectedItems: [MockItem]? = nil) -> Container {
         let mockSection = MockSection(rawValue: section)!
         return Container(
-            items: items as! [MockItem]?,
+            items: items as! [MockItem],
             preSelectedItems: preselectedItems,
             selectionType: mockSection.selectionType,
             allowAdding: false
         )
     }
     
-    private func cellControllerMapper(items: [MockItem]) -> [UIKitSelectableCellController] {
+    private func cellControllerMapper(items: [MockItem]) -> [SelectableCellController] {
         return items.map { item in
-            let view = MockCellController(model: item)
-            return UIKitSelectableCellController(
-                id: item,
-                dataSource: view,
-                delegate: nil)
+            let mockId = MockCellController(model: item)
+            return SelectableCellController(id: mockId)
         }
     }
-    
+
+    private func makeInputViewController() -> CustomVC {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Self.self))
+        return storyboard.instantiateInitialViewController() as! CustomVC
+    }
+        
     private enum MockSection: Int, CaseIterable {
         case domain = 0, special, letters
         

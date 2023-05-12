@@ -319,8 +319,8 @@ final class iOSIntegrationTests: XCTestCase {
     
     private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
-        let sectionsController = MockSectionsController()
-        let resourceListController = MockResourceListController()
+        let sectionsController = MockSectionsController(sectionedView: MockSectionedView(view: UISegmentedControl()))
+        let resourceListController = MockResourceListController(resourceListView: MockListView(tableView: UITableView()))
         
         let sut = SUT(sectionsController: sectionsController, resourceListController: resourceListController, itemsLoader: loader)
         sut.start(withSections: sections,

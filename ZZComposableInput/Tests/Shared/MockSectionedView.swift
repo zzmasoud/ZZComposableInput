@@ -6,13 +6,13 @@ import UIKit
 import ZZComposableInput
 
 final class MockSectionedView: NSObject, SectionedViewProtocol {
-    var onSectionChange: (() -> Void)?
+    private var segmentedControl: UISegmentedControl
     
-    private lazy var segmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl()
-        view.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
-        return view
-    }()
+    init(view: UISegmentedControl) {
+        self.segmentedControl = view
+    }
+    
+    var onSectionChange: (() -> Void)?
     
     var selectedSectionIndex: Int {
         get { segmentedControl.selectedSegmentIndex }
@@ -26,6 +26,8 @@ final class MockSectionedView: NSObject, SectionedViewProtocol {
         for (index, title) in titles.enumerated() {
             insertSection(withTitle: title, at: index)
         }
+        
+        segmentedControl.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
     }
     
     private func insertSection(withTitle: String, at: Int) {

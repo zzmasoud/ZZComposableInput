@@ -6,13 +6,16 @@ import UIKit
 import ZZComposableInput
 
 class MockSectionsController: NSObject, SectionsControllerProtocol {
-    private lazy var view = MockSectionedView()
-
+    
+    var sectionedView: (any SectionedViewProtocol)?
     var delegate: SectionsControllerDelegate?
-    var sectionedView: (any SectionedViewProtocol)? { view }
+
+    init(sectionedView: any SectionedViewProtocol) {
+        self.sectionedView = sectionedView
+    }
 
     func viewDidLoad() {
-        view.onSectionChange = { [weak self] in
+        sectionedView?.onSectionChange = { [weak self] in
             self?.delegate?.didSelectSection(at: self!.sectionedView!.selectedSectionIndex)
         }
         

@@ -23,6 +23,9 @@
 		043B524F2A0E59BD004610A8 /* MockResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B524E2A0E59BD004610A8 /* MockResourceListController.swift */; };
 		043B52512A0E59BD004610A8 /* MockResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B524E2A0E59BD004610A8 /* MockResourceListController.swift */; };
 		043B52522A0E6029004610A8 /* SectionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */; };
+		043D49852A0EE0990034ED92 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
+		043D49872A0EE0BD0034ED92 /* MockSectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B52492A0E570B004610A8 /* MockSectionsController.swift */; };
+		043D49892A0EE2030034ED92 /* CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D49882A0EE2030034ED92 /* CustomVC.swift */; };
 		044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */; };
 		044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEE29BB7D340077BFC8 /* SectionsView.swift */; };
 		044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3B129BD18E500718831 /* SectionViewModel.swift */; };
@@ -104,6 +107,7 @@
 		0438FFCF2A07811500469D1A /* ViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSpy.swift; sourceTree = "<group>"; };
 		043B52492A0E570B004610A8 /* MockSectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSectionsController.swift; sourceTree = "<group>"; };
 		043B524E2A0E59BD004610A8 /* MockResourceListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResourceListController.swift; sourceTree = "<group>"; };
+		043D49882A0EE2030034ED92 /* CustomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVC.swift; sourceTree = "<group>"; };
 		044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsPresenterTests.swift; sourceTree = "<group>"; };
 		044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			children = (
 				04B06F962A0B88B80084DD3E /* Helpers */,
 				04B06F892A0B87670084DD3E /* iOSSnapshotTests.swift */,
+				043D49882A0EE2030034ED92 /* CustomVC.swift */,
 				04B06F9B2A0B8A5C0084DD3E /* Main.storyboard */,
 			);
 			path = "Snapshot Tests";
@@ -336,14 +341,7 @@
 		04CB3DB02A0938A20024D327 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */,
 				04B06F932A0B87D80084DD3E /* MockSection.swift */,
-				04D30A612A0A6CD9005664AB /* MockCellController.swift */,
-				040850942A0A4117007DEF50 /* MockListView.swift */,
-				04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */,
-				04CB3DB32A09414A0024D327 /* UIView+Test.swift */,
-				043B52492A0E570B004610A8 /* MockSectionsController.swift */,
-				043B524E2A0E59BD004610A8 /* MockResourceListController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -415,6 +413,13 @@
 		04CEFD70298BF37300715BD3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				04D30A612A0A6CD9005664AB /* MockCellController.swift */,
+				040850942A0A4117007DEF50 /* MockListView.swift */,
+				04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */,
+				04CB3DB32A09414A0024D327 /* UIView+Test.swift */,
+				043B52492A0E570B004610A8 /* MockSectionsController.swift */,
+				043B524E2A0E59BD004610A8 /* MockResourceListController.swift */,
+				04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */,
 				04A5728C29B78255000E0D08 /* TestHelpers.swift */,
 				04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */,
 				0438FFCF2A07811500469D1A /* ViewSpy.swift */,
@@ -615,10 +620,13 @@
 				043B52512A0E59BD004610A8 /* MockResourceListController.swift in Sources */,
 				04B06FA32A0BB2A20084DD3E /* ZZComposableInput+Test.swift in Sources */,
 				04B06F912A0B87830084DD3E /* MockListView.swift in Sources */,
+				043D49872A0EE0BD0034ED92 /* MockSectionsController.swift in Sources */,
+				043D49852A0EE0990034ED92 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				04B06F982A0B88C90084DD3E /* UIViewController+Snapshot.swift in Sources */,
 				04B06F922A0B87830084DD3E /* MockCellController.swift in Sources */,
 				04B06FA02A0B8BE80084DD3E /* ItemLoaderSpy.swift in Sources */,
 				04B06F8A2A0B87670084DD3E /* iOSSnapshotTests.swift in Sources */,
+				043D49892A0EE2030034ED92 /* CustomVC.swift in Sources */,
 				04B06FA12A0B8C060084DD3E /* MockSectionedView.swift in Sources */,
 				04B06F9E2A0B8BE80084DD3E /* TestHelpers.swift in Sources */,
 			);

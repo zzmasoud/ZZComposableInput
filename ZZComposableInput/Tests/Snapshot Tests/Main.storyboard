@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Composable Input View Controller-->
+        <!--CustomVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="ZZComposableInputViewController" customModule="ZZComposableInputiOS" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="CustomVC" customModule="iOSSnapshotTests" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,23 +42,46 @@
                                                 <rect key="frame" x="0.0" y="10" width="393" height="386.33333333333331"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Eu-GZ-J6c">
-                                                        <rect key="frame" x="76.666666666666686" y="0.0" width="240" height="50"/>
+                                                        <rect key="frame" x="76.666666666666686" y="0.0" width="240" height="35"/>
+                                                        <subviews>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wO5-X9-0YU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
+                                                                <segments>
+                                                                    <segment title="First"/>
+                                                                    <segment title="Second"/>
+                                                                </segments>
+                                                            </segmentedControl>
+                                                        </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="aLY-D6-GlJ"/>
+                                                            <constraint firstItem="wO5-X9-0YU" firstAttribute="leading" secondItem="0Eu-GZ-J6c" secondAttribute="leading" id="AEm-Pn-TLe"/>
+                                                            <constraint firstAttribute="bottom" secondItem="wO5-X9-0YU" secondAttribute="bottom" id="MoV-Ed-KRZ"/>
+                                                            <constraint firstItem="wO5-X9-0YU" firstAttribute="top" secondItem="0Eu-GZ-J6c" secondAttribute="top" id="Ols-7i-eBt"/>
+                                                            <constraint firstAttribute="height" constant="35" placeholder="YES" id="aLY-D6-GlJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="wO5-X9-0YU" secondAttribute="trailing" id="evC-t5-w2f"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id9-0m-dt8">
-                                                        <rect key="frame" x="175" y="58.000000000000007" width="43.333333333333343" height="20.333333333333336"/>
+                                                        <rect key="frame" x="175" y="43" width="43.333333333333343" height="35.333333333333343"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93Q-nt-XHH">
-                                                        <rect key="frame" x="0.0" y="86.333333333333314" width="393" height="300.00000000000006"/>
+                                                        <rect key="frame" x="0.0" y="86.333333333333314" width="393" height="300"/>
+                                                        <subviews>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qi0-13-7OW">
+                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </tableView>
+                                                        </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="qi0-13-7OW" secondAttribute="bottom" id="9Nr-FM-UEO"/>
                                                             <constraint firstAttribute="height" constant="300" id="bpD-SW-3Pp"/>
+                                                            <constraint firstItem="qi0-13-7OW" firstAttribute="leading" secondItem="93Q-nt-XHH" secondAttribute="leading" id="d5v-GX-NmW"/>
+                                                            <constraint firstItem="qi0-13-7OW" firstAttribute="top" secondItem="93Q-nt-XHH" secondAttribute="top" id="en6-MP-kMJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="qi0-13-7OW" secondAttribute="trailing" id="kB8-8c-X8s"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -87,6 +110,10 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8c2-Ex-LEm" secondAttribute="trailing" id="hU1-l3-9gx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="wO5-X9-0YU" id="dYJ-c0-rTd"/>
+                        <outlet property="tableView" destination="qi0-13-7OW" id="grB-qe-VQK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

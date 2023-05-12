@@ -6,12 +6,13 @@ import UIKit
 import ZZComposableInput
 
 final class MockResourceListController: NSObject, ResourceListControllerProtocol {
-
-    private lazy var listView = MockListView({_ in}, {_ in})
-    
+    var resourceListView: MockListView?
     var delegate: ResourceListControllerDelegate?
-    var resourceListView: MockListView? { listView }
-    
+
+    init(resourceListView: MockListView) {
+        self.resourceListView = resourceListView
+    }
+        
     func set(cellControllers: [SelectableCellController]) {
         resourceListView?.reloadData(with: cellControllers)
     }
@@ -26,6 +27,6 @@ final class MockResourceListController: NSObject, ResourceListControllerProtocol
     }
     
     public func display(_ viewModel: ResourceLoadingViewModel) {
-            // no loading for now
+        resourceListView?.view.backgroundColor = viewModel.isLoading ? .blue : .systemBackground
     }
 }

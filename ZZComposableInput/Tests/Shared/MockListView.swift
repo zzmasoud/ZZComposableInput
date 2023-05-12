@@ -6,23 +6,17 @@ import UIKit
 import ZZComposableInput
 
 final class MockListView: NSObject, ResourceListViewProtocol {
-    
-    private lazy var tableView: UITableView = {
-        let view = UITableView()
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
-
-    var view: UITableView { tableView}
-    
+    private var tableView: UITableView
     var onSelection: ((Int) -> Void)
     var onDeselection: ((Int) -> Void)
     
-    internal init(_ onSelection: @escaping ((Int) -> Void), _ onDeselection: @escaping ((Int) -> Void)) {
-        self.onSelection = onSelection
-        self.onDeselection = onDeselection
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        self.onSelection = { _ in }
+        self.onDeselection = { _ in }
     }
+
+    var view: UITableView { tableView }
 
     private var cellControllers = [SelectableCellController]() {
         didSet {
@@ -31,6 +25,9 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     }
     
     func reloadData(with newCellControllers: [SelectableCellController]) {
+        tableView.dataSource = self
+        tableView.delegate = self
+
         cellControllers = newCellControllers
     }
         
@@ -57,9 +54,12 @@ extension MockListView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellControllers[indexPath.row]
+        var cell = UITableViewCell()
+        if let mockId = controller.id as? MockCellController {
+            cell = mockId.tableView(tableView, cellForRowAt: indexPath)
+        }
         let isSelected = controller.isSelected?() ?? false
         
-        let cell = UITableViewCell()
         if isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             cell.isSelected = true
