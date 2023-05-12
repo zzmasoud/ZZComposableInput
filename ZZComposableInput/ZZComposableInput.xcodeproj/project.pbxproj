@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0408507F2A0A220D007DEF50 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */; };
 		040850882A0A3747007DEF50 /* iOSIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */; };
 		040850892A0A3747007DEF50 /* ZZComposableInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */; };
 		0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
@@ -26,6 +25,7 @@
 		0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		0438FFD02A07811500469D1A /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
 		0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
+		043B52462A0E25A9004610A8 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */; };
 		044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */; };
 		044160F729BDF58F0070D6CE /* SectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CEE29BB7D340077BFC8 /* SectionsView.swift */; };
 		044160F829BDF5B00070D6CE /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3B129BD18E500718831 /* SectionViewModel.swift */; };
@@ -43,7 +43,6 @@
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */; };
 		046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8CFC29BF50FE0061716D /* ResourceListController.swift */; };
-		04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */; };
 		04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */; };
 		04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */; };
 		04951B6F2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */; };
@@ -65,7 +64,7 @@
 		04B06FA32A0BB2A20084DD3E /* ZZComposableInputViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */; };
 		04B459402A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
-		04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZComposableInput.swift */; };
+		04C76729299030ED00EB3403 /* ZZComposableInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C76728299030ED00EB3403 /* ZZComposableInputProtocol.swift */; };
 		04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */; };
 		04CB3DAA2A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */; };
 		04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
@@ -82,6 +81,7 @@
 		04CBF1FA2A0CD2720002683F /* SelectableCellControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */; };
 		04CBF1FC2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */; };
 		04CBF1FF2A0D02770002683F /* LoadResourcePresentationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */; };
+		04CBF2032A0D891E0002683F /* ZZComposableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF2022A0D891E0002683F /* ZZComposableInput.swift */; };
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -186,7 +186,7 @@
 		04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySelectionManagerTests.swift; sourceTree = "<group>"; };
 		04C36F93298AF6C700712C6E /* ZZComposableInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZComposableInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C36F9B298AF6C700712C6E /* ZZComposableInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04C76728299030ED00EB3403 /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
+		04C76728299030ED00EB3403 /* ZZComposableInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInputProtocol.swift; sourceTree = "<group>"; };
 		04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySelectionManager.swift; sourceTree = "<group>"; };
 		04CB3DA92A08F2530024D327 /* SectionsControllerDelegateUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegateUseCaseTests.swift; sourceTree = "<group>"; };
 		04CB3DAC2A091EB10024D327 /* SectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsController.swift; sourceTree = "<group>"; };
@@ -200,11 +200,11 @@
 		04CBF1F72A0CD12F0002683F /* SelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellController.swift; sourceTree = "<group>"; };
 		04CBF1F92A0CD2720002683F /* SelectableCellControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCellControllerTests.swift; sourceTree = "<group>"; };
 		04CBF1FB2A0CF0270002683F /* SectionsControllerDelegateAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsControllerDelegateAdapterTests.swift; sourceTree = "<group>"; };
+		04CBF2022A0D891E0002683F /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
 		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
 		04D30A612A0A6CD9005664AB /* MockCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCellController.swift; sourceTree = "<group>"; };
-		04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZComposableInputComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,7 +309,6 @@
 		045207272A066F400081BF7B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */,
 				045207252A066F3A0081BF7B /* UIView+Constraint.swift */,
 			);
 			path = Helpers;
@@ -327,7 +326,7 @@
 		046C5F722992C02D00672906 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				04C76728299030ED00EB3403 /* ZZComposableInput.swift */,
+				04C76728299030ED00EB3403 /* ZZComposableInputProtocol.swift */,
 				046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */,
 				046E8CFC29BF50FE0061716D /* ResourceListController.swift */,
 				04CB3DAC2A091EB10024D327 /* SectionsController.swift */,
@@ -426,7 +425,8 @@
 				04CBF1F62A0CD11E0002683F /* Controllers */,
 				04854A7E29BA59FB00B05665 /* Presentation */,
 				04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */,
-				04E0684329D2DE79003FF6B7 /* ZZComposableInputComposer.swift */,
+				0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */,
+				04CBF2022A0D891E0002683F /* ZZComposableInput.swift */,
 			);
 			path = ZZComposableInput;
 			sourceTree = "<group>";
@@ -789,12 +789,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0408507F2A0A220D007DEF50 /* WeakRefVirtualProxy.swift in Sources */,
 				046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */,
 				04CB3DAD2A091EB10024D327 /* SectionsController.swift in Sources */,
 				046E8CFD29BF50FE0061716D /* ResourceListController.swift in Sources */,
 				045207262A066F3A0081BF7B /* UIView+Constraint.swift in Sources */,
-				04C76729299030ED00EB3403 /* ZZComposableInput.swift in Sources */,
+				04C76729299030ED00EB3403 /* ZZComposableInputProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,8 +838,8 @@
 				04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */,
 				04951B712A0CC0C600968D74 /* ResourceListControllerProtocol.swift in Sources */,
 				04CBF1F12A0CD0DF0002683F /* SectionsControllerDelegate.swift in Sources */,
+				043B52462A0E25A9004610A8 /* WeakRefVirtualProxy.swift in Sources */,
 				045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */,
-				04951B6A2A0CBDC400968D74 /* ZZComposableInputComposer.swift in Sources */,
 				043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */,
 				04CBF1F52A0CD1010002683F /* ResourceListControllerDelegate.swift in Sources */,
 				0441610429BE0E910070D6CE /* LoadResourcePresenter.swift in Sources */,
@@ -861,6 +860,7 @@
 				04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */,
 				0441610029BDFA940070D6CE /* ResourceLoadingView.swift in Sources */,
 				044160FD29BDF89B0070D6CE /* SectionsPresenter.swift in Sources */,
+				04CBF2032A0D891E0002683F /* ZZComposableInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

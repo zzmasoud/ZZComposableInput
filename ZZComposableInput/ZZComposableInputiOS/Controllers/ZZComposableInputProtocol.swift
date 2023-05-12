@@ -5,7 +5,7 @@
 import UIKit
 @testable import ZZComposableInput
 
-public final class ZZComposableInputViewController<ResourceListController: ResourceListControllerProtocol, ResourceListView: ResourceListViewProtocol>: UIViewController, ZZComposableInput where ResourceListController.ResourceListView.CellController == ResourceListView.CellController, ResourceListView.CellController == UIKitSelectableCellController {
+public final class ZZComposableInputViewController<ResourceListController: ResourceListControllerProtocol, ResourceListView: ResourceListViewProtocol>: UIViewController, ZZComposableInputProtocol where ResourceListController.ResourceListView.CellController == ResourceListView.CellController, ResourceListView.CellController == UIKitSelectableCellController {
     public var resourceListController: ResourceListController! {
         return _resourceListController as! ResourceListController
     }

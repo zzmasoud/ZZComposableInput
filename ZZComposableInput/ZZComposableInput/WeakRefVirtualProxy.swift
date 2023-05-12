@@ -2,8 +2,6 @@
 //  Copyright © zzmasoud (github.com/zzmasoud).
 //  
 
-import ZZComposableInput
-
 public final class WeakRefVirtualProxy<T: AnyObject> {
     private weak var object: T?
     
