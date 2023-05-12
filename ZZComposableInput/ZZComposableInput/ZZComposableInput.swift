@@ -15,6 +15,7 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
     let resourceListController: ResourceListController
     
     private lazy var selectionManager = InMemorySelectionManager<Container>()
+    private var resourceListViewAdapter: ResourceListViewAdapter<Container, ResourceListController>?
     
     public init(sectionsController: SectionsController, resourceListController: ResourceListController, itemsLoader: some ItemsLoader) {
         self.sectionsController = sectionsController
@@ -22,7 +23,7 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
     }
     
     public func start(withSections sections: [String], itemsLoader: some ItemsLoader, containerMapper: @escaping ContainerMapper, cellControllerMapper: @escaping CellControllerMapper) {
-        let resourceListViewAdapter = ResourceListViewAdapter(
+        self.resourceListViewAdapter = ResourceListViewAdapter(
             controller: self.resourceListController,
             containerMapper: containerMapper,
             cellControllerMapper: cellControllerMapper,
@@ -37,7 +38,7 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
                 titles: sections,
                 view: WeakRefVirtualProxy(sectionsController)),
             loadResourcePresenter: makeLoadResourcePresenter(
-                resourceListViewAdapter: resourceListViewAdapter,
+                resourceListViewAdapter: self.resourceListViewAdapter!,
                 resourceController: resourceListController)
         )
     }
@@ -58,5 +59,9 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
         return LoadResourcePresenter(
             loadingView: WeakRefVirtualProxy(resourceController),
             listView: resourceListViewAdapter)
+    }
+    
+    public func add(newItem: Item) {
+        resourceListViewAdapter?.container?.add(item: newItem)
     }
 }

@@ -12,7 +12,7 @@ public final class ResourceListViewAdapter<Container: ItemsContainer, ResourceLi
     public typealias ContainerCacheCallback = (Container, Int) -> Void
     
     private weak var controller: ResourceListController?
-    private var container: Container?
+    private(set) var container: Container?
     private let containerMapper: ContainerMapper
     private var cellControllerMapper: CellControllerMapper
     private var containerCacheCallback: ContainerCacheCallback

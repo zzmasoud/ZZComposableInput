@@ -116,6 +116,22 @@ final class iOSIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isMultiSelection)
     }
     
+    func test_addNewItem_refreshesListViewWithNewData() {
+        let section = 1
+        let items = makeItems()
+        let preSelectedItems = [section: [items[1]]]
+        let (sut, loader) = makeSUT(preSelectedItems: preSelectedItems)
+        sut.simulateSelection(section: section)
+        loader.completeRetrieval(with: items)
+        
+        let id = UUID()
+        let newItem = MockItem(id: id, title: id.uuidString)
+        sut.add(newItem: newItem)
+        
+        XCTAssertEqual(sut.numberOfRenderedItems, items.count + 1)
+        assertThat(sut, isRendering: items + [newItem], selectedItems: [items[1]])
+    }
+    
     // MARK: - Single Selection Behaviour
     
     func test_selectingRenderedItemOnSingleSelectionType_removesSelectionIndicatorFromPreviouslySelectedItem() {
