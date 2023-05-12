@@ -56,8 +56,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "040850842A0A3747007DEF50"
-               BuildableName = "iOSIntegrationTests.xctest"
-               BlueprintName = "iOSIntegrationTests"
+               BuildableName = "ZZComposableInput Integration Tests.xctest"
+               BlueprintName = "ZZComposableInput Integration Tests"
                ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>

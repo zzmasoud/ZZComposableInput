@@ -3,7 +3,6 @@
 //  
 
 import UIKit
-import ZZComposableInputiOS
 
 final class MockCellController: NSObject {
     private let model: MockItem
@@ -14,7 +13,7 @@ final class MockCellController: NSObject {
     }
 }
 
-extension MockCellController: SectionedViewDataSource {
+extension MockCellController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -27,14 +26,6 @@ extension MockCellController: SectionedViewDataSource {
 
     private func releaseCellForReuse() {
         cell = nil
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fatalError()
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
     }
 }
 

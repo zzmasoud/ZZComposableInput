@@ -35,8 +35,19 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C36F9A298AF6C700712C6E"
-               BuildableName = "ZZComposableInputTests.xctest"
-               BlueprintName = "ZZComposableInputTests"
+               BuildableName = "ZZComposableInput Unit Tests.xctest"
+               BlueprintName = "ZZComposableInput Unit Tests"
+               ReferencedContainer = "container:ZZComposableInput.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "040850842A0A3747007DEF50"
+               BuildableName = "ZZComposableInput Integration Tests.xctest"
+               BlueprintName = "ZZComposableInput Integration Tests"
                ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>

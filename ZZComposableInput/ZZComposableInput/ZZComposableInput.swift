@@ -11,8 +11,8 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
     public typealias ContainerMapper = (Int, [any AnyItem]?) -> Container
     public typealias CellControllerMapper = ([Item]) -> [CellController]
     
-    private let sectionsController: SectionsController
-    private let resourceListController: ResourceListController
+    let sectionsController: SectionsController
+    let resourceListController: ResourceListController
     
     private lazy var selectionManager = InMemorySelectionManager<Container>()
     

@@ -3,7 +3,7 @@
 //  
 
 import XCTest
-import ZZComposableInput
+@testable import ZZComposableInput
 
 final class InMemorySelectionManagerTests: XCTestCase {
     

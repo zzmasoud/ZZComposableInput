@@ -3,30 +3,19 @@
 //  
 
 import UIKit
-import ZZComposableInputiOS
+@testable import ZZComposableInput
 
-extension ZZComposableInputViewController {
-    var tableView: UITableView { resourceListView.view as! UITableView }
+extension ZZComposableInput {
+    var tableView: UITableView { self.resourceListController.resourceListView!.view as! UITableView }
     
     var section: Int { 0 }
-
-    var numberOfRenderedSections: Int {
-        sectionedView.numberOfSections
-    }
-
+    
     var numberOfRenderedItems: Int {
         tableView.numberOfRows(inSection: section)
     }
     
     var isMultiSelection: Bool {
         tableView.allowsMultipleSelection
-    }
-    var selectedSectionIndex: Int {
-        sectionedView.selectedSectionIndex
-    }
-    
-    func simulateSelection(section: Int) {
-        sectionedView.simulateSelection(section: section)
     }
     
     func itemView(at index: Int) -> UITableViewCell? {
@@ -46,6 +35,20 @@ extension ZZComposableInputViewController {
         let indexPath = IndexPath(row: index, section: section)
         tableView.deselectRow(at: indexPath, animated: false)
         tableView.delegate?.tableView?(tableView, didDeselectRowAt: indexPath)
+    }
+}
+
+extension ZZComposableInput {
+    var numberOfRenderedSections: Int {
+        sectionsController.sectionedView!.numberOfSections
+    }
+    
+    var selectedSectionIndex: Int {
+        sectionsController.sectionedView!.selectedSectionIndex
+    }
+    
+    func simulateSelection(section: Int) {
+        sectionsController.sectionedView!.simulateSelection(section: section)
     }
 }
 

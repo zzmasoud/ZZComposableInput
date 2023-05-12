@@ -4,17 +4,9 @@
 
 import XCTest
 @testable import ZZComposableInput
-@testable import ZZComposableInputiOS
 
 final class iOSIntegrationTests: XCTestCase {
-    
-    func test_viewDidLoad_subviewsAreAdded() {
-        let (sut, _) = makeSUT()
-        
-        XCTAssertNotNil(sut.sectionedView)
-        XCTAssertNotNil(sut.resourceListView)
-    }
-    
+
     func test_sectionSelection_triggersLoader() {
         let section = 1
         let (sut, loader) = makeSUT()
@@ -255,75 +247,30 @@ final class iOSIntegrationTests: XCTestCase {
     
     private let sections = MockSection.allCases.map { $0.title }
     private typealias Container = DefaultItemsContainer<MockItem>
-    private typealias RView = MockListView
-    private typealias RController = ResourceController<RView>
-    private typealias SUT = ZZComposableInputViewController<RController, RView>
+    private typealias SUT = ZZComposableInput<MockSectionsController, MockResourceListController, Container>
     
     private func makeSUT(preSelectedItems: [Int: [MockItem]]? = nil, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, loader: ItemLoaderSpy) {
         let loader = ItemLoaderSpy()
-        let selectionManager = InMemorySelectionManager<Container>()
-        let inputController = makeInputViewController(
-            onSelection: { index in
-            
-        }, onDeselection: { index in
-            
-        })
+        let sectionsController = MockSectionsController()
+        let resourceListController = MockResourceListController()
         
-        let resourceListViewAdapter = ResourceListViewAdapter(
-            controller: inputController.resourceListController,
-            containerMapper: { [weak self] section, items in
-                let preselectedItems = preSelectedItems?[section]
-                return self!.containerMapper(section: section, items: items, preselectedItems: preselectedItems)
-            },
-            cellControllerMapper: cellControllerMapper(items:),
-            containerCacheCallback: { container, section in
-                selectionManager.sync(container: container, forSection: section)
-            }
-        )
+        let sut = SUT(sectionsController: sectionsController, resourceListController: resourceListController, itemsLoader: loader)
+        sut.start(withSections: sections,
+                  itemsLoader: loader) { index, items in
+            self.containerMapper(section: index, items: items, preselectedItems: preSelectedItems?[index])
+        } cellControllerMapper: { items in
+            self.cellControllerMapper(items: items)
+        }
         
-        let sut = ZZComposableInputComposer.composedWith(
-            inputView: inputController,
-            itemsLoader: loader,
-            sectionsPresenter: SectionsPresenter(
-                titles: sections,
-                view: WeakRefVirtualProxy(inputController._sectionsController)),
-            loadResourcePresenter: makeLoadResourcePresenter(
-                resourceListViewAdapter: resourceListViewAdapter,
-                inputController: inputController)
-        )
-        
-        sut.loadViewIfNeeded()
+        sectionsController.viewDidLoad()
+        resourceListController.viewDidLoad()
         
         trackForMemoryLeaks(loader, file: file, line: line)
-        trackForMemoryLeaks(resourceListViewAdapter, file: file, line: line)
+        trackForMemoryLeaks(sectionsController, file: file, line: line)
+        trackForMemoryLeaks(resourceListController, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, loader)
-    }
-    
-    private func makeLoadResourcePresenter(
-        resourceListViewAdapter: ResourceListViewAdapter<Container, RController>,
-        inputController: SUT
-    ) -> LoadResourcePresenter {
-        return LoadResourcePresenter(
-            loadingView: WeakRefVirtualProxy(inputController),
-            listView: resourceListViewAdapter)
-    }
-    
-    private func makeInputViewController(onSelection: @escaping (Int) -> Void, onDeselection: @escaping (Int) -> Void) -> SUT {
-        let sectionsController = SectionsController()
-        sectionsController.sectionedViewContainer = UIView()
-        sectionsController.sectionedView = MockSectionedView()
-        
-        let resourceController = ResourceController<MockListView>()
-        resourceController.listViewContainer = UIView()
-        resourceController.resourceListView = MockListView(onSelection: onSelection, onDeselection: onDeselection)
-        
-        let vc = SUT()
-        vc._sectionsController = sectionsController
-        vc._resourceListController = resourceController
-        
-        return vc
     }
     
     private func containerMapper(section: Int, items: [any AnyItem]?, preselectedItems: [MockItem]? = nil) -> Container {
@@ -336,18 +283,14 @@ final class iOSIntegrationTests: XCTestCase {
         )
     }
     
-    private func cellControllerMapper(items: [MockItem]) -> [UIKitSelectableCellController] {
+    private func cellControllerMapper(items: [MockItem]) -> [SelectableCellController] {
         return items.map { item in
-            let view = MockCellController(model: item)
-            return UIKitSelectableCellController(
-                id: item,
-                dataSource: view,
-                delegate: nil)
+            return SelectableCellController(id: item)
         }
     }
     
     private func assertThat(_ sut: SUT, isRendering items: [Container.Item], selectedItems: [Container.Item]? = nil, file: StaticString = #file, line: UInt = #line) {
-        (sut.sectionedView.view as! UIView).enforceLayoutCycle()
+        (sut.sectionsController.sectionedView!.view as! UIView).enforceLayoutCycle()
 
         guard sut.numberOfRenderedItems == items.count else {
             return XCTFail("expected \(items.count) items but got \(sut.numberOfRenderedItems) items!", file: file, line: line)

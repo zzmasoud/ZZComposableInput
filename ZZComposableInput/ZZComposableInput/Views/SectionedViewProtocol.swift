@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol SectionedViewProtocol {
+public protocol SectionedViewProtocol: AnyObject {
     associatedtype View
     var view: View { get }
     var selectedSectionIndex: Int { set get }
