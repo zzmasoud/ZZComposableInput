@@ -21,9 +21,6 @@ final class MockSectionedView: NSObject, SectionedViewProtocol {
     
     var numberOfSections: Int { segmentedControl.numberOfSegments }
     
-    func removeAllSections() {
-    }
-    
     func reload(withTitles titles: [String]) {
         segmentedControl.removeAllSegments()
         for (index, title) in titles.enumerated() {

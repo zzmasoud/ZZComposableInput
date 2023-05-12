@@ -33,11 +33,7 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     func reloadData(with newCellControllers: [SelectableCellController]) {
         cellControllers = newCellControllers
     }
-    
-    func reload() {
-        tableView.reloadData()
-    }
-    
+        
     func allowMultipleSelection(_ isOn: Bool) {
         tableView.allowsMultipleSelection = isOn
     }

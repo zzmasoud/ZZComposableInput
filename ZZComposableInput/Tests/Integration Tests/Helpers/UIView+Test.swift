@@ -4,7 +4,6 @@
 
 import UIKit
 import ZZComposableInput
-import ZZComposableInputiOS
 
 extension SectionedViewProtocol {
     func simulateSelection(section: Int) {

@@ -15,7 +15,6 @@ final class MockResourceListController: NSObject, ResourceListControllerProtocol
     func set(cellControllers: [SelectableCellController]) {
         resourceListView?.reloadData(with: cellControllers)
     }
-    
 
     func viewDidLoad() {
         resourceListView?.onSelection = { [weak self] index in

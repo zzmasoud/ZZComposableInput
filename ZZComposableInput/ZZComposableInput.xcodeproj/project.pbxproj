@@ -8,27 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		040850882A0A3747007DEF50 /* iOSIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */; };
-		040850892A0A3747007DEF50 /* ZZComposableInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */; };
 		0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		040850902A0A3FBE007DEF50 /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		040850912A0A3FBE007DEF50 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		040850922A0A3FBE007DEF50 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
 		040850932A0A40E2007DEF50 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
 		040850952A0A4117007DEF50 /* MockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040850942A0A4117007DEF50 /* MockListView.swift */; };
-		040CCEEA298FCE200053194A /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
-		040CCEEB298FCE200053194A /* ZZComposableInput.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		043787FB298E4BC600CD2F26 /* ItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FA298E4BC600CD2F26 /* ItemsContainer.swift */; };
 		043787FD298E4BF200CD2F26 /* DefaultItemsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */; };
 		04378801298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04378800298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift */; };
-		0438FFC72A077CBB00469D1A /* ZZComposableInputiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */; };
-		0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
-		0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
 		0438FFD02A07811500469D1A /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
-		0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		043B52462A0E25A9004610A8 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */; };
 		043B524A2A0E570B004610A8 /* MockSectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B52492A0E570B004610A8 /* MockSectionsController.swift */; };
 		043B524F2A0E59BD004610A8 /* MockResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B524E2A0E59BD004610A8 /* MockResourceListController.swift */; };
-		043B52502A0E59BD004610A8 /* MockResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B524E2A0E59BD004610A8 /* MockResourceListController.swift */; };
 		043B52512A0E59BD004610A8 /* MockResourceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B524E2A0E59BD004610A8 /* MockResourceListController.swift */; };
 		043B52522A0E6029004610A8 /* SectionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044160F429BDEF580070D6CE /* SectionsPresenterTests.swift */; };
 		044160F629BDF20B0070D6CE /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D8CF029BB7D410077BFC8 /* SectionsViewModel.swift */; };
@@ -44,7 +36,7 @@
 		0441610529BE0F2E0070D6CE /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA3AF29BD18D800718831 /* SectionView.swift */; };
 		045C50D3298D1A5F005C44AE /* ItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D2298D1A5F005C44AE /* ItemsLoader.swift */; };
 		045C50DA298D282B005C44AE /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */; };
-		046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */; };
+		046E214C2A0EC737006B54F6 /* ZZComposableInput+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */; };
 		04951B6B2A0CBDFC00968D74 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2429BFB5E50061716D /* LoadResourcePresentationAdapter.swift */; };
 		04951B6D2A0CBE3100968D74 /* SectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6C2A0CBE3100968D74 /* SectionsControllerProtocol.swift */; };
 		04951B6F2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B6E2A0CBE7000968D74 /* SectionsControllerDelegateAdapter.swift */; };
@@ -63,13 +55,10 @@
 		04B06FA02A0B8BE80084DD3E /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04B06FA12A0B8C060084DD3E /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
 		04B06FA22A0B8C0A0084DD3E /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
-		04B06FA32A0BB2A20084DD3E /* ZZComposableInputViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */; };
+		04B06FA32A0BB2A20084DD3E /* ZZComposableInput+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */; };
 		04B459402A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4593F2A07FBD8004C7B73 /* InMemorySelectionManagerTests.swift */; };
 		04C36F9C298AF6C700712C6E /* ZZComposableInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C36F93298AF6C700712C6E /* ZZComposableInput.framework */; };
 		04CB3DA82A08E3D40024D327 /* InMemorySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DA72A08E3D40024D327 /* InMemorySelectionManager.swift */; };
-		04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438FFCF2A07811500469D1A /* ViewSpy.swift */; };
-		04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
-		04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
 		04CBF1EB2A0CCFDB0002683F /* ResourceListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E8D2229BFB5AC0061716D /* ResourceListViewAdapter.swift */; };
 		04CBF1EE2A0CD0C80002683F /* SectionedViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1ED2A0CD0C80002683F /* SectionedViewProtocol.swift */; };
 		04CBF1F12A0CD0DF0002683F /* SectionsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBF1F02A0CD0DF0002683F /* SectionsControllerDelegate.swift */; };
@@ -83,32 +72,10 @@
 		04CDEB072A063AAD008C7BCF /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB062A063AAD008C7BCF /* ItemType.swift */; };
 		04CDEB092A06436C008C7BCF /* ItemContainerSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */; };
 		04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
-		04D30A5D2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */; };
 		04D30A622A0A6CD9005664AB /* MockCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30A612A0A6CD9005664AB /* MockCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0408508A2A0A3747007DEF50 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 040CE0BA298FAA28003BB6DC;
-			remoteInfo = ZZComposableInputiOS;
-		};
-		040CCEEC298FCE200053194A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04C36F92298AF6C700712C6E;
-			remoteInfo = ZZTaskInput;
-		};
-		0438FFC82A077CBB00469D1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 040CE0BA298FAA28003BB6DC;
-			remoteInfo = ZZComposableInputiOS;
-		};
 		04B06F8C2A0B87670084DD3E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04C36F8A298AF6C700712C6E /* Project object */;
@@ -125,30 +92,14 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		040CCEEE298FCE200053194A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				040CCEEB298FCE200053194A /* ZZComposableInput.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0408507E2A0A220D007DEF50 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		040850852A0A3747007DEF50 /* ZZComposableInput Integration Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZZComposableInput Integration Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040850872A0A3747007DEF50 /* iOSIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSIntegrationTests.swift; sourceTree = "<group>"; };
 		040850942A0A4117007DEF50 /* MockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListView.swift; sourceTree = "<group>"; };
-		040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZComposableInputiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		043787FA298E4BC600CD2F26 /* ItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsContainer.swift; sourceTree = "<group>"; };
 		043787FC298E4BF200CD2F26 /* DefaultItemsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsContainer.swift; sourceTree = "<group>"; };
 		04378800298E4CCB00CD2F26 /* DefaultItemsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsContainerTests.swift; sourceTree = "<group>"; };
-		0438FFC32A077CBB00469D1A /* ZZComposableInputiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZComposableInputiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0438FFC52A077CBB00469D1A /* LoadResourcePresentationAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapterTests.swift; sourceTree = "<group>"; };
 		0438FFCF2A07811500469D1A /* ViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSpy.swift; sourceTree = "<group>"; };
 		043B52492A0E570B004610A8 /* MockSectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSectionsController.swift; sourceTree = "<group>"; };
@@ -157,7 +108,6 @@
 		044160FE29BDF98E0070D6CE /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		045C50D2298D1A5F005C44AE /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
 		045C50D9298D282A005C44AE /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
-		046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSelectableCellController.swift; sourceTree = "<group>"; };
 		046D8CE229BB10A00077BFC8 /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
 		046D8CE429BB10B20077BFC8 /* ResourceLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingViewModel.swift; sourceTree = "<group>"; };
 		046D8CE629BB10C70077BFC8 /* ResourceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceListViewModel.swift; sourceTree = "<group>"; };
@@ -197,7 +147,7 @@
 		04CBF2022A0D891E0002683F /* ZZComposableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZComposableInput.swift; sourceTree = "<group>"; };
 		04CDEB062A063AAD008C7BCF /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		04CDEB082A06436C008C7BCF /* ItemContainerSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContainerSelectionType.swift; sourceTree = "<group>"; };
-		04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInputViewController+Test.swift"; sourceTree = "<group>"; };
+		04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZZComposableInput+Test.swift"; sourceTree = "<group>"; };
 		04D30A612A0A6CD9005664AB /* MockCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,23 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				040850892A0A3747007DEF50 /* ZZComposableInputiOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		040CE0B8298FAA28003BB6DC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				040CCEEA298FCE200053194A /* ZZComposableInput.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0438FFC02A077CBB00469D1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0438FFC72A077CBB00469D1A /* ZZComposableInputiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,34 +185,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		040850862A0A3747007DEF50 /* iOSIntegrationTests */ = {
-			isa = PBXGroup;
-			children = (
-				04D30A5E2A0A6CB1005664AB /* Helpers */,
-			);
-			path = iOSIntegrationTests;
-			sourceTree = "<group>";
-		};
 		040CCEE2298FC1BE0053194A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		040CE0BC298FAA28003BB6DC /* ZZComposableInputiOS */ = {
-			isa = PBXGroup;
-			children = (
-				046C5F722992C02D00672906 /* Controllers */,
-			);
-			path = ZZComposableInputiOS;
-			sourceTree = "<group>";
-		};
-		0438FFC42A077CBB00469D1A /* ZZComposableInputiOSTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ZZComposableInputiOSTests;
 			sourceTree = "<group>";
 		};
 		043B52472A0E55C1004610A8 /* Unit Tests */ = {
@@ -321,14 +231,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		046C5F722992C02D00672906 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				046C5F6E2992A80000672906 /* UIKitSelectableCellController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		047CA3B329BD2DF500718831 /* Section */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,14 +265,14 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		04B06F882A0B87670084DD3E /* iOSSnapshotTests */ = {
+		04B06F882A0B87670084DD3E /* Snapshot Tests */ = {
 			isa = PBXGroup;
 			children = (
 				04B06F962A0B88B80084DD3E /* Helpers */,
 				04B06F892A0B87670084DD3E /* iOSSnapshotTests.swift */,
 				04B06F9B2A0B8A5C0084DD3E /* Main.storyboard */,
 			);
-			path = iOSSnapshotTests;
+			path = "Snapshot Tests";
 			sourceTree = "<group>";
 		};
 		04B06F962A0B88B80084DD3E /* Helpers */ = {
@@ -387,10 +289,6 @@
 			children = (
 				04C36F95298AF6C700712C6E /* ZZComposableInput */,
 				04C36F9F298AF6C700712C6E /* Tests */,
-				040CE0BC298FAA28003BB6DC /* ZZComposableInputiOS */,
-				0438FFC42A077CBB00469D1A /* ZZComposableInputiOSTests */,
-				040850862A0A3747007DEF50 /* iOSIntegrationTests */,
-				04B06F882A0B87670084DD3E /* iOSSnapshotTests */,
 				04C36F94298AF6C700712C6E /* Products */,
 				040CCEE2298FC1BE0053194A /* Frameworks */,
 			);
@@ -401,8 +299,6 @@
 			children = (
 				04C36F93298AF6C700712C6E /* ZZComposableInput.framework */,
 				04C36F9B298AF6C700712C6E /* ZZComposableInput Unit Tests.xctest */,
-				040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */,
-				0438FFC32A077CBB00469D1A /* ZZComposableInputiOSTests.xctest */,
 				040850852A0A3747007DEF50 /* ZZComposableInput Integration Tests.xctest */,
 				04B06F872A0B87670084DD3E /* iOSSnapshotTests.xctest */,
 			);
@@ -432,6 +328,7 @@
 				04CEFD70298BF37300715BD3 /* Shared */,
 				043B52472A0E55C1004610A8 /* Unit Tests */,
 				043B52482A0E55E1004610A8 /* Integration Tests */,
+				04B06F882A0B87670084DD3E /* Snapshot Tests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -439,6 +336,7 @@
 		04CB3DB02A0938A20024D327 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				04D30A5C2A0A67E9005664AB /* ZZComposableInput+Test.swift */,
 				04B06F932A0B87D80084DD3E /* MockSection.swift */,
 				04D30A612A0A6CD9005664AB /* MockCellController.swift */,
 				040850942A0A4117007DEF50 /* MockListView.swift */,
@@ -525,24 +423,9 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		04D30A5E2A0A6CB1005664AB /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				04D30A5C2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		040CE0B6298FAA28003BB6DC /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		04C36F8E298AF6C700712C6E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,49 +447,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				0408508B2A0A3747007DEF50 /* PBXTargetDependency */,
 			);
 			name = "ZZComposableInput Integration Tests";
 			productName = iOSIntegrationTests;
 			productReference = 040850852A0A3747007DEF50 /* ZZComposableInput Integration Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		040CE0BA298FAA28003BB6DC /* ZZComposableInputiOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 040CE0CA298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZComposableInputiOS" */;
-			buildPhases = (
-				040CE0B6298FAA28003BB6DC /* Headers */,
-				040CE0B7298FAA28003BB6DC /* Sources */,
-				040CE0B8298FAA28003BB6DC /* Frameworks */,
-				040CE0B9298FAA28003BB6DC /* Resources */,
-				040CCEEE298FCE200053194A /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				040CCEED298FCE200053194A /* PBXTargetDependency */,
-			);
-			name = ZZComposableInputiOS;
-			productName = ZZTaskInputiOS;
-			productReference = 040CE0BB298FAA28003BB6DC /* ZZComposableInputiOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		0438FFC22A077CBB00469D1A /* ZZComposableInputiOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0438FFCA2A077CBB00469D1A /* Build configuration list for PBXNativeTarget "ZZComposableInputiOSTests" */;
-			buildPhases = (
-				0438FFBF2A077CBB00469D1A /* Sources */,
-				0438FFC02A077CBB00469D1A /* Frameworks */,
-				0438FFC12A077CBB00469D1A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0438FFC92A077CBB00469D1A /* PBXTargetDependency */,
-			);
-			name = ZZComposableInputiOSTests;
-			productName = ZZComposableInputiOSTests;
-			productReference = 0438FFC32A077CBB00469D1A /* ZZComposableInputiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		04B06F862A0B87670084DD3E /* iOSSnapshotTests */ = {
@@ -676,13 +520,6 @@
 					040850842A0A3747007DEF50 = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					040CE0BA298FAA28003BB6DC = {
-						CreatedOnToolsVersion = 13.4.1;
-						LastSwiftMigration = 1340;
-					};
-					0438FFC22A077CBB00469D1A = {
-						CreatedOnToolsVersion = 14.2;
-					};
 					04B06F862A0B87670084DD3E = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -711,8 +548,6 @@
 				04C36F92298AF6C700712C6E /* ZZComposableInput */,
 				04C36F9A298AF6C700712C6E /* ZZComposableInput Unit Tests */,
 				040850842A0A3747007DEF50 /* ZZComposableInput Integration Tests */,
-				040CE0BA298FAA28003BB6DC /* ZZComposableInputiOS */,
-				0438FFC22A077CBB00469D1A /* ZZComposableInputiOSTests */,
 				04B06F862A0B87670084DD3E /* iOSSnapshotTests */,
 			);
 		};
@@ -720,20 +555,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		040850832A0A3747007DEF50 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		040CE0B9298FAA28003BB6DC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0438FFC12A077CBB00469D1A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -769,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046E214C2A0EC737006B54F6 /* ZZComposableInput+Test.swift in Sources */,
 				04D30A5B2A0A6632005664AB /* UIView+Test.swift in Sources */,
 				040850922A0A3FBE007DEF50 /* ViewSpy.swift in Sources */,
 				040850952A0A4117007DEF50 /* MockListView.swift in Sources */,
@@ -778,32 +600,9 @@
 				043B524A2A0E570B004610A8 /* MockSectionsController.swift in Sources */,
 				0408508F2A0A3FBE007DEF50 /* TestHelpers.swift in Sources */,
 				040850902A0A3FBE007DEF50 /* ItemLoaderSpy.swift in Sources */,
-				04D30A5D2A0A67E9005664AB /* ZZComposableInputViewController+Test.swift in Sources */,
 				04B06F942A0B87D80084DD3E /* MockSection.swift in Sources */,
 				04D30A622A0A6CD9005664AB /* MockCellController.swift in Sources */,
 				040850932A0A40E2007DEF50 /* MockSectionedView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		040CE0B7298FAA28003BB6DC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				046C5F6F2992A80000672906 /* UIKitSelectableCellController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0438FFBF2A077CBB00469D1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04CB3DAB2A08FB0E0024D327 /* ViewSpy.swift in Sources */,
-				0438FFCD2A07803200469D1A /* ItemLoaderSpy.swift in Sources */,
-				0438FFD22A07816E00469D1A /* TestHelpers.swift in Sources */,
-				043B52502A0E59BD004610A8 /* MockResourceListController.swift in Sources */,
-				04CB3DB42A09414A0024D327 /* UIView+Test.swift in Sources */,
-				04CB3DB22A0938AE0024D327 /* MockSectionedView.swift in Sources */,
-				0438FFCE2A07805100469D1A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +613,7 @@
 				04B06FA22A0B8C0A0084DD3E /* UIView+Test.swift in Sources */,
 				04B06F9A2A0B88E00084DD3E /* XCTestCase+Snapshot.swift in Sources */,
 				043B52512A0E59BD004610A8 /* MockResourceListController.swift in Sources */,
-				04B06FA32A0BB2A20084DD3E /* ZZComposableInputViewController+Test.swift in Sources */,
+				04B06FA32A0BB2A20084DD3E /* ZZComposableInput+Test.swift in Sources */,
 				04B06F912A0B87830084DD3E /* MockListView.swift in Sources */,
 				04B06F982A0B88C90084DD3E /* UIViewController+Snapshot.swift in Sources */,
 				04B06F922A0B87830084DD3E /* MockCellController.swift in Sources */,
@@ -881,21 +680,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0408508B2A0A3747007DEF50 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 040CE0BA298FAA28003BB6DC /* ZZComposableInputiOS */;
-			targetProxy = 0408508A2A0A3747007DEF50 /* PBXContainerItemProxy */;
-		};
-		040CCEED298FCE200053194A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04C36F92298AF6C700712C6E /* ZZComposableInput */;
-			targetProxy = 040CCEEC298FCE200053194A /* PBXContainerItemProxy */;
-		};
-		0438FFC92A077CBB00469D1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 040CE0BA298FAA28003BB6DC /* ZZComposableInputiOS */;
-			targetProxy = 0438FFC82A077CBB00469D1A /* PBXContainerItemProxy */;
-		};
 		04B06F8D2A0B87670084DD3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 04C36F92298AF6C700712C6E /* ZZComposableInput */;
@@ -938,105 +722,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.iOSIntegrationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		040CE0CB298FAA28003BB6DC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOS;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		040CE0CC298FAA28003BB6DC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZTaskInputiOS;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		0438FFCB2A077CBB00469D1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZComposableInputiOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		0438FFCC2A077CBB00469D1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.ZZComposableInputiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1325,24 +1010,6 @@
 			buildConfigurations = (
 				0408508D2A0A3747007DEF50 /* Debug */,
 				0408508E2A0A3747007DEF50 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		040CE0CA298FAA28003BB6DC /* Build configuration list for PBXNativeTarget "ZZComposableInputiOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				040CE0CB298FAA28003BB6DC /* Debug */,
-				040CE0CC298FAA28003BB6DC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0438FFCA2A077CBB00469D1A /* Build configuration list for PBXNativeTarget "ZZComposableInputiOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0438FFCB2A077CBB00469D1A /* Debug */,
-				0438FFCC2A077CBB00469D1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
