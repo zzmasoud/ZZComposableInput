@@ -63,16 +63,19 @@ extension MockListView: UITableViewDataSource, UITableViewDelegate {
         let isSelected = controller.isSelected?() ?? false
         if isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            cell.isSelected = true
         }
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = true
         onSelection(indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         onDeselection(indexPath.row)
     }
 }

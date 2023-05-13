@@ -227,7 +227,7 @@ final class iOSIntegrationTests: XCTestCase {
         assertThat(sut, isRenderingSelectionIndicatorForIndexes: [0, 2], for: section)
     }
     
-    #warning("This test is passing, while the snapshot tests recognized wrong logic. (max selection of a container should deselect previous items from the UI too.)")
+    func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
     func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
         let section = 3
         let items = makeItems()

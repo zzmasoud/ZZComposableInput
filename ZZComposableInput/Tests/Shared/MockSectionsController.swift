@@ -25,7 +25,6 @@ class MockSectionsController: NSObject, SectionsControllerProtocol {
     func display(_ viewModel: SectionsViewModel) {
         sectionedView?.reload(withTitles: viewModel.titles)
         sectionedView?.selectedSectionIndex = viewModel.selectedIndex
-        #warning("what if the first state is not -1 index?")
     }
     
     func display(_ viewModel: SectionViewModel) {}
