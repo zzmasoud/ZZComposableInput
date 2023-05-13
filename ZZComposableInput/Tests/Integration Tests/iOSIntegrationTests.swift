@@ -228,7 +228,6 @@ final class iOSIntegrationTests: XCTestCase {
     }
     
     func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
-    func test_selectingRenderedItemOnMultiSelectionType_removesMoreThanMaxAllowedSelectedItems() {
         let section = 3
         let items = makeItems()
         let (sut, loader) = makeSUT()
