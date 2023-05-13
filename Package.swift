@@ -8,9 +8,20 @@ let package = Package(
         .macOS(.v10_15),
     ],
     products: [
-        .library(name: "ZZComposableInput", targets: ["ZZComposableInput"]),
+        .library(
+            name: "ZZComposableInput",
+            targets: ["ZZComposableInput"]
+        ),
     ],
     targets: [
-        .target(name: "ZZComposableInput", path: "Sources"),
+        .target(
+            name: "ZZComposableInput",
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "ZZComposableInputTests",
+            dependencies:["ZZComposableInput"],
+            path: "Tests/Unit Tests"
+        )
     ]
 )
