@@ -1,80 +1,92 @@
-# ZZNewTaskView
-This is one of the main modules in my app and because of the nested modules and complexity, I've removed extra codes + UI.
+# ZZComposableInput
+<p><img src="https://img.shields.io/badge/Swift-v5-orange"> <img src="https://img.shields.io/badge/iOS-%2B13.0-blue"> <img src="https://img.shields.io/badge/macOS-%2B10.15-blue"> <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen"> <img src="https://img.shields.io/badge/Coverage-100%25-brightgreen"></p>
+<p>This multiplatform library helps to get the user's selected items from different sections using high composability.</br>
+This is a use case preview. I'm using it in my personal app <a href="zzmasoud.github.io/CLOC">CLOC: Tasks & Time Tracker</a> to create/edit tasks.
 
-![Preview](/Resources/UI.png)
-### [Video Preview](/Resources/Preview.MP4)
-
-## Story: User wants to add a task
-
-### Narrative
+## Documentation
+#### ItemType
 ```
-As a user
-I want the app to show me a handy popup when I want to add a task.
-Then, it automatically selects the text field so I can type my task title and description quickly (without manually selecting the text field).
-Then I want to scroll between items and select.
-Then I want to tap a `save` button and expect it to get closed.
+public protocol ItemType: Hashable {
+    var title: String { get }
+}
 ```
-
-#### Scenarios (Acceptance criteria)
+The core model that is used widely in the project. </br>
+For now, it is using a typealias `AnyItem` which is equal to `ItemType`. It is added for further development.
+#### ItemsLoader
 ```
-Given the user has tapped an UI element to add a task
-Have entered the title
-When tapping the `save` UI element
-Then the app should save the task and close the popup
+public protocol ItemsLoader {
+    associatedtype Item: AnyItem
+    
+    typealias FetchItemsResult = Result<[Item], Error>
+    typealias FetchItemsCompletion = (FetchItemsResult) -> Void
+
+    func loadItems(for section: Int, completion: @escaping FetchItemsCompletion) -> CancellableFetch
+}
 ```
+Abstraction of loading data for each section.
+
+#### ItemsContainer
 ```
-Given the user has tapped an UI element to add a task
-Have entered the title
-When the popup opened from a sepecific project/date
-Then preselect the specific project/date
+public protocol ItemsContainer: AnyObject {
+    associatedtype Item: AnyItem
+    
+    var delegate: ItemsContainerDelegate? { get set }
+    var selectionType: ItemsContainerSelectionType { get }
+    var items: [Item] { get }
+    var selectedItems: [Item]? { get }
+    var allowAdding: Bool { get }
+    func select(at index: Int)
+    func deselect(at index: Int)
+    func add(item: Item)
+    func removeSelection()
+}
 ```
+Abstraction of controlling items in a container. </br> It is provided with `DefaultItemsContainer` which do the things needed, such as:
+- [x] Selection
+- [x] Deselection
+- [x] Prevent selection more than maximum limit
+- [x] Delegation
+
+#### SectionedViewProtocol
 ```
-Given the user has tapped an UI element to add a task
-And the title is empty
-When tapping  a `save` UI element
-Then the app should do nothing since the required data haven't entered.
+public protocol SectionedViewProtocol: AnyObject {
+    associatedtype View
+    var view: View { get }
+    var selectedSectionIndex: Int { set get }
+    var numberOfSections: Int { get }
+    var onSectionChange: (() -> Void)? { set get }
+    func reload(withTitles: [String])
+}
 ```
+Abstraction of a view with sections, e.g. `UISegmentedControl`.
 
-### Use Cases
+#### ResourceListViewProtocol
+```
+public protocol ResourceListViewProtocol: AnyObject {
+    associatedtype View
+    associatedtype CellController: SelectableCellController
+    
+    var view: View { get }
+    var onSelection: ((Int) -> Void) { get set }
+    var onDeselection: ((Int) -> Void) { get set }
+    func reloadData(with: [CellController])
+    func allowMultipleSelection(_ isOn: Bool)
+    func allowAddNew(_ isOn: Bool)
+    func deselect(at: Int)
+}
+```
+Abstraction of a view with list of items e.g. `UITableView`, `UICollectionView`.
 
-#### Get Title and Description From User's Entered Text
-##### Data:
-- Title: String
-- Description: String?
+## Getting Started
+- You can head to <a href="https://github.com/zzmasoud/ZZComposableInput/blob/fa060c559a831c2fc48b305224bf45bb61e58a33/Tests/Snapshot%20Tests/iOSSnapshotTests.swift">iOS Snapshot Tests</a> and learn how to use it in your iOS project. There are a lot of mocking which helps you conform your custom views and models to the protocols of this library.
+- There is a public class called `ZZComposableInput` which you can get started.
 
-##### Primary Course:
-1. User enters a text.
-2. User enters return and continues typing.
-3. On excuting "send" command, the module delivers above data.
+## Contribution
+Please feel free to open an issue to:
+- Repoert a bug
+- Request a feature
+- Ask for help
+<p>And also you can help improving this project by opening a PR.</p>
 
-
-#### Load Selectable Items For Each Section Use Case
-##### Data:
-- Section
-
-##### Primary Course:
-1. Execute "fetch items" command with above data.
-2. User can select each section and the module should load them if needed.
-3. Hold loaded items to prevent further loading.
-
-#### Empty Items Course:
-1. Delivers nothing to select.
-
-#### Retrieval Error Course (Sad Path):
-1. System delivers error.
-
-
-#### Select/Deselect Items In A Section
-##### Data:
-- Selected items
-
-##### Primary Course:
-1. The module should know if the current section is single or multiple selection.
-1. User can select single or multiple regarding to step (1).
-2. If it's a single selection, after selecting any it should replace.
-3. If it's a multiple selection, after selecting any, if selecting the same item, it means deselect.
-4. The module should hold only selected items.
-5. On excuting "send" command, the module delivers above data.
-
-##### Empty Items Course:
-1. There's nothing to select.
+## License
+ZZComposableInput is available under the MIT license. See the LICENSE file for more info.
