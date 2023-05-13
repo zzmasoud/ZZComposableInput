@@ -20,4 +20,5 @@ public protocol ItemsContainer: AnyObject {
     func select(at index: Int)
     func deselect(at index: Int)
     func add(item: Item)
+    func removeSelection()
 }

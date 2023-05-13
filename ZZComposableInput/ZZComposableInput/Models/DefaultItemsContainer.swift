@@ -35,7 +35,10 @@ public class DefaultItemsContainer<Item: AnyItem>: ItemsContainer {
         items.append(item)
         self.delegate?.newItemAdded(at: items.count-1)
     }
-
+    
+    public func removeSelection() {
+        selectedItems = nil
+    }
 }
 
 // MARK: - Select

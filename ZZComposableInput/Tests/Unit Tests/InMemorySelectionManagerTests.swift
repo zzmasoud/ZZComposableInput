@@ -59,6 +59,23 @@ final class InMemorySelectionManagerTests: XCTestCase {
         XCTAssertEqual(selectedItems, [items[1]])
     }
     
+    func test_addWithIgnore_doesntAddPreselectedItemsToSelectedItems() {
+        let items = makeItems()
+        let preSelectedItems = Array(items[0...1])
+        let sut = makeSUT()
+        
+        let container = makeContainer(withItems: items, preSelectedItems: preSelectedItems)
+        sut.sync(container: container, forSection: 0)
+        
+        container.deselect(at: 0)
+        XCTAssertEqual(container.selectedItems!, [preSelectedItems[1]])
+        
+        let regeneratedContainer = makeContainer(withItems: items, preSelectedItems: preSelectedItems)
+        sut.sync(container: regeneratedContainer, forSection: 0, ignoringPreselection: true)
+        
+        XCTAssertEqual(regeneratedContainer.selectedItems!, [preSelectedItems[1]])
+    }
+    
     // MARK: - Helpers
     
     private typealias Container = DefaultItemsContainer<MockItem>
@@ -69,10 +86,10 @@ final class InMemorySelectionManagerTests: XCTestCase {
         return sut
     }
     
-    private func makeContainer(withItems items: [MockItem]? = nil) -> Container {
+    private func makeContainer(withItems items: [MockItem]? = nil, preSelectedItems: [MockItem]? = nil) -> Container {
         return DefaultItemsContainer(
             items: items ?? makeItems(),
-            preSelectedItems: nil,
+            preSelectedItems: preSelectedItems,
             selectionType: .multiple(max: 2),
             allowAdding: true
         )

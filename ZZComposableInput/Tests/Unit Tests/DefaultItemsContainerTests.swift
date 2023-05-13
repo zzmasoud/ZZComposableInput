@@ -37,6 +37,20 @@ class DefaultItemsContainerTests: XCTestCase {
         expect(sut, toHaveSelectedItems: preSelectedItems)
     }
     
+    func test_removeSelection_nillifySelectedItems() {
+        let items = makeItems()
+        let preSelectedItems = [items[0], items[1]]
+        let sut = DefaultItemsContainer(
+            items: makeItems(),
+            preSelectedItems: preSelectedItems,
+            selectionType: .single,
+            allowAdding: true)
+        
+        sut.removeSelection()
+        
+        expect(sut, toHaveSelectedItems: nil)
+    }
+    
     // MARK: - Single Selection Type
     
     func test_selectAt_setsSelectedItemIfSingleSelection() {

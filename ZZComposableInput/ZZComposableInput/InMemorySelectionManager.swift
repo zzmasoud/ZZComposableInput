@@ -23,7 +23,10 @@ final class InMemorySelectionManager<Container: ItemsContainer> {
     
     init() {}
 
-    func sync(container: Container, forSection section: Int) {
+    func sync(container: Container, forSection section: Int, ignoringPreselection: Bool = false) {
+        if ignoringPreselection {
+            container.removeSelection()
+        }
         loadedContainers[section]?.selectedItems?.forEach({ item in
             if let index = container.items.firstIndex(of: item) {
                 container.select(at: index)
