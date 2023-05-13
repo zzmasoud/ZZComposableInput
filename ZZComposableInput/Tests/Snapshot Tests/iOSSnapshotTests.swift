@@ -7,81 +7,42 @@ import ZZComposableInput
 
 final class iOSSnapshotTests: XCTestCase {
     
-    func test_initiatedState() {
-        let (_, _, viewController) = makeSUT()
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Initial State")
-    }
-    
-    func test_selectSection() {
-        let section = 0
-        let (sut, _, viewController) = makeSUT()
-        
-        sut.simulateSelection(section: section)
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select First Section")
-    }
-    
-    func test_loadedResources() {
-        let section = 0
+    func test_scenario() {
         let (sut, loader, viewController) = makeSUT()
         
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Load Resource of First Section")
-    }
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "0. Initial State")
     
-    func test_selectItemsInFirstSection() {
-        let section = 0
-        let (sut, loader, viewController) = makeSUT()
-
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
+        sut.simulateSelection(section: 0)
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "1. Select First Section + Loading Resources")
+    
+        loader.completeRetrieval(with: makeItems(forSection: 0), at: 0)
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "2. Resource Loaded for the First Section")
+    
         sut.simulateItemSelection(at: 2,1,0,2,2)
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Item of First Section")
-    }
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "3. Select Item of First Section")
     
-    func test_selectItemInSecondSection() {
-        let section = 1
-        let (sut, loader, viewController) = makeSUT()
-
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
+        sut.simulateSelection(section: 1)
+        loader.completeRetrieval(with: makeItems(forSection: 1), at: 1)
         sut.simulateItemSelection(at: 0,1,2,3,4)
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "4. Select Item of Second Section")
         
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Item of Second Section")
-        
-        sut.simulateSelection(section: section-1)
-        loader.completeRetrieval(with: makeItems(forSection: section-1))
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Back to First Section and Then Second")
-
-    }
+        sut.simulateSelection(section: 0)
+        loader.completeRetrieval(with: makeItems(forSection: 0), at: 2)
+        sut.simulateSelection(section: 1)
+        loader.completeRetrieval(with: makeItems(forSection: 1), at: 3)
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "5. Forth and Back Between First and Second Section")
     
-    func test_selectItemsInThirdSection() {
-        let section = 2
-        let (sut, loader, viewController) = makeSUT()
-        
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
+        sut.simulateSelection(section: 2)
+        loader.completeRetrieval(with: makeItems(forSection: 2), at: 4)
 //        items = ["zz", "mas", "blah", "oud", "blah blah"]
         sut.simulateItemSelection(at: 4,2,0,1,3)
                 
-        sut.simulateSelection(section: section-1)
-        loader.completeRetrieval(with: makeItems(forSection: section-1))
-        sut.simulateSelection(section: section)
-        loader.completeRetrieval(with: makeItems(forSection: section))
-        
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "Select Items of Third Section")
+        sut.simulateSelection(section: 1)
+        loader.completeRetrieval(with: makeItems(forSection: 1), at: 5)
+        sut.simulateSelection(section: 2)
+        loader.completeRetrieval(with: makeItems(forSection: 2), at: 6)
+        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "6. Select Items of Third Section")
     }
-    
     
     // MARK: - Helpers
     
@@ -107,6 +68,14 @@ final class iOSSnapshotTests: XCTestCase {
         
         sectionsController.viewDidLoad()
         resourceListController.viewDidLoad()
+        
+        sut.onToggleSelection = { _ in
+            let selectedItems0 = (sut.selectedItems(forSection: 0) ?? []).map { $0.title }
+            let selectedItems1 = (sut.selectedItems(forSection: 1) ?? []).map { $0.title }
+            let selectedItems2 = (sut.selectedItems(forSection: 2) ?? []).map { $0.title }
+            
+            viewController.log(selectedItems: [0: selectedItems0, 1: selectedItems1, 2: selectedItems2])
+        }
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sectionsController, file: file, line: line)
@@ -163,7 +132,7 @@ final class iOSSnapshotTests: XCTestCase {
                 items = ["zz", "mas", "blah", "oud", "blah blah"]
             }
             
-            return items.map {.init($0)}
+            return items.map { .init(title: $0) }
         }
         
         var selectionType: ItemsContainerSelectionType {
@@ -179,8 +148,6 @@ final class iOSSnapshotTests: XCTestCase {
     }
 }
 
-extension MockItem {
-    init(_ title: String) {
-        self.init(id: UUID(), title: title)
-    }
+struct MockItem: AnyItem {
+    let title: String
 }

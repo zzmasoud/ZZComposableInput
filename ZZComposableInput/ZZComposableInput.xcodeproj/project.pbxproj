@@ -54,7 +54,6 @@
 		04B06F982A0B88C90084DD3E /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B06F972A0B88C90084DD3E /* UIViewController+Snapshot.swift */; };
 		04B06F9A2A0B88E00084DD3E /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B06F992A0B88E00084DD3E /* XCTestCase+Snapshot.swift */; };
 		04B06F9C2A0B8A5C0084DD3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B06F9B2A0B8A5C0084DD3E /* Main.storyboard */; };
-		04B06F9E2A0B8BE80084DD3E /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5728C29B78255000E0D08 /* TestHelpers.swift */; };
 		04B06FA02A0B8BE80084DD3E /* ItemLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5A20D298D7DF400C76384 /* ItemLoaderSpy.swift */; };
 		04B06FA12A0B8C060084DD3E /* MockSectionedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB12A0938AE0024D327 /* MockSectionedView.swift */; };
 		04B06FA22A0B8C0A0084DD3E /* UIView+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB3DB32A09414A0024D327 /* UIView+Test.swift */; };
@@ -628,7 +627,6 @@
 				04B06F8A2A0B87670084DD3E /* iOSSnapshotTests.swift in Sources */,
 				043D49892A0EE2030034ED92 /* CustomVC.swift in Sources */,
 				04B06FA12A0B8C060084DD3E /* MockSectionedView.swift in Sources */,
-				04B06F9E2A0B8BE80084DD3E /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
