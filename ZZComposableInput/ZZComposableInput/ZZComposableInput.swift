@@ -39,7 +39,9 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
             containerMapper: containerMapper,
             cellControllerMapper: cellControllerMapper,
             containerCacheCallback: { [weak self] container, section in
-                self?.selectionManager.sync(container: container, forSection: section)
+                var ignorePreselected = false
+                if self?.selectedItems(forSection: section) != nil { ignorePreselected = true }
+                self?.selectionManager.sync(container: container, forSection: section, ignoringPreselection: ignorePreselected)
             })
         
         composedWith(
@@ -77,5 +79,9 @@ public final class ZZComposableInput<SectionsController: SectionsControllerProto
     
     public func add(newItem: Item) {
         resourceListViewAdapter?.container?.add(item: newItem)
+    }
+    
+    public func selectedItems(forSection section: Int) -> [Item]? {
+        return selectionManager.loadedContainers[section]?.selectedItems
     }
 }
