@@ -10,38 +10,39 @@ final class iOSSnapshotTests: XCTestCase {
     func test_scenario() {
         let (sut, loader, viewController) = makeSUT()
         
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "0. Initial State")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "0. Initial State")
     
         sut.simulateSelection(section: 0)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "1. Select First Section + Loading Resources")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "1. Select First Section + Loading Resources")
     
         loader.completeRetrieval(with: makeItems(forSection: 0), at: 0)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "2. Resource Loaded for the First Section")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "2. Resource Loaded for the First Section")
     
         sut.simulateItemSelection(at: 2,1,0,2,2)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "3. Select Item of First Section")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "3. Select Item of First Section")
     
         sut.simulateSelection(section: 1)
         loader.completeRetrieval(with: makeItems(forSection: 1), at: 1)
         sut.simulateItemSelection(at: 0,1,2,3,4)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "4. Select Item of Second Section")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "4. Select Item of Second Section")
         
         sut.simulateSelection(section: 0)
         loader.completeRetrieval(with: makeItems(forSection: 0), at: 2)
         sut.simulateSelection(section: 1)
         loader.completeRetrieval(with: makeItems(forSection: 1), at: 3)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "5. Forth and Back Between First and Second Section")
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "5. Forth and Back Between First and Second Section")
     
         sut.simulateSelection(section: 2)
         loader.completeRetrieval(with: makeItems(forSection: 2), at: 4)
 //        items = ["zz", "mas", "blah", "oud", "blah blah"]
-        sut.simulateItemSelection(at: 4,2,0,1,3)
+        sut.simulateItemSelection(at: 4,2,0,1)
                 
         sut.simulateSelection(section: 1)
         loader.completeRetrieval(with: makeItems(forSection: 1), at: 5)
         sut.simulateSelection(section: 2)
         loader.completeRetrieval(with: makeItems(forSection: 2), at: 6)
-        record(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "6. Select Items of Third Section")
+        sut.simulateItemSelection(at: 3)
+        assert(snapshot: viewController.snapshot(for: .iPhone13(style: .light)), named: "6. Select Items of Third Section")
     }
     
     // MARK: - Helpers
@@ -60,21 +61,23 @@ final class iOSSnapshotTests: XCTestCase {
         
         let sut = SUT(sectionsController: sectionsController, resourceListController: resourceListController, itemsLoader: loader)
         sut.start(withSections: sections,
-                  itemsLoader: loader) { index, items in
-            self.containerMapper(section: index, items: items, preselectedItems: preSelectedItems?[index])
-        } cellControllerMapper: { items in
-            self.cellControllerMapper(items: items)
+                  itemsLoader: loader) { [weak self] index, items in
+            guard let self = self else { fatalError() }
+            return self.containerMapper(section: index, items: items, preselectedItems: preSelectedItems?[index])
+        } cellControllerMapper: { [weak self] items in
+            guard let self = self else { fatalError() }
+            return self.cellControllerMapper(items: items)
         }
         
         sectionsController.viewDidLoad()
         resourceListController.viewDidLoad()
         
-        sut.onToggleSelection = { _ in
-            let selectedItems0 = (sut.selectedItems(forSection: 0) ?? []).map { $0.title }
-            let selectedItems1 = (sut.selectedItems(forSection: 1) ?? []).map { $0.title }
-            let selectedItems2 = (sut.selectedItems(forSection: 2) ?? []).map { $0.title }
+        sut.onToggleSelection = { [weak sut, weak viewController] _ in
+            let selectedItems0 = (sut?.selectedItems(forSection: 0) ?? []).map { $0.title }
+            let selectedItems1 = (sut?.selectedItems(forSection: 1) ?? []).map { $0.title }
+            let selectedItems2 = (sut?.selectedItems(forSection: 2) ?? []).map { $0.title }
             
-            viewController.log(selectedItems: [0: selectedItems0, 1: selectedItems1, 2: selectedItems2])
+            viewController?.log(selectedItems: [0: selectedItems0, 1: selectedItems1, 2: selectedItems2])
         }
         
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -150,4 +153,10 @@ final class iOSSnapshotTests: XCTestCase {
 
 struct MockItem: AnyItem {
     let title: String
+    
+    var hashValue: Int { return title.hashValue }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
 }

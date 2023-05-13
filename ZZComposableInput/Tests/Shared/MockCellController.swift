@@ -18,9 +18,18 @@ extension MockCellController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath)
         cell.textLabel?.text = model.title
         return cell
     }
 }
 
+final class CustomCell: UITableViewCell {
+    static let id = "CustomCell"
+    
+    override var isSelected: Bool {
+        didSet {
+//            self.accessoryType = isSelected ? .checkmark : .none
+        }
+    }
+}

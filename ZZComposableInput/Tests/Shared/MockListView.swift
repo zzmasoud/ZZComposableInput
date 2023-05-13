@@ -12,6 +12,7 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     
     init(tableView: UITableView) {
         self.tableView = tableView
+        self.tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.id)
         self.onSelection = { _ in }
         self.onDeselection = { _ in }
     }
@@ -36,7 +37,8 @@ final class MockListView: NSObject, ResourceListViewProtocol {
     }
         
     func deselect(at index: Int) {
-        tableView.deselectRow(at: IndexPath(row: index, section: 0), animated: true)
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func allowAddNew(_ isOn: Bool) {}
@@ -54,16 +56,15 @@ extension MockListView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellControllers[indexPath.row]
-        var cell = UITableViewCell()
+        var cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.id, for: indexPath)
         if let mockId = controller.id as? MockCellController {
             cell = mockId.tableView(tableView, cellForRowAt: indexPath)
         }
         let isSelected = controller.isSelected?() ?? false
-        
         if isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            cell.isSelected = true
         }
+
         return cell
     }
 
