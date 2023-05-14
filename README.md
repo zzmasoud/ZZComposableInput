@@ -3,9 +3,9 @@
 <p>This multiplatform library helps to get the user's selected items from different sections using high composability.</br>
 I'm using it in my personal app <a href="zzmasoud.github.io/CLOC">CLOC: Tasks & Time Tracker</a> to create/edit tasks, here is a quick preview:</p>
 <p float="left">
-  <img src="https://github.com/zzmasoud/ZZComposableInput/blob/4dd12044476549839fa1ca2e1865a24adba9db8e/Documentation/Resources/preview1.jpg" width="400"/>
+  <img src="https://github.com/zzmasoud/ZZComposableInput/blob/4dd12044476549839fa1ca2e1865a24adba9db8e/Documentation/Resources/preview1.jpg" width="300"/>
     
-  <img src="https://github.com/zzmasoud/ZZComposableInput/blob/4dd12044476549839fa1ca2e1865a24adba9db8e/Documentation/Resources/preview2.jpg" width="400"  hspace="20"/> 
+  <img src="https://github.com/zzmasoud/ZZComposableInput/blob/4dd12044476549839fa1ca2e1865a24adba9db8e/Documentation/Resources/preview2.jpg" width="300"  hspace="20"/> 
 </p>
 
 ## Documentation
