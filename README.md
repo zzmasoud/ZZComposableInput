@@ -1,5 +1,6 @@
 # ZZComposableInput
-<p><img src="https://img.shields.io/badge/Swift-v5-orange"> <img src="https://img.shields.io/badge/iOS-%2B13.0-blue"> <img src="https://img.shields.io/badge/macOS-%2B10.15-blue"> <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen"> <img src="https://img.shields.io/badge/Coverage-100%25-brightgreen"></p>
+<p><img src="https://img.shields.io/badge/Swift-v5-orange"> <img src="https://img.shields.io/badge/iOS-%2B13.0-blue"> <img src="https://img.shields.io/badge/macOS-%2B10.15-blue"> <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen"> <img src = "https://github.com/zzmasoud/ZZComposableInput/actions/workflows/swift.yml/badge.svg">
+ <img src="https://img.shields.io/badge/Coverage-100%25-brightgreen"></p>
 <p>This multiplatform library helps to get the user's selected items from different sections using high composability.</br>
 I'm using it in my personal app <a href="zzmasoud.github.io/CLOC">CLOC: Tasks & Time Tracker</a> to create/edit tasks, here is a quick preview:</p>
 <p float="left">
