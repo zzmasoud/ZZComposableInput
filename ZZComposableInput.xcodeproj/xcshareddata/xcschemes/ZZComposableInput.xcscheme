@@ -51,16 +51,6 @@
                ReferencedContainer = "container:ZZComposableInput.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "04B06F862A0B87670084DD3E"
-               BuildableName = "iOSSnapshotTests.xctest"
-               BlueprintName = "iOSSnapshotTests"
-               ReferencedContainer = "container:ZZComposableInput.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
