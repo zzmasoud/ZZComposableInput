@@ -11,7 +11,7 @@ I'm using it in my personal app <a href="zzmasoud.github.io/CLOC">CLOC: Tasks & 
 
 ## Documentation
 #### ItemType
-```
+```swift
 public protocol ItemType: Hashable {
     var title: String { get }
 }
@@ -19,7 +19,7 @@ public protocol ItemType: Hashable {
 The core model that is used widely in the project. </br>
 For now, it is using a typealias `AnyItem` which is equal to `ItemType`. It is added for further development.
 #### ItemsLoader
-```
+```swift
 public protocol ItemsLoader {
     associatedtype Item: AnyItem
     
@@ -32,7 +32,7 @@ public protocol ItemsLoader {
 Abstraction of loading data for each section.
 
 #### ItemsContainer
-```
+```swift
 public protocol ItemsContainer: AnyObject {
     associatedtype Item: AnyItem
     
@@ -54,7 +54,7 @@ Abstraction of controlling items in a container. </br> It is provided with `Defa
 - [x] Delegation
 
 #### SectionedViewProtocol
-```
+```swift
 public protocol SectionedViewProtocol: AnyObject {
     associatedtype View
     var view: View { get }
@@ -67,7 +67,7 @@ public protocol SectionedViewProtocol: AnyObject {
 Abstraction of a view with sections, e.g. `UISegmentedControl`.
 
 #### ResourceListViewProtocol
-```
+```swift
 public protocol ResourceListViewProtocol: AnyObject {
     associatedtype View
     associatedtype CellController: SelectableCellController
